@@ -759,9 +759,20 @@ export async function render(root) {
     voiceCtl?.stop();
     replay?.stop();
     motion?.stop();
-    // Finished: the coach's last line ("That was the last step. Great work.") ends here, not over the summary
+    // Finished: a proper ending on this screen (every step ticked, "You did it", the coach's last line), held long
+    // enough to land, then the summary. Leaving early goes straight there.
+    if (completed) {
+      if (lastSaid !== T('yes_last')) { // coachSay stays quiet once finished; this one line is the ending
+        el.reply.textContent = T('yes_last'); el.voiceCap.hidden = false;
+        if (voiceCtl || (replayMode && replayVoice)) speak(T('yes_last'));
+      }
+      el.guide.replaceChildren(h('div', { class: 'finale' }, h('span', { class: 'finale-mark', 'aria-hidden': 'true' }, '\u2713'),
+        h('div', {}, h('div', { class: 'finale-title' }, 'You did it'),
+          h('div', { class: 'finale-sub' }, `All ${steps.length} step${steps.length === 1 ? '' : 's'} of ${meta.title}, checked.`))));
+      el.segs.querySelectorAll('.seg').forEach((x) => x.classList.add('done'));
+    }
     const [summary] = await Promise.all([api.endSession(sid, reason).catch((err) => { toast(err.message); return null; }),
-      completed ? whenQuiet(6000) : null]);
+      completed ? whenQuiet(7000) : null, completed ? new Promise((r) => setTimeout(r, 2600)) : null]);
     app.summary = summary;
     app.summaryTitle = meta.title;
     app.summaryPlan = plan;
@@ -922,7 +933,7 @@ export async function render(root) {
     if (res.verdict === 'done') {
       const next = stepOf(n + 1);
       if (ctx.confirmDone.includes(n)) return; // a safety step: the learner is asked first (final_ask)
-      coachSay(next ? T('yes_next', { n: n + 1, text: directions(n + 1) }) : T('yes_last'), true, !!voiceCtl, next ? n + 1 : n);
+      coachSay(next ? T('yes_next', { n: n + 1, text: `${lcFirst(titleOf(n + 1))}.` }) : T('yes_last'), true, !!voiceCtl, next ? n + 1 : n);
     } else if (res.verdict === 'unsure') {
       coachSay(`${T('not_sure')} ${lang === 'en' ? askQuestion(stepOf(n), last) : finalQuestion(n)} ${T('say_yes_no')}`);
     } else if (res.verdict === 'waiting' && asked) {
