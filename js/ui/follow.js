@@ -13,7 +13,7 @@ import { showError, showOverlay, toast } from '../overlays.js';
 import { nav } from '../router.js';
 import { checkLabel, formatValue, newObjects } from './plan-text.js';
 import { createVoice, askMic } from '../voice.js';
-import { speak, hush, onSpeech, setVoiceLang } from '../speech.js';
+import { whenQuiet, speak, hush, onSpeech, setVoiceLang } from '../speech.js';
 import { saveProgress, clearProgress } from '../progress.js';
 
 const ORB = {
@@ -722,7 +722,10 @@ export async function render(root) {
     voiceCtl?.stop();
     replay?.stop();
     motion?.stop();
-    try { app.summary = await api.endSession(sid, reason); } catch (err) { app.summary = null; toast(err.message); }
+    // Finished: the coach's last line ("That was the last step. Great work.") ends here, not over the summary
+    const [summary] = await Promise.all([api.endSession(sid, reason).catch((err) => { toast(err.message); return null; }),
+      completed ? whenQuiet(6000) : null]);
+    app.summary = summary;
     app.summaryTitle = meta.title;
     app.summaryPlan = plan;
     nav('summary');
@@ -961,7 +964,7 @@ export async function render(root) {
     wakeLock?.release().catch(() => {});
     voiceCtl?.stop();
     stopDucking();
-    if (!completed) hush(); // finished the lesson: let "great work" finish; left early: stop talking
+    hush(); // the coach never talks over another page (a finished lesson already waited for its last line)
     window.removeEventListener('keyup', onKeyUp);
     replay?.stop();
     motion?.stop();
