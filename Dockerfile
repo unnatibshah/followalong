@@ -21,5 +21,6 @@ USER app
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
     CMD python -c "import os, urllib.request; urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\", \"8000\")}/healthz')"
-# Render sets PORT; locally it is 8000. No access log, so no IP addresses are written.
-CMD ["sh", "-c", "exec uvicorn server.main:app --host 0.0.0.0 --port ${PORT:-8000} --no-access-log"]
+# Render sets PORT; locally it is 8000. No access log, so no IP addresses are written. --proxy-headers: the client
+# IP (the per-IP live-session limit) comes from Render's proxy's X-Forwarded-For, not the proxy's own address.
+CMD ["sh", "-c", "exec uvicorn server.main:app --host 0.0.0.0 --port ${PORT:-8000} --no-access-log --proxy-headers --forwarded-allow-ips '*'"]

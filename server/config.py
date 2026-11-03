@@ -58,6 +58,8 @@ CAPS = {"session": float(_env("FA_CAP_SESSION_USD", 1.50)), "day": float(_env("F
         "total": float(_env("FA_CAP_TOTAL_USD", 50))}
 LIMITS = {"sessions_per_day": int(_env("FA_VISITOR_SESSIONS_PER_DAY", 2)),
           "uploads_per_day": int(_env("FA_VISITOR_UPLOADS_PER_DAY", 1)),
+          # per client IP: a cookie-less script gets no more; a shared office or school network still fits
+          "ip_sessions_per_day": int(_env("FA_IP_SESSIONS_PER_DAY", 10)),
           "concurrent": int(_env("FA_MAX_CONCURRENT_SESSIONS", 2)),
           "idle_s": float(_env("FA_SESSION_IDLE_MINUTES", 10)) * 60,
           # a heartbeat keeps a session from going idle, so a slot is also freed after this long (cookie-less scripts)

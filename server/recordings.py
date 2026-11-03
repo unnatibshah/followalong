@@ -85,7 +85,8 @@ def promote(rid: str, name: str, title: str | None, consent_ref: str | None, for
     meta.update(id=name, title=title or meta["title"], consent_ref=consent_ref or meta.get("consent_ref"))
     (dst / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     events = [json.loads(line) for line in (src / "timeline.jsonl").read_text(encoding="utf-8").splitlines() if line]
-    events.sort(key=lambda e: e["at"])  # browser events can arrive slightly out of order
+    # browser events can arrive slightly out of order; by time, not text ("…01Z" vs "…01.500000Z")
+    events.sort(key=lambda e: datetime.fromisoformat(e["at"].replace("Z", "+00:00")))
     (dst / "timeline.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events), encoding="utf-8")
     shutil.copy(src / "results.jsonl", dst / "results.jsonl")
     for f in (src / "frames").glob("preview-*.jpg"):

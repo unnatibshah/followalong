@@ -94,7 +94,7 @@ async def judge(step: dict, checks: list[dict], frame: bytes, end_frame: bytes, 
     data, usd = await gateway.responses(request(step, checks, live_url, tutorial_url), TIMEOUTS["judged_s"], session_id)
     try:
         results, hint = parse(output_text(data), [c["id"] for c in checks])
-    except (ValueError, KeyError, TypeError) as e:
+    except (ValueError, KeyError, TypeError, AttributeError) as e:
         err = GatewayError("invalid_output")
         err.cost_usd = usd
         raise err from e

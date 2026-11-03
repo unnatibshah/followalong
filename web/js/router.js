@@ -49,6 +49,8 @@ async function render() {
   const [screen, theme] = ROUTES[route];
   document.body.dataset.theme = theme;
   document.body.dataset.route = route || 'start';
+  const name = { follow: 'Lesson', camera: 'Camera', replay: 'Demo', creator: 'For teams', library: 'Library', activity: 'Activity', ready: 'Guide', consent: 'Before you start', checklist: 'Checklist', review: 'Review the checks', understanding: 'Building your guide', evaluation: 'Evaluation' }[route];
+  document.title = name ? `${name} · FollowAlong` : 'FollowAlong · instructions that see your work';
   renderHeader(document.getElementById('header'), route, theme);
   // A fresh box per render: a slow screen that finishes after the next navigation draws into a detached box.
   const box = document.createElement('div');

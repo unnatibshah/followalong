@@ -187,7 +187,7 @@ export async function render(root) {
     h('div', { class: 'ask-text' }, h('span', { class: 'safety-tag' }, '⚠️ Safety first'), el.safetyText,
       h('span', { class: 'ask-why' }, "I can't see electricity, heat or pressure through a camera, so only you can confirm this.")),
     h('div', { class: 'row-actions' },
-      h('button', { class: 'btn btn-light btn-lg', onclick: () => confirmSafe('button') }, "It's safe, I've done that"),
+      el.safeBtn = h('button', { class: 'btn btn-light btn-lg', onclick: () => confirmSafe('button') }, "It's safe, I've done that"),
       h('button', { class: 'btn btn-outline-dark btn-lg', onclick: () => act('skip', 'button') }, 'Skip this step')));
   el.askReason = h('span', { class: 'ask-reason' });
   el.yes = h('button', { class: 'btn btn-light btn-lg', onclick: () => answer('yes', 'button') });
@@ -228,7 +228,7 @@ export async function render(root) {
     skip: ctl('Skip', 'S', () => act('skip', 'button')),
     help: ctl('Help me', 'H', () => helpMe(), true),
   };
-  const item = (label, key, onclick) => h('button', { class: 'more-item', type: 'button', onclick: () => { el.more.open = false; onclick(); } },
+  const item = (label, key, onclick) => h('button', { class: 'more-item', type: 'button', onclick: () => { el.more.open = false; el.more.firstChild.focus(); onclick(); } },
     h('span', {}, label), key && h('kbd', { class: 'key' }, key));
   el.menu = {
     check: item('Check my work now', 'C', () => act('check_me', 'button')),
@@ -245,7 +245,7 @@ export async function render(root) {
   el.drawer = h('aside', { class: 'drawer', 'aria-label': 'How it decided', hidden: true });
 
   const head = h('div', { class: 'follow-head' });
-  const title = h('div', { class: 'follow-title' });
+  const title = h('h1', { class: 'follow-title' });
   // Exact directions for the step on screen: where each piece goes (row, column, terminal, polarity)
   const detailBox = h('details', { class: 'step-detail' });
   let detailFor = 0;
@@ -262,7 +262,7 @@ export async function render(root) {
       d.check_yourself ? h('p', { class: 'detail-check' }, `Check yourself: ${d.check_yourself}`) : '');
   }
   // The guide card: what to do now, what comes next, what's done. Nothing to remember, nothing to rewind.
-  el.guide = h('div', { class: 'guide', 'aria-live': 'polite' });
+  el.guide = h('div', { class: 'guide' });
   let guideKey = '';
   function paintGuide(n) {
     if (finished) return; // the finale card stays
@@ -318,10 +318,11 @@ export async function render(root) {
       h('div', { class: 'follow-grid' },
         h('div', { class: 'follow-col' },
           h('div', { class: 'orb-row' }, el.orb),
+          // the coach's line sits above the videos, so it is on screen on a laptop without scrolling
+          h('div', { class: 'talk' }, el.caption, el.voiceCap, el.safety, el.mistakeActs, el.ask, el.askForm),
           h('div', { class: 'panels' }, el.tut, el.live),
           h('div', { class: 'under' }, el.segs, el.status),
-          el.watchNote,
-          h('div', { class: 'talk' }, el.caption, el.voiceCap, el.safety, el.mistakeActs, el.ask, el.askForm)),
+          el.watchNote),
         el.rail),
       h('div', { class: 'follow-bar' },
         h('div', { class: 'controls' }, el.talkBtn, Object.values(el.controls), el.listening,
@@ -438,7 +439,7 @@ export async function render(root) {
     paintLive(key, ctx.step);
     el.live.dataset.orb = key;
     el.live.classList.toggle('win', !!flash);
-    el.liveLabel.lastChild.textContent = replayMode ? 'You · recorded' : 'You · live';
+    el.liveLabel.lastChild.textContent = replayMode ? 'You · recorded' : camVideo ? 'You · live' : 'Stand-in picture (no camera)';
     const shown = flashLast?.results || [];
     el.passPill.hidden = !flash || !shown.length;
     el.passPill.textContent = `✓ ${shown.filter((r) => r.pass).length} of ${shown.length} passed`;
@@ -470,13 +471,14 @@ export async function render(root) {
     if (ctx.state === S.SAFETY) {
       el.safetyText.textContent = detailOf(ctx.step)?.safety || '';
       el.voiceCap.hidden = true; // the panel already says it, with the button to confirm
-      if (safetyShownFor !== ctx.step) { safetyShownFor = ctx.step; el.safety.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' }); }
+      if (safetyShownFor !== ctx.step) { safetyShownFor = ctx.step; el.safety.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' }); el.safeBtn.focus({ preventScroll: true }); }
     }
     if (ctx.state === S.ASKING) {
       // in the guide's own plain words ("It should look like ..."), else the check's question
       const plain = detailOf(ctx.step)?.check_yourself;
       el.askQ.textContent = ctx.finalAsk ? finalQuestion(ctx.step) : plain ? `${plain} ${T('looks_like_this')}` : askQuestion(steps[ctx.step - 1], last);
       el.ask.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      if (!replayMode && document.activeElement !== el.no) el.yes.focus({ preventScroll: true });
     }
     if (mistake) el.caption.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
     const missing = last?.objects?.find((o) => !o.found);
@@ -531,7 +533,7 @@ export async function render(root) {
     el.micBtn.textContent = voiceCtl ? '🎙 Voice coach on' : '🎙 Talk to the coach';
     el.muteBtn.textContent = replayVoice ? '🔊 Coach voice on' : '🔇 Coach voice off';
     el.micBtn.setAttribute('aria-pressed', String(!!voiceCtl));
-    el.micBtn.hidden = app.config.voice === 'off' || ctx.state === S.DONE || document.documentElement.hasAttribute('data-static');
+    el.micBtn.hidden = replayMode || app.config.voice === 'off' || ctx.state === S.DONE || document.documentElement.hasAttribute('data-static');
     el.talkBtn.hidden = voiceCtl?.mode !== 'push_to_talk' || ctx.state === S.DONE;
     el.askForm.hidden = replayMode || (voiceCtl && voiceCtl.mode !== 'off') || ctx.state === S.DONE;
     el.talkBtn.querySelector('.key').hidden = !app.keysOn;
@@ -636,7 +638,7 @@ export async function render(root) {
     // Your turn: the step keeps playing as a silent loop beside you, so nobody has to pause or rewind it
     if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { flash = null; player.loopStep(stepOf(ctx.step)); }
     if (before.state === S.MISTAKE && ctx.state === S.WAITING) { player.loopStep(stepOf(ctx.step)); progressAt = Date.now(); }
-    if (before.step !== ctx.step) { actionAt = 0; resetWatch(); if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
+    if (before.step !== ctx.step) { actionAt = 0; resetWatch(); el.reply.textContent = ''; el.heard.textContent = ''; el.voiceCap.hidden = true; if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
     if (ctx.state === S.SAFETY && before.state !== S.SAFETY && before.state !== S.PAUSED) {
       log('safety_shown', ctx.step, { hazard: hazard(ctx.step) });
       coachSay(`${T('safety_first')} ${detailOf(ctx.step)?.safety || ''} ${T('safety_confirm')}`, true, true, ctx.step, true);
@@ -782,6 +784,7 @@ export async function render(root) {
     dispatch({ type: pausing ? 'pause' : 'resume' });
   }
 
+  let skipEnding = null; // the finale's Back to Home button
   async function finish(reason) {
     if (finished) return;
     finished = true;
@@ -798,21 +801,24 @@ export async function render(root) {
       if (lastSaid !== T('yes_last') && (voiceCtl || (replayMode && replayVoice))) { hush(); speak(T('yes_last')); }
       el.guide.replaceChildren(h('div', { class: 'finale' }, h('span', { class: 'finale-mark', 'aria-hidden': 'true' }, '\u2713'),
         h('div', {}, h('div', { class: 'finale-title' }, 'You did it'),
-          h('div', { class: 'finale-sub' }, `All ${steps.length} step${steps.length === 1 ? '' : 's'} of ${meta.title}, checked.`))));
+          h('div', { class: 'finale-sub' }, `All ${steps.length} step${steps.length === 1 ? '' : 's'} of ${meta.title}, checked.`)),
+        h('button', { class: 'btn btn-light', type: 'button', onclick: () => { skipEnding?.(); } }, 'Back to Home')));
       el.segs.querySelectorAll('.seg').forEach((x) => x.classList.add('done'));
     }
     const [s] = await Promise.all([api.endSession(sid, reason).catch(() => null),
-      completed ? whenQuiet(7000) : null, completed ? new Promise((r) => setTimeout(r, 2600)) : null]);
-    const doneSteps = s?.steps_done ?? (completed ? steps.length : ctx.step - 1);
-    if (s) {
-      saveRun({ id: sid, tid: app.tutorialId, title: meta.title, mode: app.mode, steps_done: s.steps_done, steps_total: s.steps_total,
-        duration_s: s.duration_s, mistakes: new Set(s.mistakes.map((m) => m.step_id)).size, hardest: s.hardest_step_id || null });
-    }
+      completed ? Promise.race([Promise.all([whenQuiet(9000), new Promise((r) => setTimeout(r, 6000))]), new Promise((r) => { skipEnding = r; })]) : null]);
+    const doneSteps = completed ? steps.length : s?.steps_done ?? ctx.step - 1;
+    save(s, doneSteps);
     app.sessionId = null;
     if (!followEl.isConnected) return; // they left during the ending
     toast(completed ? `${meta.title}: all ${steps.length} steps done.${s ? ' Saved to Activity.' : ''}`
       : `Stopped at step ${ctx.step}, ${doneSteps} of ${steps.length} done.${s ? ' Saved to Activity.' : ''}`);
     nav('');
+  }
+
+  function save(s, doneSteps) {
+    if (s) saveRun({ id: sid, tid: app.tutorialId, title: meta.title, mode: app.mode, steps_done: doneSteps, steps_total: s.steps_total,
+      duration_s: s.duration_s, mistakes: new Set(s.mistakes.map((m) => m.step_id)).size, hardest: s.hardest_step_id || null });
   }
 
   // ---- voice (live only, after the S6 switch; off in replay) ----
@@ -1009,7 +1015,7 @@ export async function render(root) {
     if (k === 'y' && ctx.state === S.SAFETY) { confirmSafe('key'); return true; }
     return false;
   });
-  const onEscape = () => drawerOpen && toggleDrawer(false);
+  const onEscape = () => { if (el.more.open) { el.more.open = false; el.more.firstChild.focus(); } else if (drawerOpen) toggleDrawer(false); };
   const onEnd = () => finish('left');
   const onKeys = () => paint();
   const onHide = () => { if (!finished) { finished = true; api.endBeacon(sid); } };
@@ -1081,6 +1087,11 @@ export async function render(root) {
   motion?.start();
 
   return () => {
+    if (!finished) {
+      const done = ctx.step - 1;
+      api.endSession(sid, 'left').then((s) => save(s, Math.max(done, s?.steps_done ?? 0))).catch(() => {});
+      if (app.sessionId === sid) app.sessionId = null; // Forward can't reopen an ended session
+    }
     finished = true;
     clearInterval(watchTimer);
     clearInterval(framingTimer);

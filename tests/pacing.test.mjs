@@ -141,3 +141,10 @@ test('resume starts at the saved step, clamped to the lesson', () => {
   assert.equal(initial(5, { step: 9 }).step, 5);
   assert.equal(initial(5, { step: 0 }).step, 1);
 });
+
+test('a re-check timer that fires while paused runs on resume (the step never stalls in CONFIRMING)', () => {
+  const confirming = run(initial(3), { type: 'step_end' }, { type: 'still' }, { type: 'verdict', id: 1, verdict: 'done' }).ctx;
+  const { ctx, fx } = run(confirming, { type: 'pause' }, { type: 'recheck_due' }, { type: 'resume' });
+  assert.equal(fx[0]?.kind, 'recheck');
+  assert.ok(ctx.inFlight);
+});

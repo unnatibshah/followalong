@@ -5,25 +5,29 @@ import logging
 import os
 import secrets
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import providers as p
 from .api import error_response, router, same_origin
 from .annotate import router as annotate_router
-from .config import HAND_GATE_PARALLEL
+from .config import ALLOWED_ORIGIN, HAND_GATE_PARALLEL
 from .providers import ApiError
 
 WEB = Path(__file__).resolve().parent.parent / "web"
-CSP = "default-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src 'self'"
+CSP = ("default-src 'self'; style-src 'self'; img-src 'self' blob:; connect-src 'self'; object-src 'none'; "
+       "base-uri 'none'; form-action 'self'")
 HEADERS = {
     "Content-Security-Policy": CSP,
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "no-referrer",
     "X-Frame-Options": "DENY",
     "Permissions-Policy": "camera=(self), microphone=(self), geolocation=()",
+    **({"Strict-Transport-Security": "max-age=31536000"} if p.HOSTED else {}),  # hosted is HTTPS only
 }
 # Route-specific wording for errors forced in development (UX doc S5).
 FORCE_MESSAGES = {("/api/sessions", "limit_reached"): "You've used today's 2 live sessions. Watch a replay or try again later."}
@@ -79,6 +83,20 @@ class BodyLimit:
 app.add_middleware(BodyLimit)
 
 
+class TrustedHosts(TrustedHostMiddleware):
+    """DNS rebinding: a page on another name that resolves to 127.0.0.1 is refused (400), HTTP and WebSocket.
+    /healthz answers any Host (a platform health check may use the container's address)."""
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("path") == "/healthz":
+            return await self.app(scope, receive, send)
+        await super().__call__(scope, receive, send)
+
+
+app.add_middleware(TrustedHosts, allowed_hosts=["localhost", "127.0.0.1", "testserver"]
+                   + ([urlsplit(ALLOWED_ORIGIN).hostname] if ALLOWED_ORIGIN else []))
+
+
 @app.exception_handler(ApiError)
 async def on_api_error(request: Request, err: ApiError):
     return error_response(err)
@@ -127,6 +145,12 @@ async def guard(request: Request, call_next):
         response.set_cookie("fa_visitor", request.state.visitor, max_age=86400, httponly=True,
                             samesite="lax", secure=p.HOSTED)
     return response
+
+
+@app.api_route("/api/{rest:path}", methods=["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)
+def api_not_found(rest: str):
+    """An unknown /api/ route answers in the API's error shape, not the static site's 404 page."""
+    raise ApiError("not_found")
 
 
 app.mount("/", StaticFiles(directory=WEB, html=True), name="web")

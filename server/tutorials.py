@@ -800,7 +800,8 @@ def fetch_link(url: str, max_s: float, dest: Path) -> dict:
     to `dest`. Returns {"path", "title", "creator", "duration"}. Raises Rejected."""
     import yt_dlp
     base = {"quiet": True, "no_warnings": True, "noprogress": True, "noplaylist": True, "ffmpeg_location": ffmpeg(),
-            "socket_timeout": 20, "max_filesize": 300 * 1024 * 1024}
+            "socket_timeout": 20, "max_filesize": 300 * 1024 * 1024,
+            "allowed_extractors": ["youtube", "vimeo"]}  # never the generic extractor (it fetches any URL)
     try:
         with yt_dlp.YoutubeDL(base) as y:
             info = y.extract_info(url, download=False)

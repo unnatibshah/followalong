@@ -16,7 +16,7 @@ function day(at) {
 
 export function render(root) {
   const all = runs();
-  const week = all.filter((r) => Date.now() - r.at < WEEK);
+  const week = all.filter((r) => Date.now() - r.at < WEEK && r.mode !== 'replay'); // your own work: watched demos don't count
   const stat = (n, label) => h('div', { class: 'stat' }, h('span', { class: 'stat-n' }, n), h('span', { class: 'stat-l' }, label));
   const finished = week.filter((r) => r.steps_done >= r.steps_total).length;
 

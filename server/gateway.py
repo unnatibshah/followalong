@@ -125,10 +125,10 @@ def cost(model: str, usage: dict) -> float:
     if model.startswith("sam-"):
         return PRICES["sam_per_image"] * (usage.get("images_processed") or 1)
     if model.startswith("muse-spark"):
-        cached = (usage.get("input_tokens_details") or {}).get("cached_tokens", 0)
-        return ((usage.get("input_tokens", 0) - cached) * PRICES["spark_input_per_m"]
+        cached = (usage.get("input_tokens_details") or {}).get("cached_tokens") or 0  # nulls are 0, not a crash
+        return (((usage.get("input_tokens") or 0) - cached) * PRICES["spark_input_per_m"]
                 + cached * PRICES["spark_cached_per_m"]
-                + usage.get("output_tokens", 0) * PRICES["spark_output_per_m"]) / 1e6
+                + (usage.get("output_tokens") or 0) * PRICES["spark_output_per_m"]) / 1e6
     return 0.0
 
 
@@ -269,6 +269,8 @@ class Gateway:
                     status = r.status_code
                     if status == 200:
                         data = r.json()
+                        if not isinstance(data, dict):
+                            raise ValueError("not a JSON object")
                         usd = cost(model, data.get("usage") or {"audio_ms": data.get("audioDurationMs", 0)})
                         u = data.get("usage") or {}
                         self._log(model, t0, usd, reasoning=(u.get("output_tokens_details") or {}).get("reasoning_tokens"),
@@ -284,6 +286,8 @@ class Gateway:
                     self._log(model, t0, 0.0, "timeout")
                 except httpx.TransportError:
                     self._log(model, t0, 0.0, "network")
+                except (ValueError, TypeError, AttributeError):  # a malformed 200 (an HTML page, an array): a failed try
+                    self._log(model, t0, 0.0, "invalid_response")
                 if attempt == TIMEOUTS["retries"] or (wait is not None and wait > timeout_s):
                     break  # a Retry-After longer than the call's timeout goes straight to the fallback (FR-150)
                 await self._sleep(wait if wait is not None else TIMEOUTS["backoff_ms"] / 1000 * (1 + random.random()))

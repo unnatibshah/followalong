@@ -102,8 +102,9 @@ def test_transcribe_route_checks_the_clip_before_any_model_call(c, meta):
     r = c.post(url, content=make_wav(1, rate=44100), headers={"content-type": "audio/wav"})
     assert r.status_code == 400 and "24 kHz" in r.json()["error"]["message"]
     assert meta.seen == []
-    replay = session(c, "replay")  # the coach talks in replays too: the same clip rules apply
-    assert c.post(f"/api/sessions/{replay}/transcribe", content=make_wav(10.5)).status_code == 413
+    replay = session(c, "replay")  # replays skip admission, so they never reach the model
+    r = c.post(f"/api/sessions/{replay}/transcribe", content=make_wav(1))
+    assert r.status_code == 409 and r.json()["error"]["code"] == "replay_only" and meta.seen == []
 
 
 def test_transcribe_without_key_uses_the_fixture(c, scripted):

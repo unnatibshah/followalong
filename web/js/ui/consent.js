@@ -71,6 +71,7 @@ export async function render(root) {
     } catch (err) {
       if (err.name === 'NotAllowedError') { btn.disabled = !box.checked; return showNote('Your browser blocked the camera. Allow it in the address bar, or watch a replay.'); }
       toast('No camera found. Showing a stand-in picture instead.');
+      app.voiceOn = false; // one message at a time: the camera one matters more
     }
     try { localStorage.setItem('fa.adult', '1'); } catch { /* storage blocked: ask again next time */ }
     // The voice coach is on unless turned off before; the button on the lesson screen switches it any time

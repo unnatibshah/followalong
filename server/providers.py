@@ -37,7 +37,8 @@ class ApiError(Exception):
     STATUS = {"bad_request": 400, "cross_origin": 403, "not_found": 404, "forbidden": 403,
               "consent_required": 409, "check_in_progress": 409, "too_long": 413, "invalid_upload": 415,
               "invalid_plan": 422, "processing_failed": 422, "cap_reached": 429, "limit_reached": 429,
-              "no_api_key": 503, "too_many_pages": 413, "invalid_manual": 415, "not_licensed": 422}
+              "no_api_key": 503, "too_many_pages": 413, "invalid_manual": 415, "not_licensed": 422,
+              "replay_only": 409, "session_ended": 409}
     # Default wording from the UX doc; routes can pass their own.
     MESSAGES = {
         "bad_request": "The request was malformed.",
@@ -55,6 +56,8 @@ class ApiError(Exception):
         "cap_reached": "Live checks are paused (demo budget reached). Watch a replay instead.",
         "limit_reached": "This demo allows 1 upload per visitor a day. Try a bundled tutorial or a replay.",
         "no_api_key": "Add a Meta API key to use live mode. Replays work without one.",
+        "replay_only": "The coach doesn't answer in a replay. Start a live session to ask.",
+        "session_ended": "This session has ended. Start a new one.",
     }
 
     def __init__(self, code: str, message: str | None = None, retry_after_s: int | None = None):
@@ -222,12 +225,24 @@ class FixtureTutorials:
         for s in steps:
             if not isinstance(s, dict) or not str(s.get("instruction", "")).strip():
                 raise ApiError("invalid_plan", "Every step needs an instruction.")
-            for c in s.get("checks", []):
-                if c.get("kind") not in ("measured", "judged") or not str(c.get("text", "")).strip():
-                    raise ApiError("invalid_plan", "Every check needs a kind and some text.")
-                if c.get("type") not in (("judged",) if c["kind"] == "judged" else processing.MEASURED):
-                    raise ApiError("invalid_plan", f"A {c['kind']} check can't have type {c.get('type')!r}.")
-        processing.rehash(plan)  # an edit is a new plan: recordings made on the old one no longer replay
+            if not isinstance(s.get("checks"), list):
+                raise ApiError("invalid_plan", "A step's checks must be a list.")
+            for c in s["checks"]:  # the per-check rules of tutorials.clean_plan, as the engine reads them
+                if not isinstance(c, dict) or c.get("kind") not in ("measured", "judged") or not str(c.get("text", "")).strip() \
+                        or not isinstance(c.get("id"), str):
+                    raise ApiError("invalid_plan", "Every check needs an id, a kind and some text.")
+                typ = c.get("type")
+                if typ not in (("judged",) if c["kind"] == "judged" else processing.MEASURED):
+                    raise ApiError("invalid_plan", f"A {c['kind']} check can't have type {typ!r}.")
+                if c["kind"] == "measured" and (not isinstance(c.get("a"), str) or (typ in processing.NEEDS_B and not isinstance(c.get("b"), str))
+                                                or (typ == "count" and not (type(c.get("n")) is int and c["n"] >= 1))
+                                                or (typ == "adjacent" and c.get("side") not in processing.SIDES)):
+                    raise ApiError("invalid_plan", f"A {typ} check needs its objects (and n for count, side for adjacent).")
+        old = self.plan(tid, visitor)  # marking a plan reviewed changes no step: keep its hash, so replays still play
+        if {**plan, "plan_hash": "", "reviewed": None} == {**old, "plan_hash": "", "reviewed": None}:
+            plan["plan_hash"] = old["plan_hash"]
+        else:
+            processing.rehash(plan)  # an edit is a new plan: recordings made on the old one no longer replay
         path = self._edit(tid, visitor)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(plan), encoding="utf-8")
@@ -523,7 +538,7 @@ class FixtureRecordings:
         """The preview frame at or before `t` (ms from the recording's start), so any replay clock time works.
         ponytail: one frame per timeline event, not the 2 fps of real recordings; same lookup either way."""
         self._dir(rid)
-        if not t.isdigit():
+        if not (t.isascii() and t.isdigit()):  # "²".isdigit() is True, int("²") is not
             raise ApiError("not_found", "A frame time is a whole number of milliseconds.")
         frames = sorted(((int(f.stem.split("-")[1]), f) for f in (recorder.DATA / "recordings" / rid / "frames").glob("preview-*.jpg")))
         before = [f for ms, f in frames if ms <= int(t)] or [f for _, f in frames[:1]]
@@ -878,12 +893,13 @@ class Visitors:
     def _fresh(self, v: dict) -> dict:
         day = self.clock().date().isoformat()
         if v.get("day") != day:  # daily counts reset; running sessions stay
-            v.update(day=day, visitors={})
+            v.update(day=day, visitors={}, ips={})
         v.setdefault("active_sessions", [])
         return v
 
-    def admit_live(self, visitor: str, sid: str) -> list:
-        """Count a new live session or raise limit_reached. Returns the ids of the sessions that just expired."""
+    def admit_live(self, visitor: str, sid: str, ip: str | None = None) -> list:
+        """Count a new live session or raise limit_reached. Returns the ids of the sessions that just expired.
+        Per cookie, and per client IP (hashed), so a script that drops its cookie can't start one after another."""
         if not self.enforce:
             return []
         now = self.clock().timestamp()
@@ -893,7 +909,8 @@ class Visitors:
                        or now - a.get("started", now) > self.limits["max_age_s"]]
             v["active_sessions"] = [a for a in v["active_sessions"] if a["session_id"] not in expired]
             me = v["visitors"].setdefault(vhash(visitor), {"live_sessions": 0, "uploads": 0})
-            if me["live_sessions"] >= self.limits["sessions_per_day"]:
+            ips, here = v.setdefault("ips", {}), vhash(f"ip:{ip}")
+            if me["live_sessions"] >= self.limits["sessions_per_day"] or ips.get(here, 0) >= self.limits["ip_sessions_per_day"]:
                 err = ApiError("limit_reached", f"You've used today's {self.limits['sessions_per_day']} live sessions. "
                                                 "Watch a replay or try again later.")
             elif len(v["active_sessions"]) >= self.limits["concurrent"]:
@@ -902,6 +919,7 @@ class Visitors:
             else:
                 err = None
                 me["live_sessions"] += 1
+                ips[here] = ips.get(here, 0) + 1
                 v["active_sessions"].append({"session_id": sid, "last_seen": now, "started": now})
         for e in expired:
             if sessions._load(e):
@@ -936,6 +954,7 @@ class Visitors:
 
 
 EVENT_DATA_MAX = 2048  # bytes of JSON; the browser's largest (mistake_shown) is well under 1 KB
+LOG_MAX_BYTES = 1024 * 1024  # a session log past this takes no more events (a real lesson writes ~50 KB)
 
 
 class FileSessions:
@@ -951,11 +970,11 @@ class FileSessions:
         return self.root / f"{sid}.jsonl"
 
     def start(self, visitor: str, tutorial_id: str, mode: str, recording_id: str | None, plan_hash: str,
-              lang: str = "en") -> str:
+              lang: str = "en", ip: str | None = None) -> str:
         sid, at = secrets.token_hex(16), now_iso()
         self.purge()
         if mode == "live":
-            visitors.admit_live(visitor, sid)
+            visitors.admit_live(visitor, sid, ip)
         if PROVIDER == "recording" and mode == "live":
             recorder.start({"id": sid, "tutorial_id": tutorial_id, "started_at": at}, plan_hash)
         self.root.mkdir(parents=True, exist_ok=True)
@@ -996,13 +1015,16 @@ class FileSessions:
             self.sessions[sid] = {"id": sid, "visitor_hash": first["data"]["visitor_hash"],
                                   "tutorial_id": first["tutorial_id"], "mode": first["mode"],
                                   "recording_id": first["data"].get("recording_id"), "started_at": first["at"],
-                                  "lang": first["data"].get("lang") or "en", "busy": False}
+                                  "lang": first["data"].get("lang") or "en", "busy": False,
+                                  "ended": any(e["type"] == "session_end" for e in self.events(sid))}
         return self.sessions[sid]
 
-    def get(self, sid: str, visitor: str) -> dict:
+    def get(self, sid: str, visitor: str, ended_ok: bool = False) -> dict:
         s = self._load(sid)
         if not s or s["visitor_hash"] != vhash(visitor):
             raise ApiError("not_found")
+        if s["ended"] and not ended_ok:  # no checks, questions or events (paid calls, log lines) after /end
+            raise ApiError("session_ended")
         if s["mode"] == "live":
             visitors.touch(sid)
         s["visitor"] = visitor  # the cookie, in memory only (tutorials are looked up by it)
@@ -1021,6 +1043,8 @@ class FileSessions:
         if event.get("type") == "heartbeat":
             return  # not written; get() already refreshed last_seen
         s = self._load(sid)
+        if event["type"] != "session_end" and self._path(sid).stat().st_size > LOG_MAX_BYTES:
+            return  # a full log takes no more (quietly): a script can't fill the disk through one session
         self._write(sid, {"session_id": sid, "at": event.get("at") or now_iso(), "type": event["type"],
                           "tutorial_id": s["tutorial_id"], "step_id": event.get("step_id"), "mode": s["mode"],
                           "data": event.get("data") or {}})
@@ -1030,6 +1054,7 @@ class FileSessions:
         if not any(e["type"] == "session_end" for e in events):
             self.log(sid, {"type": "session_end", "step_id": None, "at": now_iso(), "data": {"reason": reason}})
             events = self.events(sid)
+        self._load(sid)["ended"] = True
         if self._load(sid)["mode"] == "live":
             visitors.touch(sid, end=True)
         return summarise(events, steps_total) if steps_total is not None else None

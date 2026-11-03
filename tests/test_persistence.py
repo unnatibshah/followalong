@@ -24,7 +24,8 @@ from test_api import check, session
 pytestmark = pytest.mark.usefixtures("scripted")  # live sessions on the fixture script, no key
 
 CAPS = {"session": 1.5, "day": 10, "total": 50}
-LIMITS = {"sessions_per_day": 2, "uploads_per_day": 1, "concurrent": 2, "idle_s": 600, "max_age_s": 1800}
+LIMITS = {"sessions_per_day": 2, "uploads_per_day": 1, "concurrent": 2, "idle_s": 600, "max_age_s": 1800,
+          "ip_sessions_per_day": 10}
 
 
 class Clock:

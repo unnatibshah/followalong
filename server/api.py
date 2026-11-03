@@ -2,6 +2,9 @@
 
 import asyncio
 import json
+import math
+import os
+import secrets
 import shutil
 import tempfile
 from pathlib import Path
@@ -237,7 +240,8 @@ async def start_session(request: Request):
     if pinned:  # the cached provider refuses a recording made on another plan or prompt (UT-77)
         p.recordings.pin(pinned, plan, prompt=not rid)  # a replay plays recorded answers: plan only
     lang = body.get("lang") if body.get("lang") in i18n.LANGS else "en"
-    sid = p.sessions.start(visitor(request), tid, mode, rid, plan["plan_hash"], lang)
+    ip = request.client.host if request.client else None  # behind a proxy: uvicorn --proxy-headers (Dockerfile)
+    sid = p.sessions.start(visitor(request), tid, mode, rid, plan["plan_hash"], lang, ip)
     return {"session_id": sid}
 
 
@@ -253,7 +257,7 @@ async def run_check(sid: str, request: Request):
     form = await request.form()
     try:
         meta = json.loads(form.get("meta") or "")
-        _require(isinstance(meta["step_id"], int) and isinstance(meta["check_no"], int))
+        _require(type(meta["step_id"]) is int and type(meta["check_no"]) is int)  # not True
         _require(meta["kind"] in ("full", "recheck", "visibility"))
         _require(meta.get("trigger") in ("still", "check_me", "fixed", "recheck"))
     except (ValueError, KeyError, TypeError, AttributeError):
@@ -273,14 +277,21 @@ async def run_check(sid: str, request: Request):
         session["busy"] = False
 
 
+def live_only(session: dict) -> None:
+    """Replays skip admission (no daily limit), so they never reach the model: no questions, no voice."""
+    if session["mode"] != "live":
+        raise ApiError("replay_only")
+
+
 @router.post("/api/sessions/{sid}/questions")
 async def ask_question(sid: str, request: Request):
     session = p.sessions.get(sid, visitor(request))
+    live_only(session)
     form = await request.form()
     try:
         meta = json.loads(form.get("meta") or "")
         _require(isinstance(meta.get("question"), str) and 0 < len(meta["question"].strip()) <= 500)
-        _require(isinstance(meta.get("step_id"), int))
+        _require(type(meta.get("step_id")) is int)
         hist = meta.get("history", [])  # the browser's recent turns for the coach; never stored
         _require(isinstance(hist, list) and len(hist) <= 20 and all(isinstance(x, dict) for x in hist))
         _require(isinstance(meta.get("last_check", ""), str))
@@ -303,7 +314,9 @@ async def watch(sid: str, request: Request):
     form = await request.form()
     try:
         meta = json.loads(form.get("meta") or "")
-        _require(isinstance(meta.get("step_id"), int))
+        _require(type(meta.get("step_id")) is int)
+        el = meta.get("elapsed_s")
+        _require(el is None or (type(el) in (int, float) and math.isfinite(el)))
         _require(all(isinstance(meta.get(k, []), list) and len(meta.get(k, [])) <= 10 for k in ("recent", "said")))
     except (ValueError, KeyError, TypeError, AttributeError):
         raise ApiError("bad_request", "meta must be JSON with step_id and short recent/said lists.")
@@ -317,7 +330,8 @@ async def watch(sid: str, request: Request):
 @router.post("/api/sessions/{sid}/transcribe")
 async def transcribe(sid: str, request: Request):
     """A push-to-talk clip: audio/wav, mono, 16-bit, 24 kHz, at most 10 s (FR-91). Not stored."""
-    session = p.sessions.get(sid, visitor(request))  # live or replay: the coach talks in both
+    session = p.sessions.get(sid, visitor(request))
+    live_only(session)
     if int(request.headers.get("content-length") or 0) > voice.CLIP_MAX_S * voice.BYTES_PER_S + 4096:
         raise ApiError("too_long", "Hold to talk records up to 10 seconds.")
     body = await request.body()
@@ -340,7 +354,7 @@ async def voice_socket(ws: WebSocket):
         session = p.sessions.get(ws.query_params.get("session_id") or "", ws.cookies.get("fa_visitor") or "")
     except ApiError:
         return await ws.close(1008)
-    if p.voice.mode() != "realtime":
+    if p.voice.mode() != "realtime" or session["mode"] != "live":  # replays never reach the model (live_only)
         return await ws.close(1008)
     await ws.accept()
     await voice.proxy(ws, session, on_refused=p.voice.refused, languages=p.languages(session))
@@ -363,7 +377,7 @@ async def log_event(sid: str, request: Request):
 
 @router.post("/api/sessions/{sid}/end")
 async def end_session(sid: str, request: Request):
-    session = p.sessions.get(sid, visitor(request))
+    session = p.sessions.get(sid, visitor(request), ended_ok=True)  # the beacon after /end still gets the summary
     body = await _json_body(request)
     reason = body.get("reason") if body.get("reason") in ("completed", "left") else "left"
     steps_total = len(p.tutorials.plan(session["tutorial_id"], visitor(request))["steps"])
@@ -392,9 +406,14 @@ async def client_error(request: Request):
 
 
 @router.get("/api/metrics")
-def metrics():
+def metrics(request: Request):
     """Operations at a glance (#/ops): model latency and errors (last hour), the API rate limit, spend, live sessions,
-    browser errors and the product funnel (last 7 days). Aggregates only."""
+    browser errors and the product funnel (last 7 days). Aggregates only. Hosted: only with FA_METRICS_TOKEN (as
+    `?token=` or an X-Metrics-Token header), else 404."""
+    if p.HOSTED:
+        want, got = os.environ.get("FA_METRICS_TOKEN", ""), request.query_params.get("token") or request.headers.get("x-metrics-token") or ""
+        if not want or not secrets.compare_digest(want.encode(), got.encode()):
+            raise ApiError("not_found")
     from .gateway import gateway as g
     b = g.budget.snapshot()
     return {"models": g.metrics.summary(), "rate_limit": {"rpm": g.limiter.rpm, "load": round(g.limiter.load(), 2),

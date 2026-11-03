@@ -9,9 +9,13 @@ import { showError } from '../overlays.js';
 const heat = (v) => (v === 0 ? 'h0' : v < 0.08 ? 'h1' : v < 0.13 ? 'h2' : v < 0.2 ? 'h3' : v < 0.3 ? 'h4' : 'h5');
 
 export async function render(root) {
-  const tid = app.tutorialId || 'breadboard-led'; // the guide you were just following, else a sample guide
+  const load = (id) => Promise.all([api.tutorial(id), api.plan(id), api.creator(id)]);
+  let tid = app.tutorialId || 'breadboard-led'; // the guide you were just following, else a sample guide
   let meta, plan, view;
-  try { [meta, plan, view] = await Promise.all([api.tutorial(tid), api.plan(tid), api.creator(tid)]); } catch (err) { showError(err); return null; }
+  try { [meta, plan, view] = await load(tid); } catch {
+    tid = 'breadboard-led'; // that guide is gone (deleted, or a bad shared link): show the sample
+    try { [meta, plan, view] = await load(tid); } catch (err) { showError(err); return null; }
+  }
   const rows = view.steps, sessions = view.sessions;
   const source = view.sample ? ' · Sample data: these numbers are made up until real sessions are logged.' : ' from the session logs.';
   const pct = (v) => `${Math.round(v * 100)}%`;
@@ -21,6 +25,7 @@ export async function render(root) {
   root.append(h('div', { class: 'page-light' }, h('div', { class: 'wrap col gap-xl creator' },
     h('div', { class: 'row-between end' },
       h('div', {}, h('div', { class: 'eyebrow' }, 'For teams and creators'), h('h1', { class: 'section-title' }, 'Where learners get stuck'),
+        h('p', { class: 'section-sub' }, 'Every session shows you which step people get stuck on and what they get wrong, so you know which instruction to fix.'),
         h('div', { class: 'section-sub' }, `${meta.title} · ${sessions} sessions${source}`)),
       h('button', { class: 'btn btn-white', onclick: () => edit(1) }, 'Review the checks')),
     h('div', { class: 'col gap-s' },
@@ -32,6 +37,7 @@ export async function render(root) {
         return col;
       })),
       h('div', { class: 'muted small' }, 'Stuck = a "not quite" at that step, or more than 2 minutes there.')),
+    !top.length && h('div', { class: 'note info' }, 'No one has got stuck on this guide yet. Steps where people need a second try will show up here.'),
     h('div', { class: 'stuck-list' }, top.map((r, i) => {
       const fill = h('div', { class: 'stuck-fill' });
       fill.style.width = pct(r.stuck_rate);

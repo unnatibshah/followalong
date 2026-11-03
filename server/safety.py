@@ -16,7 +16,7 @@ import re
 
 GATE = re.compile(
     r"\b((switch|turn|shut|flip)\w*\s+(\w+\s+){0,8}off|prove\w*\s+(it\s+)?dead|test\w*\s+(it\s+)?dead|"
-    r"confirm\w*\s+(\w+\s+){0,5}(off|dead)|shows?\s+no\s+power|unplug\w*|disconnect\w*\s+the\s+(power|battery)|"
+    r"(confirm|check|ensure|make\s+sure|verify)\w*\s+(\w+\s+){0,5}(off|dead)|shows?\s+no\s+power|unplug\w*|disconnect\w*\s+the\s+(power|battery)|"
     r"(kill|cut|isolate|de-?energi[sz]e)\w*\s+(\w+\s+){0,3}(power|circuit|electricity|supply))\b", re.I)
 DANGER = re.compile(
     r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|dead|circuit|wires?\s+(are|is)\s+live|clamps?|jump\w*|"
@@ -42,8 +42,9 @@ def tier(safety: str) -> str:
     text = (safety or "").strip()
     if not text:
         return ""
-    if GATE.search(text) and not re.match(r"keep\b", text, re.I):
-        return "gate"
+    for line in re.split(r"(?<=[.!?])\s+", text):  # "Keep ..." is a reminder, but only for its own sentence
+        if GATE.search(line) and not re.match(r"keep\b", line, re.I):
+            return "gate"
     return "danger" if DANGER.search(text) else "caution"
 
 
@@ -104,4 +105,8 @@ if __name__ == "__main__":  # self-check on the bundled tutorials' real lines
     assert tier("Two people can follow along on one breadboard.") != "danger"
     assert tier("Small parts: keep them away from children.") == "caution"
     assert tier("") == ""
+    assert tier("Keep children away. Switch the breaker off and prove it dead with the tester before you touch any wire.") == "gate"
+    assert tier("Make sure the power is off at the breaker before you touch any wire.") == "gate"
+    assert tier("Ensure the breaker is off before removing the cover.") == "gate"
+    assert tier("Check that the circuit is dead before you start.") == "gate"
     print("ok")

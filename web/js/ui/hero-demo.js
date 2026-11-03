@@ -15,11 +15,19 @@ export function heroDemo() {
   const tick = h('div', { class: 'hd-tick', 'aria-hidden': 'true' }, icon('check'));
   const youPane = h('div', { class: 'hd-pane you' }, you, h('span', { class: 'hd-tag' }, 'You'), tick);
   const credit = h('p', { class: 'hd-credit fine' });
+  let paused = false;
+  const pauseBtn = h('button', { class: 'hd-pause', type: 'button', 'aria-pressed': 'false', hidden: true }, 'Pause');
+  pauseBtn.addEventListener('click', () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? 'Play' : 'Pause';
+    pauseBtn.setAttribute('aria-pressed', String(paused));
+    if (paused) tut.pause(); else tut.play().catch(() => {});
+  });
   const el = h('div', { class: 'hero-demo' },
     h('a', { href: '#/replay', class: 'hd-link', 'aria-label': 'Watch a whole session: FollowAlong coaching a figure-eight knot' },
       h('div', { class: 'hd-panes' }, h('div', { class: 'hd-pane' }, tut, h('span', { class: 'hd-tag' }, 'Tutorial')), youPane),
       h('div', { class: 'hd-bar' }, step, line)),
-    credit);
+    h('div', { class: 'hd-foot' }, pauseBtn, credit));
   run().catch(() => { el.classList.add('hd-off'); }); // no replay to show: the copy beside it still says it all
   return el;
 
@@ -34,7 +42,8 @@ export function heroDemo() {
     const t0 = Date.parse(tl[0].at);
     const evs = tl.map((e) => ({ ...e, off: Date.parse(e.at) - t0 }));
     const end = evs[evs.length - 1].off + 1500;
-    let clock = 0, i = 0, range = null, shown = '';
+    const first = Math.max(0, (evs.find((e) => e.type === 'step_play')?.off ?? 0) - 500);
+    let clock = first, i = 0, range = null, shown = '';
     const total = plan.steps.length;
 
     const show = (ms) => {
@@ -67,13 +76,15 @@ export function heroDemo() {
       }
     };
 
-    show(0);
+    while (i < evs.length && evs[i].off <= clock) apply(evs[i++]); // the setup lines, already said
+    show(clock);
     if (reducedMotion()) return; // a still frame and the first line
+    pauseBtn.hidden = false;
     const timer = setInterval(() => {
       if (!el.isConnected) { clearInterval(timer); tut.removeAttribute('src'); tut.load(); return; }
-      if (document.hidden) return;
+      if (document.hidden || paused) return;
       clock += FRAME_MS;
-      if (clock > end) { clock = 0; i = 0; step.textContent = 'Getting ready'; } // and round again
+      if (clock > end) { clock = first; i = 0; while (i < evs.length && evs[i].off <= clock) apply(evs[i++]); } // and round again
       while (i < evs.length && evs[i].off <= clock) apply(evs[i++]);
       if (range && tut.currentTime >= range[1]) tut.currentTime = range[0];
       show(clock);
