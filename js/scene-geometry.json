@@ -1,0 +1,31 @@
+{
+  "about": "Frame geometry in 1280x720 coordinates (the CheckResult box space). Read by web/js/thermostatscene.js and tools/make_stand_in_videos.py, so fixture outline boxes line up with the drawn scene, the videos and the JPEG frames.",
+  "thermostat": {
+    "block": { "x": 300, "y": 40, "w": 680, "h": 640 },
+    "plate": { "x": 400, "y": 90, "w": 480, "h": 520 },
+    "hole": { "x": 560, "y": 390, "w": 160, "h": 90 },
+    "terminals": ["Rc", "Rh", "C", "W", "Y", "G"],
+    "zone": { "x0": 432, "pitch": 72, "y": 150, "w": 64, "h": 120 },
+    "screw_y": 230,
+    "jumper_y": 252,
+    "wires": [
+      { "color": "red", "to": "Rh", "sx": 600 }, { "color": "blue", "to": "C", "sx": 620 },
+      { "color": "white", "to": "W", "sx": 640 }, { "color": "yellow", "to": "Y", "sx": 660 },
+      { "color": "green", "to": "G", "sx": 680 }
+    ],
+    "colors": { "red": "#D8342C", "blue": "#2F6BD8", "white": "#F1F0EC", "yellow": "#F2C230", "green": "#2E9E4F" },
+    "copper": "#C87533",
+    "seated": { "y0": 445, "c1y": 360, "c2y": 345, "y1": 292, "tip_y": 236 },
+    "loose": { "y0": 445, "c1y": 560, "c2x": 960, "x1": 1040, "tip_x": 1082, "ey0": 230, "dey": 90 },
+    "wire_end": { "dx": -18, "y": 222, "w": 36, "h": 108 },
+    "wrong_dx": { "red": -9, "blue": 10 }
+  },
+  "joycon": {
+    "shell": { "x": 360, "y": 90, "w": 260, "h": 540 },
+    "holes": [[400, 140], [580, 140], [400, 580], [580, 580]],
+    "stick": { "cx": 490, "cy": 250, "r": 56 },
+    "tray": { "x": 760, "y": 150, "w": 380, "h": 420 },
+    "slot": { "x0": 780, "y0": 170, "dx": 120, "dy": 130, "w": 100, "h": 110, "cols": 3 },
+    "old_stick_in_tray": { "cx": 830, "cy": 480 }
+  }
+}

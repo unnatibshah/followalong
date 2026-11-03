@@ -1,0 +1,82 @@
+/* Fonts (self-hosted, OFL — see /fonts/LICENSES.md) and design tokens from the mockup. */
+@font-face { font-family: Geist; src: url(../fonts/geist-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Geist; src: url(../fonts/geist-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: Geist; src: url(../fonts/geist-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: Geist; src: url(../fonts/geist-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url(../fonts/geist-mono-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url(../fonts/geist-mono-500.woff2) format("woff2"); font-weight: 500 700; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url(../fonts/instrument-serif-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url(../fonts/instrument-serif-400-italic.woff2) format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+
+:root {
+  --sans: Geist, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+
+  /* light pages */
+  --paper: #F7F5F0;
+  --paper-2: #EFECE5;
+  --paper-3: #EAE6DD;
+  --ink: #17171A;
+  --ink-2: #3D3C38;
+  --ink-3: #55544F;
+  --ink-4: #6B6A66;
+  --ink-5: #8A8983;
+  --line: rgba(17, 17, 19, .08);
+
+  /* dark flow */
+  --night: #111113;
+  --night-2: #151518;
+  --night-3: #17171A;
+  --night-4: #1C1C20;
+  --night-5: #18181B;
+  --moon: #F4F4F6;
+  --moon-2: #EDEDEF;
+  --moon-3: #C9C9CF;
+  --moon-4: #8E8E97;
+  --moon-5: #6E6E77;
+  --moon-6: #4B4B55;
+  --hair: rgba(255, 255, 255, .08);
+
+  /* accent and meaning */
+  --accent: #6457F0;
+  --accent-hover: #5548E6;
+  --accent-2: #8B80FF;
+  --accent-3: #A59CFF;
+  --accent-4: #C9C4FF;
+  --measured: #38BDF8;
+  --measured-2: #7DD3FC;
+  --measured-3: #BAE6FD;
+  --judged: #E879F9;
+  --judged-2: #F0ABFC;
+  --judged-3: #F5D0FE;
+  --voice: #2DD4BF;
+  --voice-2: #99F6E4;
+  --done: #4ADE80;
+  --done-2: #86EFAC;
+  --done-ink: #04210F;
+  --wrong: #FF7A66;
+  --wrong-2: #FFB4A6;
+  --wrong-3: #FFD2CA;
+  --wrong-ink: #1A0703;
+  --wrong-light: #E0553F;
+  --unsure: #FBBF24;
+  --unsure-2: #FDE68A;
+  --live-dot: #FF4D4D;
+
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-xl: 20px;
+  --ease-pop: cubic-bezier(.3, 1.4, .5, 1);
+}
+
+@keyframes fa-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.28); opacity: 0; } }
+@keyframes fa-breathe { 0%, 100% { transform: scale(.82); opacity: .65; } 50% { transform: scale(1.08); opacity: 1; } }
+@keyframes fa-spin { to { transform: rotate(360deg); } }
+@keyframes fa-scan { 0% { left: -20%; } 100% { left: 105%; } }
+@keyframes fa-loop { from { width: 0; } to { width: 100%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
