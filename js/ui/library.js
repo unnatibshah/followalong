@@ -7,7 +7,7 @@ import { openCreate } from './create.js';
 import { clearProgress } from '../progress.js';
 import { empty, guideCard, isMine, skeletons } from './cards.js';
 
-let tab = 'mine'; // remembered while the app is open
+let tab = null; // remembered while the app is open; first time: yours if you have any
 
 export async function render(root) {
   const grid = h('div', { class: 'lib-grid' }, skeletons(6));
@@ -19,7 +19,7 @@ export async function render(root) {
     [h('button', { class: 'btn btn-ghost-dark', onclick: closeAll }, 'Cancel'),
       h('button', { class: 'btn btn-accent', onclick: async () => {
         closeAll();
-        try { await api.deleteTutorial(t.id); clearProgress(t.id); all = all.filter((x) => x.id !== t.id); draw(); toast('Guide deleted.'); } catch (err) { showError(err); }
+        try { await api.deleteTutorial(t.id); clearProgress(t.id); if (app.tutorialId === t.id) app.tutorialId = null; all = all.filter((x) => x.id !== t.id); draw(); toast('Guide deleted.'); } catch (err) { showError(err); }
       } }, 'Delete')]);
 
   function draw() {
@@ -51,7 +51,7 @@ export async function render(root) {
 
   try {
     all = await api.tutorials();
-    if (tab === 'mine' && !all.some(isMine)) tab = 'samples'; // nothing of your own yet: show what there is
+    tab ||= all.some(isMine) ? 'mine' : 'samples'; // nothing of your own yet: show what there is
     draw();
   } catch (err) {
     grid.replaceChildren(empty('Couldn’t load the guides', err.message || 'Try again in a moment.'));

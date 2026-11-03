@@ -60,6 +60,8 @@ export function transition(ctx, ev) {
       if (c.pending) { const p = c.pending; c.pending = null; return transition(c, p); }
     } else if ((ev.type === 'verdict' || ev.type === 'error') && c.inFlight && ev.id === c.inFlight.id) {
       c.pending = ev; // keep the in-flight check's answer; apply it on resume
+    } else if (ev.type === 'recheck_due' && c.prev === S.CONFIRMING && !c.pending) {
+      c.pending = ev; // the one-shot "look again" timer fired while paused: run it on resume, or the step never moves on
     }
     return { ctx: c, effects: fx };
   }

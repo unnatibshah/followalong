@@ -43,7 +43,7 @@ async function page(root, name) {
     body.append(h('h1', { class: 'title-serif lg ink' }, TITLES[name]), h('p', { class: 'note warn' }, err.message));
   }
   document.title = `${TITLES[name]} · FollowAlong`;
-  return () => { document.title = 'FollowAlong'; };
+  return null;
 }
 
 /** Block-level Markdown → nodes. The first `##` heading is the page's h1. */

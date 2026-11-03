@@ -3,9 +3,10 @@ import { h } from './ui/dom.js';
 import { app } from './state.js';
 import { closeAll, isOpen, showDialog } from './overlays.js';
 
-const ROWS = [['C', 'Check me', 'S7–S9'], ['A', 'Again (replay the step)', 'S7–S9'], ['N', 'Next step', 'S7–S9'],
-  ['S', 'Skip this step', 'S7–S9'], ['P', 'Pause or resume', 'S7–S9'], ['Y / R', 'Yes, next step / No, show me again', 'S9'],
-  ['Hold V', 'Push to talk (when realtime voice is unavailable)', 'S7–S9'], ['D', 'How it decided', 'S7–S9'], ['Esc', 'Close an overlay', 'Any']];
+const ROWS = [['H', 'Help me (explain it again)', 'Lesson'], ['B', 'Back a step', 'Lesson'], ['S', 'Skip this step', 'Lesson'],
+  ['P', 'Pause or resume', 'Lesson'], ['C', 'Check my work now', 'Lesson'], ['A', 'Show the step again', 'Lesson'],
+  ['Y / R', 'Yes / No, when I ask', 'Lesson'], ['Hold V', 'Push to talk (when realtime voice is unavailable)', 'Lesson'],
+  ['D', 'How it decided', 'Lesson'], ['Esc', 'Close a menu or overlay', 'Any']];
 
 let handler = null;
 /** The follow screen registers `(key) => handled`; pass null to remove. */

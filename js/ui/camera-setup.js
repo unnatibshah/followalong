@@ -99,6 +99,7 @@ export async function render(root) {
     setTimeout(look, 2500);
   }
   if (app.voiceOn !== false) setTimeout(() => { if (!stopped && root.isConnected) say(INTRO, true); }, 400);
-  setTimeout(look, 1500); // let the camera settle first
+  if (hasCamera()) setTimeout(look, 1500); // let the camera settle first (a stand-in picture is never sent: it can't pass)
+  else found.replaceChildren(h('span', {}, 'No camera found. Press Start now to follow with a stand-in picture.'));
   return () => { stopped = true; hush(); };
 }

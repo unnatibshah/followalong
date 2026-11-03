@@ -85,7 +85,6 @@ export async function render(root) {
       h('div', { class: 'footer-links' }, h('a', { href: '#/creator' }, 'For teams'), h('a', { href: '#/evaluation' }, 'Evaluation'),
         h('a', { href: 'https://github.com/unnatibshah/followalong', target: '_blank', rel: 'noopener' }, 'GitHub'),
         h('a', { href: '#/privacy' }, 'Privacy'), h('a', { href: '#/terms' }, 'Terms'),
-        !staticDemo && h('a', { href: '#/ops' }, 'Status'),
         !app.config.hosted && !staticDemo && h('a', { href: '#/annotate' }, 'Help check (annotate)'))))));
 
   try {

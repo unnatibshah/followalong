@@ -11,12 +11,16 @@ const KINDS = {
 
 let open = null;
 export const isOpen = () => !!open;
+// A modal keeps the keyboard inside it: the page behind is inert while it is open
+const BEHIND = ['header', 'main', 'appnav'];
+const setInert = (on) => BEHIND.forEach((id) => document.getElementById(id)?.toggleAttribute('inert', on));
 
 export function closeAll() {
   if (!open) return;
   const { el, restore } = open;
   open = null;
   el.remove();
+  setInert(false);
   if (restore && restore.isConnected) restore.focus();
 }
 
@@ -34,10 +38,11 @@ export function showDialog(title, content, actions = []) {
   closeAll();
   const restore = document.activeElement;
   const dialog = h('div', { class: 'dialog', role: 'dialog', 'aria-modal': 'true', 'aria-label': title, onclick: (e) => e.stopPropagation() },
-    h('h2', { class: 'dialog-title' }, title), content, actions.length && h('div', { class: 'dialog-actions' }, actions));
+    h('h2', { class: 'dialog-title' }, title), content, actions.length > 0 && h('div', { class: 'dialog-actions' }, actions));
   const el = h('div', { class: 'scrim', onclick: closeAll }, dialog);
   document.getElementById('overlays').append(el);
   open = { el, restore };
+  setInert(true);
   (dialog.querySelector('.btn-accent') || dialog.querySelector('button'))?.focus();
   return el;
 }
@@ -51,6 +56,7 @@ export function showSheet(label, content) {
   const el = h('div', { class: 'scrim sheet-scrim', onclick: closeAll }, sheet);
   document.getElementById('overlays').append(el);
   open = { el, restore };
+  setInert(true);
   sheet.querySelector('button, input, a')?.focus();
   return sheet;
 }

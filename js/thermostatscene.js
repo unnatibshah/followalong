@@ -28,7 +28,7 @@ export const drawsStandIn = (tid) => (app.config.stand_in_media || []).includes(
 /** A step's end frame: the real JPEG, or the drawn stand-in for tutorials without media. */
 export function stepFrame(tid, step, sceneOpts) {
   if (drawsStandIn(tid)) return thermostatScene({ tutorial: tid, ...sceneOpts });
-  return h('img', { class: 'frame-img', src: api.frameUrl(tid, step), alt: `End of step ${step}`, decoding: 'async' });
+  return h('img', { class: 'frame-img', src: api.frameUrl(tid, step), alt: '', decoding: 'async' });
 }
 
 let uid = 0;

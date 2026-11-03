@@ -43,7 +43,10 @@ export async function render(root) {
       r.credit && h('span', { class: 'muted fine' }, `Practice footage: ${r.credit}`));
   });
 
+  let starting = false;
   async function play() {
+    if (starting) return; // one tap, one session
+    starting = true;
     unlockSpeech(); // inside the tap: iOS only lets the coach speak once speech has started from one
     const r = recs[pick];
     try {
@@ -53,12 +56,12 @@ export async function render(root) {
       app.recordingId = r.id;
       app.recordingTitle = r.title;
       nav('follow');
-    } catch (err) { showError(err); }
+    } catch (err) { starting = false; showError(err); }
   }
 
   root.append(h('div', { class: 'page-light' }, h('div', { class: 'wrap-mid split replay-pick' }, art,
     h('div', { class: 'col gap-l' },
-      h('h1', { class: 'title-serif xl ink' }, '▶ Replay of a recorded session — no camera or API key needed'),
+      h('h1', { class: 'title-serif xl ink' }, 'Watch FollowAlong coach a real session'),
       h('fieldset', { class: 'col gap-s' }, h('legend', { class: 'strong' }, 'Choose a session:'), opts),
       h('button', { class: 'btn btn-accent btn-lg start', onclick: play, disabled: !recs.length }, 'Play the replay')))));
   return null;

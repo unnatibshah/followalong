@@ -40,7 +40,7 @@ or trackers. Our application logs don't contain pictures, audio, what you said o
 
 **Deletion and questions.** Use **Delete my data** below, or open an issue at https://github.com/unnatibshah/followalong/issues. Our logs aren't linked to
 your name: the button finds them through this browser's cookie, and from another browser we can delete a session's log
-only if you give us its session ID (shown on the completion screen). Recordings of volunteers who helped us test are
+only if you tell us roughly when you used it and which guide, so we can find it. Recordings of volunteers who helped us test are
 deleted on request, and by Nov 10, 2026 unless the volunteer agreed to publication.
 
 **Children.** FollowAlong is for adults only.

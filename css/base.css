@@ -11,6 +11,8 @@ button, input { font: inherit; color: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+body[data-theme="light"] :focus-visible { outline-color: var(--accent); }
+html { scroll-padding: 72px 0 80px; }
 h1, h2, p { margin: 0; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend { padding: 0; margin-bottom: 10px; }
@@ -181,7 +183,7 @@ body[data-theme="light"] .btn-text.accent { color: var(--accent); }
 .switch-row[aria-checked="true"] .switch { background: var(--accent); }
 .switch-row[aria-checked="true"] .switch.teal { background: var(--voice); }
 .switch-row[aria-checked="true"] .switch::after { left: 21px; }
-.toast { position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%); z-index: 70; min-height: 46px; padding: 12px 20px; border-radius: 999px;
+.toast { position: fixed; left: 50%; bottom: 100px; transform: translateX(-50%); z-index: 70; min-height: 46px; padding: 12px 20px; border-radius: 999px; max-width: calc(100vw - 32px); width: max-content; border-radius: 20px;
   background: var(--ink); color: #fff; display: flex; align-items: center; gap: 10px; font: 500 14px var(--sans); box-shadow: 0 16px 40px rgba(0, 0, 0, .35); border: 1px solid rgba(255, 255, 255, .12); }
 .toast::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--done); flex: none; }
 
@@ -211,3 +213,5 @@ body[data-theme="light"] .btn-text.accent { color: var(--accent); }
 .scene-pulse rect { fill: none; stroke: var(--wrong); stroke-width: 3.2; transform-box: fill-box; transform-origin: center; animation: fa-pulse 1.4s ease-out infinite; }
 .scene-hand path { fill: rgba(251, 191, 36, .2); stroke: var(--unsure); stroke-width: 2.9; stroke-dasharray: 10 8; }
 .hero-frame.still .scene-pulse rect { animation: none; }
+
+@media (max-width: 360px) { .mode-pill { display: none; } }

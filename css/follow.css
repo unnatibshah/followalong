@@ -1,5 +1,5 @@
 /* S7–S9 following along. State colours hang off data-orb (set from the pacing state). */
-.follow { position: relative; min-height: calc(100vh - 56px); display: flex; flex-direction: column; padding-bottom: 22px; overflow: hidden; color: var(--moon-2);
+.follow { position: relative; min-height: calc(100vh - 56px); display: flex; flex-direction: column; padding-bottom: 22px; overflow: clip; color: var(--moon-2);
   --orb: var(--moon-4); --orb-bg: rgba(255, 255, 255, .04); --orb-scale: .86; --orb-glow: none; }
 .follow [data-orb="hands"], .follow[data-orb="hands"], .follow [data-orb="blocked"], .follow[data-orb="blocked"], .follow [data-orb="unsure"], .follow[data-orb="unsure"] { --orb: var(--unsure); --orb-bg: rgba(251, 191, 36, .12); --orb-scale: 1; }
 .follow [data-orb="samFail"], .follow[data-orb="samFail"] { --orb: var(--unsure); --orb-bg: rgba(251, 191, 36, .08); --orb-scale: .92; }
@@ -22,7 +22,7 @@
 .step-detail .detail-list { margin: 4px 0; padding-left: 20px; }
 .step-detail .detail-list li { margin: 2px 0; }
 .step-detail .detail-watch, .step-detail .detail-check { margin: 4px 0; opacity: .75; }
-.follow-title { margin-top: 4px; font: 600 30px/1.2 var(--sans); letter-spacing: -.01em; color: var(--moon); }
+.follow-title { margin: 4px 0 0; font: 600 30px/1.2 var(--sans); letter-spacing: -.01em; color: var(--moon); }
 .follow-grid { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 20px; margin-top: 14px; align-items: start; }
 .follow-col { display: flex; flex-direction: column; }
 
@@ -192,7 +192,7 @@
 .orb-row { height: 52px; }
 .panels { margin-top: 8px; }
 .under { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-.talk { margin-top: 12px; gap: 10px; }
+.talk { margin-top: 4px; gap: 10px; }
 .talk:has(.voice-caption:not([hidden])) > .caption:not(.voice-caption) { display: none; }  /* the coach's line is enough */
 .follow-bar { position: sticky; bottom: 0; z-index: 6; width: 100%; max-width: 1180px; margin: 14px auto 0; padding: 10px 16px; justify-content: center;
   background: rgba(18, 16, 14, .94); backdrop-filter: blur(8px); border-top: 1px solid var(--hair); border-radius: 18px 18px 0 0; }
