@@ -12,7 +12,9 @@ async function share(meta) {
   try {
     if (navigator.share) await navigator.share({ title: meta.title, text, url });
     else { await navigator.clipboard.writeText(url); toast('Link copied.'); }
-  } catch { /* closed the share sheet */ }
+  } catch (err) {
+    if (err?.name !== 'AbortError') toast(`Copy this link to share it: ${url}`); // no share sheet and no clipboard
+  }
 }
 
 export async function render(root) {
@@ -21,15 +23,18 @@ export async function render(root) {
   let meta, plan;
   try { [meta, plan] = await Promise.all([api.tutorial(app.tutorialId), api.plan(app.tutorialId)]); } catch (err) { showError(err); return null; }
   const live = app.config.live_enabled;
-  const minutes = Math.max(1, Math.round(meta.duration_s / 60));
+  const s = Math.round(meta.duration_s);
+  const length = s < 90 ? `${s} seconds of video` : `about ${Math.round(s / 60)} minutes of video`;
   root.append(h('div', { class: 'wrap-mid split' },
     h('div', { class: 'media-frame' }, stepFrame(app.tutorialId, plan.steps.length, { variant: 'end', surface: 'studio', tags: false }),
       h('span', { class: 'pill tl' }, meta.source === 'manual' ? 'Last step · from your manual' : 'Finished · end of the video')),
     h('div', { class: 'col gap-l' },
+      h('a', { class: 'btn-text back-link', href: '#/library' }, '← All guides'),
       h('div', { class: 'eyebrow' }, 'Ready to follow along'),
-      h('h1', { class: 'title-serif lg' }, meta.source === 'manual'
-        ? `${meta.title} · ${plan.steps.length} steps · made from your ${meta.manual.pages}-page manual`
-        : `${meta.title} · ${plan.steps.length} steps · about ${minutes} minute${minutes === 1 ? '' : 's'} of video`),
+      h('h1', { class: 'title-serif lg' }, meta.title),
+      h('div', { class: 'muted' }, meta.source === 'manual'
+        ? `${plan.steps.length} steps · made from your ${meta.manual.pages}-page manual`
+        : `${plan.steps.length} steps · ${length}`),
       meta.source === 'manual' && h('div', { class: 'muted' }, 'Each step is an animated video made from the picture in your manual, with its page number. If anything looks different, check the manual.'),
       h('div', { class: 'col gap-s' }, h('span', { class: 'strong' }, "You'll need:"),
         h('div', { class: 'needs' }, plan.needs.map((n) => h('span', { class: 'need' }, n)))),

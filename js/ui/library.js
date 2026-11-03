@@ -27,7 +27,7 @@ export async function render(root) {
     const list = tab === 'mine' ? mine : all.filter((t) => !isMine(t));
     tabs.replaceChildren(...[['mine', `Your guides · ${mine.length}`], ['samples', `Samples · ${all.length - mine.length}`]].map(([k, label]) =>
       h('button', { class: ['seg-tab', tab === k && 'on'], role: 'tab', type: 'button', 'aria-selected': String(tab === k),
-        onclick: () => { tab = k; draw(); } }, label)));
+        onclick: () => { tab = k; draw(); tabs.querySelector('[aria-selected="true"]')?.focus(); } }, label)));
     const q = search.value.trim().toLowerCase();
     const shown = q ? list.filter((t) => `${t.title} ${t.creator || ''}`.toLowerCase().includes(q)) : list;
     if (!shown.length) {

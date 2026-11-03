@@ -23,6 +23,10 @@
   --ink-4: #6B6A66;
   --ink-5: #6E6D68;
   --line: rgba(17, 17, 19, .08);
+  --line-2: rgba(17, 17, 19, .14);
+  --card: #fff;
+  --glass: rgba(247, 245, 240, .92);
+  --solid: #17171A;  /* a dark-filled button or chip on a light page */
 
   /* dark flow */
   --night: #111113;
@@ -69,6 +73,26 @@
   --radius-l: 16px;
   --radius-xl: 20px;
   --ease-pop: cubic-bezier(.3, 1.4, .5, 1);
+}
+
+/* Dark mode for the light pages (the lesson is always dark). Follows the device unless a page pins data-theme. */
+:root { color-scheme: light dark; }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121214;
+    --paper-2: #1A1A1E;
+    --paper-3: #24242A;
+    --ink: #EDEDEF;
+    --ink-2: #D2D2D7;
+    --ink-3: #B6B6BD;
+    --ink-4: #A0A0A8;
+    --ink-5: #94949C;
+    --line: rgba(255, 255, 255, .09);
+    --line-2: rgba(255, 255, 255, .16);
+    --card: #1C1C21;
+    --glass: rgba(18, 18, 20, .9);
+    --solid: #2E2E36;
+  }
 }
 
 @keyframes fa-pulse { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.28); opacity: 0; } }
