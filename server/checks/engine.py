@@ -9,7 +9,6 @@ it) is never sent; the step asks.
 """
 
 import asyncio
-import re
 import time
 
 from .. import sam, spark
