@@ -42,6 +42,19 @@ export function showDialog(title, content, actions = []) {
   return el;
 }
 
+/** A light bottom sheet (a centred card on desktop), e.g. New guide. Closes like a dialog: Esc, the scrim, navigation. */
+export function showSheet(label, content) {
+  closeAll();
+  const restore = document.activeElement;
+  const sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true', 'aria-label': label, onclick: (e) => e.stopPropagation() },
+    h('div', { class: 'sheet-grip', 'aria-hidden': 'true' }), content);
+  const el = h('div', { class: 'scrim sheet-scrim', onclick: closeAll }, sheet);
+  document.getElementById('overlays').append(el);
+  open = { el, restore };
+  sheet.querySelector('button, input, a')?.focus();
+  return sheet;
+}
+
 /** Map an ApiError to its overlay (UX doc). Screens handle the inline cases themselves first. */
 export function showError(err) {
   if (err.code === 'cap_reached') return showOverlay('cap', { body: err.message });

@@ -1,23 +1,25 @@
-// S1 Start: hero, bundled tutorials and uploads (GET /api/tutorials), upload drop zone (POST /api/tutorials).
-import { h, icon, mmss } from './dom.js';
+// Home: the welcome (first visit), Continue, your guides, and sample guides to explore. Making a guide lives in the
+// ＋ New guide sheet (create.js); past sessions in Activity; everything you made in Library.
+import { h, icon } from './dom.js';
 import { api } from '../api.js';
 import { app } from '../state.js';
-import { drawsStandIn, stepFrame } from '../thermostatscene.js';
-import { nav } from '../router.js';
-import { showError, toast } from '../overlays.js';
-import { unfinished } from '../progress.js';
+import { stepFrame } from '../thermostatscene.js';
+import { runs, unfinished } from '../progress.js';
+import { openCreate } from './create.js';
+import { continueCard, guideCard, isMine, skeletons, slider } from './cards.js';
+
+const hello = () => { const hr = new Date().getHours(); return hr < 5 ? 'Good evening' : hr < 12 ? 'Good morning' : hr < 18 ? 'Good afternoon' : 'Good evening'; };
 
 export async function render(root) {
   const live = app.config.live_enabled;
-  const note = h('div', { class: 'note', hidden: true });
-  const showNote = (text, kind = 'warn', link) => {
-    note.className = `note ${kind}`;
-    note.replaceChildren(h('span', {}, text), link || '');
-    note.hidden = false;
-  };
+  const staticDemo = document.documentElement.hasAttribute('data-static');
+  const left = live ? unfinished().slice(0, 3) : [];
+  const past = runs();
+  // A first visit gets the full welcome; once you have something going, Home is about your work
+  const returning = left.length > 0 || past.length > 0;
 
   // The first 5 seconds: what it is, what goes in, what you get, who it's for, what to press
-  const toLib = () => root.querySelector('#fa-lib').scrollIntoView({ behavior: 'smooth' });
+  const toLib = () => root.querySelector('#fa-explore').scrollIntoView({ behavior: 'smooth' });
   const hero = h('section', { class: 'wrap hero' },
     h('div', { class: 'hero-copy' },
       h('span', { class: 'hero-eyebrow' }, h('span', { class: 'dot accent', 'aria-hidden': 'true' }), 'Real-time visual guidance for hands-on work'),
@@ -53,213 +55,65 @@ export async function render(root) {
       ['03', 'Hands-free and safe', 'Ask, interrupt, go back, by voice, in 7 languages. Risky steps wait for your confirmation, and teams see exactly where people get stuck.']].map(([n, t, d]) =>
       h('div', { class: 'how-item' }, h('span', { class: 'mono muted' }, n), h('span', { class: 'how-title' }, t), h('span', { class: 'how-text' }, d)))));
 
-  const grid = h('div', { class: 'cards', role: 'group', 'aria-label': 'Guides' });
+  const top = returning
+    ? h('section', { class: 'wrap home-head' },
+      h('div', {}, h('h1', { class: 'home-title' }, hello()),
+        h('p', { class: 'home-sub' }, past.length ? `${past.length} session${past.length === 1 ? '' : 's'} so far. Pick up where you left off, or start something new.`
+          : 'Pick up where you left off, or start something new.')),
+      h('button', { class: 'btn btn-accent', type: 'button', onclick: openCreate }, icon('plus'), 'New guide'))
+    : h('div', {}, hero, how);
+
+  const cont = left.length ? h('section', { class: 'wrap home-sec' },
+    h('h2', { class: 'sec-title' }, 'Continue'), h('div', { class: 'cont-row' }, left.map(continueCard))) : '';
+
+  const mine = slider('Your guides');
+  const mineSec = h('section', { class: 'wrap home-sec', hidden: true },
+    h('div', { class: 'sec-head' }, h('h2', { class: 'sec-title' }, 'Your guides'),
+      h('div', { class: 'sec-tools' }, h('a', { href: '#/library', class: 'sec-link' }, 'See all'), mine.arrows)), mine.grid);
+
+  const explore = slider('Sample guides');
+  explore.fill(skeletons(4));
   // CC BY attribution: title, author, source and licence for every bundled video
   const credits = h('details', { class: 'credits', hidden: true }, h('summary', {}, 'Video credits and licences'));
-  // Slider controls: a page = as many whole cards as fit; the counter shows which ones are on screen
-  const prev = h('button', { class: 'cards-nav', type: 'button', 'aria-label': 'Previous tutorials' }, '‹');
-  const next = h('button', { class: 'cards-nav', type: 'button', 'aria-label': 'More tutorials' }, '›');
-  const count = h('span', { class: 'cards-count', 'aria-live': 'polite' });
-  const bar = h('div', { class: 'cards-bar' }, count, prev, next);
-  const step = () => (grid.firstElementChild?.getBoundingClientRect().width || 300) + 24;
-  const page = (dir) => grid.scrollBy({ left: dir * Math.max(step(), Math.floor(grid.clientWidth / step()) * step()) });
-  prev.addEventListener('click', () => page(-1));
-  next.addEventListener('click', () => page(1));
-  const sync = () => {
-    if (!grid.isConnected) { removeEventListener('resize', sync); return; } // left the page
-    const n = grid.children.length;
-    const first = Math.round(grid.scrollLeft / step());
-    const shown = Math.max(1, Math.floor((grid.clientWidth + 24) / step()));
-    const last = Math.min(n, first + shown);
-    count.textContent = !n ? '' : last > first + 1 ? `${first + 1}–${last} of ${n}` : `${first + 1} of ${n}`;
-    prev.disabled = grid.scrollLeft < 4;
-    next.disabled = grid.scrollLeft + grid.clientWidth > grid.scrollWidth - 4;
-    bar.hidden = n <= shown;
-  };
-  grid.addEventListener('scroll', sync, { passive: true });
-  addEventListener('resize', sync);
-  const input = h('input', { type: 'file', accept: 'video/mp4,video/quicktime,video/webm', class: 'visually-hidden', tabindex: '-1', 'aria-hidden': 'true' });
-  const chooseBtn = h('button', { class: 'btn btn-white', disabled: !live }, 'Choose a file');
-  // CR-006: a paper manual (PDF or photos of its pages) becomes an instruction video
-  const manualInput = h('input', { type: 'file', accept: 'application/pdf,.pdf,image/jpeg,image/png,image/webp', multiple: true,
-    class: 'visually-hidden', tabindex: '-1', 'aria-hidden': 'true' });
-  const manualBtn = h('button', { class: 'btn btn-white', disabled: !live, type: 'button' }, 'Upload a manual');
+  const exploreSec = h('section', { class: 'wrap home-sec', id: 'fa-explore' },
+    h('div', { class: 'sec-head' }, h('div', {}, h('h2', { class: 'sec-title' }, 'Explore'),
+      h('p', { class: 'sec-sub' }, 'Sample guides, each already split into checked steps. Made from Creative Commons videos.')),
+    h('div', { class: 'sec-tools' }, explore.arrows)), explore.grid, credits);
 
-  // Snap the pages: a manual in hand → photograph it page by page, check the shots, then build the same lesson
-  const MAX_SNAPS = 20; // server/manual.py MAX_IMAGES
-  const snaps = []; // { file, url }
-  const snapInput = h('input', { type: 'file', accept: 'image/*', capture: 'environment', class: 'visually-hidden',
-    tabindex: '-1', 'aria-hidden': 'true' });
-  const snapBtn = h('button', { class: 'btn btn-white', disabled: !live, type: 'button' }, '📷 Snap the pages');
-  const snapList = h('ol', { class: 'snap-list', 'aria-label': 'Your pages, in order' });
-  const addBtn = h('button', { class: 'btn btn-white', type: 'button' }, '+ Add page');
-  const buildBtn = h('button', { class: 'btn btn-accent', type: 'button' });
-  const snapPanel = h('section', { class: 'snap', hidden: true, 'aria-label': 'Snap the pages' },
-    h('div', { class: 'snap-head' }, h('strong', {}, 'Your manual, page by page'),
-      h('span', { class: 'muted' }, 'Hold the phone over one page at a time, flat and in good light.')),
-    snapList, h('div', { class: 'row gap-s snap-actions' }, addBtn, buildBtn,
-      h('button', { class: 'btn-text', type: 'button', onclick: () => { snaps.splice(0).forEach((s) => URL.revokeObjectURL(s.url)); drawSnaps(); } }, 'Cancel')));
-  function drawSnaps() {
-    snapPanel.hidden = !snaps.length;
-    buildBtn.textContent = `Build my lesson (${snaps.length} page${snaps.length === 1 ? '' : 's'})`;
-    addBtn.disabled = snaps.length >= MAX_SNAPS;
-    snapList.replaceChildren(...snaps.map((s, i) => h('li', { class: 'snap-page' },
-      h('img', { src: s.url, alt: `Page ${i + 1}` }), h('span', { class: 'snap-no mono' }, `p. ${i + 1}`),
-      i > 0 && h('button', { class: 'snap-btn snap-move', type: 'button', 'aria-label': `Move page ${i + 1} earlier`,
-        onclick: () => { snaps.splice(i - 1, 0, ...snaps.splice(i, 1)); drawSnaps(); } }, '←'),
-      h('button', { class: 'snap-btn', type: 'button', 'aria-label': `Remove page ${i + 1}`,
-        onclick: () => { URL.revokeObjectURL(snaps.splice(i, 1)[0].url); drawSnaps(); } }, '×'))));
-  }
-  snapBtn.addEventListener('click', () => snapInput.click());
-  addBtn.addEventListener('click', () => snapInput.click());
-  snapInput.addEventListener('change', async () => {
-    const f = snapInput.files[0];
-    snapInput.value = '';
-    if (!f) return;
-    try {
-      const file = await shrink(f, snaps.length + 1);
-      snaps.push({ file, url: URL.createObjectURL(file) });
-      drawSnaps();
-      snapPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } catch { toast("That photo couldn't be read. Try again."); }
-  });
-  buildBtn.addEventListener('click', () => upload(null, null, snaps.map((s) => s.file)));
+  // Make your own: the same sheet as the tab bar's ＋
+  const make = h('section', { class: 'wrap home-sec' }, h('button', { class: 'make', type: 'button', onclick: openCreate },
+    h('span', { class: 'make-icon', 'aria-hidden': 'true' }, icon('plus')),
+    h('span', { class: 'make-text' }, h('span', { class: 'make-title' }, 'Make a guide from your own instructions'),
+      h('span', { class: 'make-sub' }, 'Paste a link, upload a video or a PDF manual, snap the pages, or record yourself.')),
+    icon('chevron', 'make-go')));
 
-  // Paste a link (YouTube / Vimeo), or record yourself doing the task once so others can learn it
-  const linkInput = h('input', { type: 'url', class: 'ask-input link-input', placeholder: 'Paste a YouTube or Vimeo link',
-    'aria-label': 'Paste a YouTube or Vimeo link', disabled: !live });
-  const linkForm = h('form', { class: 'link-form', hidden: !app.config.link_import }, linkInput,
-    h('button', { type: 'submit', class: 'btn btn-accent', disabled: !live }, 'Get the steps'));
-  linkForm.addEventListener('submit', (e) => { e.preventDefault(); if (linkInput.value.trim()) upload(null, linkInput.value.trim()); });
-  const recBtn = h('button', { class: 'btn btn-white', disabled: !live, type: 'button' }, '● Record yourself');
-  let recorder = null;
-  recBtn.addEventListener('click', async () => {
-    if (recorder) { recorder.stop(); return; }
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 },
-        facingMode: { ideal: 'environment' } }, audio: true });
-      const chunks = [];
-      recorder = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported('video/webm') ? 'video/webm' : '' });
-      recorder.ondataavailable = (ev) => ev.data.size && chunks.push(ev.data);
-      recorder.onstop = () => {
-        stream.getTracks().forEach((t) => t.stop());
-        recorder = null;
-        recBtn.textContent = '● Record yourself';
-        upload(new File(chunks, 'my-recording.webm', { type: 'video/webm' }));
-      };
-      recorder.start(1000);
-      recBtn.textContent = '■ Stop and get the steps';
-      toast('Recording: do the task once, talking through each step. Tap stop when you finish.');
-    } catch { toast('The camera or microphone is blocked. Allow them in the address bar.'); }
-  });
-
-  const drop = h('div', { class: ['drop', !live && 'off'] }, input, manualInput,
-    h('div', { class: 'drop-icon', 'aria-hidden': 'true' }, icon('upload')),
-    h('div', { class: 'drop-text' },
-      h('span', { class: 'drop-title' }, `Or upload your own video (MP4, up to ${Math.round(app.config.limits.upload_max_s / 60)} minutes here)`),
-      h('span', { class: 'drop-sub' }, "Upload a video you have the rights to. It's sent to Meta's AI model to find the steps. "
-        + 'Uploaded videos and their step plans are deleted after 24 hours. By uploading you confirm you\'re 18 or older and agree to ',
-      h('a', { href: '#/terms' }, 'the terms'), '.'),
-      h('span', { class: 'drop-sub' }, 'Have a paper manual and no video? Upload the PDF or photos of its pages (up to 40 pages) and '
-        + "FollowAlong builds a step-by-step lesson from its pictures. Use a manual you have; it's only used to build your lesson.")),
-    h('div', { class: 'col gap-s' }, chooseBtn, manualBtn, snapBtn, recBtn));
-
-  const isManual = (f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name) || f.type.startsWith('image/');
-
-  // A phone photo is ~3–12 MB; the server keeps 2000 px (manual.PAGE_PX) and refuses > 10 MB, so send that size as JPEG
-  async function shrink(f, n) {
-    const bmp = await createImageBitmap(f); // applies the photo's EXIF orientation
-    const k = Math.min(1, 2000 / Math.max(bmp.width, bmp.height));
-    const c = Object.assign(document.createElement('canvas'), { width: Math.round(bmp.width * k), height: Math.round(bmp.height * k) });
-    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
-    bmp.close();
-    const blob = await new Promise((ok, bad) => c.toBlob((b) => (b ? ok(b) : bad(new Error('encode'))), 'image/jpeg', 0.85));
-    return new File([blob], `page-${String(n).padStart(2, '0')}.jpg`, { type: 'image/jpeg' });
-  }
-
-  async function upload(file, url, pages) {
-    if ((!file && !url && !pages?.length) || !live) return;
-    note.hidden = true;
-    try {
-      const { id, status, duplicate } = pages ? await api.uploadManual(pages) : url ? await api.uploadLink(url) : await api.upload(file);
-      app.tutorialId = id;
-      app.mode = 'live';
-      if (duplicate) toast('You already have this tutorial, so it opened that one. Nothing was processed again.');
-      nav(duplicate && status === 'ready' ? 'ready' : 'understanding');
-    } catch (err) {
-      if (['too_long', 'limit_reached', 'invalid_upload', 'too_many_pages', 'invalid_manual', 'not_licensed'].includes(err.code)) showNote(err.message);
-      else showError(err);
-    }
-  }
-  chooseBtn.addEventListener('click', () => input.click());
-  // A button's own picker click bubbles up here too: only a click on the zone itself opens the video picker
-  drop.addEventListener('click', (e) => { if (live && !e.target.closest('button, a, input')) input.click(); });
-  input.addEventListener('change', () => upload(input.files[0]));
-  manualBtn.addEventListener('click', () => manualInput.click());
-  manualInput.addEventListener('change', () => { upload(null, null, [...manualInput.files]); manualInput.value = ''; });
-  drop.addEventListener('dragover', (e) => { e.preventDefault(); if (live) drop.classList.add('drag'); });
-  drop.addEventListener('dragleave', () => drop.classList.remove('drag'));
-  drop.addEventListener('drop', (e) => {
-    e.preventDefault();
-    drop.classList.remove('drag');
-    const files = [...e.dataTransfer.files];
-    if (files.length && files.every(isManual)) upload(null, null, files);
-    else upload(files[0]);
-  });
-
-  const lib = h('section', { class: 'wrap lib', id: 'fa-lib' },
-    h('div', {}, h('h2', { class: 'section-title' }, 'Start a guide'),
-      h('div', { class: 'section-sub' }, 'Ready to follow: each one is already split into checked steps. Or bring your own below.'),
-      h('div', { class: 'section-sub muted' }, 'Sample guides are made from Creative Commons (CC BY) videos, credited on each card and below.')),
-    grid, bar, credits, drop, snapInput, snapPanel, linkForm, note);
-
-  // Lessons left part-way, in this browser: one tap back to where they were
-  const left = live ? unfinished().slice(0, 2) : [];
-  const resume = left.length ? h('section', { class: 'wrap resume' }, left.map((p) => h('button', { class: 'resume-card',
-    onclick: () => { app.tutorialId = p.id; app.mode = 'live'; nav('consent'); } },
-  h('span', { class: 'resume-k' }, 'Continue'), h('span', { class: 'resume-t' }, p.title || 'Your lesson'),
-  h('span', { class: 'resume-s mono' }, `step ${p.step} of ${p.total} →`)))) : '';
-
-  root.append(h('div', { class: 'page-light' }, resume, hero, how, lib,
-    h('footer', { class: 'footer' }, h('div', { class: 'wrap footer-row' },
-      h('span', {}, 'Built during the Meta AI Hackathon with Muse Spark, SAM 3.1 and Muse Voice Transcribe'),
-      h('div', { class: 'footer-links' }, h('a', { href: '#/evaluation' }, 'Evaluation'), h('a', { href: '#/creator' }, 'For teams'),
-        h('a', { href: '#/privacy' }, 'Privacy'), h('a', { href: '#/terms' }, 'Terms'),
-        !document.documentElement.hasAttribute('data-static') && h('a', { href: '#/ops' }, 'Status'),
-        !app.config.hosted && !document.documentElement.hasAttribute('data-static') && h('a', { href: '#/annotate' }, 'Help check (annotate)'))))));
-
-  if (!live) showNote(document.documentElement.hasAttribute('data-static')
+  const note = !live && h('div', { class: 'wrap' }, h('div', { class: 'note info' }, staticDemo
     ? 'Static demo: replays and checklists only. For live camera checks, run the app from GitHub with a Meta API key.'
-    : 'Add a Meta API key to use live mode. Replays work without one.', 'info');
+    : 'Add a Meta API key to use live mode. Replays work without one.'));
+
+  root.append(h('div', { class: 'page-light home' }, note || '', top, cont, mineSec, exploreSec, make,
+    h('footer', { class: 'footer' }, h('div', { class: 'wrap footer-row' },
+      h('span', {}, 'FollowAlong \u00b7 built with Muse Spark, SAM 3.1 and Muse Voice Transcribe'),
+      h('div', { class: 'footer-links' }, h('a', { href: '#/creator' }, 'For teams'), h('a', { href: '#/evaluation' }, 'Evaluation'),
+        h('a', { href: 'https://github.com/unnatibshah/followalong', target: '_blank', rel: 'noopener' }, 'GitHub'),
+        h('a', { href: '#/privacy' }, 'Privacy'), h('a', { href: '#/terms' }, 'Terms'),
+        !staticDemo && h('a', { href: '#/ops' }, 'Status'),
+        !app.config.hosted && !staticDemo && h('a', { href: '#/annotate' }, 'Help check (annotate)'))))));
 
   try {
     const tutorials = await api.tutorials();
-    grid.append(...tutorials.map(card));
+    const own = tutorials.filter(isMine);
+    mine.fill([h('button', { class: 'card card-new', type: 'button', onclick: openCreate },
+      h('span', { class: 'card-new-icon', 'aria-hidden': 'true' }, icon('plus')), h('span', {}, 'New guide')), ...own.map((t) => guideCard(t))]);
+    mineSec.hidden = !own.length;
+    explore.fill(tutorials.filter((t) => !isMine(t)).map((t) => guideCard(t)));
     const credited = tutorials.filter((t) => t.source_url);
-    credits.append(h('ul', {}, credited.map((t) => h('li', {}, `${t.title}: “${t.source_title || t.title}” by ${t.creator}, `,
+    credits.append(h('ul', {}, credited.map((t) => h('li', {}, `${t.title}: \u201c${t.source_title || t.title}\u201d by ${t.creator}, `,
       h('a', { href: t.source_url, target: '_blank', rel: 'noopener' }, 'source'), `, ${t.licence}. Cut into steps by FollowAlong.`))));
     credits.hidden = !credited.length;
-    requestAnimationFrame(sync);
   } catch {
-    bar.hidden = true;
-    grid.replaceWith(h('div', { class: 'note warn row' }, h('span', {}, '⚠ Something went wrong loading tutorials. Try a replay instead.'),
-      h('a', { href: '#/replay', class: 'btn btn-dark' }, 'Watch a replay')));
+    explore.grid.replaceWith(h('div', { class: 'note warn row' }, h('span', {}, 'Something went wrong loading the guides. Try a replay instead.'),
+      h('a', { href: '#/replay', class: 'btn btn-dark' }, 'See it in action')));
   }
   return null;
-}
-
-function card(t) {
-  const ready = t.status === 'ready';
-  const open = () => { app.tutorialId = t.id; app.mode = 'live'; nav(ready ? 'ready' : 'understanding'); };
-  // The middle step's end frame: real videos often end on a logo card or a cutaway, not the finished work
-  const preview = ready && t.step_count && !drawsStandIn(t.id) ? stepFrame(t.id, Math.ceil(t.step_count / 2))
-    : h('div', { class: 'paper-preview' }, `${t.title.toLowerCase()} · preview`);
-  const tag = t.source === 'manual' ? 'Made from your manual' : t.source === 'upload' ? 'Your upload' : t.creator ? 'YouTube · credited' : 'Bundled';
-  return h('a', { href: `#/${ready ? 'ready' : 'understanding'}`, class: 'card', onclick: (e) => { e.preventDefault(); open(); } },
-    h('div', { class: 'card-media' }, preview,
-      h('span', { class: 'pill tl' }, h('span', { class: 'dot accent', 'aria-hidden': 'true' }), ready ? 'Steps ready' : 'Processing…'),
-      h('span', { class: 'pill tr mono' }, t.manual && !t.duration_s ? `${t.manual.pages} p.` : mmss(t.duration_s))),
-    h('div', { class: 'card-title-row' }, h('span', { class: 'card-title' }, t.title), h('span', { class: 'card-open' }, 'Open →')),
-    h('div', { class: 'card-meta' }, h('span', { class: 'tag' }, tag), t.step_count ? `${t.step_count} steps` : '',
-      t.creator ? h('span', { class: 'muted' }, `by ${t.creator}${t.source_url ? ' · CC BY' : ''}`) : ''));
 }

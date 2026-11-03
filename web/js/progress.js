@@ -19,4 +19,18 @@ export function progressOf(tid) { const p = all()[tid]; return p && p.step > 1 ?
 export function unfinished() {
   return Object.entries(all()).filter(([, v]) => v.step > 1).map(([id, v]) => ({ id, ...v })).sort((a, b) => b.at - a.at);
 }
-export function forgetAll() { try { localStorage.removeItem(KEY); } catch { /* nothing kept */ } }
+
+// Activity: every finished or ended session, newest first, on this device only (no account yet). Capped, so it
+// never grows without bound. { id (session), tid, title, at, mode, steps_done, steps_total, duration_s, mistakes, hardest }
+const RUNS = 'fa.runs';
+const MAX_RUNS = 200;
+export function runs() {
+  try { const r = JSON.parse(localStorage.getItem(RUNS) || '[]'); return Array.isArray(r) ? r : []; } catch { return []; }
+}
+export function saveRun(run) {
+  if (!run?.id) return;
+  const rest = runs().filter((r) => r.id !== run.id); // a summary shown twice is one run
+  try { localStorage.setItem(RUNS, JSON.stringify([{ ...run, at: run.at || Date.now() }, ...rest].slice(0, MAX_RUNS))); } catch { /* storage blocked */ }
+}
+
+export function forgetAll() { try { localStorage.removeItem(KEY); localStorage.removeItem(RUNS); } catch { /* nothing kept */ } }
