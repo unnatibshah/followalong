@@ -473,7 +473,9 @@ export async function render(root) {
       if (safetyShownFor !== ctx.step) { safetyShownFor = ctx.step; el.safety.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' }); }
     }
     if (ctx.state === S.ASKING) {
-      el.askQ.textContent = ctx.finalAsk ? finalQuestion(ctx.step) : askQuestion(steps[ctx.step - 1], last);
+      // in the guide's own plain words ("It should look like ..."), else the check's question
+      const plain = detailOf(ctx.step)?.check_yourself;
+      el.askQ.textContent = ctx.finalAsk ? finalQuestion(ctx.step) : plain ? `${plain} ${T('looks_like_this')}` : askQuestion(steps[ctx.step - 1], last);
       el.ask.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
     if (mistake) el.caption.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
@@ -1026,6 +1028,7 @@ export async function render(root) {
       el.heard.textContent = ev.type === 'ask_yes' ? 'Yes, it does.' : 'No, it doesn\u2019t.';
       el.reply.textContent = ''; el.voiceCap.hidden = false;
       await new Promise((r) => { later(r, 1400); });
+      later(() => { el.heard.textContent = ''; if (!el.reply.textContent) el.voiceCap.hidden = true; }, 2600); // seen; the step's caption comes back
     } else if (ev.type === 'next' || ev.type === 'skip') await whenQuiet(10000);
     if (!finished) await dispatch(ev);
   };

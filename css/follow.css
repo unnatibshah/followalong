@@ -208,7 +208,7 @@
 @media (prefers-reduced-motion: reduce) { .panel.live.win { animation: none; } .win-mark { transition: none; } }
 
 /* What the models measured and saw is for "How it decided" (D), not for following along */
-.follow:not(.why) .motion-meter, .follow:not(.why) .watch-note { display: none; }
+.follow:not(.why) .motion-meter, .follow:not(.why) .watch-note, .follow:not(.why) .ask-reason { display: none; }
 
 /* ⋯ More: everything that isn't Back, Pause, Skip or Help */
 .more { position: relative; }
