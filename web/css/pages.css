@@ -202,3 +202,15 @@
 .credits { font: 400 13px/1.5 var(--sans); color: var(--ink-4); margin-top: -12px; }
 .credits summary { cursor: pointer; color: var(--ink-3); font-weight: 500; }
 .credits ul { margin: 8px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+/* Snap the pages: the shots so far, in page order */
+.snap { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 16px; background: #fff;
+  box-shadow: 0 0 0 1px rgba(17, 17, 19, .08); }
+.snap-head { display: flex; flex-direction: column; gap: 2px; font: 400 14px/1.4 var(--sans); }
+.snap-list { display: flex; gap: 10px; overflow-x: auto; list-style: none; margin: 0; padding: 2px; }
+.snap-page { position: relative; flex: 0 0 96px; }
+.snap-page img { width: 96px; height: 128px; object-fit: cover; border-radius: 8px; display: block; box-shadow: 0 0 0 1px rgba(17, 17, 19, .1); }
+.snap-no { position: absolute; left: 6px; bottom: 6px; background: rgba(17, 17, 19, .7); color: #fff; font-size: 11px; padding: 1px 6px; border-radius: 6px; }
+.snap-btn { position: absolute; top: 4px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(17, 17, 19, .7);
+  color: #fff; font: 600 14px var(--sans); cursor: pointer; right: 4px; }
+.snap-btn.snap-move { right: auto; left: 4px; }
+.snap-actions { flex-wrap: wrap; align-items: center; }

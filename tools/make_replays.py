@@ -25,6 +25,13 @@ from server.checks import engine  # noqa: E402
 from server.config import JUDGED_PROMPT  # noqa: E402
 from server.providers import end_box  # noqa: E402
 
+sys.path.insert(0, str(APP / "tools"))
+import random  # noqa: E402
+
+import cfbench  # noqa: E402  (grab: a frame of the video; camera: the learner's camera on it)
+
+FRAME_MS = 250  # the learner's camera in a live-coach replay: 4 frames a second, on a fixed grid the player rounds to
+
 LABELS = APP / "eval" / "cfbench" / "labels.jsonl"
 RECORDED = APP / "eval" / "cfbench" / "recorded-soft.jsonl"
 MISTAKES = ("wrong_colour", "missing_part", "incomplete")
@@ -175,8 +182,22 @@ async def build_live(tid: str, name: str) -> str:
         events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
                        "mode": "live", "data": data})
 
+    def at_grid():
+        return -(-ms // FRAME_MS) * FRAME_MS  # the next grid time, so a look's frame is never overwritten by motion
+
     def show(lab):
-        shutil.copy(APP / lab["frame"], frames / f"preview-{ms}.jpg")
+        shutil.copy(APP / lab["frame"], frames / f"preview-{at_grid()}.jpg")
+
+    video = APP / "data" / "tutorials" / tid / "video.mp4"
+
+    def work(dur_ms, v0, v1, seed):
+        """The learner doing the step: the tutorial's own footage from v0 to v1 s, seen through a different camera."""
+        nonlocal ms
+        n = max(1, dur_ms // FRAME_MS)
+        for i in range(n):
+            img = cfbench.camera(cfbench.grab(video, v0 + (v1 - v0) * i / max(1, n - 1)), random.Random(seed), 0.6)
+            img.save(frames / f"preview-{at_grid()}.jpg", quality=80)
+            ms += FRAME_MS
 
     summary = []
     ev("session_start", plan_hash=plan["plan_hash"])
@@ -189,9 +210,15 @@ async def build_live(tid: str, name: str) -> str:
         ev("step_play", sid, reason="first" if sid == 1 else "advance")
         ms += int((st["end"] - st["start"]) * 1000)
         ev("step_wait", sid)
-        ms += 6500  # the coach reads out the step's directions (and its safety line)
+        # The learner starts while the coach reads out the step's directions (and its safety line), then keeps working
+        # between the coach's looks: the step's footage runs from its start to its finished moment across the turn.
+        v0, v1 = st["start"], st.get("done_at") or st["end"]
+        stops = [v0 + (v1 - v0) * (j + 1) / (len(seq) + 1) for j in range(len(seq) + 1)]
+        work(6500, v0, stops[0], sid)
         n, said_any = 0, []
-        for lab, r in zip(seq, seen):
+        for j, (lab, r) in enumerate(zip(seq, seen)):
+            if j:
+                work(2000, stops[j - 1], stops[j], sid)
             show(lab)
             ms += 2200  # a look takes ~1.5-3 s
             if lab["case"] == "done" or r["status"] == "looks_done":

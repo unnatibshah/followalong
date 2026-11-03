@@ -73,6 +73,46 @@ export async function render(root) {
     class: 'visually-hidden', tabindex: '-1', 'aria-hidden': 'true' });
   const manualBtn = h('button', { class: 'btn btn-white', disabled: !live, type: 'button' }, 'Upload a manual');
 
+  // Snap the pages: a manual in hand → photograph it page by page, check the shots, then build the same lesson
+  const MAX_SNAPS = 20; // server/manual.py MAX_IMAGES
+  const snaps = []; // { file, url }
+  const snapInput = h('input', { type: 'file', accept: 'image/*', capture: 'environment', class: 'visually-hidden',
+    tabindex: '-1', 'aria-hidden': 'true' });
+  const snapBtn = h('button', { class: 'btn btn-white', disabled: !live, type: 'button' }, '📷 Snap the pages');
+  const snapList = h('ol', { class: 'snap-list', 'aria-label': 'Your pages, in order' });
+  const addBtn = h('button', { class: 'btn btn-white', type: 'button' }, '+ Add page');
+  const buildBtn = h('button', { class: 'btn btn-accent', type: 'button' });
+  const snapPanel = h('section', { class: 'snap', hidden: true, 'aria-label': 'Snap the pages' },
+    h('div', { class: 'snap-head' }, h('strong', {}, 'Your manual, page by page'),
+      h('span', { class: 'muted' }, 'Hold the phone over one page at a time, flat and in good light.')),
+    snapList, h('div', { class: 'row gap-s snap-actions' }, addBtn, buildBtn,
+      h('button', { class: 'btn-text', type: 'button', onclick: () => { snaps.splice(0).forEach((s) => URL.revokeObjectURL(s.url)); drawSnaps(); } }, 'Cancel')));
+  function drawSnaps() {
+    snapPanel.hidden = !snaps.length;
+    buildBtn.textContent = `Build my lesson (${snaps.length} page${snaps.length === 1 ? '' : 's'})`;
+    addBtn.disabled = snaps.length >= MAX_SNAPS;
+    snapList.replaceChildren(...snaps.map((s, i) => h('li', { class: 'snap-page' },
+      h('img', { src: s.url, alt: `Page ${i + 1}` }), h('span', { class: 'snap-no mono' }, `p. ${i + 1}`),
+      i > 0 && h('button', { class: 'snap-btn snap-move', type: 'button', 'aria-label': `Move page ${i + 1} earlier`,
+        onclick: () => { snaps.splice(i - 1, 0, ...snaps.splice(i, 1)); drawSnaps(); } }, '←'),
+      h('button', { class: 'snap-btn', type: 'button', 'aria-label': `Remove page ${i + 1}`,
+        onclick: () => { URL.revokeObjectURL(snaps.splice(i, 1)[0].url); drawSnaps(); } }, '×'))));
+  }
+  snapBtn.addEventListener('click', () => snapInput.click());
+  addBtn.addEventListener('click', () => snapInput.click());
+  snapInput.addEventListener('change', async () => {
+    const f = snapInput.files[0];
+    snapInput.value = '';
+    if (!f) return;
+    try {
+      const file = await shrink(f, snaps.length + 1);
+      snaps.push({ file, url: URL.createObjectURL(file) });
+      drawSnaps();
+      snapPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch { toast("That photo couldn't be read. Try again."); }
+  });
+  buildBtn.addEventListener('click', () => upload(null, null, snaps.map((s) => s.file)));
+
   // Paste a link (YouTube / Vimeo), or record yourself doing the task once so others can learn it
   const linkInput = h('input', { type: 'url', class: 'ask-input link-input', placeholder: 'Paste a YouTube or Vimeo link',
     'aria-label': 'Paste a YouTube or Vimeo link', disabled: !live });
@@ -110,9 +150,20 @@ export async function render(root) {
       h('a', { href: '#/terms' }, 'the terms'), '.'),
       h('span', { class: 'drop-sub' }, 'Have a paper manual and no video? Upload the PDF or photos of its pages (up to 40 pages) and '
         + "FollowAlong builds a step-by-step lesson from its pictures. Use a manual you have; it's only used to build your lesson.")),
-    h('div', { class: 'col gap-s' }, chooseBtn, manualBtn, recBtn));
+    h('div', { class: 'col gap-s' }, chooseBtn, manualBtn, snapBtn, recBtn));
 
   const isManual = (f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name) || f.type.startsWith('image/');
+
+  // A phone photo is ~3–12 MB; the server keeps 2000 px (manual.PAGE_PX) and refuses > 10 MB, so send that size as JPEG
+  async function shrink(f, n) {
+    const bmp = await createImageBitmap(f); // applies the photo's EXIF orientation
+    const k = Math.min(1, 2000 / Math.max(bmp.width, bmp.height));
+    const c = Object.assign(document.createElement('canvas'), { width: Math.round(bmp.width * k), height: Math.round(bmp.height * k) });
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    bmp.close();
+    const blob = await new Promise((ok, bad) => c.toBlob((b) => (b ? ok(b) : bad(new Error('encode'))), 'image/jpeg', 0.85));
+    return new File([blob], `page-${String(n).padStart(2, '0')}.jpg`, { type: 'image/jpeg' });
+  }
 
   async function upload(file, url, pages) {
     if ((!file && !url && !pages?.length) || !live) return;
@@ -147,7 +198,7 @@ export async function render(root) {
     h('div', {}, h('h2', { class: 'section-title' }, 'Pick a tutorial'),
       h('div', { class: 'section-sub' }, 'Each one is ready to follow. Muse Spark has already split it into steps.'),
       h('div', { class: 'section-sub muted' }, 'Each one is a Creative Commons (CC BY) video by the creator named on its card, used under that licence. See the credits below.')),
-    grid, bar, credits, drop, linkForm, note);
+    grid, bar, credits, drop, snapInput, snapPanel, linkForm, note);
 
   // Lessons left part-way, in this browser: one tap back to where they were
   const left = live ? unfinished().slice(0, 2) : [];

@@ -6,9 +6,10 @@ const KEY_MOMENTS = new Set(['mistake_shown', 'ask_shown']);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /** dispatch(event) runs a pacing event and resolves once its effects (e.g. the check request) are done.
- *  onEvent(event) fires as the clock reaches each recorded event (event.off = seconds from the start), for the frame.
+ *  onEvent(event) fires as the clock reaches each recorded event (event.off = seconds from the start), for the frame;
+ *  onTick(seconds) as the clock runs between events, so the recorded camera keeps moving.
  *  onQuestion(text) replays a spoken question; its answer is the server's fixture answer (no Meta call in replay). */
-export function createReplay({ timeline, dispatch, onFinish, onEvent, onQuestion, onCoach }) {
+export function createReplay({ timeline, dispatch, onFinish, onEvent, onQuestion, onCoach, onTick }) {
   const t0 = Date.parse(timeline[0].at);
   const events = timeline.map((e) => ({ ...e, off: (Date.parse(e.at) - t0) / 1000 }));
   let clock = 0, paused = false, skipping = false, stopped = false;
@@ -21,6 +22,7 @@ export function createReplay({ timeline, dispatch, onFinish, onEvent, onQuestion
       const now = performance.now();
       if (!paused) clock += (now - last) / 1000;
       last = now;
+      onTick?.(clock); // the learner's camera moves between events (live-coach replays carry 4 frames a second)
     }
   }
 
