@@ -229,3 +229,23 @@
 /* The browser refused the tutorial's sound (no tap yet): one tap turns it on */
 .sound-chip { position: absolute; z-index: 3; top: 12px; right: 12px; height: 34px; padding: 0 14px; border: 0; border-radius: 999px; background: rgba(17, 17, 19, .78); color: #fff; font: 600 13px var(--sans); cursor: pointer; box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .6); }
 .sound-chip:hover { background: var(--accent); }
+
+/* The guide card: what to do now, what's next, what's done. Read at a glance, hands busy. */
+.guide { display: flex; flex-direction: column; gap: 10px; margin: 6px 0 14px; padding: 16px 18px; border-radius: 18px; background: var(--night-4); border: 1px solid rgba(255, 255, 255, .08); }
+.guide-safety { padding: 8px 12px; border-radius: 10px; background: rgba(251, 191, 36, .1); color: #FCD34D; font: 600 14px/1.4 var(--sans); }
+.guide-k { font: 600 11px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-3); }
+.guide-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.guide-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; transition: opacity .25s, color .25s; }
+.guide-mark { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font: 600 13px var(--sans); background: rgba(255, 255, 255, .08); color: var(--moon-4); }
+.guide-text { font: 400 17px/1.45 var(--sans); color: var(--moon-4); padding-top: 3px; }
+.guide-item.now .guide-mark { background: var(--accent); color: #fff; box-shadow: 0 0 0 4px rgba(100, 87, 240, .25); }
+.guide-item.now .guide-text { font: 600 22px/1.35 var(--sans); color: #fff; padding-top: 0; }
+.guide-item.done .guide-mark { background: rgba(74, 222, 128, .18); color: var(--done); }
+.guide-item.done .guide-text { color: var(--moon-5); text-decoration: line-through; text-decoration-color: rgba(255, 255, 255, .2); }
+.guide-explain { align-self: flex-start; margin-top: 2px; height: 34px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; background: transparent; color: var(--moon-2); font: 500 13px var(--sans); cursor: pointer; }
+.guide-explain:hover { border-color: var(--accent-3); color: #fff; }
+.step-detail summary .detail-more { font: 500 13px var(--sans); color: var(--moon-4); }
+/* Outlines are for "How it decided", not for following along */
+.follow .live-overlay { opacity: 0; transition: opacity .2s; }
+.follow.why .live-overlay { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .guide-item { transition: none; } }

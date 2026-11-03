@@ -23,5 +23,7 @@
   "too_dark": "It's a bit dark for me. Can you turn on a light, or move closer to one?",
   "too_blurry": "The picture's blurry. Hold the camera steady, or tap the screen to focus.",
   "safe_thanks": "Thanks. Go ahead.",
-  "step_label": "Step {n}"
+  "step_label": "Step {n}",
+  "good_now": "Nice. Now {text}",
+  "explain_btn": "Explain it differently"
 }

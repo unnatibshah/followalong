@@ -224,7 +224,7 @@ async def build_live(tid: str, name: str) -> str:
             if lab["case"] == "done" or r["status"] == "looks_done":
                 if lab["case"] != "done":
                     continue  # the watcher thought an unfinished frame was done: the grounded check isn't run on it here
-                ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say="")
+                ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say="", on_action=r.get("on_action"))
                 res = await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "full", cache)
                 n += 1
                 ev("check", sid, kind="full", check_no=n, trigger="check_me", verdict=res["verdict"])
@@ -245,7 +245,7 @@ async def build_live(tid: str, name: str) -> str:
                     ev("action", sid, name="next")
                 ms += 4500  # "Yes, that's right! Next up..."
                 break
-            ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say=r.get("say", ""))
+            ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say=r.get("say", ""), on_action=r.get("on_action"))
             if r.get("say"):
                 said_any.append(r["status"])
                 ms += 300 * len(r["say"].split())  # let the line finish before the next thing happens

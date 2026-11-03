@@ -82,5 +82,101 @@
   "say": "",
   "latency_ms": 728,
   "cost_usd": 0.0023329
+ },
+ "eval/cfbench/frames/breadboard-led/step1-incomplete.jpg|0|watch-0.5": {
+  "status": "working",
+  "observation": "Right hand holds white and blue wires over the white breadboard, white wire near top left area but neither wire firmly seated yet; left hand steadies board.",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 3095,
+  "cost_usd": 0.0038015
+ },
+ "eval/cfbench/frames/breadboard-led/step1-wrong_colour.jpg|1|watch-0.5": {
+  "status": "working",
+  "observation": "White wire appears seated at top left of board standing up, right hand still positioning blue wire over top right, not yet firmly inserted.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 3602,
+  "cost_usd": 0.004233
+ },
+ "eval/cfbench/frames/breadboard-led/step1-missing_part.jpg|2|watch-0.5": {
+  "status": "cant_see",
+  "observation": "Board is covered by blur in live view, wires visible in hands but insertion points not visible",
+  "on_action": 1,
+  "say": "I can't see the white board, it's blurred out. Lift your hands or move the camera so I can see the top of the board.",
+  "latency_ms": 8419,
+  "cost_usd": 0.00434025
+ },
+ "eval/cfbench/frames/breadboard-led/step1-done.jpg|3|watch-0.5": {
+  "status": "working",
+  "observation": "White wire is seated at top left of board, right hand is positioning blue wire over top right but it is not yet fully inserted.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 1896,
+  "cost_usd": 0.00375475
+ },
+ "eval/cfbench/frames/breadboard-led/step2-incomplete.jpg|0|watch-0.5": {
+  "status": "working",
+  "observation": "Hands around small white breadboard, no blue resistor visible inserted yet, battery pack on left",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 2740,
+  "cost_usd": 0.00380225
+ },
+ "eval/cfbench/frames/breadboard-led/step2-wrong_colour.jpg|1|watch-0.5": {
+  "status": "working",
+  "observation": "Hands are over the white breadboard appearing to push a leg in, blue resistor not yet seen lying flat, so neither leg placement can be confirmed done.",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 2970,
+  "cost_usd": 0.00366925
+ },
+ "eval/cfbench/frames/breadboard-led/step2-missing_part.jpg|2|watch-0.5": {
+  "status": "cant_see",
+  "observation": "Hands covering board with blur over center, resistor placement not visible",
+  "on_action": 1,
+  "say": "I can't see the board under your hands. Lift your hands back a little.",
+  "latency_ms": 2463,
+  "cost_usd": 0.00359025
+ },
+ "eval/cfbench/frames/breadboard-led/step2-done.jpg|3|watch-0.5": {
+  "status": "cant_see",
+  "observation": "Hands still covering the white board, blue resistor legs not visible, cannot confirm either placement",
+  "on_action": 1,
+  "say": "I still can't see where the legs are going. Pull your fingers clear of the board for a second.",
+  "latency_ms": 2133,
+  "cost_usd": 0.00227925
+ },
+ "eval/cfbench/frames/breadboard-led/step3-incomplete.jpg|0|watch-0.5": {
+  "status": "working",
+  "observation": "Hands holding small blue LED above white breadboard, legs not yet inserted, orientation not clearly readable, early in insertion.",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 3953,
+  "cost_usd": 0.00447825
+ },
+ "eval/cfbench/frames/breadboard-led/step3-wrong_colour.jpg|1|watch-0.5": {
+  "status": "mistake",
+  "observation": "LED is inserted and lit orange-yellow, not the required blue dome light",
+  "on_action": 1,
+  "say": "Oh, wait, that's the orange light in there. Pull it out and put in the small blue dome light with the short leg on the left.",
+  "latency_ms": 4680,
+  "cost_usd": 0.00472975
+ },
+ "eval/cfbench/frames/breadboard-led/step3-missing_part.jpg|2|watch-0.5": {
+  "status": "cant_see",
+  "observation": "Breadboard area is blurred out, LED and rows not visible to judge placement",
+  "on_action": 1,
+  "say": "I can't see the white board at all. Move whatever's blocking it and tilt the phone so I can see the LED.",
+  "latency_ms": 3751,
+  "cost_usd": 0.0031041
+ },
+ "eval/cfbench/frames/breadboard-led/step3-done.jpg|3|watch-0.5": {
+  "status": "looks_done",
+  "observation": "Blue LED inserted on right side of white board glowing bright blue, matching tutorial finished state",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 3200,
+  "cost_usd": 0.0030165
  }
 }

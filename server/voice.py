@@ -318,9 +318,14 @@ async def _close(ws: WebSocket, code: int = 1000) -> None:
 # ---- the live watcher: one look every 2–3 s while the learner works (prompt `watch`) ----
 
 WATCH_STATUS = ["working", "mistake", "cant_see", "looks_done", "idle"]
-WATCH_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["status", "observation", "say"],
+WATCH_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["status", "observation", "on_action", "say"],
                 "properties": {"status": {"type": "string", "enum": WATCH_STATUS},
-                               "observation": {"type": "string"}, "say": {"type": "string"}}}
+                               "observation": {"type": "string"}, "on_action": {"type": "integer"}, "say": {"type": "string"}}}
+
+
+def actions(say: str) -> list[str]:
+    """A step's spoken directions as separate actions (its sentences): the lesson shows and says one at a time."""
+    return [x.strip() for x in re.split(r"(?<=[.!?])\s+", say or "") if x.strip()]
 
 
 def watch_request(plan: dict, details: dict, step: dict, meta: dict, frame_url: str, end_url: str | None) -> dict:
@@ -328,6 +333,7 @@ def watch_request(plan: dict, details: dict, step: dict, meta: dict, frame_url: 
     lines = lambda xs, n: "\n".join(f"- {str(x)[:200]}" for x in (xs or [])[-n:] if isinstance(x, str)) or "(none yet)"  # noqa: E731
     fill = {"title": plan.get("title") or plan["tutorial_id"], "actor": plan.get("actor") or "hand", "id": step["id"],
             "instruction": step["instruction"], "say": d.get("say") or step["instruction"],
+            "actions": "\n".join(f"{i}. {x}" for i, x in enumerate(actions(d.get("say") or step["instruction"]), 1)),
             "placements": "\n".join(f"- {x}" for x in d.get("placements") or []) or "- (none recorded)",
             "watch_for": "; ".join(d.get("watch_for") or step.get("common_mistakes") or []) or "nothing noted",
             "done_looks_like": done_text(step, d.get("check_yourself") or step.get("done_looks_like", "")),
@@ -350,7 +356,9 @@ def clean_watch(raw: dict) -> dict:
     """Validated again in code: a known status, short strings, nothing said for looks_done (the measured check speaks)."""
     status = raw.get("status") if raw.get("status") in WATCH_STATUS else "working"
     say = two_sentences(str(raw.get("say") or "").replace("*", ""), 2)[:300]
+    on = raw.get("on_action")
     return {"status": status, "observation": " ".join(str(raw.get("observation") or "").split())[:200],
+            "on_action": on if isinstance(on, int) and 1 <= on <= 20 else None,
             "say": "" if status == "looks_done" else say}
 
 

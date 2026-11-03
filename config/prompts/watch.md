@@ -1,4 +1,4 @@
-prompt_version: watch-0.4
+prompt_version: watch-0.5
 
 The live watcher (one look every 2–3 s while the learner works). `server/voice.py` sends `## system` as the
 instructions and `## user` (placeholders filled) as the text, then the LIVE frame and the step's TUTORIAL finished
@@ -22,6 +22,10 @@ Each look, decide one status:
   if it looks different from the tutorial picture.
 - idle: nothing is happening (no movement or progress on the task).
 
+Also say where they are in the step: on_action is the number of the first action in the list below that is NOT
+done yet in this picture (1 if they haven't started; the last number if all of them look done). Judge each action by
+its result in the picture, not by how long they've taken.
+
 Then decide what to say out loud (or nothing). Talk like a real person supervising, short and natural, spoken, contractions, no lists, never more than two short sentences:
 - mistake: interrupt. Start with "Oh, wait" or "Hold on", say what you see, then exactly how to undo and fix it, with
   the precise location from the directions. E.g. "Oh, wait, that leg's going into the blue rail. Pull it back out and
@@ -42,6 +46,8 @@ Lesson: {title}
 Who or what does the work (may be in view; judge the work, not them): {actor}
 Current step {id}: {instruction}
 Exact directions: {say}
+The same directions as separate actions, in order:
+{actions}
 Placements:
 {placements}
 Watch for: {watch_for}
