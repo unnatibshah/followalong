@@ -1,12 +1,15 @@
 # FollowAlong
 
-**A lab partner for every student at the bench: it watches your hands and catches the slip.**
+**Instructions that see your work: real-time visual guidance for hands-on work.**
 
-In a hands-on STEM class, one teacher has thirty benches. Most of the lesson goes on "my LED doesn't light": a part
-in the wrong row, a lead the wrong way round, a step skipped. FollowAlong gives every student someone watching their
-work. Bring the instructions you already have (a how-to video, the kit's PDF manual, or photos of its paper pages);
-Muse Spark turns them into exact steps; the camera watches each step being built; and the coach speaks up the moment
-something's off, then checks the fix with SAM 3.1 before moving on. Teachers see which steps the class gets stuck on.
+People learn and do hands-on work from how-to videos and manuals, and the instructions never know whether you got the
+step right: you find out when it doesn't work. FollowAlong turns any video, manual or set of photos into a live, step-by-step guide that
+follows along through your camera, checks every step before the next one starts, and tells you the moment something's
+off, by voice, hands-free. Muse Spark writes the steps and judges what geometry can't; SAM 3.1 measures what's there.
+
+**Who it's for:** anyone doing hands-on work from instructions: makers and students with electronics and robotics kits,
+people doing repairs and installs at home, assembly and workforce training (new hires checked step by step, with a log
+of every check), and the teams and creators who want to see exactly where people get stuck.
 
 ## Meta Global AI Hackathon 2026 — submission overview
 
@@ -19,7 +22,7 @@ something's off, then checks the fix with SAM 3.1 before moving on. Teachers see
   - **Muse Voice Transcribe**: hands-free voice commands, questions and barge-in.
 - **Not a chatbot, not a one-prompt wrapper:** instructions → step plan → a camera that watches the work → SAM-measured
   checks plus Muse Spark judgements, rule-based safety gates, scored on CF-Bench (303 labelled frames from CC BY
-  tutorials). On the breadboard lesson: 93% of frames right and no unfinished step let through.
+  tutorials). Best case, the breadboard guide: 93% of frames right and no unfinished step let through.
 - **Bonus prize targeted:** Best Agentic Use-Case (the coach watches, decides, interrupts and advances on its own,
   with the learner able to overrule it).
 - **Quickstart, no key:** `docker compose up` → **Watch a replay**. Live mode: `cp .env.example .env`, set `MODEL_API_KEY`.
