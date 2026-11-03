@@ -1,103 +1,106 @@
 {
- "prompt_version": "step_details-0.4",
+ "prompt_version": "step_details-0.6",
  "model": "muse-spark-1.3",
- "cost_usd": 0.07480914999999999,
+ "cost_usd": 0.15880825,
  "actor": "hand",
  "steps": {
   "1": {
-   "say": "Cut off one clear RJ45 plug from one end of your blue network cable. Keep the other original plug on, leaving one flat-cut bare jacket end.",
+   "say": "Cut one clear plug off the blue cable. Leave the other clear plug on the coiled cable. Save the cut bare end for rewiring.",
    "placements": [
-    "clear plastic RJ45 plug on blue patch cable → cut off and removed, leaving flat-cut bare blue jacket end on coiled cable (in the video: cable coiled on dark table with one plug left on; cutting tool not named, match the picture)"
+    "clear plug on one end of the blue cable → cut off and discarded, leaving a flat-cut bare jacket end opposite the remaining factory clear plug end (in the video: dark brown table with coiled blue cable on the right side)",
+    "cutting tool → closed across the blue cable just below the plug to be removed (the video does not show which cutter jaw is used; match the picture)"
    ],
    "watch_for": [
-    "If both ends are bare you cut too much — you need one original clear plug still on the cable to keep the 568B end",
-    "If the blue jacket end is angled or frayed, recut it flat — the stripper needs a clean start"
+    "If both ends still have clear plugs you removed too little and still have a straight through cable.",
+    "If the remaining blue cable is too short to use you cut off too much length with the plug."
    ],
-   "check_yourself": "The blue cable lies coiled with one clear plug still attached and one flat-cut bare jacket end.",
-   "safety": "Keep your fingers well away from the cutter blade and cut away from your body."
+   "check_yourself": "The blue cable lies coiled with one clear plug attached and one flat-cut bare end.",
+   "safety": "Keep fingers well clear of the cutter jaws while you cut."
   },
   "2": {
-   "say": "Push the flat-cut bare end of the blue cable into your wire strippers. Strip off about an inch of blue outer jacket to expose the eight small colored inner wires.",
+   "say": "Hold the blue cable steady. Strip about one inch of blue jacket off the cut end. Leave the eight colored wires exposed.",
    "placements": [
-    "blue outer jacket at flat-cut bare end of blue cable → stripped back about 1 inch with wire strippers (in the video: yellow-handled strippers around blue jacket on dark table), exposing eight small colored wires sticking out of blue jacket"
+    "blue outer jacket at the cut bare end → about one inch removed to expose eight colored inner wires (in the video: cut end held between fingers over the center of the dark brown table)",
+    "wire stripper tool with yellow handles → closed around the blue jacket about one inch from the tip then pulled off (in the video: yellow handled tool on the right side of the table)"
    ],
    "watch_for": [
-    "If the small colored wires look nicked or copper shows, you squeezed too hard — the jacket should pull off clean without cutting inner insulation",
-    "If less than about an inch shows you stripped too little — you need enough length to untwist and line up"
+    "If copper shows on the thin wires you nicked them with the stripper and should cut back and strip again.",
+    "If much more than one inch of wires sticks out you stripped too much jacket and strain relief will be poor."
    ],
-   "check_yourself": "The cut end shows eight small colored wires sticking out about an inch from the blue jacket.",
-   "safety": "Keep fingers clear of the stripper blades and pull the jacket away from your hand."
+   "check_yourself": "The cut end shows eight small colored wires sticking out of the blue jacket.",
+   "safety": "Keep fingers away from the stripper blades while you strip."
   },
   "3": {
-   "say": "Snip the white string filler flush at the blue jacket edge and throw it away. Untwist and finger-straighten all eight small colored wires so they fan straight out with no twists.",
+   "say": "Untwist all eight colored wires. Straighten each thin wire with your fingers. Fan them out from the blue jacket.",
    "placements": [
-    "white string filler among inner wires at blue jacket edge → snipped off flush at jacket and discarded (in the video: cut with cutter jaws on dark table)",
-    "eight twisted small colored wires sticking out of blue jacket → separated, untwisted and straightened to eight straight wires fanning out from blue jacket with no twists"
+    "four twisted pairs of colored inner wires → separated into eight single straight wires fanning out from the cut end of the blue jacket (in the video: held between fingers over the dark brown table center)",
+    "white string filler → cut off flush at the blue jacket edge and discarded (the video does not show the exact cutter position; match the picture)"
    ],
    "watch_for": [
-    "If wires still curl or stick together, they are still twisted — if the plug mis-wires, straighten again until flat",
-    "If the white string is still sticking out among the wires, you forgot to cut it — it will block the plug if left in"
+    "If twists remain near the blue jacket the wires will not lay flat for ordering.",
+    "If wires kink sharply when straightened you pulled too hard and may break the wire."
    ],
-   "check_yourself": "Eight straight inner wires fan out from the blue jacket with no twists and no white string.",
-   "safety": "Keep fingertips away from the cutter blade when you snip the white string."
+   "check_yourself": "Eight straight inner wires fan out from the blue jacket with no twists.",
+   "safety": ""
   },
   "4": {
-   "say": "Pick up the small blue rubber boot. Slide it over the exposed wire tips down onto the blue cable to sit below the exposed wires.",
+   "say": "Pick up the small blue boot. Slide the small blue boot onto the cut end. Push it down over the blue cable.",
    "placements": [
-    "small blue rubber strain-relief boot → slid over exposed wire tips down onto blue outer jacket to sit loose around blue cable below exposed wires (in the video: on dark table; taper direction not readable, match the picture)"
+    "small blue rubber boot → slid over the cut wire tips and down the blue cable to sit below the exposed wires (in the video: around the blue cable below the fingers over the dark brown table; the video does not show taper direction clearly so match the picture)"
    ],
    "watch_for": [
-    "If you forget the boot now you cannot add it after crimping — if the plug is already crimped without the boot you must cut off and restart",
-    "If the boot slides off the cable end, push it far enough down the blue jacket that the wires stay exposed above it"
+    "If no boot is on the cable before the plug you cannot add it after crimping without cutting off.",
+    "If the boot slides far down the cable it will be hard to pull up later so keep it near the end."
    ],
-   "check_yourself": "A small blue boot sits loose around the blue cable below the exposed wires.",
+   "check_yourself": "A small blue boot sits around the blue cable below the exposed wires.",
    "safety": ""
   },
   "5": {
-   "say": "Fan the eight straight colored wires flat side-by-side in 568A order white-green, green, white-orange, blue, white-blue, orange, white-brown, brown. Trim the tips straight across even for insertion.",
+   "say": "Arrange the eight thin colored wires flat in green first order. Trim the wire tips even with the cutting tool. Leave about one centimetre of flat wires for the plug.",
    "placements": [
-    "eight straight colored wires at blue jacket with blue boot below → arranged flat parallel left-to-right in TIA 568A order: 1 white-green, 2 green, 3 white-orange, 4 blue, 5 white-blue, 6 orange, 7 white-brown, 8 brown (in the video: pinched between fingers on dark table, green-first on left, orange-handled crimp tool behind)",
-    "uneven tips of ordered wires → trimmed straight across even with cutter to short even length ready to insert (the video doesn't state trim length; match the picture)"
+    "eight colored inner wires → laid flat side by side left to right in 568A order white and green then green then white and orange then blue then white and blue then orange then white and brown then brown with tips even (in the video: held flat on fingertip with green first on the left matching the on-screen 568A diagram)",
+    "cutting jaws of the yellow handled tool → closed straight across the wire tips to trim them even leaving about one centimetre of flat wires (in the video: over the dark brown table)"
    ],
    "watch_for": [
-    "If orange comes first instead of green you lined up 568B by mistake — green pair must be first for this 568A end",
-    "If tips are staggered or splayed the plug will miss a wire — if colors don't reach the front together, re-flatten and trim again"
+    "If white and green is swapped with white and orange the striped wires look alike so check against the diagram.",
+    "If wire tips are uneven some wires will not reach the front of the plug and will not connect."
    ],
-   "check_yourself": "Eight flat parallel wires extend in green-first 568A order with even-cut tips ready to insert.",
-   "safety": "Keep fingers out of the cutter blades when you trim the wire tips even."
+   "check_yourself": "Eight flat parallel wires extend in green-first order ready to insert.",
+   "safety": "Keep fingers clear of the cutter blades while you trim."
   },
   "6": {
-   "say": "Pick up a new clear rectangular RJ45 plug. Push the eight ordered flat wires fully into its back until each colored tip shows at the front.",
+   "say": "Hold the clear plug with the clip facing down. Push the eight flat colored wires into the back of the plug. Push until the wires reach the front end.",
    "placements": [
-    "eight ordered flat wires with blue jacket and loose blue boot below → pushed into rear opening of new clear RJ45 plug until colored wire ends are visible reaching the front under gold pins (in the video: plug pinched in fingers on dark table, boot left down on jacket)"
+    "clear plug → pushed over the back over the eight flat colored wires with wires fully inserted until tips are visible at the front gold end and blue jacket near the rear entry (in the video: held between fingers over the dark brown table with orange crimper behind; the video does not show clip direction clearly so match the picture)"
    ],
    "watch_for": [
-    "If the color order flips or crosses while pushing, you twisted the bundle — if the front view is out of order, pull out and re-line up",
-    "If wire tips stop short of the front, you didn't push far enough — the colors must be visible at the clear front end"
+    "If the color order changes while pushing the wires twisted during insertion so pull out and reorder.",
+    "If wires are not visible at the front of the clear plug you did not push far enough."
    ],
-   "check_yourself": "The clear plug sits on the wire ends with all colored wires visible reaching the front.",
+   "check_yourself": "The clear plug sits on the wire ends with colored wires visible reaching the front.",
    "safety": ""
   },
   "7": {
-   "say": "Set the wired clear plug into the RJ45 socket of your crimping tool. Squeeze the handles firmly to crimp the plug onto the wires and jacket.",
+   "say": "Place the clear plug into the crimping tool. Squeeze the orange handles firmly closed. Hold steady until the plug flattens onto the wires.",
    "placements": [
-    "wired clear RJ45 plug with blue jacket at its rear and blue boot below → inserted into RJ45 crimp socket at front of black-and-orange crimping tool on dark table and squeezed, leaving clear plug flattened onto wires with blue jacket tucked inside plug rear"
+    "clear plug with wires and blue jacket inside → seated fully in the front slot of the crimping tool with black body and orange handles then compressed (in the video: plug in the jaws of the tool over the dark brown table)",
+    "crimping tool with orange handles → squeezed firmly closed over the seated clear plug to drive the gold contacts into the wires (in the video: center of the dark brown table)"
    ],
    "watch_for": [
-    "If the plug still wiggles on the wires you under-crimped — the gold pins must be driven down and the plug tight",
-    "If the blue jacket hangs outside the plug rear you missed strain relief — the jacket must be tucked inside the plug before crimping"
+    "If the blue jacket sits outside the plug the plug will pull off easily because strain relief missed.",
+    "If the plug pulls loose with a gentle tug the crimp was too light and needs a firm second squeeze."
    ],
-   "check_yourself": "The clear plug is tightly flattened onto the wires with blue jacket tucked inside the plug rear.",
-   "safety": "Keep your fingers out of the crimp jaws and handle pivot when you squeeze — it pinches hard."
+   "check_yourself": "The clear plug is flattened onto the wires with blue jacket tucked inside the plug.",
+   "safety": "Keep fingers out of the crimp jaws while you squeeze."
   },
   "8": {
-   "say": "Grip the small blue boot on the blue cable. Slide it forward up over the back of the crimped clear plug until it covers the joint.",
+   "say": "Hold the blue cable steady. Slide the small blue boot up the cable. Cover the back of the clear plug with the boot.",
    "placements": [
-    "small blue boot around blue cable below crimped plug → slid forward up over rear of clear plug to cover the back of the plug where blue jacket enters (in the video: finished crossover end held in fingers on dark table)"
+    "small blue rubber boot → slid up the blue cable and over the rear of the crimped clear plug to cover the back (in the video: boot covering the back of the plug held between fingers over the dark brown table)"
    ],
    "watch_for": [
-    "If the boot sits crooked or leaves a gap at the plug back, you stopped short — push it fully forward until it hugs the plug",
-    "If the boot pushes the plug sideways, you forced it — wiggle straight on, don't bend the crimped wires"
+    "If the locking clip snaps when covering it you forced the boot too hard and the plug will not latch.",
+    "If the boot stays down the cable the back of the plug has no cover and no strain relief."
    ],
    "check_yourself": "The blue boot covers the back of the clear plug on the finished crossover end.",
    "safety": ""

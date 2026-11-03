@@ -1,4 +1,4 @@
-prompt_version: step_details-0.4
+prompt_version: step_details-0.6
 
 The step-details prompt. `server/details.py` sends `## system` as the instructions and `## user` (with {duration} and
 {steps} filled in) as the text before the video, then the narration (when there is speech) and each step's finished
@@ -22,7 +22,14 @@ is ever visible (a time-lapse, a screen recording).
 
 For every step, write:
 - say: what a coach says aloud when it's the learner's turn, 1 to 3 short sentences, imperative, naming every piece by
-  colour and shape and its EXACT destination.
+  colour and shape and its EXACT destination. It is read by a text-to-speech voice, so write it to be heard:
+  * one action per sentence, at most about 15 words; end every sentence with a full stop;
+  * a comma only where a person would naturally pause between two parts of a sentence ("Hold the board steady, then
+    push the blue wire into the top row."); never inside a pair or a short list ("the red and black probes", not "the
+    red probe, and the black probe,");
+  * plain words only: no arrows, slashes, plus or minus signs, brackets, abbreviations or lists; say "the plus rail",
+    "five-hole row", "about one centimetre";
+  * no "In the video:" here; the video's exact spot goes in placements.
 - placements: one line per piece placed, moved or connected, as "<piece> → <exact location>", with everything that
   pins the location down:
   * breadboards: the row NUMBER and column LETTER of each hole (read the printed numbers a–j / 1–30+; if numbers aren't
@@ -37,7 +44,7 @@ For every step, write:
 - watch_for: up to 2 easy-to-make placement mistakes for this step, each with how to tell ("if the LED stays dark, the
   long leg is probably in the wrong row").
 - check_yourself: one sentence the learner can use to confirm the step, describing the finished state precisely.
-- safety: one short spoken sentence about a real hazard in THIS step, said before they start it, or "" if there is
+- safety: one short spoken sentence (same spoken style as say) about a real hazard in THIS step, said before they start it, or "" if there is
   none. Electricity (power off at the breaker and confirm with a tester, never touch both clamps together, polarity,
   battery shorts), heat (soldering iron tip, hot glue), sharp tools (stripper, blade, crimp jaws), moving parts,
   pinch points, chemicals, eye protection. Say what to do, not just the danger ("Keep the black clamp away from the
@@ -47,8 +54,8 @@ For every step, write:
 The learner will have a DIFFERENT model, size and layout than the video (another car, another breadboard). So in
 say and placements, give each location by function and relationship first ("the LED's long leg in the same 5-hole
 row as the resistor's top leg"; "the + terminal of the dead battery, usually marked + or under a red cover, sometimes
-a remote jump post"), then the video's exact spot as an example ("in the video: column 20"). Name parts by role and
-appearance, not only by the brand or model in the video.
+a remote jump post"); in placements, add the video's exact spot as an example ("in the video: column 20"). Name parts by
+role and appearance, not only by the brand or model in the video.
 
 Use the narration for spoken numbers and labels, and the finished frames to read positions. If two sources disagree,
 trust the finished frame and mention the difference.

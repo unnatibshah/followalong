@@ -60,7 +60,9 @@ function next() {
   if (voice) { u.voice = voice; u.lang = voice.lang; }
   u.rate = voice && !voice.localService ? 1.0 : 1.03;  // a touch quicker than the slow default on local voices
   u.pitch = 1.0;
-  u.onend = u.onerror = () => { if (current === u) next(); };
+  // A breath between sentences, a longer one after a question or an exclamation, like a person talking
+  const gap = /[?!]$/.test(item.text) ? 450 : 250;
+  u.onend = u.onerror = () => { if (current === u) setTimeout(() => { if (current === u) next(); }, gap); };
   current = u;
   recent.push({ words: words(item.text), at: Date.now() });
   if (recent.length > 6) recent.shift();
@@ -75,12 +77,43 @@ export function speak(text, tag = null, urgent = false) {
   if (!s || !text || !pickVoice(s.getVoices())) return false;
   if (urgent) { queue.length = 0; current = null; s.cancel(); } // "Oh, wait": a mistake cuts in, like a person would
   if (tag !== null) for (let i = queue.length - 1; i >= 0; i--) if (queue[i].tag !== null && queue[i].tag !== tag) queue.splice(i, 1);
-  for (const sentence of text.match(/[^.!?]+[.!?]*\s*/g) || [text]) if (sentence.trim()) queue.push({ text: sentence.trim(), tag });
+  for (const sentence of speakable(text).match(/[^.!?]+[.!?]*\s*/g) || [text]) {
+    for (const part of breathe(sentence.trim())) if (part) queue.push({ text: part, tag });
+  }
   if (!current) next();
   return true;
 }
 
 export const speaking = () => !!current || queue.length > 0;
+
+/** Text written for the screen, shaped for a speech engine: no "In the video:" asides (those are for reading), no
+ *  arrows, brackets or semicolons, which voices either skip or read as one breathless run. */
+export function speakable(text) {
+  return ` ${text || ''} `
+    .replace(/\s*In the video:[^.!?]*[.!?]?/gi, ' ')
+    .replace(/\s*[→⟶]\s*/g, ', to ')
+    .replace(/\s*\(([^)]*)\)/g, ', $1,')
+    .replace(/\s*;\s*/g, '. ')
+    .replace(/(^|[\s,])\+(?=[\s,.]|$)/g, '$1plus')
+    .replace(/(^|[\s,])[−–](?=[\s,.]|$)/g, '$1minus')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([,.!?:])/g, '$1')
+    .replace(/,+([.!?:])/g, '$1')
+    .replace(/,\s*,/g, ',')
+    .replace(/([.!?]\s+)(\p{Ll})/gu, (_, p, c) => p + c.toUpperCase())
+    .trim();
+}
+
+/** A long sentence split at its natural joins (", and", ", so", ", then", ", but"), so each part gets its own rise
+ *  and fall instead of one flat 40-word line. ponytail: word-count heuristic; the prompt asks for short sentences. */
+export function breathe(sentence, max = 16) {
+  const n = (t) => t.split(/\s+/).length;
+  if (n(sentence) <= max) return [sentence];
+  const m = sentence.match(/^(.{20,}?),\s+(and|so|then|but)\s+(.+)$/i);
+  if (!m || n(m[1]) < 5) return [sentence];
+  const tail = m[3].charAt(0).toUpperCase() + m[3].slice(1);
+  return [`${m[1]}.`, ...breathe(m[2].toLowerCase() === 'and' ? tail : `${m[2].charAt(0).toUpperCase() + m[2].slice(1)} ${m[3]}`, max)];
+}
 
 const words = (t) => (t.toLowerCase().match(/[\p{L}\p{N}']+/gu) || []);
 /** True when `heard` is (mostly) our own voice coming back through the speakers: most of its words are in what we

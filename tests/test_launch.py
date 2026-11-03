@@ -170,3 +170,12 @@ def test_phrases_file_matches_the_lesson_screen_defaults():
     block = js[js.index("const PHRASES_EN"):js.index("};", js.index("const PHRASES_EN"))]
     for key in json.loads((Path(__file__).parent.parent / "config/phrases.json").read_text()):
         assert f"{key}:" in block, key
+
+
+def test_in_a_mains_lesson_no_step_is_safe_by_omission():
+    steps = {"1": {"say": "Flip the black entry bedroom breaker handle to off in the panel.",
+                   "safety": "Keep fingers on the plastic handle."},  # the step itself makes it safe: a gate
+             "2": {"say": "Unscrew the cover plate.", "safety": ""},
+             "3": {"say": "Cut the wires free.", "safety": "Keep fingers clear of the cutter jaws."}}
+    assert [v["hazard"] for v in safety.annotate(steps).values()] == ["gate", "danger", "danger"]
+    assert safety.annotate({"1": {"safety": ""}, "2": {"safety": "Mind the sharp blade."}})["1"]["hazard"] == ""  # no gate, no change

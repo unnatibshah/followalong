@@ -15,7 +15,7 @@ through every prompt, which is worse than fewer, meaningful ones).
 import re
 
 GATE = re.compile(
-    r"\b((switch|turn|shut|flip)\w*\s+(\w+\s+){0,3}off|prove\w*\s+(it\s+)?dead|test\w*\s+(it\s+)?dead|"
+    r"\b((switch|turn|shut|flip)\w*\s+(\w+\s+){0,8}off|prove\w*\s+(it\s+)?dead|test\w*\s+(it\s+)?dead|"
     r"confirm\w*\s+(\w+\s+){0,5}(off|dead)|shows?\s+no\s+power|unplug\w*|disconnect\w*\s+the\s+(power|battery))\b", re.I)
 DANGER = re.compile(
     r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|wires?\s+(are|is)\s+live|clamps?|jump\w*|"
@@ -38,8 +38,25 @@ def tier(safety: str) -> str:
 
 
 def annotate(steps: dict) -> dict:
-    """details.json `steps` with `hazard` added to each step (copies; the file is never rewritten)."""
-    return {k: {**v, "hazard": tier(v.get("safety", ""))} for k, v in steps.items() if isinstance(v, dict)}
+    """details.json `steps` with `hazard` added to each step (copies; the file is never rewritten).
+
+    A step whose own direction is making it safe ("Flip the breaker to off") is a gate even if its safety line talks
+    about something else. And in a lesson with an electrical gate anywhere, no step is merely `caution` or unmarked:
+    every one is at least `danger`, so the camera alone never advances it, whatever the model chose to warn about."""
+    keys = sorted((k for k, v in steps.items() if isinstance(v, dict)), key=lambda k: int(k) if str(k).isdigit() else 0)
+    out = {}
+    for k in keys:
+        v = steps[k]
+        t = tier(v.get("safety", ""))
+        say = v.get("say", "") or ""
+        if t != "gate" and GATE.search(say) and ELECTRIC.search(say + " " + (v.get("safety") or "")):
+            t = "gate"
+        out[k] = {**v, "hazard": t}
+    if any(o["hazard"] == "gate" and ELECTRIC.search((o.get("say") or "") + " " + (o.get("safety") or "")) for o in out.values()):
+        for o in out.values():
+            if o["hazard"] in ("", "caution"):
+                o["hazard"] = "danger"
+    return out
 
 
 def lesson(steps: dict) -> dict:

@@ -1,78 +1,79 @@
 {
- "prompt_version": "step_details-0.4",
+ "prompt_version": "step_details-0.6",
  "model": "muse-spark-1.3",
- "cost_usd": 0.02281195,
+ "cost_usd": 0.06108815,
  "actor": "hand",
  "steps": {
   "1": {
-   "say": "Drape the blue striped tie around the white collar. Hang the wide pointed end much longer down the shirt front than the narrow short end.",
+   "say": "Drape the blue striped tie around the white collar. Hang the wide end down the front on your right. Hang the narrow end down the front on your left much shorter.",
    "placements": [
-    "blue striped wide pointed end → down the front center of white shirt, on viewer's right side of the buttons, hanging much longer (in video: right chest, tip below frame)",
-    "blue striped narrow short end → down the front center of white shirt, on viewer's left side of the buttons, hanging shorter (in video: left chest with dark tip showing)"
+    "wide blue striped end → hanging down the front of the white shirt on your right side as you face it, much longer with tip low; in the video: right side of frame hanging off the bottom edge",
+    "narrow blue striped end → hanging down the front of the white shirt on your left side as you face it, much shorter; in the video: left side of frame with dark tip visible"
    ],
    "watch_for": [
-    "if both ends look equal length the finished tie will end too short - the wide end must hang much longer",
-    "if the tie is twisted around the neck the stripes will not lie flat down the shirt front"
+    "if the wide end is shorter than the narrow end, you started backwards and the knot will run out of length",
+    "if the tie twists around the collar, the stripes will not lie flat and the knot will bunch"
    ],
-   "check_yourself": "The blue tie lies around the white collar with both ends hanging down the shirt front, wide end longer.",
+   "check_yourself": "The blue tie lies flat around the white collar with both ends hanging down the shirt front and the wide end much longer.",
    "safety": ""
   },
   "2": {
-   "say": "Cross the wide blue-striped end over the narrow blue-striped end. Pinch the X together in the middle of the shirt below the collar.",
+   "say": "Hold the narrow blue end steady in the center. Bring the wide blue end across it below the collar.",
    "placements": [
-    "wide blue-striped long end → over the top of the narrow short end at center front just below the white collar, forming an X (in video: crossing in middle of shirt, pinched by hand)"
+    "wide blue striped end → laid over the front of the narrow blue end to form a cross at the center of the shirt just below the collar; in the video: center of frame forming an X below the white collar"
    ],
    "watch_for": [
-    "if the narrow end is on top of the wide end the X is backwards - the wide end must be on top",
-    "if the cross sits up inside the collar you cannot wrap - keep it below the collar in the middle of the shirt"
+    "if the narrow end sits on top of the cross, the ends are reversed and the knot will twist",
+    "if the cross sits high inside the collar, slide it down to leave room for the wrap"
    ],
-   "check_yourself": "The two blue ends cross in the middle of the shirt forming an X below the collar.",
+   "check_yourself": "The two blue ends form a clear X centered just below the collar with the wide end on top.",
    "safety": ""
   },
   "3": {
-   "say": "Bring the wide blue end behind the X and up through the neck loop. Pull it straight up through the opening under the collar.",
+   "say": "Pass the wide blue end behind the narrow end. Pull it up through the neck loop behind the cross.",
    "placements": [
-    "wide blue-striped long end → from front center, behind the crossing, up through the neck loop opening between collar and crossing, exiting pointing up (in video: wide end points up through neck opening with crossing cinched below collar)"
+    "wide blue striped end → passed behind the cross and pulled up through the neck loop between the collar and the cross, pointing upward; in the video: center top pointing up toward the collar opening with the crossing cinched below"
    ],
    "watch_for": [
-    "if you bring the wide end over the front instead of behind it will not lock - it must go behind then up",
-    "if the crossing loosens and loses the X, hold the center pinch while you pull up"
+    "if the cross pulls apart as you lift, you went in front of the loop instead of behind it",
+    "if the wide end lies over the collar, guide it through the neck loop opening only"
    ],
-   "check_yourself": "The wide blue end points up through the neck opening with the crossing cinched below the collar.",
+   "check_yourself": "The wide blue end points up through the neck opening with the crossing pinched snug below the collar.",
    "safety": ""
   },
   "4": {
-   "say": "Wrap the wide blue end across the front of the knot. Lay the horizontal blue band flat across the center with the tip sticking out to the side.",
+   "say": "Bring the wide blue end down and across the front. Lay it flat to form a horizontal band with the tip to the side.",
    "placements": [
-    "wide blue-striped long end → horizontally across the front center of the forming knot, tip sticking out sideways (in video: horizontal blue band across center with wide end out to the side on viewer's left)"
+    "wide blue striped end → wrapped down and across the front of the knot as a flat horizontal band with the tip sticking out to the side; in the video: horizontal band across the center with tip to the side, match the picture for left or right"
    ],
    "watch_for": [
-    "if you wrap above the crossing instead of across its center the band will not form - wrap across the middle",
-    "if the band twists the stripes will twist - keep the flat blue face forward"
+    "if the wrap twists edge on, flatten the blue fabric so the stripes lie smooth",
+    "if the band sits above the crossing, bring it down to cover the center"
    ],
-   "check_yourself": "A horizontal blue band wraps across the center with the wide end sticking out to the side.",
+   "check_yourself": "A flat horizontal blue band covers the center with the wide end sticking out sideways.",
    "safety": ""
   },
   "5": {
-   "say": "Pull the wide blue end up through the neck loop again. Drop the tip straight down through the front loop centered over the narrow end.",
+   "say": "Lift the wide blue end up behind the neck loop. Thread it down through the front horizontal band.",
    "placements": [
-    "wide blue-striped long end → up behind through the neck loop under the collar, then down through the horizontal front wrap loop at center front, hanging down over the narrow end (in video: wide end hangs down through front wrap centered over narrow end)"
+    "wide blue striped end → lifted up behind the neck loop then threaded down through the front horizontal band to hang centered over the narrow end; in the video: hanging down the middle of the chest over the narrow end"
    ],
    "watch_for": [
-    "if you skip the neck loop and only tuck under the front band the knot will fall apart - go up through the neck first",
-    "if the tip twists the stripes will twist - keep the flat blue face forward as you pull down"
+    "if the wide end comes out beside the band, it missed the loop and the knot will fall apart",
+    "if the narrow end shows in front, tuck it behind so the wide end covers it"
    ],
    "check_yourself": "The wide blue end hangs down through the front wrap centered over the narrow end.",
    "safety": ""
   },
   "6": {
-   "say": "Tighten the blue knot and slide it up to the collar. Center the blue triangle under the collar with the wide end hanging straight down the shirt.",
+   "say": "Pull the small narrow blue end downward to tighten the knot. Slide the triangular blue knot up snug under the white collar.",
    "placements": [
-    "blue striped triangular knot → slid up to center under the white collar points, centered over the buttons, with wide end hanging straight down front center (in video: neat triangular blue knot centered under collar with wide end down shirt)"
+    "triangular blue knot → pinched and slid up to sit centered just under the front edges of the white collar; in the video: centered under the collar at the top of the shirt",
+    "wide blue striped end → straightened to hang straight down the center of the shirt front over the narrow end; in the video: down the middle of the frame"
    ],
    "watch_for": [
-    "if the knot sits low with a gap at the collar it looks unfinished - slide it all the way up while holding the narrow end",
-    "if the knot is crooked the wrap is uneven - straighten the triangle so it sits centered"
+    "if the knot tilts sideways, center it before it gets tight or it will sit crooked",
+    "if the wide end twists, flatten it so the stripes run straight down the shirt"
    ],
    "check_yourself": "A neat triangular blue knot sits centered under the collar with the wide end hanging straight down the shirt.",
    "safety": ""

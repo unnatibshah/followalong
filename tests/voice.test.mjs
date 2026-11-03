@@ -1,7 +1,7 @@
 // node --test tests/*.test.mjs — the coach's voice choice, the push-to-talk WAV, the worklet's resampler.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { pickVoice } from '../web/js/speech.js';
+import { breathe, pickVoice, speakable } from '../web/js/speech.js';
 import { wav } from '../web/js/voice.js';
 import { Resampler } from '../web/js/voice-worklet.js';
 
@@ -57,10 +57,15 @@ test('a line that has started is never cut off; waiting lines about another step
   speak('Your turn. Strip about one centimetre.', 4);  // step 3's second sentence was waiting: stale, dropped
   assert.equal(cancelled, 0);                          // nothing in progress is ever cancelled
   assert.deepEqual(spoken.map((u) => u.text), ["Yes, that's right!"]);
+  const breath = () => new Promise((r) => setTimeout(r, 500)); // the pause between sentences
   spoken[0].onend();
+  assert.equal(spoken.length, 1);                      // a breath first, not straight into the next sentence
+  await breath();
   spoken[1].onend();
+  await breath();
   assert.deepEqual(spoken.map((u) => u.text), ["Yes, that's right!", 'Your turn.', 'Strip about one centimetre.']);
   spoken[2].onend();
+  await breath();
   assert.equal(speaking(), false);
 });
 
@@ -84,4 +89,13 @@ test('the coach speaks the learner language: a Spanish learner gets a Spanish vo
   assert.equal(pickVoice([en, es], 'es'), es);
   assert.equal(pickVoice([en], 'es'), null);
   assert.equal(pickVoice([en, es], 'en'), en);
+});
+
+test('lines are shaped for the voice: no "In the video" asides or symbols, long sentences split where you breathe', () => {
+  assert.equal(speakable('Lay the resistor flat across the top. In the video: arched over the gap.'), 'Lay the resistor flat across the top.');
+  assert.equal(speakable('LED long leg (anode, +) → the hole below the rail; then check it.'),
+    'LED long leg, anode, plus, to the hole below the rail. Then check it.');
+  assert.deepEqual(breathe('Push the white wire straight down into its own row at the top edge of the board, and push the blue wire into a row to its right.'),
+    ['Push the white wire straight down into its own row at the top edge of the board.', 'Push the blue wire into a row to its right.']);
+  assert.deepEqual(breathe('Take the blue wire, and push it in.'), ['Take the blue wire, and push it in.']); // short: left alone
 });
