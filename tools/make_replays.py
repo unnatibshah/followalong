@@ -204,7 +204,13 @@ async def build_live(tid: str, name: str) -> str:
     for st in plan["steps"]:
         sid = st["id"]
         by = {lab["case"]: lab for lab in labels if lab["step_id"] == sid}
-        seq = [by[c] for c in ("incomplete", "wrong_colour", "missing_part", "done") if c in by]
+        # A person's session: unfinished, then the wrong part, then finished. Not the blurred "missing part" frames
+        # (made for scoring; on screen they only look broken). The finished frame is the one of the two (normal, dim
+        # light) whose recorded check passes, if either does; its verdict below is still the real one.
+        fin = [by[c] for c in ("done", "done_dim") if c in by]
+        verdicts = [(await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "full", cache))["verdict"] for lab in fin]
+        fin = [lab for _, lab in sorted(zip(verdicts, fin), key=lambda x: x[0] != "done")]
+        seq = [by[c] for c in ("incomplete", "wrong_colour") if c in by] + fin[:1]
         seen = await looks(tid, st, seq, plan)
         ms += 1000
         ev("step_play", sid, reason="first" if sid == 1 else "advance")
@@ -221,8 +227,8 @@ async def build_live(tid: str, name: str) -> str:
                 work(2000, stops[j - 1], stops[j], sid)
             show(lab)
             ms += 2200  # a look takes ~1.5-3 s
-            if lab["case"] == "done" or r["status"] == "looks_done":
-                if lab["case"] != "done":
+            if lab["case"] in ("done", "done_dim") or r["status"] == "looks_done":
+                if lab["case"] not in ("done", "done_dim"):
                     continue  # the watcher thought an unfinished frame was done: the grounded check isn't run on it here
                 ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say="", on_action=r.get("on_action"))
                 res = await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "full", cache)

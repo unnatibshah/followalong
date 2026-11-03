@@ -178,5 +178,29 @@
   "say": "",
   "latency_ms": 3200,
   "cost_usd": 0.0030165
+ },
+ "eval/cfbench/frames/breadboard-led/step1-done.jpg|2|watch-0.5": {
+  "status": "working",
+  "observation": "White wire seated at top left standing up, right hand still holding blue wire over top right not yet firmly inserted; matches in-progress state.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 3995,
+  "cost_usd": 0.00381325
+ },
+ "eval/cfbench/frames/breadboard-led/step2-done.jpg|2|watch-0.5": {
+  "status": "cant_see",
+  "observation": "Hands cover the breadboard so resistor legs and rows are not visible, blue resistor body not seen lying flat.",
+  "on_action": 1,
+  "say": "I can't see the resistor under your hands. Lift your hands back a little.",
+  "latency_ms": 3380,
+  "cost_usd": 0.0037305
+ },
+ "eval/cfbench/frames/breadboard-led/step3-done_dim.jpg|2|watch-0.5": {
+  "status": "looks_done",
+  "observation": "Live shows blue dome LED inserted on right side of board glowing bright blue, matching tutorial finished state",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 2103,
+  "cost_usd": 0.00365725
  }
 }
