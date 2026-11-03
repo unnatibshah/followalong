@@ -56,6 +56,8 @@ export async function render(root) {
   const stepOf = (n) => steps[n - 1];
   const detailOf = (n) => details?.[String(n)] || null;   // exact directions (server/details.py), may be missing
   const directions = (n) => detailOf(n)?.say || stepOf(n)?.instruction || '';
+  // The step's name in everyday words (details `title`), else the plan's instruction
+  const titleOf = (n) => detailOf(n)?.title || stepOf(n)?.instruction || '';
   const enabledChecks = (n) => stepOf(n).checks.filter((c) => c.enabled !== false);
   // A full check of this step calls Muse Spark (judged checks the camera can see; always-ask ones never go out).
   const usesSpark = (n) => enabledChecks(n).some((c) => c.kind === 'judged') && !enabledChecks(n).some((c) => c.always_ask);
@@ -354,7 +356,7 @@ export async function render(root) {
     followEl.dataset.orb = key;
     head.textContent = key === 'not_quite' ? `Step ${n} · Not quite` : key === 'unsure' ? `Step ${n} · Does yours look like this?`
       : `${meta.title} · Step ${n} of ${steps.length}${stepOf(n).manual_page ? ` · Manual p. ${stepOf(n).manual_page}` : ''}`;
-    title.textContent = stepOf(n).instruction;
+    title.textContent = titleOf(n);
     paintDetail(n);
 
     el.orb.dataset.orb = key;
@@ -397,7 +399,7 @@ export async function render(root) {
       seg.toggleAttribute('aria-current', i + 1 === n);
     });
     const caption = {
-      playing: `${step.instruction}.`, hands: `Your turn. ${step.instruction}.`,
+      playing: `${titleOf(n)}.`, hands: `Your turn. ${titleOf(n)}.`,
       blocked: "I can't see part of the work. Move your hand a little.", samFail: "Couldn't check. Hold still for a moment.",
       checking: 'Checking your work…', recheck: 'Looks done.', done: `Nice. ${stepOf(n).done_looks_like}`,
       not_quite: last?.hint || 'Not quite. Compare yours with the video and adjust.',

@@ -24,8 +24,8 @@ DETAILS_SCHEMA = {
     "type": "object", "additionalProperties": False, "required": ["actor", "steps"],
     "properties": {"actor": _STR, "steps": {"type": "array", "items": {
         "type": "object", "additionalProperties": False,
-        "required": ["id", "say", "placements", "watch_for", "check_yourself", "safety"],
-        "properties": {"id": {"type": "integer"}, "say": _STR, "placements": {"type": "array", "items": _STR},
+        "required": ["id", "title", "say", "placements", "watch_for", "check_yourself", "safety"],
+        "properties": {"id": {"type": "integer"}, "title": _STR, "say": _STR, "placements": {"type": "array", "items": _STR},
                        "watch_for": {"type": "array", "items": _STR}, "check_yourself": _STR, "safety": _STR}}}}}
 
 
@@ -51,7 +51,7 @@ def clean(answer: dict, plan: dict) -> dict:
     out = {}
     for s in answer.get("steps") or []:
         if s.get("id") in ids and isinstance(s.get("say"), str) and s["say"].strip():
-            out[str(s["id"])] = {"say": s["say"].strip(), "placements": [p.strip() for p in s.get("placements") or [] if p.strip()][:12],
+            out[str(s["id"])] = {"title": (s.get("title") or "").strip()[:80], "say": s["say"].strip(), "placements": [p.strip() for p in s.get("placements") or [] if p.strip()][:12],
                                  "watch_for": [w.strip() for w in s.get("watch_for") or [] if w.strip()][:2],
                                  "check_yourself": (s.get("check_yourself") or "").strip(),
                                  "safety": (s.get("safety") or "").strip()[:240]}

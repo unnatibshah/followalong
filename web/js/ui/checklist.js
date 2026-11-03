@@ -29,7 +29,7 @@ export async function render(root) {
     plan.steps.map((s) => h('section', { class: 'cl-step' },
       h('div', { class: 'cl-frame' }, stepFrame(app.tutorialId, s.id)),
       h('div', { class: 'col gap-s' },
-        h('h2', {}, `${s.id}. ${s.instruction}`),
+        h('h2', {}, `${s.id}. ${details[s.id]?.title || s.instruction}`),
         details[s.id]?.safety && h('p', { class: 'strong' }, `⚠️ ${details[s.id].safety}`),
         details[s.id] && h('p', {}, details[s.id].say),
         details[s.id]?.placements.length > 0 && h('ul', { class: 'detail-list' }, details[s.id].placements.map((x) => h('li', {}, x))),

@@ -179,3 +179,11 @@ def test_in_a_mains_lesson_no_step_is_safe_by_omission():
              "3": {"say": "Cut the wires free.", "safety": "Keep fingers clear of the cutter jaws."}}
     assert [v["hazard"] for v in safety.annotate(steps).values()] == ["gate", "danger", "danger"]
     assert safety.annotate({"1": {"safety": ""}, "2": {"safety": "Mind the sharp blade."}})["1"]["hazard"] == ""  # no gate, no change
+
+
+def test_a_car_battery_lesson_never_advances_on_the_camera_alone():
+    steps = {"1": {"title": "Park cars face to face", "say": "Drive the cars nose to nose.", "safety": "Look out for traffic."},
+             "2": {"title": "Clip red to plus posts", "say": "Bite the red clip onto the plus post of the dead battery.",
+                   "safety": "Keep the loose metal teeth apart."}}
+    assert [v["hazard"] for v in safety.annotate(steps).values()] == ["danger", "danger"]
+    assert safety.lesson(steps) == {"level": "danger", "electric": False}

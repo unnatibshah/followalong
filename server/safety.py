@@ -26,6 +26,9 @@ DANGER = re.compile(
     r"two\s+(people|persons|adults)\s+(are\s+)?(needed|required))\b", re.I)
 
 ELECTRIC = re.compile(r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|wires?)\b", re.I)
+# A car battery lesson, however a step happens to word it: every step is at least `danger`
+CAR_BATTERY = re.compile(r"\b(jump[\s-]?start\w*|jumper\s+cables?|booster\s+cables?|(plus|minus|positive|negative|battery)\s+(post|terminal)s?|"
+                         r"car\s+batter(y|ies)|dead\s+batter(y|ies))\b", re.I)
 
 
 def tier(safety: str) -> str:
@@ -52,7 +55,8 @@ def annotate(steps: dict) -> dict:
         if t != "gate" and GATE.search(say) and ELECTRIC.search(say + " " + (v.get("safety") or "")):
             t = "gate"
         out[k] = {**v, "hazard": t}
-    if any(o["hazard"] == "gate" and ELECTRIC.search((o.get("say") or "") + " " + (o.get("safety") or "")) for o in out.values()):
+    text = lambda o: " ".join(str(o.get(f) or "") for f in ("title", "say", "safety"))  # noqa: E731
+    if any(o["hazard"] == "gate" and ELECTRIC.search(text(o)) for o in out.values()) or any(CAR_BATTERY.search(text(o)) for o in out.values()):
         for o in out.values():
             if o["hazard"] in ("", "caution"):
                 o["hazard"] = "danger"
@@ -60,11 +64,13 @@ def annotate(steps: dict) -> dict:
 
 
 def lesson(steps: dict) -> dict:
-    """The lesson's notice: its highest tier and whether it involves electricity."""
-    tiers = {tier(v.get("safety", "")) for v in steps.values() if isinstance(v, dict)}
+    """The lesson's notice: its highest tier (the same per-step tiers annotate() gives) and whether it involves
+    electricity."""
+    hazards = annotate(steps)
+    tiers = {o["hazard"] for o in hazards.values()}
     top = next((t for t in ("gate", "danger", "caution") if t in tiers), "")
-    electric = any(ELECTRIC.search(v.get("safety", "")) for v in steps.values() if isinstance(v, dict)
-                   and tier(v.get("safety", "")) in ("gate", "danger"))
+    electric = any(ELECTRIC.search(" ".join(str(o.get(f) or "") for f in ("say", "safety"))) for o in hazards.values()
+                   if o["hazard"] in ("gate", "danger") and not CAR_BATTERY.search(" ".join(str(o.get(f) or "") for f in ("title", "say", "safety"))))
     return {"level": top, "electric": electric}
 
 
