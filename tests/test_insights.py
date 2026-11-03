@@ -61,8 +61,10 @@ def test_ut122_creator_sample_until_three_sessions(tmp_path, monkeypatch):
     write_logs(tmp_path, [learner(), learner()])
     monkeypatch.setattr(providers, "insights", providers.Insights(tmp_path, tmp_path / "reports"))
     view = TestClient(app).get("/api/creator/install-thermostat").json()
-    assert view["sample"] is True and view["sessions"] == 0 and len(view["steps"]) == 7  # one empty row per step
-    assert all(r["sessions"] == 0 and r["top_mistakes"] == [] for r in view["steps"])
+    assert view["sample"] is True and len(view["steps"]) == 7  # one illustrative row per step, labelled sample
+    plan = TestClient(app).get("/api/tutorials/install-thermostat/plan").json()
+    for r, st in zip(view["steps"], plan["steps"]):
+        assert 0 <= r["stuck_rate"] <= 0.45 and r["top_mistakes"] == st["common_mistakes"][:2]
 
 
 def row(step, truth, verdict, latency=1000, cost=0.0075, checks=None, results=(), **label):

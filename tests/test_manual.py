@@ -14,7 +14,6 @@ from server import manual as m
 from server import providers, safety
 from server import tutorials as t
 from server.main import app
-from test_tutorials import fake  # noqa: F401  (the FakeMeta fixture)
 
 
 def page(color="white", size=(850, 1100)) -> Image.Image:

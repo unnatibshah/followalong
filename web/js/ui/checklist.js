@@ -23,8 +23,9 @@ export async function render(root) {
       meta.source_url ? [' (', h('a', { href: meta.source_url }, `“${meta.source_title || meta.title}”`), `, ${meta.licence})`] : '',
       ' · made by FollowAlong with Muse Spark'),
     // A paper checklist has nobody correcting it, so say when no person has reviewed the checks yet (S4 sets it)
-    !plan.reviewed && h('div', { class: 'note warn' }, 'Not reviewed by a person yet. Compare each step with the video, or use ',
-      h('a', { href: '#/review' }, 'Review the checks'), ' first.'),
+    // Your own upload: nobody has looked at its checks yet, so say so (bundled guides were checked when they were made)
+    !plan.reviewed && meta.source !== 'bundled' && h('div', { class: 'note info' }, 'Made from your video by FollowAlong. Compare each step with the video if anything looks off, or ',
+      h('a', { href: '#/review' }, 'review the checks'), '.'),
     plan.needs.length > 0 && h('section', { class: 'cl-needs' }, h('h2', {}, "You'll need"), plan.needs.map(tick)),
     plan.steps.map((s) => h('section', { class: 'cl-step' },
       h('div', { class: 'cl-frame' }, stepFrame(app.tutorialId, s.id)),

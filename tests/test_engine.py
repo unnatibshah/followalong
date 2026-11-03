@@ -325,3 +325,11 @@ def test_a_thin_cord_is_still_the_rope():
     wires = {"objects": [{"name": "red wire", "sam_prompt": "red wire"}, {"name": "white wire", "sam_prompt": "white wire"}]}
     assert alternatives("blue rope", rope) == ["rope", "string", "cord", "knot"]
     assert alternatives("red wire", wires) == []  # colour tells the wires apart: never looser
+
+
+def test_wiring_colours_are_never_relaxed_and_blank_prompts_are_safe():
+    from server.checks.engine import alternatives
+    ground = {"instruction": "Twist the green ground wire to the bare copper.", "objects": [{"name": "green wire", "sam_prompt": "green wire"}],
+              "checks": [{"text": "The green wire is inside the ground cap"}]}
+    assert alternatives("green wire", ground) == []
+    assert alternatives("", {}) == [] and alternatives("   ", {}) == []

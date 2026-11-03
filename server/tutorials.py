@@ -640,7 +640,7 @@ def summary(plan: dict) -> str:
         for c in s["checks"]:
             args = ", ".join(str(x) for x in (c.get(k) for k in ("a", "b", "n", "side", "ratio")) if x is not None)
             flag = "  ⚠ needs your eyes" if c.get("needs_review") else ""
-            lines.append(f"   {c['id']} {c['type']}({args}) {c['confidence']:.2f}: {c['text']}{flag}")
+            lines.append(f"   {c.get('id')} {c.get('type')}({args}) {c.get('confidence') or 0:.2f}: {c.get('text', '')}{flag}")
         if s["common_mistakes"]:
             lines.append("   mistakes: " + "; ".join(s["common_mistakes"]))
     return "\n".join(lines)
@@ -789,7 +789,10 @@ def cc_licence(info: dict) -> str | None:
     """The video's Creative Commons licence as the site reports it (YouTube: "Creative Commons Attribution license
     (reuse allowed)"; Vimeo: "by", "by-sa", "cc0"...), or None for a standard licence or none reported."""
     lic = (info.get("license") or "").strip()
-    return lic if re.search(r"creative commons|^cc0$|^(cc[- ])?by(-(sa|nd|nc))*$", lic, re.I) else None
+    # Not "no derivatives": FollowAlong cuts a video into steps, clips and frames
+    if re.search(r"\bnd\b|no\s*deriv", lic, re.I):
+        return None
+    return lic if re.search(r"creative commons|^cc0$|^(cc[- ])?by(-(sa|nc))*$", lic, re.I) else None
 
 
 def fetch_link(url: str, max_s: float, dest: Path) -> dict:

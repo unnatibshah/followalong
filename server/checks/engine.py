@@ -9,6 +9,7 @@ it) is never sent; the step asks.
 """
 
 import asyncio
+import re
 import time
 
 from .. import sam, spark
@@ -47,8 +48,18 @@ SYNONYMS = {"rope": ["string", "cord", "knot"], "cord": ["string", "rope", "knot
             "battery": ["battery pack", "power supply"]}
 
 
+# Wiring where a wire's colour is a code to follow (ground, neutral, hot, polarity): its colour is never relaxed
+WIRING = re.compile(r"\b(breaker|mains|live|hot|neutral|ground|earth|volt\w*|polarity|positive|negative|terminal|plus|minus)\b", re.I)
+
+
 def alternatives(prompt: str, step: dict) -> list[str]:
     """What to look for when `prompt` found nothing: without non-functional colours, then everyday synonyms."""
+    if not (prompt or "").strip():
+        return []
+    noun = prompt.split()[-1].lower()
+    text = " ".join([step.get("instruction", ""), step.get("done_looks_like", "")] + [c.get("text", "") for c in step.get("checks") or []])
+    if noun in ("wire", "wires", "cable", "lead", "clamp", "clip") and WIRING.search(text) and any(w.lower() in COLOURS for w in prompt.split()):
+        return []  # a green ground wire must not be "found" as the black hot one
     base = loose(prompt, step)
     if base is None and any(w.lower() in COLOURS for w in prompt.split()):
         return []  # the colour matters here (two wires of different colours): don't go looser

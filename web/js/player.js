@@ -46,8 +46,8 @@ export function createPlayer({ src, standIn, onEnd, onTime, onSoundBlocked }) {
   // Starts muted (browsers only autoplay silent video); the lesson turns the sound on after the learner's tap. If the
   // browser still refuses sound (no tap yet, e.g. a reload straight into a lesson), it plays silently and says so.
   const video = h('video', { class: 'player-video', src, muted: true, playsInline: true, preload: 'auto', 'aria-label': 'Tutorial video' });
-  const play = () => video.play().catch(() => {
-    if (video.muted) return;
+  const play = () => video.play().catch((err) => {
+    if (video.muted || err?.name !== 'NotAllowedError') return; // a pause during buffering also rejects: not a refusal
     video.muted = true;
     video.play().catch(() => {});
     onSoundBlocked?.();

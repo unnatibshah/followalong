@@ -16,9 +16,10 @@ import re
 
 GATE = re.compile(
     r"\b((switch|turn|shut|flip)\w*\s+(\w+\s+){0,8}off|prove\w*\s+(it\s+)?dead|test\w*\s+(it\s+)?dead|"
-    r"confirm\w*\s+(\w+\s+){0,5}(off|dead)|shows?\s+no\s+power|unplug\w*|disconnect\w*\s+the\s+(power|battery))\b", re.I)
+    r"confirm\w*\s+(\w+\s+){0,5}(off|dead)|shows?\s+no\s+power|unplug\w*|disconnect\w*\s+the\s+(power|battery)|"
+    r"(kill|cut|isolate|de-?energi[sz]e)\w*\s+(\w+\s+){0,3}(power|circuit|electricity|supply))\b", re.I)
 DANGER = re.compile(
-    r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|wires?\s+(are|is)\s+live|clamps?|jump\w*|"
+    r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|dead|circuit|wires?\s+(are|is)\s+live|clamps?|jump\w*|"
     r"crank\w*|spinning|fans?|belts?|moving\s+parts|flame|gas|fuel|ladder|"
     # manual warnings (CR-006): furniture that can fall, and two-person lifts (not "anchor the rope", "two people can")
     r"tip\w*[\s-]+over|topple\w*|(anchor|fix|attach|secure|mount)\w*\s+(it\s+|this\s+|the\s+\w+\s+)?(to|in|into)\s+"
@@ -28,9 +29,13 @@ DANGER = re.compile(
 # A step that MAKES it safe, however it's worded: the breaker, power or mains, and "off", in one sentence
 POWER_OFF = re.compile(r"\b(breaker|power|mains|circuit)\b[^.!?]{0,80}\boff\b|\boff\b[^.!?]{0,40}\b(breaker|power|mains|circuit)\b", re.I)
 ELECTRIC = re.compile(r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|wires?)\b", re.I)
-# A car battery lesson, however a step happens to word it: every step is at least `danger`
-CAR_BATTERY = re.compile(r"\b(jump[\s-]?start\w*|jumper\s+cables?|booster\s+cables?|(plus|minus|positive|negative|battery)\s+(post|terminal)s?|"
-                         r"car\s+batter(y|ies)|dead\s+batter(y|ies))\b", re.I)
+# House wiring anywhere in a lesson (however each step is worded): every step is at least `danger`
+MAINS = re.compile(r"\b(breaker|mains|live\s+wires?|hot\s+wires?|wall\s+box|circuit\s+panel|fuse\s+box)\b", re.I)
+# A car battery lesson: jumper or booster cables, a car battery; or battery posts with a car in the lesson. (A 9 V
+# battery's plus terminal on a breadboard is not a car battery.)
+CAR_BATTERY = re.compile(r"\b(jump[\s-]?start\w*|jumper\s+cables?|booster\s+cables?|car\s+batter(y|ies))\b", re.I)
+BATTERY_POSTS = re.compile(r"\b(plus|minus|positive|negative|battery)\s+(post|terminal)s?\b", re.I)
+CAR = re.compile(r"\b(car|cars|engine|hood|bonnet|vehicle|truck)\b", re.I)
 
 
 def tier(safety: str) -> str:
@@ -58,7 +63,9 @@ def annotate(steps: dict) -> dict:
             t = "gate"
         out[k] = {**v, "hazard": t}
     text = lambda o: " ".join(str(o.get(f) or "") for f in ("title", "say", "safety"))  # noqa: E731
-    if any(o["hazard"] == "gate" and ELECTRIC.search(text(o)) for o in out.values()) or any(CAR_BATTERY.search(text(o)) for o in out.values()):
+    everything = " ".join(text(o) for o in out.values())
+    car = CAR_BATTERY.search(everything) or (BATTERY_POSTS.search(everything) and CAR.search(everything))
+    if any(o["hazard"] == "gate" and ELECTRIC.search(text(o)) for o in out.values()) or MAINS.search(everything) or car:
         for o in out.values():
             if o["hazard"] in ("", "caution"):
                 o["hazard"] = "danger"
@@ -77,6 +84,10 @@ def lesson(steps: dict) -> dict:
 
 
 if __name__ == "__main__":  # self-check on the bundled tutorials' real lines
+    assert [v["hazard"] for v in annotate({"1": {"say": "Cut power to the circuit.", "safety": "Make sure the circuit is dead."},
+                                           "2": {"say": "Remove the two wires from the old switch.", "safety": ""}}).values()] == ["gate", "danger"]
+    assert annotate({"1": {"say": "Kill the power at the breaker panel.", "safety": ""}, "2": {"say": "Unscrew the plate."}})["2"]["hazard"] == "danger"
+    assert annotate({"1": {"say": "Push the red wire to the battery's positive terminal.", "safety": ""}})["1"]["hazard"] == ""  # a 9 V battery
     assert annotate({"1": {"title": "Turn off entry bedroom power", "say": "Flip the black breaker toggle for the entry and bedroom to the off position.",
                            "safety": "Touch only the plastic breaker handle with dry hands."}})["1"]["hazard"] == "gate"
     assert tier("Switch the breaker OFF and prove dead with the tester before touching anything.") == "gate"

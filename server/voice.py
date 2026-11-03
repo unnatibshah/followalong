@@ -359,7 +359,7 @@ def clean_watch(raw: dict) -> dict:
     say = two_sentences(str(raw.get("say") or "").replace("*", ""), 2)[:300]
     on = raw.get("on_action")
     return {"status": status, "observation": " ".join(str(raw.get("observation") or "").split())[:200],
-            "on_action": on if isinstance(on, int) and 1 <= on <= 20 else None,
+            "on_action": on if isinstance(on, int) and not isinstance(on, bool) and 1 <= on <= 20 else None,
             "substitute": " ".join(str(raw.get("substitute") or "").split())[:80],
             "say": "" if status == "looks_done" else say}
 

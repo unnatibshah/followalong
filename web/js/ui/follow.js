@@ -63,7 +63,8 @@ export async function render(root) {
   let actionAt = 0; // the action being done now, in the current step
   const wrongs = {}; // "not quite"s per step
   let progressAt = Date.now(), helpedFor = ''; // when the learner last moved on; which action we already re-explained
-  const lcFirst = (t) => t.charAt(0).toLowerCase() + t.slice(1);
+  // "Plug in the LED" → "plug in the LED"; "LED into row 5" and "I…" stay as they are
+  const lcFirst = (t) => (/^[A-Z][a-z]/.test(t) && !/^I\b/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t);
   const enabledChecks = (n) => stepOf(n).checks.filter((c) => c.enabled !== false);
   // A full check of this step calls Muse Spark (judged checks the camera can see; always-ask ones never go out).
   const usesSpark = (n) => enabledChecks(n).some((c) => c.kind === 'judged') && !enabledChecks(n).some((c) => c.always_ask);
@@ -258,10 +259,15 @@ export async function render(root) {
   }
   // The guide card: what to do now, what comes next, what's done. Nothing to remember, nothing to rewind.
   el.guide = h('div', { class: 'guide', 'aria-live': 'polite' });
+  let guideKey = '';
   function paintGuide(n) {
+    if (finished) return; // the finale card stays
     const list = actionsOf(n);
-    const doneAll = flash || ctx.state === S.DONE || ctx.state === S.CONFIRMING;
+    const doneAll = !!flash || ctx.state === S.DONE || ctx.state === S.CONFIRMING;
     const turn = [S.WAITING, S.MISTAKE, S.CHECKING, S.CONFIRMING, S.ASKING].includes(ctx.state) || doneAll;
+    const key = `${n}|${actionAt}|${turn}|${doneAll}|${replayMode}`;
+    if (key === guideKey) return; // unchanged: don't re-announce it or drop keyboard focus
+    guideKey = key;
     const safety = detailOf(n)?.safety;
     el.guide.replaceChildren(
       safety ? h('div', { class: 'guide-safety' }, '\u26a0\ufe0f ', safety) : '',
@@ -437,7 +443,7 @@ export async function render(root) {
     const caption = {
       playing: `${titleOf(n)}.`, hands: `Your turn. ${titleOf(n)}.`,
       blocked: "I can't see part of the work. Move your hand a little.", samFail: "Couldn't check. Hold still for a moment.",
-      checking: 'Checking your work…', recheck: 'Looks done.', done: `Nice. ${stepOf(n).done_looks_like}`,
+      checking: 'Checking your work…', recheck: 'Looks right.', done: 'Nice, that\u2019s it.',
       not_quite: last?.hint || 'Not quite. Compare yours with the video and adjust.',
       paused: 'Paused. Press P or click the video to continue.', cap: 'Live checks are paused. Watch a replay instead.',
     }[key] || '';
@@ -613,7 +619,7 @@ export async function render(root) {
     // The learner's turn: hold the step's end frame, even if the video hadn't reached it (replay skips, Check me).
     // Your turn: the step keeps playing as a silent loop beside you, so nobody has to pause or rewind it
     if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { flash = null; player.sound(false); player.loopStep(stepOf(ctx.step)); }
-    if (before.state === S.MISTAKE && ctx.state === S.WAITING) player.loopStep(stepOf(ctx.step));
+    if (before.state === S.MISTAKE && ctx.state === S.WAITING) { player.loopStep(stepOf(ctx.step)); progressAt = Date.now(); }
     if (ctx.state === S.PLAYING && before.state !== S.PLAYING) player.sound(true); // watching: the tutorial speaks
     if (before.step !== ctx.step) { actionAt = 0; resetWatch(); if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
     if (ctx.state === S.SAFETY && before.state !== S.SAFETY && before.state !== S.PAUSED) {
@@ -771,6 +777,12 @@ export async function render(root) {
     motion?.stop();
     // Finished: a proper ending on this screen (every step ticked, "You did it", the coach's last line), held long
     // enough to land, then the summary. Leaving early goes straight there.
+    // The summary shows the learner's finished work: the replay's last practice frame, or the camera's last picture
+    app.summaryPhoto = null;
+    if (completed) {
+      if (replayMode) app.summaryPhoto = api.recordingFrameUrl(app.recordingId, 1e9);
+      else if (camVideo) grabFrame(camVideo).then((b) => { if (b) app.summaryPhoto = URL.createObjectURL(b); }).catch(() => {});
+    }
     if (completed) {
       // coachSay stays quiet once finished; this one line is the ending, said after whatever was still queued is dropped
       el.reply.textContent = T('yes_last'); el.voiceCap.hidden = false;
@@ -785,7 +797,7 @@ export async function render(root) {
     app.summary = summary;
     app.summaryTitle = meta.title;
     app.summaryPlan = plan;
-    nav('summary');
+    if (followEl.isConnected) nav('summary'); // they may have left during the ending
   }
 
   // ---- voice (live only, after the S6 switch; off in replay) ----

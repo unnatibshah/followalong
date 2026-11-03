@@ -113,3 +113,7 @@ def no_step_details(monkeypatch):
     """Uploads skip the voice-coach directions call (server/details.py) so pipeline tests see the calls they expect."""
     from server.config import MODELS
     monkeypatch.setitem(MODELS, "step_details", False)
+
+
+# The FakeMeta fixture, shared with test_manual.py (pytest finds fixtures here, so no test file imports another)
+from test_tutorials import fake  # noqa: E402,F401

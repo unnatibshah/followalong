@@ -51,7 +51,7 @@ def clean(answer: dict, plan: dict) -> dict:
     out = {}
     for s in answer.get("steps") or []:
         if s.get("id") in ids and isinstance(s.get("say"), str) and s["say"].strip():
-            out[str(s["id"])] = {"title": (s.get("title") or "").strip()[:80], "say": s["say"].strip(), "placements": [p.strip() for p in s.get("placements") or [] if p.strip()][:12],
+            out[str(s["id"])] = {"title": s["title"].strip()[:80] if isinstance(s.get("title"), str) else "", "say": s["say"].strip(), "placements": [p.strip() for p in s.get("placements") or [] if p.strip()][:12],
                                  "watch_for": [w.strip() for w in s.get("watch_for") or [] if w.strip()][:2],
                                  "check_yourself": (s.get("check_yourself") or "").strip(),
                                  "safety": (s.get("safety") or "").strip()[:240]}

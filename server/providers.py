@@ -478,8 +478,8 @@ class Tutorials(FixtureTutorials):
                 d = steps.setdefault(str(s["id"]), {"say": s["instruction"], "placements": [], "watch_for": [],
                                                     "check_yourself": "", "safety": ""})
                 if not d.get("safety"):
-                    d.update(safety=s["warning"], hazard=safety.tier(s["warning"]))
-        return steps
+                    d["safety"] = s["warning"]
+        return safety.annotate(steps)  # the same per-step and lesson rules as any guide: a warning never lowers a tier
 
 
 class FixtureRecordings:
@@ -768,15 +768,16 @@ class Insights:
                 events = _jsonl(f)
                 for e in events:  # what creator_rows reads; a log that breaks it is skipped, not a 500 for everyone
                     _ts(e["at"])
-                    assert isinstance(e["type"], str) and isinstance(e.get("data", {}), dict)
-            except (ValueError, KeyError, TypeError, AssertionError):
+                    if not (isinstance(e["type"], str) and isinstance(e.get("data", {}), dict)):
+                        raise ValueError("not an event")
+            except (ValueError, KeyError, TypeError):
                 continue
             if events and events[0]["type"] == "session_start" and events[0]["tutorial_id"] == tid \
                     and events[0]["mode"] == "live":  # replays re-run a recording; they aren't learners
                 logs.append(events)
         if len(logs) < self.CREATOR_MIN_SESSIONS:
             path = FIXTURES / f"creator-{tid}.json"
-            rows = _json(path) if path.exists() else creator_rows([], plan, self.STUCK_S)
+            rows = _json(path) if path.exists() else sample_rows(plan)
             return {"sample": True, "sessions": max([r["sessions"] for r in rows], default=0), "steps": rows}
         return {"sample": False, "sessions": len(logs), "steps": creator_rows(logs, plan, self.STUCK_S)}
 
@@ -819,6 +820,19 @@ class Insights:
     def evaluation(self) -> dict:
         reports = [_json(f) for f in self.reports_dir.glob("*.json")]
         return max(reports, key=lambda r: r["run_at"]) if reports else _json(FIXTURES / "evaluation.json")
+
+
+def sample_rows(plan: dict, sessions: int = 12) -> list[dict]:
+    """An illustrative creator view until real sessions exist (the page labels it sample data): steps with more checks
+    are where people tend to get stuck; each step's top mistakes are its own common mistakes. Deterministic."""
+    rows = []
+    for st in plan["steps"]:
+        weight = len(st.get("checks") or []) + len(st.get("common_mistakes") or [])
+        spread = sum(map(ord, st.get("instruction", ""))) % 17 / 100  # stable per step, so steps differ
+        rate = round(min(0.42, 0.03 + 0.02 * weight + spread), 2)
+        rows.append({"step_id": st["id"], "sessions": sessions, "stuck_rate": rate,
+                     "top_mistakes": [m for m in (st.get("common_mistakes") or []) if isinstance(m, str)][:2]})
+    return rows
 
 
 def creator_rows(logs: list[list[dict]], plan: dict, stuck_s: float = 120) -> list[dict]:

@@ -309,6 +309,8 @@ async def practice_steps(video: Path, src: Path, plan: dict, spec: dict) -> dict
         fid = await gateway.upload_file(video, 3600)
         found = [{k: s.get(k) for k in ("start", "end", "done_at", "instruction")} for s in await tut.find_steps(fid, duration, {})]
         cached.write_text(json.dumps(found, indent=1) + "\n", encoding="utf-8")
+    if not found:
+        raise SystemExit(f"Muse Spark found no steps in {video}: pick another practice video")
     lo, hi = spec.get("window", (0, 1e9))
     found = [s for s in found if s["start"] >= lo and (s.get("done_at") or s["end"]) <= hi] or found
     ours = plan["steps"]

@@ -2,7 +2,6 @@
 import { h } from './dom.js';
 import { api } from '../api.js';
 import { app, newSession } from '../state.js';
-import { stepFrame } from '../thermostatscene.js';
 import { stopCamera } from '../camera.js';
 import { nav } from '../router.js';
 import { unlockSpeech } from '../speech.js';
@@ -32,8 +31,9 @@ export async function render(root) {
   let pick = recs.findIndex((r) => r.id === app.recordingId);
   if (pick < 0) pick = Math.max(0, recs.findIndex((r) => r.id === 'figure-eight-pink-cord'));
   const art = h('div', { class: 'hero-frame still' });
-  const paintArt = () => art.replaceChildren(stepFrame(recs[pick].tutorial_id, 1),
-    h('span', { class: 'pill tl' }, `▶ Recorded session · ${recs[pick]?.tutorial_id || ''}`));
+  // The session's own practice footage (a frame from early in it), not the tutorial's picture
+  const paintArt = () => art.replaceChildren(h('img', { class: 'frame-img', src: api.recordingFrameUrl(recs[pick].id, 20000), alt: recs[pick].title }),
+    h('span', { class: 'pill tl' }, `▶ ${recs[pick]?.title || 'Recorded session'}`));
   paintArt();
 
   const opts = recs.map((r, i) => {

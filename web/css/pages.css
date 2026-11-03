@@ -119,7 +119,8 @@
 
 /* Privacy notice and terms of use (FR-31): #/privacy, #/terms */
 .legal { color: var(--ink); }
-.legal-body { display: flex; flex-direction: column; gap: 16px; font: 400 16px/1.6 var(--sans); color: var(--ink-2); }
+.legal-body { display: flex; flex-direction: column; gap: 16px; font: 400 16px/1.6 var(--sans); color: var(--ink-2); overflow-wrap: anywhere; }
+.legal-table { overflow-x: auto; }
 .legal-body h1 { margin-bottom: 4px; }
 .legal-body h2 { margin-top: 12px; font: 600 20px var(--sans); color: var(--ink); }
 .legal-body ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
@@ -144,7 +145,8 @@
 .tick input { width: 18px; height: 18px; margin-top: 1px; accent-color: var(--accent); flex: none; }
 @media (max-width: 640px) { .cl-step { grid-template-columns: 1fr; } }
 @media print {
-  .site-header, .no-print, #overlays, #toast, .dev-panel, .dev-toggle, footer { display: none !important; }
+  .site-header, .no-print, #overlays, #toast, .dev-panel, .dev-toggle, footer, #appnav { display: none !important; }
+  body[data-theme="light"] #main, body[data-theme="light"] #header { padding: 0 !important; }
   body { background: #fff; }
   .checklist { padding: 0; }
   .cl-step { grid-template-columns: 160px 1fr; }
@@ -295,8 +297,9 @@ body[data-theme="light"] #main { padding-bottom: calc(84px + env(safe-area-inset
 .dot.wrong { background: var(--wrong); }
 .dot.pulse { background: var(--accent-3); animation: pulse 1.2s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: .35; } }
-.card-del { position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border: 0; border-radius: 10px; display: grid; place-items: center; background: rgba(17, 17, 19, .6); color: #fff; opacity: 0; cursor: pointer; transition: opacity .15s; }
-.card:hover .card-del, .card-del:focus-visible { opacity: 1; }
+.card-wrap { position: relative; }
+.card-del { position: absolute; right: 10px; top: 10px; width: 34px; height: 34px; border: 0; border-radius: 10px; display: grid; place-items: center; background: rgba(17, 17, 19, .6); color: #fff; opacity: 0; cursor: pointer; transition: opacity .15s; }
+.card-wrap:hover .card-del, .card-del:focus-visible { opacity: 1; }
 @media (hover: none) { .card-del { opacity: 1; } }
 .card-del .icon { width: 16px; height: 16px; }
 .skel { pointer-events: none; }
@@ -348,7 +351,7 @@ body[data-theme="light"] #main { padding-bottom: calc(84px + env(safe-area-inset
 .sheet { width: min(100%, 560px); max-height: 92vh; overflow-y: auto; padding: 10px 22px calc(22px + env(safe-area-inset-bottom)); border-radius: 26px 26px 0 0; background: var(--paper); color: var(--ink); box-shadow: 0 -20px 60px -20px rgba(0, 0, 0, .45); animation: sheet-up .24s ease-out both; }
 .sheet.drag { box-shadow: 0 0 0 3px var(--accent), 0 -20px 60px -20px rgba(0, 0, 0, .45); }
 @keyframes sheet-up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
-@media (min-width: 700px) { .sheet-scrim { place-items: center; padding: 20px; } .sheet { border-radius: 24px; padding-bottom: 24px; } }
+@media (min-width: 700px) { .sheet-scrim { place-items: center; padding: 20px; } .sheet { border-radius: 24px; padding: 22px 24px 24px; } .sheet-grip { display: none; } }
 @media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
 .sheet-grip { width: 40px; height: 5px; margin: 0 auto 6px; border-radius: 99px; background: rgba(17, 17, 19, .15); }
 .sheet-head { display: flex; align-items: center; justify-content: space-between; }
@@ -381,3 +384,5 @@ body[data-theme="light"] #main { padding-bottom: calc(84px + env(safe-area-inset
 .hero.compact .lede { font-size: 17px; }
 .hero.compact .hero-frame { aspect-ratio: 16 / 9; }
 .hero-hello { font: 500 15px var(--sans); color: var(--ink-4); }
+/* For teams on a phone: each step's row stacks instead of five fixed columns */
+@media (max-width: 760px) { .stuck-row { grid-template-columns: 40px minmax(0, 1fr); gap: 8px 14px; } .stuck-row > :nth-child(n + 3) { grid-column: 2; } }

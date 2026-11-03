@@ -241,16 +241,22 @@ async def start_session(request: Request):
     return {"session_id": sid}
 
 
+def _require(ok) -> None:
+    """Request validation that survives `python -O` (an assert would vanish): the caller turns it into a 400."""
+    if not ok:
+        raise ValueError("invalid request")
+
+
 @router.post("/api/sessions/{sid}/checks")
 async def run_check(sid: str, request: Request):
     session = p.sessions.get(sid, visitor(request))
     form = await request.form()
     try:
         meta = json.loads(form.get("meta") or "")
-        assert isinstance(meta["step_id"], int) and isinstance(meta["check_no"], int)
-        assert meta["kind"] in ("full", "recheck", "visibility")
-        assert meta.get("trigger") in ("still", "check_me", "fixed", "recheck")
-    except (ValueError, KeyError, TypeError, AssertionError):
+        _require(isinstance(meta["step_id"], int) and isinstance(meta["check_no"], int))
+        _require(meta["kind"] in ("full", "recheck", "visibility"))
+        _require(meta.get("trigger") in ("still", "check_me", "fixed", "recheck"))
+    except (ValueError, KeyError, TypeError, AttributeError):
         raise ApiError("bad_request", "meta must be JSON with step_id, kind, check_no, trigger and trigger_at.")
     frame = form.get("frame")
     if frame is None or not hasattr(frame, "read"):
@@ -273,12 +279,12 @@ async def ask_question(sid: str, request: Request):
     form = await request.form()
     try:
         meta = json.loads(form.get("meta") or "")
-        assert isinstance(meta.get("question"), str) and 0 < len(meta["question"].strip()) <= 500
-        assert isinstance(meta.get("step_id"), int)
+        _require(isinstance(meta.get("question"), str) and 0 < len(meta["question"].strip()) <= 500)
+        _require(isinstance(meta.get("step_id"), int))
         hist = meta.get("history", [])  # the browser's recent turns for the coach; never stored
-        assert isinstance(hist, list) and len(hist) <= 20 and all(isinstance(x, dict) for x in hist)
-        assert isinstance(meta.get("last_check", ""), str)
-    except (ValueError, AssertionError, AttributeError):
+        _require(isinstance(hist, list) and len(hist) <= 20 and all(isinstance(x, dict) for x in hist))
+        _require(isinstance(meta.get("last_check", ""), str))
+    except (ValueError, KeyError, TypeError, AttributeError):
         raise ApiError("bad_request", "meta must be JSON with step_id, question (1–500 characters) and question_no.")
     frame = form.get("frame")
     frame = await frame.read() if frame is not None and hasattr(frame, "read") else b""
@@ -297,9 +303,9 @@ async def watch(sid: str, request: Request):
     form = await request.form()
     try:
         meta = json.loads(form.get("meta") or "")
-        assert isinstance(meta.get("step_id"), int)
-        assert all(isinstance(meta.get(k, []), list) and len(meta.get(k, [])) <= 10 for k in ("recent", "said"))
-    except (ValueError, AssertionError, AttributeError):
+        _require(isinstance(meta.get("step_id"), int))
+        _require(all(isinstance(meta.get(k, []), list) and len(meta.get(k, [])) <= 10 for k in ("recent", "said")))
+    except (ValueError, KeyError, TypeError, AttributeError):
         raise ApiError("bad_request", "meta must be JSON with step_id and short recent/said lists.")
     frame = form.get("frame")
     frame = await frame.read() if frame is not None and hasattr(frame, "read") else b""

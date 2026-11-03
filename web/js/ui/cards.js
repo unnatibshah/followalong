@@ -21,16 +21,17 @@ export function guideCard(t, { onDelete } = {}) {
     : h('div', { class: 'paper-preview' }, failed ? 'Couldn’t build this one' : 'Building your guide…');
   const tag = t.source === 'manual' ? 'From a manual' : isMine(t) ? 'Your video' : 'Sample';
   const status = ready ? 'Ready' : failed ? 'Failed' : 'Building…';
-  const card = h('a', { href: `#/${ready ? 'ready' : 'understanding'}`, class: 'card', onclick: (e) => { if (e.target.closest('.card-del')) return; e.preventDefault(); open(t); } },
+  const card = h('a', { href: `#/${ready ? 'ready' : 'understanding'}`, class: 'card', onclick: (e) => { e.preventDefault(); open(t); } },
     h('div', { class: 'card-media' }, preview,
       h('span', { class: ['pill tl', !ready && 'muted-pill'] }, h('span', { class: ['dot', ready ? 'accent' : failed ? 'wrong' : 'pulse'], 'aria-hidden': 'true' }), status),
-      (t.duration_s || t.manual) && h('span', { class: 'pill tr mono' }, t.manual && !t.duration_s ? `${t.manual.pages} p.` : mmss(t.duration_s)),
-      onDelete && h('button', { class: 'card-del', type: 'button', 'aria-label': `Delete ${t.title}`, title: 'Delete',
-        onclick: (e) => { e.preventDefault(); e.stopPropagation(); onDelete(t); } }, icon('trash'))),
+      (t.duration_s || t.manual) && !onDelete && h('span', { class: 'pill tr mono' }, t.manual && !t.duration_s ? `${t.manual.pages} p.` : mmss(t.duration_s))),
     h('div', { class: 'card-title-row' }, h('span', { class: 'card-title' }, t.title)),
     h('div', { class: 'card-meta' }, h('span', { class: 'tag' }, tag), t.step_count ? `${t.step_count} steps` : '',
       t.creator ? h('span', { class: 'muted' }, `by ${t.creator}${t.source_url ? ' · CC BY' : ''}`) : ''));
-  return card;
+  if (!onDelete) return card;
+  // A button can't sit inside a link: the card and its delete button are siblings in one wrapper
+  return h('div', { class: 'card-wrap' }, card, h('button', { class: 'card-del', type: 'button', 'aria-label': `Delete ${t.title}`, title: 'Delete',
+    onclick: () => onDelete(t) }, icon('trash')));
 }
 
 /** Where you left off: the step's picture, how far you got, one tap back in. */

@@ -65,10 +65,10 @@ async def check_pdf(path: Path) -> int:
     file can't crash or hang the server. Raises Rejected."""
     if path.stat().st_size > MAX_PDF_MB * 1024 * 1024:
         raise Rejected("invalid_upload", f"This PDF is over {MAX_PDF_MB} MB. Upload just the pages you need, or photos of them.")
-    data = path.read_bytes()
+    data = await asyncio.to_thread(path.read_bytes)  # up to 20 MB: off the event loop, with the scan below
     if b"%PDF-" not in data[:1024]:  # readers allow a little junk before the header
         raise Rejected("invalid_upload", "This isn't a PDF. Upload the manual as a PDF or as photos of its pages.")
-    if UNSAFE.search(data):
+    if await asyncio.to_thread(UNSAFE.search, data):
         raise Rejected("invalid_manual", SCRIPTS)
     try:  # the answer is the last line of the probe's stderr
         rc, out = await tut._run([sys.executable, "-c", BOOT, "probe", str(path)], PROBE_TIMEOUT_S)
@@ -333,7 +333,8 @@ def snap(page: Image.Image, box: list[int]) -> list[int]:
         y0 = grow(y0, -1, h, gap_y, lambda i: ink[i, x0:x1])
         x1 = grow(x1, 1, w, gap_x, lambda i: ink[y0:y1, i])
         x0 = grow(x0, -1, w, gap_x, lambda i: ink[y0:y1, i])
-    return [x0 * 1000 // w, y0 * 1000 // h, -(-(x1 + 1) * 1000 // w), -(-(y1 + 1) * 1000 // h)]
+    grown = [x0 * 1000 // w, y0 * 1000 // h, -(-(x1 + 1) * 1000 // w), -(-(y1 + 1) * 1000 // h)]
+    return [min(grown[0], box[0]), min(grown[1], box[1]), max(grown[2], box[2]), max(grown[3], box[3])]  # never smaller
 
 
 
