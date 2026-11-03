@@ -226,3 +226,6 @@
 .safety-tag { font: 600 13px var(--sans); letter-spacing: .02em; color: var(--wrong-2); text-transform: uppercase; }
 .safety-panel .ask-text { display: flex; flex-direction: column; gap: 6px; }
 .pill.framing { background: rgba(251, 191, 36, .92); color: #1a1302; font: 600 12px var(--sans); }
+/* The browser refused the tutorial's sound (no tap yet): one tap turns it on */
+.sound-chip { position: absolute; z-index: 3; top: 12px; right: 12px; height: 34px; padding: 0 14px; border: 0; border-radius: 999px; background: rgba(17, 17, 19, .78); color: #fff; font: 600 13px var(--sans); cursor: pointer; box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .6); }
+.sound-chip:hover { background: var(--accent); }

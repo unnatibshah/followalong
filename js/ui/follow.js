@@ -85,7 +85,10 @@ export async function render(root) {
     src: api.videoUrl(app.tutorialId), standIn: drawsStandIn(app.tutorialId),
     onEnd: () => { if (!replayMode) dispatch({ type: 'step_end' }); },
     onTime: (t, frac) => { el.playTime.textContent = mmss(t); el.playFill.style.width = `${Math.round(frac * 100)}%`; },
+    onSoundBlocked: () => { el.soundBtn.hidden = false; },
   });
+  // The learner tapped Start (consent) or Play (replay) to get here, so the tutorial may play with its sound
+  player.sound(true);
 
   el.orbIcon = h('span', { class: 'orb-icon', 'aria-hidden': 'true' });
   el.orbWord = h('span', { class: 'orb-word' });
@@ -107,8 +110,10 @@ export async function render(root) {
   el.clipStill = h('div', { class: 'panel-cover' }, h('button', { class: 'round-play', 'aria-label': 'Play the clip',
     onclick: (e) => { e.stopPropagation(); clipPlay = true; clipPaused = false; player.resume(); paint(); } }, icon('play')));
   el.pausedCover = h('div', { class: 'panel-cover' }, h('div', { class: 'round-play' }, icon('play')));
+  el.soundBtn = h('button', { class: 'sound-chip', type: 'button', hidden: true,
+    onclick: (e) => { e.stopPropagation(); el.soundBtn.hidden = true; player.sound(true); } }, '\ud83d\udd08 Tap for sound');
   el.tut = h('div', { class: 'panel tut', onclick: () => togglePause('button'), title: 'Pause or resume (P)' },
-    player.el, el.tutLabel, el.frozen, el.playBar, el.clipBtn, el.loopBar, el.clipStill, el.pausedCover);
+    player.el, el.soundBtn, el.tutLabel, el.frozen, el.playBar, el.clipBtn, el.loopBar, el.clipStill, el.pausedCover);
 
   el.liveMedia = h('div', { class: 'live-media' });
   el.liveOverlay = h('div', { class: 'live-overlay' });
