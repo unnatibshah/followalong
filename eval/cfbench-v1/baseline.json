@@ -1,0 +1,7 @@
+{
+  "n": 211,
+  "loto_accuracy": "120 of 211 (57%)",
+  "loto_wrong_advances": "64 of 123",
+  "oracle_threshold": 0.57,
+  "oracle_accuracy": "130 of 211"
+}

@@ -1,0 +1,314 @@
+{
+ "tutorial_id": "jump-start-car",
+ "model": "muse-spark-1.3",
+ "transcript_used": false,
+ "prompt_version": "step_plan-0.7",
+ "plan_hash": "sha256:84349354309cfb595a2e1755a024550fb2a87fdc076550c13a1dc66852c9612e",
+ "reviewed": false,
+ "needs": [
+  "red hood",
+  "car battery",
+  "black hood",
+  "red cable",
+  "positive battery",
+  "black cable",
+  "metal ground",
+  "car key",
+  "dashboard",
+  "jumper cable"
+ ],
+ "steps": [
+  {
+   "id": 1,
+   "start": 0.0,
+   "end": 3.2,
+   "done_at": 2.8,
+   "instruction": "Park both cars face to face and turn them off.",
+   "done_looks_like": "Red hood raised open over the front engine bay with the engine off.",
+   "end_frame": "frames/step-1.jpg",
+   "objects": [
+    {
+     "name": "red hood",
+     "sam_prompt": "red hood",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The hood is fully raised and the engine is off",
+     "confidence": 0.75,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s1c1"
+    }
+   ],
+   "common_mistakes": [
+    "Hood only unlatched but not lifted open",
+    "Engine left running"
+   ],
+   "key_clip_start": 0.0,
+   "key_clip_end": 3.0,
+   "hands_ok": false
+  },
+  {
+   "id": 2,
+   "start": 3.2,
+   "end": 9.5,
+   "done_at": 8.5,
+   "instruction": "Open both hoods and locate the batteries.",
+   "done_looks_like": "Black hood raised open with the black battery exposed in the engine bay.",
+   "end_frame": "frames/step-2.jpg",
+   "objects": [
+    {
+     "name": "car battery",
+     "sam_prompt": "black battery",
+     "size": null
+    },
+    {
+     "name": "black hood",
+     "sam_prompt": "black hood",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "car battery",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "A black battery is present in the open engine bay",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The hood is fully raised and held open",
+     "confidence": 0.8,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c2"
+    }
+   ],
+   "common_mistakes": [
+    "Hood propped but battery cover not visible",
+    "Wrong compartment mistaken for battery"
+   ],
+   "key_clip_start": 4.0,
+   "key_clip_end": 7.0,
+   "hands_ok": false
+  },
+  {
+   "id": 3,
+   "start": 9.5,
+   "end": 19.5,
+   "done_at": 18.5,
+   "instruction": "Attach both red clamps to the positive terminals.",
+   "done_looks_like": "Red clamp gripping the positive terminal on the black battery in the engine bay.",
+   "end_frame": "frames/step-3.jpg",
+   "objects": [
+    {
+     "name": "positive battery",
+     "sam_prompt": "black battery",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "red cable",
+     "b": "positive battery",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The red cable clamp is on the positive terminal of the black battery",
+     "confidence": 0.88,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s3c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "Red clamp gripping the positive terminal on the black battery in the engine bay.",
+     "confidence": 0.9,
+     "needs_review": true,
+     "enabled": true,
+     "id": "s3goal"
+    }
+   ],
+   "common_mistakes": [
+    "Red clamp on negative terminal",
+    "Clamp touching but not gripping terminal"
+   ],
+   "key_clip_start": 11.0,
+   "key_clip_end": 14.0,
+   "hands_ok": false
+  },
+  {
+   "id": 4,
+   "start": 19.5,
+   "end": 23.5,
+   "done_at": 22.5,
+   "instruction": "Attach the black clamps to negative and ground.",
+   "done_looks_like": "Black clamp gripping bare metal ground in the engine bay.",
+   "end_frame": "frames/step-4.jpg",
+   "objects": [
+    {
+     "name": "black cable",
+     "sam_prompt": "black cable",
+     "size": null
+    },
+    {
+     "name": "metal ground",
+     "sam_prompt": "silver metal",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "black cable",
+     "b": "metal ground",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The black cable clamp is on bare metal ground in the engine bay",
+     "confidence": 0.82,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s4c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "Black clamp gripping bare metal ground in the engine bay.",
+     "confidence": 0.9,
+     "needs_review": true,
+     "enabled": true,
+     "id": "s4goal"
+    }
+   ],
+   "common_mistakes": [
+    "Black clamp on painted surface instead of bare metal",
+    "Black clamp on battery positive"
+   ],
+   "key_clip_start": 20.0,
+   "key_clip_end": 23.0,
+   "hands_ok": false
+  },
+  {
+   "id": 5,
+   "start": 23.5,
+   "end": 29.5,
+   "done_at": 27.0,
+   "instruction": "Start the working car and charge for a few minutes.",
+   "done_looks_like": "Hand turning the key in the ignition with dashboard lights lit.",
+   "end_frame": "frames/step-5.jpg",
+   "objects": [
+    {
+     "name": "dashboard",
+     "sam_prompt": "black dashboard",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The key is turned and dashboard lights are on with engine running",
+     "confidence": 0.8,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s5c1"
+    }
+   ],
+   "common_mistakes": [
+    "Key turned but engine not started",
+    "Starting disabled car instead of working car"
+   ],
+   "key_clip_start": 24.0,
+   "key_clip_end": 27.0,
+   "hands_ok": false
+  },
+  {
+   "id": 6,
+   "start": 29.5,
+   "end": 36.0,
+   "done_at": 34.5,
+   "instruction": "Start the disabled car, remove cables and let it run.",
+   "done_looks_like": "Engine bays with jumper clamps removed and cables clear of batteries.",
+   "end_frame": "frames/step-6.jpg",
+   "objects": [],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "All jumper clamps are detached from both batteries",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s6c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The disabled car key is turned and its engine runs on its own",
+     "confidence": 0.75,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s6c2"
+    }
+   ],
+   "common_mistakes": [
+    "Cables removed in wrong order touching together",
+    "Disabled car stalled after cables removed"
+   ],
+   "key_clip_start": 30.0,
+   "key_clip_end": 33.0,
+   "hands_ok": false
+  }
+ ]
+}

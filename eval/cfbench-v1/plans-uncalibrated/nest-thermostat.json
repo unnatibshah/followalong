@@ -1,0 +1,429 @@
+{
+ "tutorial_id": "nest-thermostat",
+ "model": "muse-spark-1.3",
+ "transcript_used": false,
+ "prompt_version": "step_plan-0.3",
+ "plan_hash": "sha256:d529a40da42227e8f4a8a466893a63bd3a2ed564c4026eb410f5fc5970d71d79",
+ "reviewed": false,
+ "needs": [
+  "old backplate",
+  "smartphone",
+  "red wire",
+  "white wire",
+  "new base",
+  "mounting screw ×2",
+  "display panel"
+ ],
+ "steps": [
+  {
+   "id": 1,
+   "start": 21.0,
+   "end": 34.0,
+   "done_at": 33.9,
+   "instruction": "Remove the old thermostat cover and photograph the wiring.",
+   "done_looks_like": "The old wiring is exposed and photographed with the phone.",
+   "end_frame": "frames/step-1.jpg",
+   "objects": [
+    {
+     "name": "old backplate",
+     "sam_prompt": "white backplate",
+     "size": null
+    },
+    {
+     "name": "smartphone",
+     "sam_prompt": "black smartphone",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "old backplate",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Old backplate is visible on wall",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s1c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Wiring photo was taken with phone",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s1c2"
+    }
+   ],
+   "common_mistakes": [
+    "Cover still on wall blocking wiring",
+    "Photo taken before wiring is exposed"
+   ],
+   "key_clip_start": 28.0,
+   "key_clip_end": 31.0
+  },
+  {
+   "id": 2,
+   "start": 34.0,
+   "end": 46.0,
+   "done_at": 45.9,
+   "instruction": "Disconnect the wires and remove the old backplate.",
+   "done_looks_like": "Only the wall hole with red and white wires remains.",
+   "end_frame": "frames/step-2.jpg",
+   "objects": [
+    {
+     "name": "old backplate",
+     "sam_prompt": "white backplate",
+     "size": null
+    },
+    {
+     "name": "red wire",
+     "sam_prompt": "red wire",
+     "size": null
+    },
+    {
+     "name": "white wire",
+     "sam_prompt": "white wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Old backplate is removed from wall",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c1"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "red wire",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Red wire is present at wall hole",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c2"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "white wire",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "White wire is present at wall hole",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c3"
+    }
+   ],
+   "common_mistakes": [
+    "Old backplate left on wall",
+    "Wires pushed back into wall hole"
+   ],
+   "key_clip_start": 38.0,
+   "key_clip_end": 41.0
+  },
+  {
+   "id": 3,
+   "start": 46.0,
+   "end": 63.0,
+   "done_at": 62.9,
+   "instruction": "Position and screw the new base to the wall.",
+   "done_looks_like": "The white circular base is fixed to the wall with wires through its center.",
+   "end_frame": "frames/step-3.jpg",
+   "objects": [
+    {
+     "name": "new base",
+     "sam_prompt": "white base",
+     "size": null
+    },
+    {
+     "name": "red wire",
+     "sam_prompt": "red wire",
+     "size": null
+    },
+    {
+     "name": "white wire",
+     "sam_prompt": "white wire",
+     "size": null
+    },
+    {
+     "name": "mounting screw",
+     "sam_prompt": "silver screw",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "red wire",
+     "b": "new base",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Red wire passes through center of new base",
+     "confidence": 0.92,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c1"
+    },
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "white wire",
+     "b": "new base",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "White wire passes through center of new base",
+     "confidence": 0.92,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c2"
+    },
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "mounting screw",
+     "b": "new base",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Mounting screw is inside new base",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c3"
+    },
+    {
+     "kind": "measured",
+     "type": "count",
+     "a": "mounting screw",
+     "b": null,
+     "n": 2,
+     "side": null,
+     "ratio": null,
+     "text": "Two mounting screws secure the base",
+     "confidence": 0.88,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c4"
+    }
+   ],
+   "common_mistakes": [
+    "Base crooked and not level",
+    "Wires trapped behind base"
+   ],
+   "key_clip_start": 54.0,
+   "key_clip_end": 57.0
+  },
+  {
+   "id": 4,
+   "start": 63.0,
+   "end": 79.0,
+   "done_at": 78.9,
+   "instruction": "Push each wire into its terminal: red into Rc, white into W1.",
+   "done_looks_like": "The red wire's bare end is in the Rc tab (lower left) and the white wire's in the W1 tab (upper right).",
+   "end_frame": "frames/step-4.jpg",
+   "objects": [
+    {
+     "name": "red wire",
+     "sam_prompt": "red wire",
+     "size": null
+    },
+    {
+     "name": "white wire",
+     "sam_prompt": "white wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "The red wire's bare end goes into the Rc tab, not any other tab",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "The white wire's bare end goes into the W1 tab, not any other tab",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c2"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "red wire",
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "Red wire is in view",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c3"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "white wire",
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "White wire is in view",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c4"
+    }
+   ],
+   "common_mistakes": [
+    "Red wire in Rh instead of Rc",
+    "Bare copper too short to make contact",
+    "Wire not pushed in until the tab clicks"
+   ],
+   "key_clip_start": 69.0,
+   "key_clip_end": 72.0
+  },
+  {
+   "id": 5,
+   "start": 79.0,
+   "end": 87.0,
+   "done_at": 86.9,
+   "instruction": "Press the display panel onto the base.",
+   "done_looks_like": "The round display fully covers the base on the wall.",
+   "end_frame": "frames/step-5.jpg",
+   "objects": [
+    {
+     "name": "display panel",
+     "sam_prompt": "black display",
+     "size": null
+    },
+    {
+     "name": "new base",
+     "sam_prompt": "white base",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Display panel is pressed onto base",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s5c1"
+    }
+   ],
+   "common_mistakes": [
+    "Wires not pushed in before attaching",
+    "Display crooked on base"
+   ],
+   "key_clip_start": 83.0,
+   "key_clip_end": 86.0
+  },
+  {
+   "id": 6,
+   "start": 87.0,
+   "end": 96.0,
+   "done_at": 94.0,
+   "instruction": "Restore power and finish setup on the phone.",
+   "done_looks_like": "The thermostat display is lit showing the temperature.",
+   "end_frame": "frames/step-6.jpg",
+   "objects": [
+    {
+     "name": "display panel",
+     "sam_prompt": "black display",
+     "size": null
+    },
+    {
+     "name": "smartphone",
+     "sam_prompt": "black smartphone",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Display is lit showing temperature",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s6c1"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "smartphone",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Smartphone is present for setup",
+     "confidence": 0.75,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s6c2"
+    }
+   ],
+   "common_mistakes": [
+    "Power left off so display stays dark",
+    "Setup not completed in phone app"
+   ],
+   "key_clip_start": 90.0,
+   "key_clip_end": 93.0
+  }
+ ]
+}

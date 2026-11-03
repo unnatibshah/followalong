@@ -1,0 +1,47 @@
+# Thresholds and tolerances for measured checks and the verdict (TD §4.2-4.3). Tuned on day 1.
+judged_confidence_threshold = 0.7
+# Measured checks that hold on ANY model of the part (another breadboard, another car) may veto with `wrong`. The rest
+# depend on the tutorial's own hardware or camera view (sizes, left/right/above): their fail asks the learner instead.
+veto_types = ["present", "count", "inside"]
+sam_min_confidence = 0.5
+check_review_threshold = 0.6  # FR-21: a step-plan check below this confidence -> needs_review
+inside = 0.9            # share of A's mask inside B's filled outline
+adjacent = 0.15         # gap / A's shorter side
+direction_margin = 0.05 # left_of / above, share of the frame
+area_ratio = 0.25       # +-25% of the reference ratio
+work_area_border = 0.10 # hand gate: frame minus this border
+hand_cover = 0.01       # hand gate: blocked above this share of the work area
+
+[size]
+# Size filter (FR-44, TD §4.2), applied to SAM's instances before the measured checks. An object with `size`
+# "large" or "small" keeps round parts only (minimum-area rectangle within `aspect` of 1:1), then `large` keeps the
+# instances at least `tie_ratio` x the largest outline, `small` at most 1 / `tie_ratio` x the smallest. An object's
+# `min_area` / `max_area` (in the plan) are shares of the frame, or of its `area_ref` object's outline.
+aspect = 0.2
+tie_ratio = 0.5
+
+[terminals]
+# Objects named "<label> terminal" are not sent to SAM by label. One request for `prompt` finds every terminal;
+# they are sorted left to right and mapped to `order`. A wrong count makes the check `unsure`.
+prompt = "circle"         # drawn frames and the printed sheet: "screw" and "screw terminal" return 0; retry "screw" on real hardware
+order = ["Rc", "Rh", "C", "W", "Y", "G"]
+# A terminal's zone is its instance box widened to `zone_width` x the terminal pitch and stretched down by
+# `zone_below` x its own height: the bare end of a wire sits on or just below the screw.
+zone_width = 0.9
+zone_below = 2.0
+# Terminal screws, as a share of the frame: drops specks and bigger circles (a mounting hole, a dial) before the
+# count, so a stray circle doesn't make it 7. Stand-in frames: 0.0009 each.
+min_area = 0.0002
+max_area = 0.005
+
+[terminals.why]
+# Why a wire in the wrong terminal matters, added to the measured hint (FR-61, UX S8): "<A> goes in C, not Rh. <why>"
+Rh = "Rh is 24 V power — this would blow your furnace fuse."
+
+[judged]
+# Muse Spark judged checks (TD §4.3, prompt spec P2). The prompt is config/prompts/judged_checks.md, the output
+# schema config/schemas/judged_checks.json.
+crop_pad = 0.5      # the live crop: union of the step objects' boxes, plus this share of its size on each side (wide enough
+                    # to keep what they connect to: a wire tip and the printed terminal label next to it)
+crop_max_px = 768   # both images are resized to at most this on the long side
+jpeg_quality = 85

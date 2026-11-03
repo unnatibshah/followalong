@@ -1,0 +1,378 @@
+{
+  "systems": {
+    "full": {
+      "name": "Hard hand gate (previous product)",
+      "n": 303,
+      "accuracy": 0.693,
+      "accuracy_ci": [
+        0.639,
+        0.742
+      ],
+      "balanced_accuracy": 0.686,
+      "done_recall": 0.643,
+      "done_precision": 0.628,
+      "f1": 0.635,
+      "false_advance_rate": 0.271,
+      "false_advances": "48 of 177",
+      "mistakes_flagged": "91 of 177",
+      "latency_p50_s": 21.69,
+      "cost_per_check_usd": 0.0078,
+      "by_case": {
+        "done": {
+          "n": 63,
+          "correct": 40,
+          "rate": 0.635,
+          "verdicts": {
+            "unsure": 5,
+            "done": 40,
+            "waiting": 4,
+            "wrong": 14
+          }
+        },
+        "done_dim": {
+          "n": 63,
+          "correct": 41,
+          "rate": 0.651,
+          "verdicts": {
+            "done": 41,
+            "unsure": 9,
+            "waiting": 4,
+            "wrong": 9
+          }
+        },
+        "incomplete": {
+          "n": 63,
+          "correct": 47,
+          "rate": 0.746,
+          "verdicts": {
+            "wrong": 28,
+            "waiting": 8,
+            "unsure": 11,
+            "done": 16
+          }
+        },
+        "missing_part": {
+          "n": 58,
+          "correct": 50,
+          "rate": 0.862,
+          "verdicts": {
+            "waiting": 19,
+            "unsure": 25,
+            "done": 8,
+            "wrong": 6
+          }
+        },
+        "wrong_colour": {
+          "n": 56,
+          "correct": 32,
+          "rate": 0.571,
+          "verdicts": {
+            "waiting": 11,
+            "unsure": 16,
+            "done": 24,
+            "wrong": 5
+          }
+        }
+      },
+      "spent_usd": 2.358
+    },
+    "verify": {
+      "name": "Verifier: SAM 3.1 + Muse Spark (ours)",
+      "n": 303,
+      "accuracy": 0.703,
+      "accuracy_ci": [
+        0.649,
+        0.752
+      ],
+      "balanced_accuracy": 0.699,
+      "done_recall": 0.675,
+      "done_precision": 0.634,
+      "f1": 0.654,
+      "false_advance_rate": 0.277,
+      "false_advances": "49 of 177",
+      "mistakes_flagged": "128 of 177",
+      "latency_p50_s": 14.45,
+      "cost_per_check_usd": 0.0051,
+      "by_case": {
+        "done": {
+          "n": 63,
+          "correct": 44,
+          "rate": 0.698,
+          "verdicts": {
+            "done": 44,
+            "unsure": 9,
+            "waiting": 1,
+            "wrong": 9
+          }
+        },
+        "done_dim": {
+          "n": 63,
+          "correct": 41,
+          "rate": 0.651,
+          "verdicts": {
+            "done": 41,
+            "unsure": 14,
+            "wrong": 8
+          }
+        },
+        "incomplete": {
+          "n": 63,
+          "correct": 46,
+          "rate": 0.73,
+          "verdicts": {
+            "wrong": 28,
+            "unsure": 18,
+            "done": 17
+          }
+        },
+        "missing_part": {
+          "n": 58,
+          "correct": 51,
+          "rate": 0.879,
+          "verdicts": {
+            "unsure": 44,
+            "done": 7,
+            "wrong": 7
+          }
+        },
+        "wrong_colour": {
+          "n": 56,
+          "correct": 31,
+          "rate": 0.554,
+          "verdicts": {
+            "unsure": 27,
+            "done": 25,
+            "wrong": 4
+          }
+        }
+      },
+      "spent_usd": 1.5523
+    },
+    "spark_only": {
+      "name": "Muse Spark only (whole frame, VLM-as-judge)",
+      "n": 303,
+      "accuracy": 0.64,
+      "accuracy_ci": [
+        0.585,
+        0.692
+      ],
+      "balanced_accuracy": 0.617,
+      "done_recall": 0.476,
+      "done_precision": 0.583,
+      "f1": 0.524,
+      "false_advance_rate": 0.243,
+      "false_advances": "43 of 177",
+      "mistakes_flagged": "134 of 177",
+      "latency_p50_s": 7.16,
+      "cost_per_check_usd": 0.0025,
+      "by_case": {
+        "done": {
+          "n": 63,
+          "correct": 30,
+          "rate": 0.476,
+          "verdicts": {
+            "unsure": 24,
+            "done": 30,
+            "wrong": 9
+          }
+        },
+        "done_dim": {
+          "n": 63,
+          "correct": 30,
+          "rate": 0.476,
+          "verdicts": {
+            "unsure": 28,
+            "done": 30,
+            "wrong": 5
+          }
+        },
+        "incomplete": {
+          "n": 63,
+          "correct": 55,
+          "rate": 0.873,
+          "verdicts": {
+            "unsure": 19,
+            "wrong": 36,
+            "done": 8
+          }
+        },
+        "missing_part": {
+          "n": 58,
+          "correct": 51,
+          "rate": 0.879,
+          "verdicts": {
+            "unsure": 43,
+            "done": 7,
+            "wrong": 8
+          }
+        },
+        "wrong_colour": {
+          "n": 56,
+          "correct": 28,
+          "rate": 0.5,
+          "verdicts": {
+            "unsure": 21,
+            "wrong": 7,
+            "done": 28
+          }
+        }
+      },
+      "spent_usd": 0.7434
+    },
+    "sam_only": {
+      "name": "SAM 3.1 measured checks only",
+      "n": 303,
+      "accuracy": 0.64,
+      "accuracy_ci": [
+        0.585,
+        0.692
+      ],
+      "balanced_accuracy": 0.675,
+      "done_recall": 0.881,
+      "done_precision": 0.541,
+      "f1": 0.671,
+      "false_advance_rate": 0.531,
+      "false_advances": "94 of 177",
+      "mistakes_flagged": "83 of 177",
+      "latency_p50_s": 11.59,
+      "cost_per_check_usd": 0.0038,
+      "by_case": {
+        "done": {
+          "n": 63,
+          "correct": 56,
+          "rate": 0.889,
+          "verdicts": {
+            "done": 56,
+            "unsure": 4,
+            "wrong": 3
+          }
+        },
+        "done_dim": {
+          "n": 63,
+          "correct": 55,
+          "rate": 0.873,
+          "verdicts": {
+            "done": 55,
+            "unsure": 6,
+            "wrong": 2
+          }
+        },
+        "incomplete": {
+          "n": 63,
+          "correct": 16,
+          "rate": 0.254,
+          "verdicts": {
+            "done": 47,
+            "unsure": 12,
+            "wrong": 4
+          }
+        },
+        "missing_part": {
+          "n": 58,
+          "correct": 44,
+          "rate": 0.759,
+          "verdicts": {
+            "unsure": 41,
+            "done": 14,
+            "wrong": 3
+          }
+        },
+        "wrong_colour": {
+          "n": 56,
+          "correct": 23,
+          "rate": 0.411,
+          "verdicts": {
+            "unsure": 23,
+            "done": 33
+          }
+        }
+      },
+      "spent_usd": 1.155
+    },
+    "soft": {
+      "name": "Product: soft actor gate + SAM 3.1 + Muse Spark",
+      "n": 303,
+      "accuracy": 0.703,
+      "accuracy_ci": [
+        0.649,
+        0.752
+      ],
+      "balanced_accuracy": 0.699,
+      "done_recall": 0.675,
+      "done_precision": 0.634,
+      "f1": 0.654,
+      "false_advance_rate": 0.277,
+      "false_advances": "49 of 177",
+      "mistakes_flagged": "90 of 177",
+      "latency_p50_s": 0.0,
+      "cost_per_check_usd": 0.0076,
+      "by_case": {
+        "done": {
+          "n": 63,
+          "correct": 44,
+          "rate": 0.698,
+          "verdicts": {
+            "done": 44,
+            "waiting": 4,
+            "wrong": 9,
+            "unsure": 6
+          }
+        },
+        "done_dim": {
+          "n": 63,
+          "correct": 41,
+          "rate": 0.651,
+          "verdicts": {
+            "done": 41,
+            "unsure": 10,
+            "waiting": 4,
+            "wrong": 8
+          }
+        },
+        "incomplete": {
+          "n": 63,
+          "correct": 46,
+          "rate": 0.73,
+          "verdicts": {
+            "wrong": 28,
+            "waiting": 8,
+            "unsure": 10,
+            "done": 17
+          }
+        },
+        "missing_part": {
+          "n": 58,
+          "correct": 51,
+          "rate": 0.879,
+          "verdicts": {
+            "waiting": 19,
+            "unsure": 25,
+            "done": 7,
+            "wrong": 7
+          }
+        },
+        "wrong_colour": {
+          "n": 56,
+          "correct": 31,
+          "rate": 0.554,
+          "verdicts": {
+            "waiting": 11,
+            "unsure": 16,
+            "done": 25,
+            "wrong": 4
+          }
+        }
+      },
+      "spent_usd": 0.0
+    }
+  },
+  "pixel_baseline": {
+    "n": 303,
+    "loto_accuracy": "175 of 303 (58%)",
+    "loto_wrong_advances": "87 of 177",
+    "oracle_threshold": 0.67,
+    "oracle_accuracy": "186 of 303"
+  },
+  "segmentation": {},
+  "latency": null
+}

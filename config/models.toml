@@ -1,0 +1,17 @@
+# Model IDs and the allow-list (FR-153). Only server/gateway.py reads the allow-list; nothing else may call Meta.
+base_url = "https://api.meta.ai/v1"
+segment = "sam-3.1"
+judged = "muse-spark-1.3"
+allowed = ["muse-spark-1.3", "muse-spark-1.2", "sam-3.1", "muse-voice-transcribe-1.0"]
+judged_effort = "minimal"          # "none" is rejected by Muse Spark
+judged_max_output_tokens = 1500    # includes reasoning tokens; a truncated structured answer won't parse
+# Tutorial processing (prompt spec P1). "muse-spark-1.2" when narration audio matters (1.3's audio is "not fully
+# supported"). Default reasoning effort; reasoning shares max_output_tokens.
+# Questions (prompt spec P3): same model and effort as judged checks, plain text.
+question_max_output_tokens = 1500  # reasoning took 108-420 of 600 on Oct 27; at 600 a long think left no answer
+# Voice (TD §4.6): realtime ENDPOINTING through our proxy, or push-to-talk WAV clips (POST /asr/transcribe).
+voice = "muse-voice-transcribe-1.0"
+plan = "muse-spark-1.3"
+plan_max_output_tokens = 16000
+step_details = true             # uploads: exact spoken directions per step for the voice coach (server/details.py)
+plan_transcript = false            # FR-14: also send the narration (Muse Voice Transcribe, file mode) as text; CLI --transcript

@@ -1,0 +1,394 @@
+{
+  "tutorial_id": "joycon-stick",
+  "model": "muse-spark-1.3",
+  "transcript_used": false,
+  "prompt_version": "p1-0.1",
+  "plan_hash": "sha256:2c9e737b90892247702f0fd1c4104231c4c29772daff65f3da57690408f79fa0",
+  "reviewed": true,
+  "needs": [
+    "Joy-Con",
+    "replacement thumbstick",
+    "tri-point screwdriver",
+    "cross screwdriver",
+    "numbered parts tray"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "start": 0.0,
+      "end": 15.0,
+      "instruction": "Lay the Joy-Con face down on the mat",
+      "done_looks_like": "The Joy-Con lies face down, rail to the right.",
+      "end_frame": "frames/step-1.jpg",
+      "objects": [
+        {
+          "name": "Joy-Con",
+          "sam_prompt": "blue controller",
+          "size": null
+        }
+      ],
+      "checks": [
+        {
+          "id": "s1c1",
+          "kind": "measured",
+          "type": "present",
+          "a": "Joy-Con",
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The Joy-Con is in view",
+          "confidence": 0.95,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 5.0,
+      "key_clip_end": 8.0
+    },
+    {
+      "id": 2,
+      "start": 15.0,
+      "end": 50.0,
+      "instruction": "Take out the four back-shell screws into tray slots 1–4",
+      "done_looks_like": "Four screws, one in each of slots 1–4.",
+      "end_frame": "frames/step-2.jpg",
+      "objects": [
+        {
+          "name": "screw",
+          "sam_prompt": "screw",
+          "size": null,
+          "min_area": 0.0005,
+          "max_area": 0.002
+        },
+        {
+          "name": "parts tray",
+          "sam_prompt": "parts tray",
+          "size": null
+        }
+      ],
+      "checks": [
+        {
+          "id": "s2c1",
+          "kind": "measured",
+          "type": "count",
+          "a": "screw",
+          "b": null,
+          "n": 4,
+          "side": null,
+          "ratio": null,
+          "text": "Four screws are out",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        },
+        {
+          "id": "s2c2",
+          "kind": "measured",
+          "type": "inside",
+          "a": "screw",
+          "b": "parts tray",
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The screws are inside the parts tray",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 30.0,
+      "key_clip_end": 33.0
+    },
+    {
+      "id": 3,
+      "start": 50.0,
+      "end": 75.0,
+      "instruction": "Open the back shell",
+      "done_looks_like": "The back shell lifts off with all four screws in the tray.",
+      "end_frame": "frames/step-3.jpg",
+      "objects": [
+        {
+          "name": "screw",
+          "sam_prompt": "screw",
+          "size": null,
+          "min_area": 0.0005,
+          "max_area": 0.002
+        },
+        {
+          "name": "parts tray",
+          "sam_prompt": "parts tray",
+          "size": null
+        },
+        {
+          "name": "Joy-Con",
+          "sam_prompt": "blue controller",
+          "size": null
+        }
+      ],
+      "checks": [
+        {
+          "id": "s3c1",
+          "kind": "measured",
+          "type": "count",
+          "a": "screw",
+          "b": null,
+          "n": 4,
+          "side": null,
+          "ratio": null,
+          "text": "All four shell screws are in the tray before you lift",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        },
+        {
+          "id": "s3c2",
+          "kind": "judged",
+          "type": "judged",
+          "a": null,
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The shell is lifted from the rail side, ribbon not stretched",
+          "confidence": 0.7,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [
+        "Lifting the frame with one screw still in the shell"
+      ],
+      "key_clip_start": 60.0,
+      "key_clip_end": 63.0
+    },
+    {
+      "id": 4,
+      "start": 75.0,
+      "end": 100.0,
+      "instruction": "Move the battery aside. Don't bend or puncture it",
+      "done_looks_like": "The battery sits beside the shell, flat and undamaged.",
+      "end_frame": "frames/step-4.jpg",
+      "objects": [],
+      "checks": [
+        {
+          "id": "s4c1",
+          "kind": "judged",
+          "type": "judged",
+          "a": null,
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The battery is aside, flat and not punctured",
+          "confidence": 0.75,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [
+        "Prying under the battery with a metal tool"
+      ],
+      "key_clip_start": 85.0,
+      "key_clip_end": 88.0
+    },
+    {
+      "id": 5,
+      "start": 100.0,
+      "end": 140.0,
+      "instruction": "Take out the three midframe screws into slots 5–7 and lift the midframe",
+      "done_looks_like": "Seven screws in slots 1–7.",
+      "end_frame": "frames/step-5.jpg",
+      "objects": [
+        {
+          "name": "screw",
+          "sam_prompt": "screw",
+          "size": null
+        },
+        {
+          "name": "parts tray",
+          "sam_prompt": "parts tray",
+          "size": null
+        }
+      ],
+      "checks": [
+        {
+          "id": "s5c1",
+          "kind": "measured",
+          "type": "count",
+          "a": "screw",
+          "b": null,
+          "n": 7,
+          "side": null,
+          "ratio": null,
+          "text": "Seven screws are out",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        },
+        {
+          "id": "s5c2",
+          "kind": "measured",
+          "type": "inside",
+          "a": "screw",
+          "b": "parts tray",
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The screws are inside the parts tray",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 118.0,
+      "key_clip_end": 121.0
+    },
+    {
+      "id": 6,
+      "start": 140.0,
+      "end": 170.0,
+      "instruction": "Flip up the ZIF latch and slide out the stick's ribbon",
+      "done_looks_like": "The latch is up and the ribbon is free.",
+      "end_frame": "frames/step-6.jpg",
+      "objects": [],
+      "checks": [
+        {
+          "id": "s6c1",
+          "kind": "judged",
+          "type": "judged",
+          "a": null,
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The ZIF latch is flipped up and the ribbon is out",
+          "confidence": 0.6,
+          "needs_review": true,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 153.0,
+      "key_clip_end": 156.0
+    },
+    {
+      "id": 7,
+      "start": 170.0,
+      "end": 205.0,
+      "instruction": "Take out the two stick screws and put the old stick in the tray",
+      "done_looks_like": "The old stick is in the tray with nine screws.",
+      "end_frame": "frames/step-7.jpg",
+      "objects": [
+        {
+          "name": "old stick",
+          "sam_prompt": "black thumbstick",
+          "size": "large"
+        },
+        {
+          "name": "parts tray",
+          "sam_prompt": "parts tray",
+          "size": null
+        }
+      ],
+      "checks": [
+        {
+          "id": "s7c1",
+          "kind": "measured",
+          "type": "inside",
+          "a": "old stick",
+          "b": "parts tray",
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The old stick is inside the parts tray",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 191.0,
+      "key_clip_end": 194.0
+    },
+    {
+      "id": 8,
+      "start": 205.0,
+      "end": 250.0,
+      "instruction": "Seat the new stick, slide the ribbon in and close the latch",
+      "done_looks_like": "The new stick sits in place; ribbon in, latch down.",
+      "end_frame": "frames/step-8.jpg",
+      "objects": [
+        {
+          "name": "new stick",
+          "sam_prompt": "grey thumbstick",
+          "size": "large"
+        }
+      ],
+      "checks": [
+        {
+          "id": "s8c1",
+          "kind": "measured",
+          "type": "present",
+          "a": "new stick",
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The new stick is in place",
+          "confidence": 0.9,
+          "needs_review": false,
+          "enabled": true
+        },
+        {
+          "id": "s8c2",
+          "kind": "judged",
+          "type": "judged",
+          "a": null,
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The ZIF latch is closed on the ribbon",
+          "confidence": 0.6,
+          "needs_review": true,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 220.0,
+      "key_clip_end": 223.0
+    },
+    {
+      "id": 9,
+      "start": 250.0,
+      "end": 300.0,
+      "instruction": "Reassemble in reverse and test the stick",
+      "done_looks_like": "Shell closed, tray empty, stick moves freely.",
+      "end_frame": "frames/step-9.jpg",
+      "objects": [],
+      "checks": [
+        {
+          "id": "s9c1",
+          "kind": "judged",
+          "type": "judged",
+          "a": null,
+          "b": null,
+          "n": null,
+          "side": null,
+          "ratio": null,
+          "text": "The Joy-Con is closed and matches the finished one",
+          "confidence": 0.65,
+          "needs_review": false,
+          "enabled": true
+        }
+      ],
+      "common_mistakes": [],
+      "key_clip_start": 267.0,
+      "key_clip_end": 270.0
+    }
+  ]
+}

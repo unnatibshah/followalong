@@ -1,0 +1,23 @@
+# Render blueprint for the public repo: render.com → New → Blueprint → this repo, or the Deploy button in the README.
+# Render asks for MODEL_API_KEY once (never stored in the repo). Delete the key in the dashboard to turn live mode off;
+# replays keep working without it. The free plan sleeps when idle (first visit ~30 s); runtime state is on /tmp.
+services:
+  - type: web
+    name: followalong
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    branch: main
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: MODEL_API_KEY
+        sync: false
+      - key: FA_HOSTED
+        value: "true"
+      - key: FA_DATA_DIR
+        value: /tmp/fa-data
+      # the shared rate limiter (60 requests/min per key) slows each learner's coach as the key fills, so more
+      # learners can practise at once than the old fixed 2
+      - key: FA_MAX_CONCURRENT_SESSIONS
+        value: "4"

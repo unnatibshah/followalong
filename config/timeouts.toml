@@ -1,0 +1,13 @@
+# Per-attempt timeouts in seconds (NFR-30). One retry, backoff from 500 ms with jitter.
+sam_s = 8
+judged_s = 15
+retries = 1
+backoff_ms = 500
+plan_s = 300            # Muse Spark watching a tutorial (TD §4.7: 5 min)
+files_s = 120           # Files API upload of the tutorial MP4
+ffmpeg_s = 300          # conversion; probes and frame grabs get a tenth of it
+question_s = 15         # Muse Spark answering a spoken question
+transcribe_s = 10       # a push-to-talk clip (at most 10 s of audio)
+narration_s = 120       # a tutorial's narration, per chunk of up to 5 min (FR-14 transcript option)
+voice_connect_s = 10    # realtime: connect and the handshake acknowledgement
+realtime_retry_s = 600 # after Meta refuses a realtime voice session: push-to-talk for this long, then realtime again

@@ -1,0 +1,1151 @@
+303 frames, estimated $2.64
+BAD step1-done.jpg step 1: truth done, got unsure (judge_failed) · 1990 ms {'geometry': 2} · $0.0024
+      hint=None
+    found: 
+BAD step1-done_dim.jpg step 1: truth done, got unsure (judge_failed) · 3034 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure (judge_failed) · 4604 ms {'geometry': 0} · $0.0032
+      hint=None
+    found: 
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure (judge_failed) · 6507 ms {'geometry': 0} · $0.0032
+      hint=None
+    found: 
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure (judge_failed) · 7137 ms {'geometry': 0} · $0.0022
+      hint=None
+    found: 
+BAD step2-done.jpg step 2: truth done, got unsure · 8461 ms {'geometry': 0, 'judge': 2457} · $0.0026
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.35 (Hands cover the top of the white board so no resistor is visible lying there.)
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 6922 ms {'geometry': 0, 'judge': 1706} · $0.0021
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.3 (Hands cover the breadboard top so no resistor across it is visible in the learner picture.)
+OK  step2-incomplete.jpg step 2: truth not_done, got wrong · 6898 ms {'geometry': 0, 'judge': 1527} · $0.0015
+      hint="You don't have the little blue-banded part on your white board yet — place it flat across the top holes like in the example."
+    found: 
+    judged: s2goal FAIL 0.9 (No blue-banded resistor is visible lying across the learner's white breadboard.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 6699 ms {'geometry': 0, 'judge': 1700} · $0.0025
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.2 (The breadboard top in the LEARNER picture is covered by a blur box and hands, so no resistor can be seen.)
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure · 6431 ms {'geometry': 0, 'judge': 2134} · $0.0019
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.35 (Top of white board is covered by hands and no blue-banded resistor is clearly visible.)
+OK  step3-done_dim.jpg step 3: truth done, got done · 6729 ms {'geometry': 0, 'judge': 1987} · $0.0026
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (Blue LED is upright on white breadboard and glowing blue in learner picture.); s3c3 pass 0.8 (LED glows blue, so polarity must be correct even though legs are hidden in board.)
+OK  step3-done.jpg step 3: truth done, got done · 8093 ms {'geometry': 0, 'judge': 3226} · $0.0028
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (Learner board shows upright LED glowing bright blue.); s3c3 pass 0.85 (LED glows blue, which requires correct polarity with short leg to negative.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 7307 ms {'geometry': 0, 'judge': 1814} · $0.0019
+      hint='You are still holding the blue LED in your fingers; push its two legs into the white board so it stands upright and lights blue.'
+    found: 
+    judged: s3goal FAIL 0.95 (Learner LED is held in fingers above board, not standing on board and not glowing.); s3c3 FAIL 0.95 (Learner LED is not inserted and not glowing, so polarity glow cannot be confirmed.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 7879 ms {'geometry': 0, 'judge': 2208} · $0.0021
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.1 (The breadboard area in the learner picture is blurred and the LED cannot be seen.); s3c3 FAIL 0.1 (The LED and its legs are not visible because the board is obscured.)
+OK  step3-wrong_colour.jpg step 3: truth wrong, got wrong · 7280 ms {'geometry': 0, 'judge': 1780} · $0.0020
+      hint='You have an orange-glowing LED on the board, swap it for the blue LED so it glows blue upright.'
+    found: 
+    judged: s3goal FAIL 0.95 (Learner LED stands upright but glows orange-yellow, not blue.); s3c3 FAIL 0.95 (No blue glow is visible, the LED glows orange instead.)
+BAD step1-done.jpg step 1: truth done, got unsure · 8051 ms {'geometry': 0, 'judge': 2986} · $0.0033
+      hint=None
+    found: 
+    judged: s1goal pass 0.65 (Learner shows the same coiled blue cable with a clear plug as the tutorial, with no second plug visible.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 7651 ms {'geometry': 0, 'judge': 2478} · $0.0029
+      hint="You show a blue cable with a cut end but I can't see a clear plug on the other end — hold up both ends so one clear plug and one cut end are visible like the tutorial."
+    found: 
+    judged: s1goal FAIL 0.75 (Learner cable shows a flat-cut blue end with no clear plug visible on either end in view.)
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 8068 ms {'geometry': 0, 'judge': 2683} · $0.0026
+      hint=None
+    found: 
+    judged: s1goal FAIL 0.2 (The blue cable area in the learner picture is covered by a gray box and cannot be verified.)
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 9616 ms {'geometry': 0, 'judge': 5602} · $0.0040
+      hint=None
+    found: 
+    judged: s1goal pass 0.6 (Learner shows coiled blue cable with one clear plug visible matching tutorial, bare cut end not clearly visible.)
+OK  step2-done.jpg step 2: truth done, got done · 7560 ms {'geometry': 0, 'judge': 2142} · $0.0021
+      hint=None
+    found: 
+    judged: s2goal pass 0.92 (Cut blue end shows multiple small colored wires sticking out.); s2c2 pass 0.92 (Blue jacket is removed exposing the inner colored wires.)
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure · 8540 ms {'geometry': 0, 'judge': 3549} · $0.0036
+      hint=None
+    found: 
+    judged: s1goal FAIL 0.4 (Coiled yellow cable is visible but no clear plug or flat-cut bare end can be clearly seen.)
+OK  step2-done_dim.jpg step 2: truth done, got done · 5854 ms {'geometry': 0, 'judge': 1641} · $0.0025
+      hint=None
+    found: 
+    judged: s2goal pass 0.9 (Learner blue cable shows small colored wires sticking out of the jacket.); s2c2 pass 0.85 (Blue jacket is stripped back exposing the inner colored wires.)
+OK  step2-incomplete.jpg step 2: truth not_done, got wrong · 5720 ms {'geometry': 0, 'judge': 2199} · $0.0028
+      hint="You don't show the cable end yet — strip about an inch of the blue jacket off the cut end so the eight small colored wires stick out like in the tutorial."
+    found: 
+    judged: s2goal FAIL 0.85 (No stripped cable end with colored wires is visible in the learner picture.); s2c2 FAIL 0.85 (No blue jacket removal or inner wires can be seen in the learner picture.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 6381 ms {'geometry': 0, 'judge': 3065} · $0.0021
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.1 (The cable end is covered by a blur block and not visible.); s2c2 FAIL 0.1 (The blue jacket and inner wires cannot be seen through the blur.)
+BAD step2-wrong_colour.jpg step 2: truth wrong, got done · 6637 ms {'geometry': 0, 'judge': 2641} · $0.0025
+      hint=None
+    found: 
+    judged: s2goal pass 0.75 (Learner cable end shows small colored inner wires sticking out of the outer jacket.); s2c2 pass 0.75 (Outer jacket is stripped back exposing the bundle of small inner wires.)
+BAD step3-done.jpg step 3: truth done, got wrong · 6428 ms {'geometry': 0, 'judge': 2571} · $0.0031
+      hint='You still have the colored wires bunched together, untwist each pair and fan all eight straight wires out from the blue jacket.'
+    found: 
+    judged: s3goal FAIL 0.8 (Learner wires are still grouped together, not fanned out straight with no twists.); s3c2 FAIL 0.8 (Inner wires remain twisted together in the hand, not separated straight.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 6812 ms {'geometry': 0, 'judge': 1255} · $0.0025
+      hint='You are still holding the closed blue jacket with no wires showing yet. Strip the end and fan out all eight colored wires straight like in the tutorial.'
+    found: 
+    judged: s3goal FAIL 0.9 (Learner picture shows only closed blue jacket, no fanned straight wires visible.); s3c2 FAIL 0.9 (No separated inner wires or stripped end can be seen in learner hands.)
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 7638 ms {'geometry': 0, 'judge': 2788} · $0.0025
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.35 (Learner image is too dark to see eight straight fanned wires with no twists.); s3c2 FAIL 0.35 (Cannot confirm eight separated straight wires or absence of white string in dark view.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 7666 ms {'geometry': 0, 'judge': 2666} · $0.0021
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.15 (Inner wires are obscured by hands and blur, not visible fanning out.); s3c2 FAIL 0.15 (Cannot see separated wires or white string due to obstruction.)
+OK  step4-done.jpg step 4: truth done, got done · 6192 ms {'geometry': 0, 'judge': 1635} · $0.0025
+      hint=None
+    found: 
+    judged: s4goal pass 0.95 (Blue boot is visible around the blue cable below exposed wires.); s4c3 pass 0.95 (Boot clearly encircles the cable below the exposed wires.)
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 7642 ms {'geometry': 0, 'judge': 3509} · $0.0029
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.65 (Learner picture shows only 3-4 wires between fingers, not eight straight wires fanned out.); s3c2 FAIL 0.6 (Eight separated straight wires are not visible and hands block view of string removal.)
+OK  step4-done_dim.jpg step 4: truth done, got done · 5795 ms {'geometry': 0, 'judge': 1167} · $0.0022
+      hint=None
+    found: 
+    judged: s4goal pass 0.95 (A small blue boot is visible around the blue cable below the exposed wires.); s4c3 pass 0.95 (The blue boot encircles the cable below the exposed wires.)
+OK  step4-incomplete.jpg step 4: truth not_done, got wrong · 7768 ms {'geometry': 0, 'judge': 3025} · $0.0029
+      hint='You still have the small blue boots on the table – slide one onto your blue cable so it sits below the exposed wires like in the tutorial.'
+    found: 
+    judged: s4goal FAIL 0.85 (No blue boot is visible around the blue cable in your hands; blue boots remain on the table.); s4c3 FAIL 0.85 (The blue cable below the exposed wires shows no encircling boot.)
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 7699 ms {'geometry': 0, 'judge': 2088} · $0.0026
+      hint=None
+    found: 
+    judged: s4goal FAIL 0.1 (The cable area where the boot should be is covered by a gray box in the learner picture.); s4c3 FAIL 0.1 (The lower cable is obscured, so encircling by the boot cannot be verified.)
+BAD step4-wrong_colour.jpg step 4: truth wrong, got done · 6671 ms {'geometry': 0, 'judge': 2139} · $0.0023
+      hint=None
+    found: 
+    judged: s4goal pass 0.82 (A small boot is visible around the lower end of the cable below the exposed wires in the learner picture.); s4c3 pass 0.82 (The boot encircles the cable shaft below the exposed wires, matching the tutorial relationship.)
+BAD step5-done.jpg step 5: truth done, got wrong · 6482 ms {'geometry': 0, 'judge': 2120} · $0.0029
+      hint='You have the green-first colour order started, now flatten the eight wires side-by-side with no crossing and trim the tips straight even.'
+    found: 
+    judged: s5goal FAIL 0.85 (Wires show green-first colours but ends are splayed, uneven and not trimmed flat for insertion.); s5c2 FAIL 0.85 (Wires are fanned and uneven lengths, not lying flat side-by-side with even ends.)
+BAD step5-done_dim.jpg step 5: truth done, got wrong · 7049 ms {'geometry': 0, 'judge': 2159} · $0.0032
+      hint='You have the wires fanned out but not yet lined up flat; arrange them side-by-side in green-first 568A order and trim the tips even.'
+    found: 
+    judged: s5goal FAIL 0.9 (Learner wires are splayed and uneven, not flat parallel ready to insert.); s5c2 FAIL 0.9 (Learner wires cross and have uneven ends, not flat side-by-side in order.)
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 8508 ms {'geometry': 0, 'judge': 2477} · $0.0032
+      hint='Your wires are still spread apart with uneven ends — line them up flat side-by-side in green-first order and snip the tips even.'
+    found: 
+    judged: s5goal FAIL 0.85 (Learner wires are splayed and uneven, not flat parallel ready to insert.); s5c2 FAIL 0.85 (Wires are fanned apart with jagged uneven ends, not flat and even.)
+BAD step5-missing_part.jpg step 5: truth not_done, got done · 6513 ms {'geometry': 0, 'judge': 2339} · $0.0024
+      hint=None
+    found: 
+    judged: s5goal pass 0.85 (Eight wires extend from blue jacket in green-first order visible on finger.); s5c2 pass 0.8 (Wires lie flat side-by-side with green on left and tips look even.)
+OK  step5-wrong_colour.jpg step 5: truth wrong, got wrong · 7092 ms {'geometry': 0, 'judge': 1981} · $0.0020
+      hint='You have the right green-first spread started, but your wires are still fanned and uneven. Line them flat side-by-side in order and trim the tips even like the blue cable shows.'
+    found: 
+    judged: s5goal FAIL 0.92 (Learner wires are splayed and uneven, not flat parallel trimmed ready to insert.); s5c2 FAIL 0.92 (Learner wires fan apart with different lengths, not flat side-by-side with even ends.)
+BAD step6-done.jpg step 6: truth done, got unsure · 6743 ms {'geometry': 0, 'judge': 1684} · $0.0025
+      hint=None
+    found: 
+    judged: s6goal pass 0.7 (Clear plug is on the blue cable end with wires inside visible.); s6c2 FAIL 0.5 (Wire ends at the gold pins are blurry and cannot confirm all eight reach the front.)
+OK  step6-incomplete.jpg step 6: truth not_done, got wrong · 6739 ms {'geometry': 0, 'judge': 1700} · $0.0020
+      hint='Your clear plug looks empty with the colored wires still outside behind it. Push the ordered wires fully into the back of the plug until all eight reach the gold pins at the front.'
+    found: 
+    judged: s6goal FAIL 0.95 (Clear plug is held empty with colored wires visible behind it, not inside reaching the front.); s6c2 FAIL 0.95 (No wires are visible inside the plug reaching the gold pins.)
+BAD step6-done_dim.jpg step 6: truth done, got unsure · 8023 ms {'geometry': 0, 'judge': 2943} · $0.0033
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.3 (Learner image is too dark to confirm the clear plug and colored wires reaching the front.); s6c2 FAIL 0.25 (Darkness and fingers block view so eight wires to gold pins cannot be verified.)
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 7462 ms {'geometry': 0, 'judge': 2740} · $0.0025
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.35 (Clear plug is held but wire ends are covered by a gray block and not visible.); s6c2 FAIL 0.3 (Eight wires reaching the pins without crossing cannot be seen due to obstruction.)
+OK  step6-wrong_colour.jpg step 6: truth wrong, got unsure · 7800 ms {'geometry': 0, 'judge': 2939} · $0.0026
+      hint=None
+    found: 
+    judged: s6goal pass 0.55 (Clear plug is on the cable end but wire colors reaching front are blurry and indistinct.); s6c2 FAIL 0.35 (Cannot clearly see eight separate wires reaching the gold pins without crossing.)
+OK  step7-done.jpg step 7: truth done, got done · 7722 ms {'geometry': 0, 'judge': 2504} · $0.0026
+      hint=None
+    found: 
+    judged: s7goal pass 0.9 (Clear plug is on wires with blue jacket visible tucked inside.); s7c2 pass 0.8 (Plug looks flattened with gold pins at the end seated like tutorial.)
+OK  step7-done_dim.jpg step 7: truth done, got done · 7580 ms {'geometry': 0, 'judge': 2066} · $0.0028
+      hint=None
+    found: 
+    judged: s7goal pass 0.85 (Clear plug is on the wires with blue jacket visible tucked inside the rear of the plug.); s7c2 pass 0.8 (Gold pins at the front of the clear plug appear seated and pressed into the wires.)
+BAD step7-missing_part.jpg step 7: truth not_done, got done · 7214 ms {'geometry': 0, 'judge': 1759} · $0.0017
+      hint=None
+    found: 
+    judged: s7goal pass 0.92 (Clear plug is on wires with blue jacket visibly tucked inside like tutorial.); s7c2 pass 0.9 (Gold pins at tip appear pressed down and plug looks flattened tight.)
+OK  step7-incomplete.jpg step 7: truth not_done, got unsure · 7535 ms {'geometry': 0, 'judge': 3237} · $0.0037
+      hint=None
+    found: 
+    judged: s7goal pass 0.75 (Blue jacket is visible tucked inside the clear plug held in hand.); s7c2 FAIL 0.5 (Plug is still inside the crimper jaws, pins cannot be confirmed pressed down.)
+OK  step8-done.jpg step 8: truth done, got done · 5453 ms {'geometry': 0, 'judge': 1194} · $0.0022
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (Blue boot covers the back of the clear plug in learner picture.); s8c2 pass 0.95 (Blue boot is pushed tight up against the crimped plug with no gap.)
+OK  step8-done_dim.jpg step 8: truth done, got done · 5763 ms {'geometry': 0, 'judge': 1068} · $0.0016
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (Blue boot covers the back of the clear plug like the tutorial.); s8c2 pass 0.95 (Boot is seated tight over the plug with no gap visible.)
+OK  step7-wrong_colour.jpg step 7: truth wrong, got unsure · 7931 ms {'geometry': 0, 'judge': 3472} · $0.0024
+      hint=None
+    found: 
+    judged: s7goal pass 0.65 (Clear plug is on the wires with the outer jacket tucked inside the back of the plug.); s7c2 pass 0.6 (Gold pins are visible on top of the clear plug appearing pressed into the wires.)
+OK  step8-incomplete.jpg step 8: truth not_done, got wrong · 7254 ms {'geometry': 0, 'judge': 2120} · $0.0020
+      hint='Your blue boot is still down the cable and not covering the plug. Slide the blue boot up over the back of the clear plug until it sits tight like in the tutorial.'
+    found: 
+    judged: s8goal FAIL 0.9 (In learner picture the blue boot is separate from the clear plug and does not cover its back.); s8c2 FAIL 0.9 (In learner picture the blue boot is held below the plug with a gap, not pushed tight over it.)
+OK  step8-missing_part.jpg step 8: truth not_done, got unsure · 6256 ms {'geometry': 0, 'judge': 2016} · $0.0027
+      hint=None
+    found: 
+    judged: s8goal FAIL 0.2 (The back of the plug and blue boot in the learner picture are obscured by a gray block.); s8c2 FAIL 0.2 (The blue boot seating cannot be seen because the area is obscured in the learner picture.)
+BAD step8-wrong_colour.jpg step 8: truth wrong, got done · 6558 ms {'geometry': 0, 'judge': 1396} · $0.0026
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (Orange boot covers the back of the clear plug like the tutorial's blue boot.); s8c2 pass 0.95 (Boot is pushed tight up against the back of the crimped plug with no gap.)
+OK  step1-done.jpg step 1: truth done, got done · 6025 ms {'geometry': 0, 'judge': 1221} · $0.0023
+      hint=None
+    found: 
+    judged: s1goal pass 0.98 (Learner blue rope forms one open loop with tail crossing over standing part.); s1c1 pass 0.98 (Working end clearly crosses over, not under, forming a single open loop.)
+OK  step1-done_dim.jpg step 1: truth done, got done · 6351 ms {'geometry': 0, 'judge': 1420} · $0.0022
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner blue rope forms one open loop with tail crossing over standing part.); s1c1 pass 0.95 (Working end crosses over the standing part forming a single open loop.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 7413 ms {'geometry': 0, 'judge': 1286} · $0.0015
+      hint='You have the rope in a U shape but no loop yet – bring one side across the other to make one open circle like in the tutorial.'
+    found: 
+    judged: s1goal FAIL 0.95 (Learner rope hangs as an open U with no crossing or loop formed.); s1c1 FAIL 0.95 (No working end crossing over standing part is visible in learner picture.)
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 7166 ms {'geometry': 0, 'judge': 2089} · $0.0019
+      hint=None
+    found: 
+    judged: s1goal FAIL 0.1 (No rope or loop is visible in the learner picture, only blank area and edge of hand.); s1c1 FAIL 0.1 (No working end or crossing can be seen in the learner picture to confirm over-crossing.)
+BAD step1-wrong_colour.jpg step 1: truth wrong, got done · 6590 ms {'geometry': 0, 'judge': 1406} · $0.0016
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner rope forms one open loop with tail crossing over standing part.); s1c1 pass 0.95 (Working end crosses over the standing part forming a single open loop.)
+OK  step2-done.jpg step 2: truth done, got done · 7091 ms {'geometry': 0, 'judge': 1288} · $0.0022
+      hint=None
+    found: 
+    judged: s2goal pass 0.98 (Learner blue rope shows clear upper twist with tail sticking sideways behind standing part.); s2c1 pass 0.97 (Working end visibly passes behind the standing part to form the upper twist.)
+OK  step2-done_dim.jpg step 2: truth done, got done · 7763 ms {'geometry': 1, 'judge': 1785} · $0.0015
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Blue rope shows clear upper twist with tail sticking sideways behind standing part.); s2c1 pass 0.95 (Working end visibly wraps behind standing part to form the upper twist.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 7816 ms {'geometry': 0, 'judge': 1903} · $0.0020
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.05 (Learner rope is fully obscured by gray overlay, no twist visible.); s2c1 FAIL 0.05 (Learner rope is fully obscured, cannot see working end behind standing part.)
+BAD step2-incomplete.jpg step 2: truth not_done, got done · 9056 ms {'geometry': 0, 'judge': 3278} · $0.0037
+      hint=None
+    found: 
+    judged: s2goal pass 0.85 (Learner shows a loop with an upper twist and tail sticking out sideways.); s2c1 pass 0.75 (Working end wraps to form upper twist around the standing part.)
+BAD step2-wrong_colour.jpg step 2: truth wrong, got done · 6627 ms {'geometry': 0, 'judge': 1516} · $0.0024
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Learner rope shows upper twist with tail sticking sideways like tutorial.); s2c1 pass 0.93 (Working end passes behind standing part forming the upper twist.)
+OK  step3-done.jpg step 3: truth done, got done · 6999 ms {'geometry': 0, 'judge': 1206} · $0.0025
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (Learner rope shows tight figure-eight with two stacked loops and short tail below.); s3c1 pass 0.95 (Tail is threaded through lower loop forming the classic figure-8 structure.); s3c2 pass 0.95 (Knot is dressed tight and clear with no looseness or sloppiness visible.)
+OK  step3-done_dim.jpg step 3: truth done, got done · 8095 ms {'geometry': 0, 'judge': 2184} · $0.0029
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (Learner blue rope shows tight figure-eight with two loops and tail below.); s3c1 pass 0.95 (Tail is threaded through the lower loop forming the 8 shape.); s3c2 pass 0.93 (Knot is dressed tight with clear 8 shape, not loose.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 7641 ms {'geometry': 0, 'judge': 2228} · $0.0021
+      hint='You have the figure-8 shape threaded right, now pull both ends to dress it down tight like the tutorial so the loops are small and snug.'
+    found: 
+    judged: s3goal FAIL 0.95 (Learner rope forms a loose large 8, not a tight small 8 with short tail.); s3c1 pass 0.9 (Learner blue rope forms an 8 with the tail passing through the lower loop.); s3c2 FAIL 0.95 (Learner knot is loose and spread open, not dressed and tightened.)
+BAD step3-wrong_colour.jpg step 3: truth wrong, got done · 6771 ms {'geometry': 0, 'judge': 1650} · $0.0020
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (Learner rope forms a tight figure-eight with two stacked loops and short tail below.); s3c1 pass 0.92 (Tail is visibly threaded through the lower loop forming the 8.); s3c2 pass 0.93 (Knot is dressed tight with a clear 8 shape, not loose.)
+OK  step3-missing_part.jpg step 3: truth not_done, got wrong · 7116 ms {'geometry': 0, 'judge': 3019} · $0.0027
+      hint="Your rope and knot are hidden behind a blur in the center of the photo, so I can't see them. Try taking another photo with the blue rope in clear view."
+    found: 
+    judged: s3goal FAIL 0.85 (No rope or knot is visible in the learner picture due to central obstruction.); s3c1 FAIL 0.85 (Tail and lower loop cannot be seen in the learner picture.); s3c2 FAIL 0.85 (No dressed 8 shape is visible in the learner picture.)
+BAD step1-done.jpg step 1: truth done, got unsure · 7946 ms {'geometry': 0, 'judge': 2265} · $0.0029
+      hint=None
+    found: 
+    judged: s1goal FAIL 0.35 (Hand covers the gray box so four bare wire ends with no caps cannot be confirmed in learner picture.)
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 8852 ms {'geometry': 0, 'judge': 2860} · $0.0030
+      hint=None
+    found: 
+    judged: s1goal pass 0.6 (Wires stick out of the box with no caps, but hand blocks full count of four ends.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 6688 ms {'geometry': 0, 'judge': 1672} · $0.0023
+      hint='You still have an orange cap on one white wire — twist it off so all four bare ends stick out with no caps like in the tutorial.'
+    found: 
+    judged: s1goal FAIL 0.95 (Learner picture shows an orange cap still on one white wire, not four bare uncapped ends.)
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 7810 ms {'geometry': 0, 'judge': 2839} · $0.0030
+      hint=None
+    found: 
+    judged: s1goal FAIL 0.2 (Center of gray box is blurred and blocked by hand so wire ends and caps cannot be seen.)
+BAD step1-wrong_colour.jpg step 1: truth wrong, got done · 6808 ms {'geometry': 0, 'judge': 2458} · $0.0022
+      hint=None
+    found: 
+    judged: s1goal pass 0.75 (White and black wires stick out of the gray box with bare copper tips and no caps visible.)
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 7177 ms {'geometry': 0, 'judge': 2244} · $0.0030
+      hint=None
+    found: 
+    judged: s2goal pass 0.85 (Yellow tester and black probe are at the open box touching bare wires.); s2c2 FAIL 0.3 (Tester screen is too dark to confirm it shows no voltage.)
+OK  step2-incomplete.jpg step 2: truth not_done, got wrong · 6012 ms {'geometry': 0, 'judge': 1672} · $0.0024
+      hint='You have the bare wires exposed in the box, now bring your yellow tester to them. Touch the probes to the black and bare wires to confirm no power before touching.'
+    found: 
+    judged: s2goal FAIL 0.98 (No yellow tester or hands are visible touching the wires in the learner picture.); s2c2 FAIL 0.95 (No tester is visible to show voltage status on the black wires.)
+BAD step2-done.jpg step 2: truth done, got unsure · 9655 ms {'geometry': 0, 'judge': 4276} · $0.0035
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Yellow and black tester probes are touching the bare wires in the box.); s2c2 pass 0.5 (Probes are on the wires with no voltage indication visible, but display is not clearly readable.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 7920 ms {'geometry': 0, 'judge': 2393} · $0.0029
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Yellow and black tester probes are touching the bare wires in the box.); s2c2 FAIL 0.3 (Tester display and lights are not visible in the learner picture to confirm no voltage.)
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure · 6726 ms {'geometry': 0, 'judge': 2366} · $0.0026
+      hint=None
+    found: 
+    judged: s2goal pass 0.9 (Both tester probes are touching the bare wires in the box in the learner picture.); s2c2 FAIL 0.4 (The tester display reading for the black wires is not clearly visible in the learner picture.)
+BAD step3-done.jpg step 3: truth done, got wrong · 7864 ms {'geometry': 0, 'judge': 3124} · $0.0035
+      hint='You still show two white wires loose in the box with two black wires out – twist both white ends together fully under the yellow nut and tuck it inside the box.'
+    found: 
+    judged: s3goal FAIL 0.85 (White wires are still visible loose in the box with no yellow nut covering their ends.); s3c2 FAIL 0.85 (No yellow nut joining the white wires is visible on the learner wires.)
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 6548 ms {'geometry': 0, 'judge': 2793} · $0.0023
+      hint=None
+    found: 
+    judged: s3goal pass 0.8 (Two white wires go under a yellow nut inside the box with two black wires left out.); s3c2 pass 0.55 (White wires enter the yellow nut together but the twist detail is not clearly visible.)
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 6077 ms {'geometry': 0, 'judge': 1750} · $0.0027
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.1 (Learner box area is fully covered by hand, white wires and yellow nut not visible.); s3c2 FAIL 0.1 (Hand blocks view so twisting of white wires under nut cannot be confirmed.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 7444 ms {'geometry': 0, 'judge': 2122} · $0.0022
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.3 (Center of box is pixel-blurred so the yellow nut covering white wires cannot be confirmed.); s3c2 FAIL 0.2 (Blurred area hides whether white wires are twisted under the nut.)
+BAD step3-wrong_colour.jpg step 3: truth wrong, got done · 6965 ms {'geometry': 0, 'judge': 2160} · $0.0022
+      hint=None
+    found: 
+    judged: s3goal pass 0.85 (Yellow nut is tucked inside the box with white wires under it and two black wires left out.); s3c2 pass 0.7 (White wires disappear together under the yellow nut with no copper or loose wire visible.)
+OK  step4-done.jpg step 4: truth done, got done · 7832 ms {'geometry': 0, 'judge': 3000} · $0.0031
+      hint=None
+    found: 
+    judged: s4goal pass 0.9 (Red nut joins a black lead to the hanging thermostat while a second bare black lead waits separate below.); s4c2 pass 0.85 (Red nut sits at the box covering the junction of a dark wall wire and one thermostat black lead.)
+OK  step4-done_dim.jpg step 4: truth done, got done · 6366 ms {'geometry': 0, 'judge': 2292} · $0.0027
+      hint=None
+    found: 
+    judged: s4goal pass 0.9 (Learner shows red nut joining one black wall wire to thermostat lead with second black wire hanging free.); s4c2 pass 0.8 (Red nut covers the junction of black wall wire and black thermostat lead, same as tutorial, though splice is hidden inside nut.)
+OK  step4-incomplete.jpg step 4: truth not_done, got wrong · 6318 ms {'geometry': 0, 'judge': 1911} · $0.0029
+      hint='You are holding the black wires where the red cap should go — twist one black wall wire to one black thermostat lead and screw the red nut on so no copper shows.'
+    found: 
+    judged: s4goal FAIL 0.75 (No red nut capping is visible in learner picture, hand covers the joint.); s4c2 FAIL 0.7 (The splice under hand shows bare copper with no red nut visible.)
+BAD step4-missing_part.jpg step 4: truth not_done, got done · 7358 ms {'geometry': 0, 'judge': 1909} · $0.0028
+      hint=None
+    found: 
+    judged: s4goal pass 0.85 (One black wire is under the red nut to the hanging thermostat, and a second dark wire shape is present below.); s4c2 pass 0.9 (Red nut visibly joins a black wall wire to the black thermostat lead with no copper showing.)
+BAD step4-wrong_colour.jpg step 4: truth wrong, got done · 8196 ms {'geometry': 0, 'judge': 3119} · $0.0024
+      hint=None
+    found: 
+    judged: s4goal pass 0.95 (Red nut caps a black wire to the hanging thermostat while a second stripped black wire waits below.); s4c2 pass 0.9 (Thermostat black lead and a wall black wire both enter the red nut with no copper showing.)
+BAD step5-done.jpg step 5: truth done, got wrong · 7038 ms {'geometry': 0, 'judge': 1999} · $0.0026
+      hint='You have one joint capped with the red nut, but the other black wire on the right still has bare copper showing. Twist that wire to the other thermostat lead and cover it with a wire nut like the first one.'
+    found: 
+    judged: s5goal FAIL 0.95 (Only one joint is capped, the right black wire has exposed copper and is not connected.); s5c2 FAIL 0.95 (The second black wire on the right is loose with bare end visible, not under a nut.)
+BAD step5-done_dim.jpg step 5: truth done, got wrong · 7038 ms {'geometry': 0, 'judge': 2839} · $0.0028
+      hint='You have one joint capped with the red nut but the other two black ends at the top are still twisted bare with copper showing; twist that second pair tight and cover it with a wire nut like the first one.'
+    found: 
+    judged: s5goal FAIL 0.85 (One black pair is capped but the other black pair at top right is bare with copper exposed, not capped.); s5c2 FAIL 0.85 (The second black wires are twisted together but no nut covers them in the learner picture.)
+OK  step5-wrong_colour.jpg step 5: truth wrong, got wrong · 7101 ms {'geometry': 0, 'judge': 1812} · $0.0019
+      hint='Your second black joint at the top is still open with copper showing, cap both black pairs with nuts like the red one and let the thermostat hang.'
+    found: 
+    judged: s5goal FAIL 0.95 (One joint has a red nut but the other black wires show exposed copper with no nut.); s5c2 FAIL 0.95 (The second black wires are not under a nut, copper ends are exposed at the top.)
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 8373 ms {'geometry': 0, 'judge': 3086} · $0.0027
+      hint=None
+    found: 
+    judged: s5goal FAIL 0.45 (Second black-to-lead joint is hidden behind blur so both capped joints cannot be confirmed.); s5c2 FAIL 0.4 (The right-side splice under a nut is obscured and not verifiable in the learner picture.)
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 9349 ms {'geometry': 0, 'judge': 4442} · $0.0035
+      hint='You have a loose black wire hanging out to the upper right with the end exposed; twist that second black wall wire together with the other black thermostat lead and cover it with a wire nut like the first joint.'
+    found: 
+    judged: s5goal FAIL 0.85 (One black wire in learner picture hangs loose out of the box with bare end, not both capped.); s5c2 FAIL 0.85 (The second black wire is seen loose outside the box, not spliced under a nut.)
+OK  step6-done.jpg step 6: truth done, got done · 5433 ms {'geometry': 0, 'judge': 1354} · $0.0023
+      hint=None
+    found: 
+    judged: s6goal pass 0.95 (Black base with white knob is centered flat over wall opening with screws visible.); s6c2 pass 0.95 (Base sits flush flat over box with no gap or tilt visible.)
+OK  step6-done_dim.jpg step 6: truth done, got done · 6674 ms {'geometry': 0, 'judge': 1474} · $0.0024
+      hint=None
+    found: 
+    judged: s6goal pass 0.95 (Learner shows black base with white knob flat over wall opening with screws in place.); s6c2 pass 0.95 (Black base sits flush and straight covering the box with no gap or tilt visible.)
+OK  step6-incomplete.jpg step 6: truth not_done, got wrong · 6467 ms {'geometry': 0, 'judge': 2108} · $0.0021
+      hint='Your black base is still in your hand off the wall, unlike the tutorial where it sits flat. Place the black base with white knob flat over the opening and drive both screws in.'
+    found: 
+    judged: s6goal FAIL 0.85 (Learner base is held in hand away from wall, not screwed flat over opening.); s6c2 FAIL 0.85 (Black base is lifted off the wall, not sitting flat over the box.)
+BAD step6-missing_part.jpg step 6: truth not_done, got done · 4814 ms {'geometry': 0, 'judge': 1827} · $0.0019
+      hint=None
+    found: 
+    judged: s6goal pass 0.92 (Learner shows black base with white knob positioned flat over wall opening matching tutorial.); s6c2 pass 0.92 (Black base sits flat and centered over the wall box with no gap or tilt visible.)
+BAD step6-wrong_colour.jpg step 6: truth wrong, got done · 6479 ms {'geometry': 0, 'judge': 2366} · $0.0026
+      hint=None
+    found: 
+    judged: s6goal pass 0.95 (Learner shows black base with white knob screwed flat over wall opening.); s6c2 pass 0.95 (Black base sits flat and straight over the wall box with no gap.)
+OK  step7-done.jpg step 7: truth done, got done · 6425 ms {'geometry': 0, 'judge': 1269} · $0.0022
+      hint=None
+    found: 
+    judged: s7goal pass 0.97 (Learner shows white Honeywell cover with dial mounted on white wall.); s7c2 pass 0.95 (Learner cover sits flush with no gap or base showing.)
+OK  step7-done_dim.jpg step 7: truth done, got done · 7157 ms {'geometry': 0, 'judge': 1313} · $0.0024
+      hint=None
+    found: 
+    judged: s7goal pass 0.95 (White Honeywell cover with dial is centered on white wall in learner picture.); s7c2 pass 0.95 (White cover sits flush with no gap or base showing in learner picture.)
+OK  step7-incomplete.jpg step 7: truth not_done, got wrong · 7158 ms {'geometry': 0, 'judge': 1433} · $0.0018
+      hint='You still have the black base exposed with just the white knob on it. Push the white Honeywell cover with the dial over the base until it sits flat.'
+    found: 
+    judged: s7goal FAIL 0.98 (Learner shows black base with white knob, not white Honeywell cover.); s7c2 FAIL 0.98 (No white cover is on the base, black base is fully exposed.)
+OK  step1-done.jpg step 1: truth done, got done · 7651 ms {'geometry': 0, 'judge': 2560} · $0.0026
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner shows dark red hood fully raised open exposing the engine bay.); s1c1 pass 0.8 (Hood is fully lifted open and no sign of running, matching parked-off state.)
+OK  step1-done_dim.jpg step 1: truth done, got done · 7369 ms {'geometry': 0, 'judge': 1997} · $0.0020
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner shows dark red hood fully raised open exposing the engine bay.); s1c1 pass 0.85 (Hood is fully lifted and engine bay is still with no visible sign of running.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 6632 ms {'geometry': 0, 'judge': 1799} · $0.0027
+      hint='Your red hood is still closed while the tutorial shows it lifted fully open. Lift your hood up all the way to expose the engine bay.'
+    found: 
+    judged: s1goal FAIL 0.98 (Learner red hood is closed, not raised open over engine bay.); s1c1 FAIL 0.98 (Hood remains down with hand at grille, not fully raised.)
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 8975 ms {'geometry': 0, 'judge': 3045} · $0.0035
+      hint=None
+    found: 
+    judged: s1goal pass 0.55 (Engine bay is exposed and matches tutorial, but hood itself is hidden by gray overlay so full raise cannot be confirmed.); s1c1 pass 0.5 (Lower engine bay is open suggesting hood is up, but hood panel is obscured and engine-off state cannot be seen.)
+BAD step1-wrong_colour.jpg step 1: truth wrong, got done · 7886 ms {'geometry': 0, 'judge': 2000} · $0.0024
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner shows red hood raised open over exposed engine bay matching tutorial.); s1c1 pass 0.8 (Hood is fully raised open; engine off cannot be heard but no sign of running.)
+OK  step2-done.jpg step 2: truth done, got done · 7167 ms {'geometry': 0, 'judge': 1401} · $0.0024
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Black hood is raised and black battery is exposed in lower right of engine bay.); s2c2 pass 0.95 (Hood is fully raised and held open by wooden prop on right.)
+OK  step2-done_dim.jpg step 2: truth done, got done · 6200 ms {'geometry': 0, 'judge': 1561} · $0.0023
+      hint=None
+    found: 
+    judged: s2goal pass 0.92 (Learner shows black hood up with black battery with red cap exposed in bay.); s2c2 pass 0.9 (Hood is fully raised and propped open by wooden stick.)
+OK  step2-missing_part.jpg step 2: truth not_done, got wrong · 7167 ms {'geometry': 0, 'judge': 1768} · $0.0026
+      hint="Your black hood is raised like the tutorial, but your dark battery area is covered by a blur so it can't be seen. Lift the cover or clear the view so the black battery is exposed in the bay."
+    found: 
+    judged: s2goal FAIL 0.95 (Hood is raised but black battery is obscured by a gray blur in learner view.); s2c2 pass 0.9 (Black hood is fully up with a wooden prop holding it open.)
+BAD step2-wrong_colour.jpg step 2: truth wrong, got done · 5563 ms {'geometry': 0, 'judge': 1408} · $0.0023
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Learner hood is raised with black battery exposed in engine bay like tutorial.); s2c2 pass 0.9 (Hood is up and held open by a prop on the side.)
+BAD step2-incomplete.jpg step 2: truth not_done, got done · 10033 ms {'geometry': 0, 'judge': 4832} · $0.0046
+      hint=None
+    found: 
+    judged: s2goal pass 0.85 (Learner hood is raised open with black battery exposed on right side of engine bay.); s2c2 pass 0.7 (Hood is raised clear of the engine bay giving access, though the holding prop is not visible.)
+BAD step3-done.jpg step 3: truth done, got unsure (judge_failed) · 6844 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+BAD step3-done_dim.jpg step 3: truth done, got unsure (judge_failed) · 8008 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure (judge_failed) · 7761 ms {'geometry': 0} · $0.0023
+      hint=None
+    found: 
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure (judge_failed) · 6331 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure (judge_failed) · 6467 ms {'geometry': 0} · $0.0021
+      hint=None
+    found: 
+BAD step4-done.jpg step 4: truth done, got unsure (judge_failed) · 7144 ms {'geometry': 0} · $0.0031
+      hint=None
+    found: 
+BAD step4-done_dim.jpg step 4: truth done, got unsure (judge_failed) · 8002 ms {'geometry': 0} · $0.0028
+      hint=None
+    found: 
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure (judge_failed) · 7006 ms {'geometry': 0} · $0.0021
+      hint=None
+    found: 
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure (judge_failed) · 7579 ms {'geometry': 0} · $0.0029
+      hint=None
+    found: 
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure (judge_failed) · 6910 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+OK  step5-done.jpg step 5: truth done, got done · 7475 ms {'geometry': 0, 'judge': 2153} · $0.0024
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Hand is on ignition key with orange and red dashboard lights lit.); s5c1 pass 0.9 (Key appears turned with dashboard warning lights illuminated as in tutorial.)
+OK  step5-done_dim.jpg step 5: truth done, got done · 7116 ms {'geometry': 0, 'judge': 2294} · $0.0029
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Learner shows hand on ignition key with red dashboard lights lit.); s5c1 pass 0.7 (Key is in ignition with dashboard lights on, engine running cannot be confirmed from still image.)
+BAD step5-incomplete.jpg step 5: truth not_done, got done · 6549 ms {'geometry': 0, 'judge': 1799} · $0.0023
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Learner shows hand turning key in ignition with dashboard warning lights lit.); s5c1 pass 0.9 (Key is in ignition with multiple dashboard lights illuminated indicating power on.)
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 7325 ms {'geometry': 0, 'judge': 2142} · $0.0022
+      hint=None
+    found: 
+    judged: s5goal FAIL 0.5 (Hand is on ignition but dashboard is covered by gray box so lights cannot be confirmed.); s5c1 FAIL 0.4 (Key position and dashboard lights/engine state cannot be seen due to gray occlusion.)
+BAD step6-done.jpg step 6: truth done, got unsure · 7143 ms {'geometry': 0, 'judge': 2448} · $0.0031
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.05 (Learner image is black and blurred with no engine bay visible.); s6c1 FAIL 0.05 (No batteries or jumper clamps can be seen in learner image.); s6c2 FAIL 0.05 (No key or engine state can be seen in learner image.)
+BAD step6-done_dim.jpg step 6: truth done, got unsure · 7322 ms {'geometry': 0, 'judge': 1933} · $0.0028
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.05 (Learner image is black and blurred with no engine bay visible.); s6c1 FAIL 0.05 (No clamps, batteries, or cables can be seen in learner image.); s6c2 FAIL 0.05 (No car, key, or engine detail is visible in learner image.)
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure · 7319 ms {'geometry': 0, 'judge': 2273} · $0.0023
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.95 (Learner bay shows jumper cables and clamps still attached to battery, not clear.); s6c1 FAIL 0.95 (Red and black clamps are still clamped on battery terminals in learner picture.); s6c2 FAIL 0.2 (Key and engine running state cannot be seen from this engine-bay view.)
+OK  step1-done.jpg step 1: truth done, got done · 7951 ms {'geometry': 0, 'judge': 3047} · $0.0038
+      hint=None
+    found: 
+    judged: s1goal pass 0.7 (The toggle beside the ENTRY BEDROOM label in the learner picture appears in the centered OFF position inside the open panel.); s1c1 pass 0.7 (The ENTRY-BEDROOM breaker handle looks switched away from ON, different from the ON breaker above it.)
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 8083 ms {'geometry': 0, 'judge': 2683} · $0.0030
+      hint=None
+    found: 
+    judged: s1goal pass 0.65 (The labeled black ENTRY BEDROOM breaker and open panel match the tutorial position.); s1c1 pass 0.6 (The ENTRY BEDROOM toggle appears in the same OFF position as the tutorial, though the image is dark.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 7262 ms {'geometry': 0, 'judge': 2205} · $0.0028
+      hint='You are pointing at the right black breaker by the white ENTRY BEDROOM label, but its small black toggle still looks centered like the ON ones. Flip that toggle fully to the OFF position.'
+    found: 
+    judged: s1goal FAIL 0.85 (The learner's pointed-to breaker toggle is still in the center ON position, not moved to OFF.); s1c1 FAIL 0.85 (The ENTRY BEDROOM 15A breaker in the learner picture remains ON, matching the neighboring ON breakers.)
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 7498 ms {'geometry': 0, 'judge': 2747} · $0.0028
+      hint=None
+    found: 
+    judged: s1goal pass 0.6 (The toggle next to the ENTRY BEDROOM label appears in the OFF side position in the open panel, matching the tutorial.); s1c1 pass 0.6 (The ENTRY BEDROOM breaker handle looks moved to OFF, not left ON with the other breakers.)
+BAD step2-done.jpg step 2: truth done, got wrong · 6816 ms {'geometry': 0, 'judge': 1549} · $0.0026
+      hint='Your white cover is still on the wall over the two switches. Remove the white faceplate to leave the two switches exposed.'
+    found: 
+    judged: s2goal FAIL 0.95 (Learner picture shows white faceplate still covering wall around two switches.)
+BAD step2-done_dim.jpg step 2: truth done, got wrong · 6312 ms {'geometry': 0, 'judge': 1386} · $0.0018
+      hint='You still have the white cover on over the two switches. Remove the white faceplate so both switches are exposed with no cover.'
+    found: 
+    judged: s2goal FAIL 0.95 (Learner picture shows the white faceplate still covering the wall around the two switches.)
+OK  step2-incomplete.jpg step 2: truth not_done, got wrong · 5702 ms {'geometry': 0, 'judge': 1550} · $0.0024
+      hint='You still have the white cover on the two switches — remove the four small screws and lift the cover off to expose the switches.'
+    found: 
+    judged: s2goal FAIL 0.95 (Learner picture shows the white faceplate still covering the wall around the two switches.)
+OK  step2-missing_part.jpg step 2: truth not_done, got wrong · 6497 ms {'geometry': 0, 'judge': 1982} · $0.0026
+      hint='You still have the white cover plate on the wall. Remove the white plate completely so both bare white switches show with no cover.'
+    found: 
+    judged: s2goal FAIL 0.95 (Learner picture still shows the white faceplate covering the wall, not two exposed switches with no cover.)
+OK  step2-wrong_colour.jpg step 2: truth wrong, got wrong · 6781 ms {'geometry': 0, 'judge': 1788} · $0.0021
+      hint='You still have the white cover on over the switches - remove the screws and lift it off so both white switches are exposed with no cover.'
+    found: 
+    judged: s2goal FAIL 0.97 (Learner picture shows the white faceplate still covering the wall with two switches inside it.)
+OK  step3-done.jpg step 3: truth done, got done · 6127 ms {'geometry': 0, 'judge': 1677} · $0.0025
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (One white switch remains mounted with open blue hole and loose wires visible beside it.)
+OK  step3-done_dim.jpg step 3: truth done, got done · 7141 ms {'geometry': 0, 'judge': 1492} · $0.0018
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (Learner shows white switch mounted on left with open blue hole and loose wires on right, removed switch in hand.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 6761 ms {'geometry': 0, 'judge': 948} · $0.0016
+      hint='You still have both white switches mounted with no open hole yet – keep unscrewing the right white switch until it comes free and leaves loose wires hanging.'
+    found: 
+    judged: s3goal FAIL 0.95 (Learner shows two white switches still mounted with no open blue hole or loose wires visible.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 8273 ms {'geometry': 0, 'judge': 2624} · $0.0032
+      hint=None
+    found: 
+    judged: s3goal pass 0.65 (Right switch is removed in hand with loose wires out of the blue hole while one device remains mounted on the left, though it is gray-blurred.)
+BAD step3-wrong_colour.jpg step 3: truth wrong, got done · 7398 ms {'geometry': 0, 'judge': 2181} · $0.0025
+      hint=None
+    found: 
+    judged: s3goal pass 0.95 (One white switch stays mounted with open blue hole and wires beside it, removed switch held in hand.)
+BAD step4-done.jpg step 4: truth done, got unsure (judge_failed) · 7210 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+BAD step4-done_dim.jpg step 4: truth done, got unsure (judge_failed) · 7750 ms {'geometry': 0} · $0.0022
+      hint=None
+    found: 
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure (judge_failed) · 7185 ms {'geometry': 0} · $0.0023
+      hint=None
+    found: 
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure (judge_failed) · 8311 ms {'geometry': 0} · $0.0028
+      hint=None
+    found: 
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure (judge_failed) · 6833 ms {'geometry': 0} · $0.0036
+      hint=None
+    found: 
+BAD step5-done.jpg step 5: truth done, got unsure (judge_failed) · 6675 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+BAD step5-done_dim.jpg step 5: truth done, got unsure (judge_failed) · 7056 ms {'geometry': 0} · $0.0027
+      hint=None
+    found: 
+OK  step5-incomplete.jpg step 5: truth not_done, got unsure (judge_failed) · 7070 ms {'geometry': 0} · $0.0030
+      hint=None
+    found: 
+BAD step6-done.jpg step 6: truth done, got unsure (judge_failed) · 7105 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+BAD step6-done_dim.jpg step 6: truth done, got unsure (judge_failed) · 6813 ms {'geometry': 0} · $0.0019
+      hint=None
+    found: 
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure (judge_failed) · 6086 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure (judge_failed) · 8608 ms {'geometry': 0} · $0.0029
+      hint=None
+    found: 
+OK  step7-done.jpg step 7: truth done, got done · 6962 ms {'geometry': 0, 'judge': 1863} · $0.0023
+      hint=None
+    found: 
+    judged: s7goal pass 0.95 (Learner shows new white switch mounted beside old white switch in open box.); s7c2 pass 0.9 (Both white switches appear upright and straight side-by-side in box.)
+OK  step6-wrong_colour.jpg step 6: truth wrong, got unsure (judge_failed) · 8865 ms {'geometry': 0} · $0.0035
+      hint=None
+    found: 
+OK  step7-done_dim.jpg step 7: truth done, got done · 7014 ms {'geometry': 0, 'judge': 1201} · $0.0023
+      hint=None
+    found: 
+    judged: s7goal pass 0.85 (Two white switches are mounted side-by-side in the open wall box.); s7c2 pass 0.8 (The new left switch appears upright and parallel to the old switch.)
+OK  step7-incomplete.jpg step 7: truth not_done, got wrong · 6921 ms {'geometry': 0, 'judge': 1395} · $0.0021
+      hint='You are holding the white smart switch outside the box next to the old switch. Push it into the empty side of the box and screw its metal tabs to the box so it sits straight beside the old switch.'
+    found: 
+    judged: s7goal FAIL 0.95 (Learner shows the new white switch held in hands outside the box, not mounted beside the old switch.); s7c2 FAIL 0.95 (The new switch is not seated in the box at all, so it is not straight beside the old switch.)
+BAD step7-missing_part.jpg step 7: truth not_done, got done · 8452 ms {'geometry': 0, 'judge': 2398} · $0.0022
+      hint=None
+    found: 
+    judged: s7goal pass 0.7 (Learner shows a light switch body seated in the left side of the open box beside the old illuminated switch on the right.); s7c2 pass 0.75 (Learner left switch edges look vertical and parallel to the old switch, not crooked.)
+BAD step7-wrong_colour.jpg step 7: truth wrong, got done · 5567 ms {'geometry': 0, 'judge': 1435} · $0.0025
+      hint=None
+    found: 
+    judged: s7goal pass 0.92 (Learner shows a new white switch mounted beside the old white switch in the open box.); s7c2 pass 0.9 (Learner shows the new switch seated straight and even beside the old switch.)
+OK  step8-done.jpg step 8: truth done, got done · 5285 ms {'geometry': 0, 'judge': 1149} · $0.0022
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (White double faceplate is installed with both switches visible and green light on.); s8c2 pass 0.95 (Small green indicator is clearly lit on the right switch.)
+OK  step8-done_dim.jpg step 8: truth done, got done · 6754 ms {'geometry': 0, 'judge': 1676} · $0.0027
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (White double faceplate is installed with both switches visible and green light on.); s8c2 pass 0.95 (Small green indicator is clearly lit on the right smart switch.)
+BAD step8-incomplete.jpg step 8: truth not_done, got done · 8279 ms {'geometry': 0, 'judge': 2280} · $0.0030
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (White double faceplate is over the wall with both switches visible and green light on.); s8c2 pass 0.95 (Small green dot is clearly lit on the right switch.)
+OK  step8-missing_part.jpg step 8: truth not_done, got wrong · 7186 ms {'geometry': 0, 'judge': 1384} · $0.0026
+      hint='Your white plate and green light look good — uncover the left white switch so both switches show through the plate like in the example.'
+    found: 
+    judged: s8goal FAIL 0.9 (Left switch area is covered by a solid gray block so both switches are not visible.); s8c2 pass 0.95 (A small green dot is clearly lit on the right smart switch.)
+BAD step8-wrong_colour.jpg step 8: truth wrong, got done · 6013 ms {'geometry': 0, 'judge': 1213} · $0.0018
+      hint=None
+    found: 
+    judged: s8goal pass 0.95 (White double faceplate covers wall with both switches visible and green light on.); s8c2 pass 0.95 (Small green dot is lit on the right smart switch.)
+OK  step1-done.jpg step 1: truth done, got done · 7268 ms {'geometry': 0, 'judge': 1504} · $0.0023
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (The green cube is visible inside the right clear grid in the learner picture.)
+OK  step1-done_dim.jpg step 1: truth done, got done · 7166 ms {'geometry': 0, 'judge': 1115} · $0.0020
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner right tray contains the green cube in a grid cell.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 6635 ms {'geometry': 0, 'judge': 1113} · $0.0020
+      hint='Your green cube is still in the left grid. Move the green cube to sit inside the right clear grid like in the tutorial.'
+    found: 
+    judged: s1goal FAIL 0.95 (Learner right grid is empty and green cube is still in left grid.)
+OK  step1-missing_part.jpg step 1: truth not_done, got wrong · 6435 ms {'geometry': 0, 'judge': 1516} · $0.0017
+      hint='The green cube is not in the right clear grid yet, move your green cube into the right grid like shown.'
+    found: 
+    judged: s1goal FAIL 0.9 (The right clear grid in the learner picture is empty with no green cube inside it.)
+BAD step1-wrong_colour.jpg step 1: truth wrong, got done · 6779 ms {'geometry': 0, 'judge': 963} · $0.0014
+      hint=None
+    found: 
+    judged: s1goal pass 0.95 (Learner picture shows green cube inside the right clear grid.)
+BAD step2-done.jpg step 2: truth done, got unsure (judge_failed) · 7900 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+BAD step2-done_dim.jpg step 2: truth done, got unsure (judge_failed) · 7447 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure (judge_failed) · 7532 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure (judge_failed) · 8041 ms {'geometry': 0} · $0.0022
+      hint=None
+    found: 
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure (judge_failed) · 7300 ms {'geometry': 0} · $0.0020
+      hint=None
+    found: 
+BAD step3-done.jpg step 3: truth done, got unsure (judge_failed) · 8705 ms {'geometry': 0} · $0.0034
+      hint=None
+    found: 
+BAD step3-done_dim.jpg step 3: truth done, got unsure (judge_failed) · 6970 ms {'geometry': 0} · $0.0028
+      hint=None
+    found: 
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure (judge_failed) · 7028 ms {'geometry': 0} · $0.0019
+      hint=None
+    found: 
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure (judge_failed) · 7979 ms {'geometry': 0} · $0.0029
+      hint=None
+    found: 
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure (judge_failed) · 6766 ms {'geometry': 0} · $0.0021
+      hint=None
+    found: 
+BAD step4-done.jpg step 4: truth done, got unsure (judge_failed) · 8411 ms {'geometry': 0} · $0.0031
+      hint=None
+    found: 
+BAD step4-done_dim.jpg step 4: truth done, got unsure (judge_failed) · 6553 ms {'geometry': 0} · $0.0023
+      hint=None
+    found: 
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure (judge_failed) · 7566 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure (judge_failed) · 7513 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure (judge_failed) · 7191 ms {'geometry': 0} · $0.0032
+      hint=None
+    found: 
+BAD step5-done.jpg step 5: truth done, got wrong · 7550 ms {'geometry': 0, 'judge': 1873} · $0.0026
+      hint='Your green cube is still in the right tray — move it over so it sits inside the left clear grid.'
+    found: 
+    judged: s5goal FAIL 0.95 (In the learner picture the green cube is still in the right tray, not the left grid.)
+BAD step5-done_dim.jpg step 5: truth done, got wrong · 5561 ms {'geometry': 0, 'judge': 1193} · $0.0023
+      hint='The green cube is still in the right grid – move it over to sit inside the left clear grid.'
+    found: 
+    judged: s5goal FAIL 0.95 (Green cube is in the right clear grid, not the left clear grid.)
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 6547 ms {'geometry': 0, 'judge': 1173} · $0.0019
+      hint='Your green cube is still in the right grid, move it to the left clear grid like in the tutorial view.'
+    found: 
+    judged: s5goal FAIL 0.95 (Green cube is in the right tray, not inside the left clear grid.)
+OK  step5-missing_part.jpg step 5: truth not_done, got wrong · 6691 ms {'geometry': 0, 'judge': 1545} · $0.0019
+      hint='You still have the green cube in the right tray - move it into the left clear grid as shown.'
+    found: 
+    judged: s5goal FAIL 0.95 (The left grid shows only the red cube, with no green cube inside it.)
+OK  step5-wrong_colour.jpg step 5: truth wrong, got wrong · 6328 ms {'geometry': 0, 'judge': 1023} · $0.0015
+      hint='Your green cube is still in the right grid — move it to the left clear grid like in the tutorial.'
+    found: 
+    judged: s5goal FAIL 0.95 (Green cube is in the right tray, not the left tray.)
+BAD step6-done.jpg step 6: truth done, got unsure (judge_failed) · 6973 ms {'geometry': 0} · $0.0029
+      hint=None
+    found: 
+BAD step6-done_dim.jpg step 6: truth done, got unsure (judge_failed) · 7438 ms {'geometry': 0} · $0.0027
+      hint=None
+    found: 
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure (judge_failed) · 7833 ms {'geometry': 0} · $0.0027
+      hint=None
+    found: 
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure (judge_failed) · 8428 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+BAD step7-done.jpg step 7: truth done, got unsure (judge_failed) · 8045 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+OK  step6-wrong_colour.jpg step 6: truth wrong, got unsure (judge_failed) · 9485 ms {'geometry': 0} · $0.0031
+      hint=None
+    found: 
+BAD step7-done_dim.jpg step 7: truth done, got unsure (judge_failed) · 7519 ms {'geometry': 0} · $0.0020
+      hint=None
+    found: 
+OK  step7-incomplete.jpg step 7: truth not_done, got unsure (judge_failed) · 8045 ms {'geometry': 0} · $0.0029
+      hint=None
+    found: 
+OK  step7-missing_part.jpg step 7: truth not_done, got unsure (judge_failed) · 7795 ms {'geometry': 0} · $0.0021
+      hint=None
+    found: 
+BAD step8-done.jpg step 8: truth done, got unsure (judge_failed) · 5571 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step7-wrong_colour.jpg step 7: truth wrong, got unsure (judge_failed) · 8161 ms {'geometry': 0} · $0.0020
+      hint=None
+    found: 
+BAD step8-done_dim.jpg step 8: truth done, got unsure (judge_failed) · 6567 ms {'geometry': 0} · $0.0017
+      hint=None
+    found: 
+OK  step8-incomplete.jpg step 8: truth not_done, got unsure (judge_failed) · 7105 ms {'geometry': 0} · $0.0034
+      hint=None
+    found: 
+OK  step8-missing_part.jpg step 8: truth not_done, got unsure (judge_failed) · 7454 ms {'geometry': 0} · $0.0034
+      hint=None
+    found: 
+OK  step8-wrong_colour.jpg step 8: truth wrong, got unsure (judge_failed) · 7189 ms {'geometry': 1} · $0.0023
+      hint=None
+    found: 
+BAD step9-done.jpg step 9: truth done, got unsure (judge_failed) · 6561 ms {'geometry': 0} · $0.0024
+      hint=None
+    found: 
+BAD step9-done_dim.jpg step 9: truth done, got unsure (judge_failed) · 7080 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step9-incomplete.jpg step 9: truth not_done, got unsure (judge_failed) · 7081 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+OK  step9-missing_part.jpg step 9: truth not_done, got unsure (judge_failed) · 6569 ms {'geometry': 0} · $0.0017
+      hint=None
+    found: 
+OK  step9-wrong_colour.jpg step 9: truth wrong, got unsure (judge_failed) · 6114 ms {'geometry': 0} · $0.0020
+      hint=None
+    found: 
+OK  step10-done.jpg step 10: truth done, got done · 6327 ms {'geometry': 0, 'judge': 1543} · $0.0019
+      hint=None
+    found: 
+    judged: s10goal pass 0.95 (The green block is visible inside the right clear tray in the learner picture.)
+OK  step10-done_dim.jpg step 10: truth done, got done · 7339 ms {'geometry': 0, 'judge': 2145} · $0.0021
+      hint=None
+    found: 
+    judged: s10goal pass 0.95 (Green block is clearly visible inside the right clear grid in the learner picture.)
+OK  step10-incomplete.jpg step 10: truth not_done, got wrong · 6538 ms {'geometry': 0, 'judge': 1383} · $0.0014
+      hint='Your green block is still in the left grid – move it into the right clear grid like the tutorial shows.'
+    found: 
+    judged: s10goal FAIL 0.95 (Learner green block is in left tray, right tray has no green block.)
+OK  step10-missing_part.jpg step 10: truth not_done, got wrong · 7682 ms {'geometry': 0, 'judge': 2364} · $0.0023
+      hint='Your right tray is missing the green block in the front. Place the green block inside the right clear grid.'
+    found: 
+    judged: s10goal FAIL 0.85 (The right grid in the learner picture shows no green block, only red block and blue base.)
+BAD step10-wrong_colour.jpg step 10: truth wrong, got done · 7388 ms {'geometry': 0, 'judge': 1781} · $0.0019
+      hint=None
+    found: 
+    judged: s10goal pass 0.95 (The green block is clearly visible inside the right clear grid in the learner picture.)
+BAD step11-done.jpg step 11: truth done, got unsure (judge_failed) · 6856 ms {'geometry': 0} · $0.0023
+      hint=None
+    found: 
+BAD step11-done_dim.jpg step 11: truth done, got unsure (judge_failed) · 8165 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+OK  step11-incomplete.jpg step 11: truth not_done, got unsure (judge_failed) · 7001 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step11-missing_part.jpg step 11: truth not_done, got unsure (judge_failed) · 8931 ms {'geometry': 0} · $0.0028
+      hint=None
+    found: 
+OK  step11-wrong_colour.jpg step 11: truth wrong, got unsure (judge_failed) · 7467 ms {'geometry': 0} · $0.0027
+      hint=None
+    found: 
+BAD step12-done.jpg step 12: truth done, got unsure (judge_failed) · 7142 ms {'geometry': 0} · $0.0022
+      hint=None
+    found: 
+BAD step12-done_dim.jpg step 12: truth done, got unsure (judge_failed) · 6567 ms {'geometry': 0} · $0.0021
+      hint=None
+    found: 
+OK  step12-incomplete.jpg step 12: truth not_done, got unsure (judge_failed) · 6158 ms {'geometry': 0} · $0.0021
+      hint=None
+    found: 
+OK  step12-missing_part.jpg step 12: truth not_done, got unsure (judge_failed) · 7166 ms {'geometry': 0} · $0.0028
+      hint=None
+    found: 
+OK  step13-done.jpg step 13: truth done, got done · 5570 ms {'geometry': 0, 'judge': 1005} · $0.0020
+      hint=None
+    found: 
+    judged: s13goal pass 0.95 (Red block is clearly inside the left clear grid in the learner picture.)
+OK  step12-wrong_colour.jpg step 12: truth wrong, got unsure (judge_failed) · 6805 ms {'geometry': 0} · $0.0027
+      hint=None
+    found: 
+OK  step13-done_dim.jpg step 13: truth done, got done · 6753 ms {'geometry': 0, 'judge': 1279} · $0.0020
+      hint=None
+    found: 
+    judged: s13goal pass 0.95 (Red block is clearly visible sitting inside the left clear grid.)
+OK  step13-incomplete.jpg step 13: truth not_done, got wrong · 7545 ms {'geometry': 0, 'judge': 1501} · $0.0024
+      hint='Your red block is still in the right grid. Pick it up and place it inside the left clear grid like in the example.'
+    found: 
+    judged: s13goal FAIL 0.95 (Red block is visible in the right grid, not in the left grid.)
+BAD step13-missing_part.jpg step 13: truth not_done, got done · 7866 ms {'geometry': 0, 'judge': 2134} · $0.0019
+      hint=None
+    found: 
+    judged: s13goal pass 0.75 (A red block shape is visible inside the left clear grid, though blurred.)
+OK  step13-wrong_colour.jpg step 13: truth wrong, got wrong · 6619 ms {'geometry': 0, 'judge': 1334} · $0.0016
+      hint='You have a purple block in the left grid where the tutorial has a red block. Place the red block inside the left clear grid.'
+    found: 
+    judged: s13goal FAIL 0.95 (The left grid contains a purple block, not a red block.)
+OK  step14-done.jpg step 14: truth done, got done · 6060 ms {'geometry': 0, 'judge': 1066} · $0.0022
+      hint=None
+    found: 
+    judged: s14goal pass 0.95 (Green block is clearly visible inside the left clear grid in the LEARNER picture.)
+OK  step14-done_dim.jpg step 14: truth done, got done · 6757 ms {'geometry': 0, 'judge': 1080} · $0.0015
+      hint=None
+    found: 
+    judged: s14goal pass 0.95 (Green block is visible inside the left clear grid in the learner picture.)
+OK  step14-incomplete.jpg step 14: truth not_done, got wrong · 7671 ms {'geometry': 0, 'judge': 1751} · $0.0018
+      hint='Your green block is still in the right grid. Pick it up and place it inside the left clear grid like in the tutorial.'
+    found: 
+    judged: s14goal FAIL 0.95 (Left grid shows only the red block, while the green block is visible in the right grid.)
+BAD step14-wrong_colour.jpg step 14: truth wrong, got done · 6047 ms {'geometry': 0, 'judge': 982} · $0.0014
+      hint=None
+    found: 
+    judged: s14goal pass 0.95 (Green block is clearly visible inside the left clear grid in the learner picture.)
+OK  step14-missing_part.jpg step 14: truth not_done, got unsure · 8013 ms {'geometry': 0, 'judge': 2315} · $0.0030
+      hint=None
+    found: 
+    judged: s14goal pass 0.6 (Left tray shows red block and a pale green blurred area at the green-block position inside the grid.)
+BAD step15-done.jpg step 15: truth done, got wrong · 7830 ms {'geometry': 0, 'judge': 1965} · $0.0027
+      hint='Your blue block is on the edge of the left tray, move it fully inside the clear grid as shown.'
+    found: 
+    judged: s15goal FAIL 0.85 (Learner blue block sits on the rim of the left tray, not inside the grid squares.)
+OK  step15-done_dim.jpg step 15: truth done, got done · 7253 ms {'geometry': 0, 'judge': 1120} · $0.0021
+      hint=None
+    found: 
+    judged: s15goal pass 0.95 (Blue block is visible sitting inside the left clear grid in learner picture.)
+OK  step15-incomplete.jpg step 15: truth not_done, got wrong · 7924 ms {'geometry': 0, 'judge': 1806} · $0.0023
+      hint='Your blue block is still in the right grid, move it to the left clear grid like in the tutorial.'
+    found: 
+    judged: s15goal FAIL 0.95 (Learner left grid has only green and red, blue block is in right grid.)
+BAD step15-wrong_colour.jpg step 15: truth wrong, got done · 6252 ms {'geometry': 0, 'judge': 1235} · $0.0019
+      hint=None
+    found: 
+    judged: s15goal pass 0.92 (A blue-purple block is clearly sitting inside the left clear grid in the learner view.)
+OK  step15-missing_part.jpg step 15: truth not_done, got unsure · 8146 ms {'geometry': 0, 'judge': 2697} · $0.0026
+      hint=None
+    found: 
+    judged: s15goal FAIL 0.3 (The blue-block area in the left tray is blurred out so its color and position cannot be confirmed.)
+OK  step16-done.jpg step 16: truth done, got done · 7069 ms {'geometry': 0, 'judge': 985} · $0.0020
+      hint=None
+    found: 
+    judged: s16goal pass 0.95 (Left clear grid contains yellow, blue, green, and red blocks and right tray is empty.)
+OK  step16-done_dim.jpg step 16: truth done, got done · 6810 ms {'geometry': 0, 'judge': 1577} · $0.0016
+      hint=None
+    found: 
+    judged: s16goal pass 0.92 (Left clear grid contains yellow, blue, green and red blocks and right grid is empty.)
+OK  step16-incomplete.jpg step 16: truth not_done, got wrong · 7384 ms {'geometry': 0, 'judge': 1306} · $0.0021
+      hint='Your yellow block is still in the right grid under the gripper. Move it to the empty corner of the left grid like in the tutorial.'
+    found: 
+    judged: s16goal FAIL 0.95 (Learner left grid has only blue, green, and red blocks while yellow is in the right grid.)
+BAD step16-missing_part.jpg step 16: truth not_done, got done · 7755 ms {'geometry': 0, 'judge': 2368} · $0.0031
+      hint=None
+    found: 
+    judged: s16goal pass 0.7 (Left grid holds green, red, blue clearly plus a pale yellow shape in the top-left cell, right grid empty.)
+BAD step16-wrong_colour.jpg step 16: truth wrong, got done · 5953 ms {'geometry': 0, 'judge': 1189} · $0.0019
+      hint=None
+    found: 
+    judged: s16goal pass 0.95 (Four colored blocks are all inside the left clear grid with the right grid empty.)
+BAD step1-done.jpg step 1: truth done, got wrong · 7441 ms {'geometry': 0, 'judge': 1740} · $0.0028
+      hint='You have one white wire with copper showing, strip a second white wire so you have two apart with short copper tips like the tutorial.'
+    found: 
+    judged: s1goal FAIL 0.9 (Only one white wire lying visible, not two apart.); s1c2 FAIL 0.85 (Only one copper end is visible, second wire end not shown.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 7311 ms {'geometry': 0, 'judge': 1689} · $0.0026
+      hint='You have the white wires and stripper in place, but no copper is showing yet. Squeeze the tool to strip about a centimeter from each white wire end so shiny copper shows.'
+    found: 
+    judged: s1goal FAIL 0.85 (Learner shows white wires but neither end has visible exposed copper.); s1c2 FAIL 0.85 (Both wire tips in learner view remain covered in white insulation with no copper visible.)
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 9293 ms {'geometry': 0, 'judge': 3079} · $0.0024
+      hint=None
+    found: 
+    judged: s1goal FAIL 0.6 (Only one stripped white wire is lying visible, not two apart.); s1c2 FAIL 0.6 (Only one copper end is visible, the other wire end is hidden in the tool.)
+OK  step2-done.jpg step 2: truth done, got done · 7218 ms {'geometry': 0, 'judge': 1325} · $0.0030
+      hint=None
+    found: 
+    judged: s2goal pass 0.9 (Learner shows white wire in a loop with copper ends joined at bottom.); s2c2 pass 0.85 (Copper join looks tightly twisted with no loose strands visible.)
+OK  step2-done_dim.jpg step 2: truth done, got done · 6540 ms {'geometry': 0, 'judge': 1710} · $0.0021
+      hint=None
+    found: 
+    judged: s2goal pass 0.85 (Learner shows white wire loop with copper ends joined in the middle.); s2c2 pass 0.8 (Copper join looks twisted together with no stray strands visible.)
+BAD step2-incomplete.jpg step 2: truth not_done, got done · 7897 ms {'geometry': 0, 'judge': 1887} · $0.0022
+      hint=None
+    found: 
+    judged: s2goal pass 0.8 (White wire forms a loop with copper ends meeting in a small join in learner picture.); s2c2 pass 0.75 (Copper ends appear twisted together with no obvious loose strands visible.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 7106 ms {'geometry': 0, 'judge': 1647} · $0.0020
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.05 (Learner central wire area is fully obscured by a gray block, loop and join not visible.); s2c2 FAIL 0.05 (Copper ends are hidden behind the block, twist and strands cannot be judged.)
+BAD step2-wrong_colour.jpg step 2: truth wrong, got done · 6317 ms {'geometry': 0, 'judge': 2008} · $0.0027
+      hint=None
+    found: 
+    judged: s2goal pass 0.85 (Learner shows white wire in a loop with ends joined at bottom like tutorial.); s2c2 pass 0.75 (Copper ends appear twisted together at the join with no stray strands visible.)
+BAD step3-done.jpg step 3: truth done, got unsure · 7916 ms {'geometry': 0, 'judge': 2597} · $0.0036
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.55 (The copper twist in the white loop still looks dry and bright with no clear wet sheen.); s3c2 FAIL 0.55 (No visible flux coating or wet gloss can be seen on the copper twist.)
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 8082 ms {'geometry': 0, 'judge': 2207} · $0.0027
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.65 (The copper twist in the white loop still looks dry, not wet or shiny.); s3c2 FAIL 0.65 (No wet flux coating is visible on the copper twist where the brush touches.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 7177 ms {'geometry': 0, 'judge': 1687} · $0.0018
+      hint='Your copper twist in the white loop looks dry, brush a little flux right onto the copper join until it looks wet and shiny like in the tutorial.'
+    found: 
+    judged: s3goal FAIL 0.85 (The copper twist in the white loop looks dry and dull, not wet.); s3c2 FAIL 0.85 (No wet flux coating is visible on the copper twist.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 7185 ms {'geometry': 0, 'judge': 1873} · $0.0026
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.05 (The white wire loop and join are hidden behind a large block in the learner picture.); s3c2 FAIL 0.05 (No copper join is visible to confirm flux coating in the learner picture.)
+BAD step3-wrong_colour.jpg step 3: truth wrong, got done · 7166 ms {'geometry': 0, 'judge': 1614} · $0.0020
+      hint=None
+    found: 
+    judged: s3goal pass 0.9 (The middle of the white wire loop shows a dark wet coating on the twisted join.); s3c2 pass 0.9 (The copper twist is covered with dark flux rather than dry bare copper.)
+BAD step4-done.jpg step 4: truth done, got unsure · 7565 ms {'geometry': 0, 'judge': 2374} · $0.0030
+      hint=None
+    found: 
+    judged: s4goal pass 0.65 (Center of white wires shows shiny silver covering joining the two sides.); s4c3 pass 0.6 (Join looks wetted silver with no obvious bare copper visible at this resolution.)
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 7023 ms {'geometry': 0, 'judge': 2421} · $0.0024
+      hint=None
+    found: 
+    judged: s4goal FAIL 0.65 (Center join shows individual twisted strands, not a shiny silver solder coating.); s4c3 FAIL 0.65 (Strands and gaps are still visible with no smooth flowed solder covering them.)
+OK  step5-done.jpg step 5: truth done, got done · 6534 ms {'geometry': 0, 'judge': 1023} · $0.0024
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Black tube covers the join with white insulation visible on both sides.); s5c3 pass 0.95 (Sleeve is centered over join with no solder exposed.)
+OK  step4-incomplete.jpg step 4: truth not_done, got wrong · 7392 ms {'geometry': 0, 'judge': 2400} · $0.0026
+      hint='Your white wire ends are still apart with no join in the middle. Bring the ends together, twist them, then heat until silver solder flows around the join.'
+    found: 
+    judged: s4goal FAIL 0.85 (Learner white wire is open in a C-shape with no silver-covered center join visible.); s4c3 FAIL 0.85 (No soldered join is visible to show flow, and ends remain separated.)
+OK  step5-done_dim.jpg step 5: truth done, got done · 6690 ms {'geometry': 0, 'judge': 1363} · $0.0023
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Black tube is over the join with white insulation visible on both sides.); s5c3 pass 0.9 (Sleeve covers the middle join with no solder exposed.)
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 6715 ms {'geometry': 0, 'judge': 1130} · $0.0016
+      hint='Slide the little black tube over the silver join so white wire shows on both sides and no silver is exposed.'
+    found: 
+    judged: s5goal FAIL 0.95 (No black tube is over the join; silver solder is exposed with white insulation on both sides.); s5c3 FAIL 0.95 (The black sleeve is missing from the join, leaving all solder uncovered.)
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 6149 ms {'geometry': 0, 'judge': 1325} · $0.0016
+      hint=None
+    found: 
+    judged: s5goal FAIL 0.1 (Learner picture is almost fully blocked by a gray rectangle, join not visible.); s5c3 FAIL 0.1 (Sleeve position over join cannot be seen due to obstruction.)
+BAD step5-wrong_colour.jpg step 5: truth wrong, got done · 5880 ms {'geometry': 0, 'judge': 1101} · $0.0022
+      hint=None
+    found: 
+    judged: s5goal pass 0.9 (Black tube covers the join with white insulation visible on both sides.); s5c3 pass 0.85 (Sleeve is positioned over the join with no solder exposed.)
+OK  step6-done.jpg step 6: truth done, got done · 5931 ms {'geometry': 0, 'judge': 956} · $0.0021
+      hint=None
+    found: 
+    judged: s6goal pass 0.95 (Black sleeve is centered and tight around white wire with no looseness visible.); s6c3 pass 0.95 (Sleeve appears fully shrunken with tight conformity and no gaps.)
+OK  step6-done_dim.jpg step 6: truth done, got done · 7466 ms {'geometry': 0, 'judge': 1467} · $0.0017
+      hint=None
+    found: 
+    judged: s6goal pass 0.95 (Black sleeve is centered on the join and appears tight around the white wire.); s6c3 pass 0.95 (Sleeve conforms to wire with no visible gaps or looseness.)
+BAD step6-incomplete.jpg step 6: truth not_done, got done · 7990 ms {'geometry': 0, 'judge': 2156} · $0.0028
+      hint=None
+    found: 
+    judged: s6goal pass 0.85 (Black sleeve is centered on white wire and appears shrunk tight forming insulated join.); s6c3 pass 0.85 (Sleeve in learner picture shows no looseness or gaps around white wire.)
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 7671 ms {'geometry': 0, 'judge': 1602} · $0.0017
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.1 (Wire and sleeve are obscured by large overlay, cannot verify join.); s6c3 FAIL 0.1 (No sleeve visible to confirm tight shrink with no gaps.)
+BAD step6-wrong_colour.jpg step 6: truth wrong, got done · 6893 ms {'geometry': 0, 'judge': 1019} · $0.0018
+      hint=None
+    found: 
+    judged: s6goal pass 0.9 (Black sleeve is centered on the white wire join and appears tight and conformal.); s6c3 pass 0.9 (Sleeve shows no looseness or gaps and hugs the white wire.)
+BAD step1-done.jpg step 1: truth done, got unsure (judge_failed) · 8344 ms {'geometry': 0} · $0.0026
+      hint=None
+    found: 
+BAD step1-done_dim.jpg step 1: truth done, got unsure (judge_failed) · 8287 ms {'geometry': 0} · $0.0019
+      hint=None
+    found: 
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure (judge_failed) · 8677 ms {'geometry': 0} · $0.0025
+      hint=None
+    found: 
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure (judge_failed) · 6999 ms {'geometry': 0} · $0.0029
+      hint=None
+    found: 
+OK  step2-done.jpg step 2: truth done, got done · 7305 ms {'geometry': 0, 'judge': 1126} · $0.0021
+      hint=None
+    found: 
+    judged: s2goal pass 0.98 (Two blue ends form a clear X in the middle below the collar.); s2c3 pass 0.98 (Wide end lies visibly on top of the narrow end at the cross.)
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure (judge_failed) · 8608 ms {'geometry': 0} · $0.0028
+      hint=None
+    found: 
+OK  step2-done_dim.jpg step 2: truth done, got done · 6567 ms {'geometry': 0, 'judge': 1615} · $0.0023
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (The two blue ends cross in the middle below the collar forming a clear X.); s2c3 pass 0.95 (The wide end lies on top of the narrow end at the crossing point.)
+BAD step2-incomplete.jpg step 2: truth not_done, got done · 7606 ms {'geometry': 0, 'judge': 2450} · $0.0025
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Learner shows two blue ends crossing in middle below collar forming X.); s2c3 pass 0.9 (Learner wide left end lies on top of narrow right end at cross.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 6787 ms {'geometry': 0, 'judge': 2533} · $0.0019
+      hint=None
+    found: 
+    judged: s2goal FAIL 0.1 (Shirt and blue ends are obscured by gray cover and not visible.); s2c3 FAIL 0.1 (Crossing order cannot be seen because tie is obscured.)
+BAD step2-wrong_colour.jpg step 2: truth wrong, got done · 7794 ms {'geometry': 0, 'judge': 2551} · $0.0033
+      hint=None
+    found: 
+    judged: s2goal pass 0.95 (Learner tie ends cross in the middle below the collar forming a clear X.); s2c3 pass 0.9 (Learner wide end on the right lies over the narrow vertical end at the cross.)
+BAD step3-done_dim.jpg step 3: truth done, got wrong · 7400 ms {'geometry': 0, 'judge': 2012} · $0.0032
+      hint='You still have both blue ends pointing down with the crossing held in your hands; bring the wide blue end up behind and through the neck opening so it points up like in the tutorial.'
+    found: 
+    judged: s3goal FAIL 0.85 (No wide end points up through the neck opening, both striped ends hang down.); s3c3 FAIL 0.8 (The wide end is not seen going behind and up through the neck loop.)
+BAD step3-done.jpg step 3: truth done, got wrong · 8993 ms {'geometry': 0, 'judge': 4120} · $0.0044
+      hint='You have the crossing pinched below the collar like in the tutorial, now bring your wide blue end behind and up through the neck opening so it points up.'
+    found: 
+    judged: s3goal FAIL 0.9 (No blue end points up through the neck opening, both ends hang down below the hands.); s3c3 FAIL 0.85 (The wide end is not visible going behind and up through the neck loop in the learner view.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 7578 ms {'geometry': 0, 'judge': 1995} · $0.0019
+      hint='You still have the wide blue end out to the side — bring it behind the crossing and up through the neck opening so it points up like in the tutorial.'
+    found: 
+    judged: s3goal FAIL 0.95 (Wide blue end points sideways out to the right, not up through the neck opening.); s3c3 FAIL 0.95 (Wide end is held out横 sideways and has not been pulled up through the neck loop.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 6362 ms {'geometry': 0, 'judge': 1614} · $0.0024
+      hint=None
+    found: 
+    judged: s3goal FAIL 0.1 (Learner image shows only a blank surface with no tie or collar visible to judge.); s3c3 FAIL 0.1 (Learner image shows no tie ends or neck loop, so routing cannot be confirmed.)
+OK  step3-wrong_colour.jpg step 3: truth wrong, got wrong · 6521 ms {'geometry': 0, 'judge': 1857} · $0.0020
+      hint='Your wide gold end is still pointing down in front. Bring it up behind the crossing and poke it up through the neck opening so it points up.'
+    found: 
+    judged: s3goal FAIL 0.9 (Learner wide end points down in front, not up through the neck opening.); s3c3 FAIL 0.9 (No end is coming up through the neck loop behind the crossing.)
+OK  step4-done.jpg step 4: truth done, got done · 6061 ms {'geometry': 0, 'judge': 1414} · $0.0025
+      hint=None
+    found: 
+    judged: s4goal pass 0.95 (Learner shows a horizontal blue band across the center with wide end sticking out to the side.); s4c3 pass 0.92 (Learner wide end wraps horizontally across the front forming the front loop.)
+OK  step4-done_dim.jpg step 4: truth done, got done · 4981 ms {'geometry': 0, 'judge': 994} · $0.0023
+      hint=None
+    found: 
+    judged: s4goal pass 0.95 (Learner shows a horizontal blue band across the center with wide end out to the side.); s4c3 pass 0.95 (The wide end forms a clear horizontal loop across the front.)
+BAD step4-incomplete.jpg step 4: truth not_done, got done · 5965 ms {'geometry': 0, 'judge': 1687} · $0.0020
+      hint=None
+    found: 
+    judged: s4goal pass 0.9 (A blue band wraps horizontally across the center with the wide end extending to the side.); s4c3 pass 0.85 (The wide end crosses the front horizontally forming the front loop.)
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 6807 ms {'geometry': 0, 'judge': 1604} · $0.0025
+      hint=None
+    found: 
+    judged: s4goal FAIL 0.1 (LEARNER picture shows only a blank surface with no blue band or tie visible.); s4c3 FAIL 0.1 (No front loop or wide end can be seen in the LEARNER picture.)
+BAD step4-wrong_colour.jpg step 4: truth wrong, got done · 7410 ms {'geometry': 0, 'judge': 1825} · $0.0028
+      hint=None
+    found: 
+    judged: s4goal pass 0.95 (A horizontal striped band wraps across the center with the wide end sticking out to the side.); s4c3 pass 0.95 (The wide end forms a clear horizontal loop across the front of the knot.)
+OK  step5-done.jpg step 5: truth done, got done · 7055 ms {'geometry': 0, 'judge': 1713} · $0.0024
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Wide blue striped end hangs down through the front wrap centered over the narrow end.); s5c3 pass 0.9 (Wide end is threaded down through the front loop as in the tutorial.)
+OK  step5-done_dim.jpg step 5: truth done, got done · 7516 ms {'geometry': 0, 'judge': 1731} · $0.0020
+      hint=None
+    found: 
+    judged: s5goal pass 0.95 (Wide blue striped end hangs down through front wrap centered over narrow end.); s5c3 pass 0.9 (Wide end is threaded down through the front loop forming the knot.)
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 7854 ms {'geometry': 0, 'judge': 1649} · $0.0026
+      hint='You have the wrap started but the wide blue end is still up to the side. Bring it up through the neck then down through the front wrap so it hangs centered over the narrow end.'
+    found: 
+    judged: s5goal FAIL 0.95 (Wide blue end is angled up to the right, not hanging down through the front wrap.); s5c3 FAIL 0.9 (Wide end has not been pulled down through the front loop in the learner picture.)
+OK  step5-missing_part.jpg step 5: truth not_done, got wrong · 7848 ms {'geometry': 0, 'judge': 2337} · $0.0027
+      hint="Your tie and shirt aren't visible in this photo – please retake showing the blue tie knot centered on the collar so the front loop can be checked."
+    found: 
+    judged: s5goal FAIL 0.95 (Learner image shows only a gray blank area with no tie visible.); s5c3 FAIL 0.95 (Learner image shows only a gray blank area with no threading visible.)
+BAD step5-wrong_colour.jpg step 5: truth wrong, got done · 7399 ms {'geometry': 0, 'judge': 1804} · $0.0021
+      hint=None
+    found: 
+    judged: s5goal pass 0.85 (Wide striped end hangs down through front wrap centered over narrow end.); s5c3 pass 0.8 (Wide end appears threaded down through the front loop forming the knot.)
+OK  step6-done.jpg step 6: truth done, got done · 6431 ms {'geometry': 0, 'judge': 1058} · $0.0022
+      hint=None
+    found: 
+    judged: s6goal pass 0.95 (Blue triangular knot is centered under collar with wide end hanging straight.); s6c3 pass 0.95 (Knot is tight to collar, triangular, with wide end covering narrow end.)
+OK  step6-done_dim.jpg step 6: truth done, got done · 7594 ms {'geometry': 0, 'judge': 2109} · $0.0027
+      hint=None
+    found: 
+    judged: s6goal pass 0.92 (Learner shows centered triangular blue knot under collar with wide end hanging straight.); s6c3 pass 0.9 (Learner knot is tight triangular at collar with wide blue striped end covering front.)
+OK  step6-incomplete.jpg step 6: truth not_done, got wrong · 6971 ms {'geometry': 0, 'judge': 1503} · $0.0025
+      hint="Your blue knot looks triangular but it's sitting low with a gap under the white collar, gently slide it up to the collar and let the wide end cover the front."
+    found: 
+    judged: s6goal FAIL 0.95 (Learner knot is low on the shirt with a gap below collar, not centered tight under collar.); s6c3 FAIL 0.95 (Learner knot is loose and away from collar, not tightened up to cover.)
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 8213 ms {'geometry': 0, 'judge': 2663} · $0.0020
+      hint=None
+    found: 
+    judged: s6goal FAIL 0.05 (Learner picture shows only a blank gray area with no tie, knot, or shirt visible.); s6c3 FAIL 0.05 (No knot, collar, or wide end can be seen to judge tightness or position.)
+BAD step6-wrong_colour.jpg step 6: truth wrong, got done · 7712 ms {'geometry': 0, 'judge': 2849} · $0.0020
+      hint=None
+    found: 
+    judged: s6goal pass 0.85 (Learner shows a neat triangular knot centered under collar with wide end hanging straight.); s6c3 pass 0.85 (Knot is slid up tight to collar with wide end covering narrow end.)
+recorded the model answers in eval/cfbench/recorded-spark.jsonl
+
+done_accuracy: 194 of 303
+done_accuracy_ci: [0.585, 0.692]
+done_accuracy_measured: None
+done_accuracy_judged: None
+wrong_advances: 43 of 177
+wrong_corrections: 14 of 126
+unsure_rate: 135 of 303 (45%)
+mistake_catch_rate: 134 of 177
+latency_ms_p50: 7.2 s
+latency_ms_p90: 8.2 s
+cost_per_check_usd: $0.0025
+spent_usd: 0.7434
+step_plan_accuracy: None
+wrote /Users/unnati/Downloads/meta-ai-hackathon/app/eval/reports/2026-11-02-2.json

@@ -1,0 +1,35 @@
+{
+  "placeholder": true,
+  "run_at": "<date>",
+  "label_count": "xx",
+  "held_out_count": "xx",
+  "tuning_count": "xx",
+  "labeller_agreement": "xx of xx",
+  "step_plan_accuracy": "xx of xx",
+  "done_accuracy": "xx / xx",
+  "done_accuracy_ci": [
+    "xx",
+    "xx"
+  ],
+  "done_accuracy_measured": "xx%",
+  "done_accuracy_judged": "xx%",
+  "wrong_advances": "x",
+  "wrong_corrections": "x",
+  "unsure_rate": "xx%",
+  "mistake_catch_rate": "xx / xx",
+  "latency_ms_p50": "x.x s",
+  "latency_ms_p90": "x.x s",
+  "cost_per_session_usd": "$x.xx",
+  "variation_flips_of_20": "x",
+  "groups": {
+    "daylight": {
+      "count": "xx",
+      "done_accuracy": "xx%"
+    },
+    "lamp": {
+      "count": "xx",
+      "done_accuracy": "xx%"
+    }
+  },
+  "config_hash": "xxxxxxxx"
+}

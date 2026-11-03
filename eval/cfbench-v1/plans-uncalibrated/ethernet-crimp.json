@@ -1,0 +1,517 @@
+{
+ "tutorial_id": "ethernet-crimp",
+ "model": "muse-spark-1.3",
+ "transcript_used": false,
+ "prompt_version": "step_plan-0.6",
+ "plan_hash": "sha256:80cce7783d67c1b4ec04eee9dd3feb8b863a9d9e8f475ccf15a0eb3b86ca5d6b",
+ "reviewed": false,
+ "needs": [
+  "white cable",
+  "exposed wires",
+  "orange-white wire",
+  "orange wire",
+  "green-white wire",
+  "blue wire",
+  "blue-white wire",
+  "green wire",
+  "brown-white wire",
+  "brown wire",
+  "wire ends ×8",
+  "clear connector",
+  "ordered wires"
+ ],
+ "steps": [
+  {
+   "id": 1,
+   "start": 0.0,
+   "end": 11.0,
+   "done_at": 10.0,
+   "instruction": "Thread the clear boot onto the cable before you strip it.",
+   "done_looks_like": "The clear boot sits on the white cable a little back from its end.",
+   "end_frame": "frames/step-1.jpg",
+   "objects": [
+    {
+     "name": "white cable",
+     "sam_prompt": "white cable",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The clear boot is on the white cable, not lying on the mat",
+     "confidence": 0.8,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s1c1"
+    }
+   ],
+   "common_mistakes": [
+    "Boot left on the mat instead of on the cable",
+    "Boot forgotten until after crimping, when it can't go over the plug"
+   ],
+   "key_clip_start": 4.0,
+   "key_clip_end": 7.0,
+   "hands_ok": false
+  },
+  {
+   "id": 2,
+   "start": 11.0,
+   "end": 18.0,
+   "done_at": 16,
+   "instruction": "Score and strip the outer jacket to expose the inner wires.",
+   "done_looks_like": "White cable end with jacket removed and twisted color pairs sticking out seen from above.",
+   "end_frame": "frames/step-2.jpg",
+   "objects": [
+    {
+     "name": "white cable",
+     "sam_prompt": "white cable",
+     "size": null
+    },
+    {
+     "name": "exposed wires",
+     "sam_prompt": "copper wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "white cable",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "White cable is present",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Colored twisted wires stick out beyond the cut white jacket",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c2"
+    }
+   ],
+   "common_mistakes": [
+    "Jacket cut too long leaving long exposed wires",
+    "Nicked or cut inner colored wires while scoring",
+    "Jacket not removed leaving wires covered"
+   ],
+   "key_clip_start": 13.0,
+   "key_clip_end": 16.0,
+   "hands_ok": false
+  },
+  {
+   "id": 3,
+   "start": 18.0,
+   "end": 61.0,
+   "done_at": 58,
+   "instruction": "Untwist and arrange the eight wires in T-568B order.",
+   "done_looks_like": "Eight straight separated wires fanned out in T-568B order seen from above.",
+   "end_frame": "frames/step-3.jpg",
+   "objects": [
+    {
+     "name": "orange-white wire",
+     "sam_prompt": "striped orange wire",
+     "size": null
+    },
+    {
+     "name": "orange wire",
+     "sam_prompt": "orange wire",
+     "size": null
+    },
+    {
+     "name": "green-white wire",
+     "sam_prompt": "striped green wire",
+     "size": null
+    },
+    {
+     "name": "blue wire",
+     "sam_prompt": "blue wire",
+     "size": null
+    },
+    {
+     "name": "blue-white wire",
+     "sam_prompt": "striped blue wire",
+     "size": null
+    },
+    {
+     "name": "green wire",
+     "sam_prompt": "green wire",
+     "size": null
+    },
+    {
+     "name": "brown-white wire",
+     "sam_prompt": "striped brown wire",
+     "size": null
+    },
+    {
+     "name": "brown wire",
+     "sam_prompt": "brown wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "orange-white wire",
+     "b": "orange wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Orange-white wire is left of orange wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c1"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "orange wire",
+     "b": "green-white wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Orange wire is left of green-white wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c2"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "green-white wire",
+     "b": "blue wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Green-white wire is left of blue wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c3"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "blue wire",
+     "b": "blue-white wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Blue wire is left of blue-white wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c4"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "blue-white wire",
+     "b": "green wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Blue-white wire is left of green wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c5"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "green wire",
+     "b": "brown-white wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Green wire is left of brown-white wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c6"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "brown-white wire",
+     "b": "brown wire",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Brown-white wire is left of brown wire",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c7"
+    }
+   ],
+   "common_mistakes": [
+    "Wires still twisted instead of straight and flat",
+    "Wrong color order with green and orange swapped",
+    "Wires crossed over each other"
+   ],
+   "key_clip_start": 45.0,
+   "key_clip_end": 48.0,
+   "hands_ok": true
+  },
+  {
+   "id": 4,
+   "start": 61.0,
+   "end": 78.0,
+   "done_at": 76,
+   "instruction": "Straighten and trim the wire ends even.",
+   "done_looks_like": "Eight wires held flat together with fresh even straight tips seen from above.",
+   "end_frame": "frames/step-4.jpg",
+   "objects": [
+    {
+     "name": "white cable",
+     "sam_prompt": "white cable",
+     "size": null
+    },
+    {
+     "name": "wire ends",
+     "sam_prompt": "copper wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "white cable",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "White cable is present",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c1"
+    },
+    {
+     "kind": "measured",
+     "type": "count",
+     "a": "wire ends",
+     "b": null,
+     "n": 8,
+     "side": null,
+     "ratio": null,
+     "text": "Eight wire ends are present",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c2"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Wire ends are straight, flat and cut even to the same length",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s4c3"
+    }
+   ],
+   "common_mistakes": [
+    "Wire ends uneven with different lengths",
+    "Wires not flattened before cutting",
+    "Wires cut too long to fit in plug"
+   ],
+   "key_clip_start": 73.0,
+   "key_clip_end": 76.0,
+   "hands_ok": false
+  },
+  {
+   "id": 5,
+   "start": 78.0,
+   "end": 89.0,
+   "done_at": 88.0,
+   "instruction": "Push the ordered wires fully into the RJ45 plug.",
+   "done_looks_like": "Clear plug on the cable end with colored wires inside reaching the front and white jacket inside the rear seen from above.",
+   "end_frame": "frames/step-5.jpg",
+   "objects": [
+    {
+     "name": "clear connector",
+     "sam_prompt": "clear connector",
+     "size": null
+    },
+    {
+     "name": "white cable",
+     "sam_prompt": "white cable",
+     "size": null
+    },
+    {
+     "name": "ordered wires",
+     "sam_prompt": "copper wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "ordered wires",
+     "b": "clear connector",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Ordered wires are inside the clear connector",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s5c1"
+    },
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "white cable",
+     "b": "clear connector",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "White jacket end is inside the rear of the clear connector",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s5c2"
+    }
+   ],
+   "common_mistakes": [
+    "Wires not pushed to front leaving gap",
+    "White jacket left outside connector",
+    "Wire order changed while inserting"
+   ],
+   "key_clip_start": 80.0,
+   "key_clip_end": 83.0,
+   "hands_ok": true
+  },
+  {
+   "id": 6,
+   "start": 89.0,
+   "end": 106.0,
+   "done_at": 105.0,
+   "instruction": "Slide the boot up the cable onto the back of the RJ45 plug.",
+   "done_looks_like": "The clear boot covers the back of the clear plug on the white cable.",
+   "end_frame": "frames/step-6.jpg",
+   "objects": [
+    {
+     "name": "clear connector",
+     "sam_prompt": "clear connector",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The boot is pushed up over the back of the plug",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s6c1"
+    }
+   ],
+   "common_mistakes": [
+    "Boot left back down the cable",
+    "Boot not pushed fully over the back of the plug"
+   ],
+   "key_clip_start": 100.0,
+   "key_clip_end": 103.0,
+   "hands_ok": false
+  },
+  {
+   "id": 7,
+   "start": 106.0,
+   "end": 131.0,
+   "done_at": 128,
+   "instruction": "Crimp the plug to lock the wires.",
+   "done_looks_like": "White cable with clear crimped plug attached and gold contacts pressed down seen from above.",
+   "end_frame": "frames/step-7.jpg",
+   "objects": [
+    {
+     "name": "clear connector",
+     "sam_prompt": "clear connector",
+     "size": null
+    },
+    {
+     "name": "white cable",
+     "sam_prompt": "white cable",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "white cable",
+     "b": "clear connector",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "White cable stays inside the clear connector",
+     "confidence": 0.9,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s7c1"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "Gold pins are pressed down and plug is crimped tight and does not pull off",
+     "confidence": 0.95,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s7c2"
+    }
+   ],
+   "common_mistakes": [
+    "Plug not fully seated in crimp tool before squeezing",
+    "Plug crooked or only partly crimped",
+    "Wires pulled back out during crimping"
+   ],
+   "key_clip_start": 118.0,
+   "key_clip_end": 121.0,
+   "hands_ok": false
+  }
+ ]
+}

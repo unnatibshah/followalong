@@ -1,0 +1,87 @@
+{
+ "prompt_version": "step_details-0.4",
+ "model": "muse-spark-1.3",
+ "cost_usd": 0.0600865,
+ "actor": "hand",
+ "steps": {
+  "1": {
+   "say": "Park both cars nose-to-nose close but not touching. Turn both ignitions off and leave them off.",
+   "placements": [
+    "good/working car + dead/disabled car → parked nose-to-nose face-to-face with front bumpers close but not touching (in the video: maroon Lexus facing dark sedan in parking lot)",
+    "both ignition switches/keys → turned to OFF with engines off (in the video: red car's hood raised open over front engine bay with engine off)"
+   ],
+   "watch_for": [
+    "if the cables cannot reach both batteries, the fronts are parked too far apart",
+    "if you hear the engine or see dash lights, that car is still on - turn its key fully off"
+   ],
+   "check_yourself": "Both cars sit nose-to-nose close but not touching with both engines silent and the maroon car's red hood raised open over its front engine bay.",
+   "safety": "Set both cars in Park with parking brakes on and engines off before you walk between them."
+  },
+  "2": {
+   "say": "Lift both hoods and prop them open. Find the black box battery in each front engine bay.",
+   "placements": [
+    "maroon/red car's sheet-metal hood → lifted up and propped open over front engine bay (in the video: held up open over V6 engine cover)",
+    "dark/black car's sheet-metal hood → lifted up and propped open over front engine bay (in the video: held open by wooden stick on right side with black battery exposed at front corner)"
+   ],
+   "watch_for": [
+    "if you grabbed the air-filter box or fuse box, it is not the battery - look for the black box with + and - posts and cables",
+    "if the hood wobbles, the prop is not secure - reseat it before you lean in"
+   ],
+   "check_yourself": "Both hoods are raised open and propped and a black rectangular battery is exposed in the front corner of each engine bay.",
+   "safety": "Prop both hoods securely and keep fingers clear so a hood cannot slam shut."
+  },
+  "3": {
+   "say": "Clip one red jaw-clamp to the dead battery's + terminal. Clip the other red jaw-clamp to the good battery's + terminal.",
+   "placements": [
+    "first red jaw-clamp with red insulated handle → onto + / positive post of dead/bad battery, usually marked + or under red cover (in the video: left-front post on black battery in maroon car's right-front bay)",
+    "second red jaw-clamp with red insulated handle → onto + / positive post of good/working battery (in the video: + post on black DieHard battery in dark car's bay)"
+   ],
+   "watch_for": [
+    "if a red clamp is on the - / NEG post, polarity is wrong - move it to the + post",
+    "if red tips touch each other or the body, you will spark - keep them separated"
+   ],
+   "check_yourself": "Both red jaw-clamps grip only the + posts with copper teeth on metal and touch no other metal.",
+   "safety": "Keep the two red clamp tips apart and off any metal until each is firmly on its + post."
+  },
+  "4": {
+   "say": "Clip one black jaw-clamp to the good battery's minus terminal. Clip the other black jaw-clamp to bare unpainted metal ground on the dead car.",
+   "placements": [
+    "first black jaw-clamp with black insulated handle → onto - / NEG post of good/working battery (in the video: - post on black battery in dark car's bay)",
+    "second black jaw-clamp with black insulated handle → onto unpainted bare-metal ground on dead/bad car away from battery (in the video: front crossmember bare metal just above left headlight on dark car)"
+   ],
+   "watch_for": [
+    "if the second black clamp is on the dead battery's minus post, move it to bare metal - the video shows ground, not the post",
+    "if the ground clamp sits on paint or plastic, it will not connect - wiggle it until teeth bite shiny metal"
+   ],
+   "check_yourself": "One black clamp grips the good battery's - post and the other black clamp grips bare unpainted metal on the dead car with all cables clear of fans.",
+   "safety": "Keep the black clamp away from the dead battery's minus post; clip it to bare metal instead."
+  },
+  "5": {
+   "say": "Turn the working car's key in its ignition switch to start it. Let it idle a few minutes to charge the dead battery.",
+   "placements": [
+    "ignition key in working/good car → turned forward with hand in column ignition switch below dash to START then released to run (in the video: right hand turning key with dash lights lit and gauges sweeping)"
+   ],
+   "watch_for": [
+    "if the engine dies right away, you did not let it charge long enough - restart and wait longer",
+    "if a cable has fallen onto a belt or fan, stop and reroute it clear before revving"
+   ],
+   "check_yourself": "The working car's engine is idling with red-orange dash warning lights lit and all four clamps still firmly attached.",
+   "safety": "Keep hands, clothes and cables clear of the spinning fan and belts while the engine runs."
+  },
+  "6": {
+   "say": "Start the dead car with its key. Pull the clamps off ground-bad, black-good, red-good, red-bad and let the revived engine run.",
+   "placements": [
+    "black jaw-clamp on dead-car bare-metal ground → lifted off ground point and held clear in air (in the video: removal order is ground-bad first)",
+    "black jaw-clamp on good battery - post → lifted off - terminal and held clear",
+    "red jaw-clamp on good battery + post → lifted off + terminal and held clear",
+    "red jaw-clamp on dead battery + post → lifted off + terminal last with all cables clear of bays (in the video: bays empty with no clamps on batteries)"
+   ],
+   "watch_for": [
+    "if you let two removed tips touch, you will spark - keep one clamp in each hand apart",
+    "if the revived car stalls, the battery is still low - reconnect in the same order and charge longer"
+   ],
+   "check_yourself": "Both engine bays have all jumper clamps removed from posts and ground and cables pulled clear of the batteries.",
+   "safety": "Keep the removed clamp tips apart and off metal so they never touch each other."
+  }
+ }
+}

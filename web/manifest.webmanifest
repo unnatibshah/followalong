@@ -1,0 +1,11 @@
+{
+  "name": "FollowAlong",
+  "short_name": "FollowAlong",
+  "description": "Tutorials that wait for you: a live coach watches your work through the camera.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#12100E",
+  "theme_color": "#12100E",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

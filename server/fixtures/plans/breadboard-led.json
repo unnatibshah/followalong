@@ -1,0 +1,285 @@
+{
+ "tutorial_id": "breadboard-led",
+ "model": "muse-spark-1.3",
+ "transcript_used": false,
+ "prompt_version": "step_plan-0.7",
+ "plan_hash": "sha256:2e158b4b8decebd6de26d38b07fcb8c07c217dc485597c575477f69942806a73",
+ "reviewed": false,
+ "needs": [
+  "white breadboard",
+  "white wire",
+  "blue wire",
+  "black battery pack",
+  "yellow battery ×4",
+  "small resistor",
+  "blue LED"
+ ],
+ "steps": [
+  {
+   "id": 1,
+   "start": 26.0,
+   "end": 32.0,
+   "done_at": 31,
+   "instruction": "Insert the white and blue power wires into the breadboard.",
+   "done_looks_like": "The white breadboard sits on the table with a white wire and a blue wire standing up from its top edge.",
+   "end_frame": "frames/step-1.jpg",
+   "objects": [
+    {
+     "name": "white breadboard",
+     "sam_prompt": "white breadboard",
+     "size": null
+    },
+    {
+     "name": "white wire",
+     "sam_prompt": "white wire",
+     "size": null
+    },
+    {
+     "name": "blue wire",
+     "sam_prompt": "blue wire",
+     "size": null
+    },
+    {
+     "name": "yellow battery",
+     "sam_prompt": "yellow battery",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "white wire",
+     "b": "white breadboard",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The white wire is inserted in the breadboard",
+     "confidence": 0.9,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s1c1"
+    },
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "blue wire",
+     "b": "white breadboard",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The blue wire is inserted in the breadboard",
+     "confidence": 0.9,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s1c2"
+    },
+    {
+     "kind": "measured",
+     "type": "left_of",
+     "a": "black battery pack",
+     "b": "white breadboard",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The black battery pack is to the left of the white breadboard",
+     "confidence": 0.85,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s1c3"
+    },
+    {
+     "kind": "measured",
+     "type": "count",
+     "a": "yellow battery",
+     "b": null,
+     "n": 4,
+     "side": null,
+     "ratio": null,
+     "text": "There are four yellow batteries",
+     "confidence": 0.95,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s1c4"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "text": "The white breadboard sits on the table with a white wire and a blue wire standing up from its top edge.",
+     "confidence": 0.9,
+     "needs_review": true,
+     "enabled": true,
+     "id": "s1goal"
+    }
+   ],
+   "common_mistakes": [
+    "White and blue wires in the same row so power is shorted",
+    "Battery holder empty or missing batteries",
+    "Wires not pushed into the breadboard"
+   ],
+   "key_clip_start": 27.0,
+   "key_clip_end": 30.0,
+   "hands_ok": false
+  },
+  {
+   "id": 2,
+   "start": 32.0,
+   "end": 40.0,
+   "done_at": 39,
+   "instruction": "Insert the resistor across the breadboard.",
+   "done_looks_like": "A small blue-banded resistor lies across the top of the white breadboard.",
+   "end_frame": "frames/step-2.jpg",
+   "objects": [
+    {
+     "name": "white breadboard",
+     "sam_prompt": "white breadboard",
+     "size": null
+    },
+    {
+     "name": "small resistor",
+     "sam_prompt": "blue resistor",
+     "size": null
+    },
+    {
+     "name": "blue wire",
+     "sam_prompt": "blue wire",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "small resistor",
+     "b": "white breadboard",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The small resistor is inserted in the breadboard",
+     "confidence": 0.9,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s2c1"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "white wire",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The white wire is present",
+     "confidence": 0.75,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s2c2"
+    },
+    {
+     "kind": "measured",
+     "type": "present",
+     "a": "blue wire",
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The blue wire is present",
+     "confidence": 0.75,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s2c3"
+    }
+   ],
+   "common_mistakes": [
+    "Both resistor legs in the same row so no connection",
+    "Resistor not pushed in",
+    "Resistor placed vertically instead of across the top"
+   ],
+   "key_clip_start": 35.0,
+   "key_clip_end": 38.0,
+   "hands_ok": false
+  },
+  {
+   "id": 3,
+   "start": 40.0,
+   "end": 52.0,
+   "done_at": 49,
+   "instruction": "Insert the blue LED into the breadboard.",
+   "done_looks_like": "The blue LED stands upright on the white breadboard glowing blue.",
+   "end_frame": "frames/step-3.jpg",
+   "objects": [
+    {
+     "name": "white breadboard",
+     "sam_prompt": "white breadboard",
+     "size": null
+    },
+    {
+     "name": "blue LED",
+     "sam_prompt": "blue LED",
+     "size": null
+    },
+    {
+     "name": "small resistor",
+     "sam_prompt": "blue resistor",
+     "size": null
+    }
+   ],
+   "checks": [
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "blue LED",
+     "b": "white breadboard",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The blue LED is inserted in the breadboard",
+     "confidence": 0.95,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s3c1"
+    },
+    {
+     "kind": "measured",
+     "type": "inside",
+     "a": "small resistor",
+     "b": "white breadboard",
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The small resistor remains inserted in the breadboard",
+     "confidence": 0.85,
+     "needs_review": true,
+     "enabled": false,
+     "id": "s3c2"
+    },
+    {
+     "kind": "judged",
+     "type": "judged",
+     "a": null,
+     "b": null,
+     "n": null,
+     "side": null,
+     "ratio": null,
+     "text": "The blue LED glows blue with the short leg to the negative side",
+     "confidence": 0.85,
+     "needs_review": false,
+     "enabled": true,
+     "id": "s3c3"
+    }
+   ],
+   "common_mistakes": [
+    "LED reversed so it does not light",
+    "Both LED legs in the same row",
+    "LED legs not pushed in so no contact"
+   ],
+   "key_clip_start": 42.0,
+   "key_clip_end": 45.0,
+   "hands_ok": false
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+{
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "steps"
+ ],
+ "properties": {
+  "steps": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "start",
+     "end",
+     "done_at",
+     "instruction",
+     "done_looks_like",
+     "objects",
+     "checks",
+     "common_mistakes",
+     "key_clip_start",
+     "key_clip_end",
+     "hands_ok"
+    ],
+    "properties": {
+     "start": {
+      "type": "number"
+     },
+     "end": {
+      "type": "number"
+     },
+     "done_at": {
+      "type": "number"
+     },
+     "instruction": {
+      "type": "string"
+     },
+     "done_looks_like": {
+      "type": "string"
+     },
+     "objects": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "name",
+        "sam_prompt",
+        "size"
+       ],
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "sam_prompt": {
+         "type": "string"
+        },
+        "size": {
+         "type": [
+          "string",
+          "null"
+         ]
+        }
+       }
+      }
+     },
+     "checks": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "kind",
+        "type",
+        "a",
+        "b",
+        "n",
+        "side",
+        "text",
+        "confidence"
+       ],
+       "properties": {
+        "kind": {
+         "type": "string",
+         "enum": [
+          "measured",
+          "judged"
+         ]
+        },
+        "type": {
+         "type": "string",
+         "enum": [
+          "present",
+          "count",
+          "inside",
+          "adjacent",
+          "left_of",
+          "above",
+          "area_ratio",
+          "judged"
+         ]
+        },
+        "a": {
+         "type": [
+          "string",
+          "null"
+         ]
+        },
+        "b": {
+         "type": [
+          "string",
+          "null"
+         ]
+        },
+        "n": {
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
+        "side": {
+         "type": [
+          "string",
+          "null"
+         ],
+         "enum": [
+          "left",
+          "right",
+          "above",
+          "below",
+          null
+         ]
+        },
+        "text": {
+         "type": "string"
+        },
+        "confidence": {
+         "type": "number"
+        }
+       }
+      }
+     },
+     "common_mistakes": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "key_clip_start": {
+      "type": "number"
+     },
+     "key_clip_end": {
+      "type": "number"
+     },
+     "hands_ok": {
+      "type": "boolean"
+     }
+    }
+   }
+  }
+ }
+}

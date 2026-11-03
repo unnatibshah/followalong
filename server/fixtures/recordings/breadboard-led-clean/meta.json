@@ -1,0 +1,12 @@
+{
+  "id": "breadboard-led-clean",
+  "tutorial_id": "breadboard-led",
+  "title": "Light an LED on a breadboard \u00b7 clean run (CF-Bench, generated)",
+  "who": "cfbench",
+  "volunteer_code": null,
+  "consent_ref": null,
+  "delete_on_request": false,
+  "plan_hash": "sha256:2e158b4b8decebd6de26d38b07fcb8c07c217dc485597c575477f69942806a73",
+  "prompt_version": "judged_checks-0.3",
+  "recorded_at": "2026-11-01T18:00:00Z"
+}

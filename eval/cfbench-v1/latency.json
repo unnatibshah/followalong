@@ -1,0 +1,232 @@
+{
+ "summary": {
+  "verify": {
+   "n": 12,
+   "p50_s": 2.18,
+   "p90_s": 4.98
+  },
+  "full": {
+   "n": 12,
+   "p50_s": 2.0,
+   "p90_s": 2.39
+  }
+ },
+ "rows": {
+  "verify": [
+   {
+    "ms": 406,
+    "stages": {
+     "hand": 0,
+     "objects": 406,
+     "geometry": 0
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 2179,
+    "stages": {
+     "hand": 0,
+     "objects": 754,
+     "geometry": 5,
+     "judge": 1419
+    },
+    "verdict": "done"
+   },
+   {
+    "ms": 1516,
+    "stages": {
+     "hand": 0,
+     "objects": 1512,
+     "geometry": 4
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 428,
+    "stages": {
+     "hand": 0,
+     "objects": 428,
+     "geometry": 0
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 551,
+    "stages": {
+     "hand": 0,
+     "objects": 551,
+     "geometry": 0
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 5800,
+    "stages": {
+     "hand": 0,
+     "objects": 3403,
+     "geometry": 6,
+     "judge": 2390
+    },
+    "verdict": "done"
+   },
+   {
+    "ms": 2643,
+    "stages": {
+     "hand": 0,
+     "objects": 822,
+     "geometry": 4,
+     "judge": 1817
+    },
+    "verdict": "done"
+   },
+   {
+    "ms": 2181,
+    "stages": {
+     "hand": 0,
+     "objects": 994,
+     "geometry": 2,
+     "judge": 1185
+    },
+    "verdict": "done"
+   },
+   {
+    "ms": 2097,
+    "stages": {
+     "hand": 0,
+     "objects": 2094,
+     "geometry": 3
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 4979,
+    "stages": {
+     "hand": 0,
+     "objects": 3351,
+     "geometry": 7,
+     "judge": 1621
+    },
+    "verdict": "wrong"
+   },
+   {
+    "ms": 5849,
+    "stages": {
+     "hand": 0,
+     "objects": 3521,
+     "geometry": 7,
+     "judge": 2320
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 3597,
+    "stages": {
+     "hand": 0,
+     "objects": 1459,
+     "geometry": 4,
+     "judge": 2134
+    },
+    "verdict": "wrong"
+   }
+  ],
+  "full": [
+   {
+    "ms": 1687,
+    "stages": {
+     "hand": 1687
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 1951,
+    "stages": {
+     "hand": 0,
+     "objects": 484,
+     "geometry": 2,
+     "judge": 1464
+    },
+    "verdict": "wrong"
+   },
+   {
+    "ms": 2388,
+    "stages": {
+     "hand": 581,
+     "objects": 1800,
+     "geometry": 6
+    },
+    "verdict": "unsure"
+   },
+   {
+    "ms": 3475,
+    "stages": {
+     "hand": 365,
+     "objects": 1683,
+     "geometry": 3,
+     "judge": 1423
+    },
+    "verdict": "done"
+   },
+   {
+    "ms": 2300,
+    "stages": {
+     "hand": 2300
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 4896,
+    "stages": {
+     "hand": 0,
+     "objects": 3036,
+     "geometry": 5,
+     "judge": 1854
+    },
+    "verdict": "wrong"
+   },
+   {
+    "ms": 2114,
+    "stages": {
+     "hand": 2114
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 1526,
+    "stages": {
+     "hand": 1526
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 1475,
+    "stages": {
+     "hand": 1475
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 2049,
+    "stages": {
+     "hand": 2049
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 1419,
+    "stages": {
+     "hand": 1418
+    },
+    "verdict": "waiting"
+   },
+   {
+    "ms": 1244,
+    "stages": {
+     "hand": 630,
+     "objects": 613,
+     "geometry": 0
+    },
+    "verdict": "unsure"
+   }
+  ]
+ }
+}

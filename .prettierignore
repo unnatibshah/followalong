@@ -1,0 +1,9 @@
+# Prettier (REG-01) is scoped to web/index.html and any new HTML/JSON under web/. Out of scope, on purpose:
+# - web/js and web/css keep their dense one-rule-per-line style; Prettier would rewrite ~5,000 lines. JS syntax is
+#   checked with `node --check` (REG-01) and the node tests.
+# - web/legal/*.md is copied word for word from the legal doc (a test keeps them equal).
+# - web/js/scene-geometry.json is hand-aligned data for the drawn no-camera scene (thermostatscene.js).
+web/js/
+web/css/
+web/fonts/
+web/legal/

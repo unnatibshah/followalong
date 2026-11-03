@@ -1,0 +1,758 @@
+step plan steps-breadboard-led.json: 42.5-56.0 "Push the 9 V snap connector's red wire into the red (+) rail and its black wire into the blue (-) rail." → no match
+step plan steps-breadboard-led.json: 57.0-82.0 'Insert the blue LED with its short leg (cathode) toward the ground rail.' → no match
+step plan steps-breadboard-led.json: 83.0-94.0 "Insert the short red jumper wire in the row beside the LED's anode." → 82.0-95.5 'Insert the short red jumper wire.'
+step plan steps-breadboard-led.json: 95.0-129.0 "Insert the 4.7 kΩ resistor from the positive rail to the jumper wire's row." → no match
+step plan steps-breadboard-led.json: 136.0-146.0 'Snap the 9 V battery onto the snap connector so the LED lights.' → no match
+step plan steps-ethernet-crimp.json: 0.0-11.0 'Thread the clear boot onto the cable before terminating.' → 0.0-11.0 'Thread the clear boot onto the cable before you strip it.'
+step plan steps-ethernet-crimp.json: 12.0-17.0 'Score the white Cat6 jacket with the yellow-handled snips and pull it off the end.' → no match
+step plan steps-ethernet-crimp.json: 18.0-60.0 'Untwist the four pairs and line the wires up in T568B order: orange-white, orange, green-white, blue, blue-white, green, brown-white, brown.' → no match
+step plan steps-ethernet-crimp.json: 60.5-77.0 'Flatten the ordered wires and snip them straight across so they are short enough to fit into the RJ45 connector.' → no match
+step plan steps-ethernet-crimp.json: 79.0-89.0 'Push the wires into the clear RJ45 connector, clip side down, until every wire reaches the front and the jacket is inside the connector.' → no match
+step plan steps-ethernet-crimp.json: 90.0-108.0 'Slide the boot along the cable up onto the back of the RJ45 connector.' → 89.0-106.0 'Slide the boot up the cable onto the back of the RJ45 plug.'
+step plan steps-ethernet-crimp.json: 111.0-125.0 'Put the connector into the RJ45 slot of the Klein Tools crimper and squeeze the handles fully.' → no match
+step plan steps-figure-eight-knot.json: 7.0-21.0 'Tie a figure-eight knot in the end of the white rope, leaving a long tail.' → 7.0-21.5 'Tie a loose figure-eight knot with a long tail.'
+step plan steps-figure-eight-knot.json: 22.0-28.0 'Pass the long tail around the tree trunk (the attachment point) and bring it back to the knot.' → no match
+step plan steps-figure-eight-knot.json: 29.0-44.0 'Retrace the figure-eight with the tail in the opposite direction, following the original rope through every turn, then snug it up.' → no match
+step plan steps-figure-eight-knot.json: 51.0-65.0 'Pull the standing part of the rope to load and tighten the knot against the tree.' → no match
+step plan steps-light-switch.json: 23.0-29.0 'Hold the yellow Sperry voltage tester to the wires in the box to check for current.' → no match
+step plan steps-light-switch.json: 32.0-37.0 'Switch the breaker OFF, then re-test the box wires with the voltage tester.' → no match
+step plan steps-light-switch.json: 42.0-46.0 'Pull the top and bottom sets of wires out of the box and spread them apart.' → no match
+step plan steps-light-switch.json: 67.0-74.0 'Twist the two bare ground wires together inside the box, leaving both ends long.' → no match
+step plan steps-light-switch.json: 75.0-81.0 'Cut off one of the two ground-wire ends so a single bare ground wire is left.' → no match
+step plan steps-light-switch.json: 83.0-89.0 'Bend a small hook into the end of the bare ground wire with pliers.' → no match
+step plan steps-light-switch.json: 90.0-106.0 'Turn the breaker back ON and touch the tester to each black wire to find the LINE (hot) and LOAD wires.' → no match
+step plan steps-light-switch.json: 107.0-112.0 'Turn the breaker OFF again.' → no match
+step plan steps-light-switch.json: 113.0-120.0 'Strip a little insulation off the tips of both white neutral wires with wire strippers.' → no match
+step plan steps-light-switch.json: 121.0-130.0 'Twist the bare ends of the two white wires together.' → no match
+step plan steps-light-switch.json: 131.0-135.0 'Screw a wire nut (cream with red base) over the twisted white wires.' → no match
+step plan steps-light-switch.json: 136.0-141.0 'Tuck the capped white wires neatly into the back of the box.' → no match
+step plan steps-light-switch.json: 145.0-151.0 'Strip a little insulation off the tips of both black wires (LINE and LOAD).' → no match
+step plan steps-light-switch.json: 152.0-161.0 'Bend a hook into the bare end of each black wire with pliers.' → no match
+step plan steps-light-switch.json: 164.0-183.0 'Hook the bare ground wire clockwise around the green ground screw on the switch and tighten it.' → no match
+step plan steps-light-switch.json: 184.0-196.0 'Holding the switch upright, attach the black LINE (hot) wire to the bottom terminal screw and tighten it.' → no match
+step plan steps-light-switch.json: 196.5-206.0 'Attach the black LOAD wire (to the light) to the top terminal screw and tighten it.' → no match
+step plan steps-light-switch.json: 213.0-226.0 'Turn the breaker ON and flip the switch toggle, touching only the toggle, to test it.' → no match
+step plan steps-light-switch.json: 227.0-231.0 'Turn the breaker OFF before mounting the switch.' → no match
+step plan steps-light-switch.json: 232.0-243.0 'Tuck the wires into the box and screw the switch into the box, keeping it straight.' → no match
+step plan steps-light-switch.json: 244.0-250.0 'Put the white cover plate over the switch and tighten its two screws, without over-tightening.' → no match
+step plan steps-light-switch.json: 251.0-267.0 'Turn the breaker back ON and flip the switch to turn on the ceiling light.' → no match
+step plan steps-nest-thermostat.json: 21.0-27.0 'Pull the cover off the old thermostat to expose its wiring.' → no match
+step plan steps-nest-thermostat.json: 27.0-33.5 'Take a photo of the old wiring with your phone for reference.' → no match
+step plan steps-nest-thermostat.json: 34.0-38.5 'Unscrew each wire from the old backplate terminals with a screwdriver.' → no match
+step plan steps-nest-thermostat.json: 39.0-41.0 'Pull the old backplate off the wall.' → no match
+step plan steps-nest-thermostat.json: 47.0-52.5 'Hold the Nest base on the wall with the red and white wires through its centre hole and level it.' → no match
+step plan steps-nest-thermostat.json: 53.0-62.5 'Screw the Nest base to the wall through its top and bottom screw holes.' → no match
+step plan steps-nest-thermostat.json: 63.0-71.0 'Push down the Rc connector button and insert the red wire into the Rc terminal.' → no match
+step plan steps-nest-thermostat.json: 72.0-78.5 'Push down the W1 connector button and insert the white wire into the W1 terminal.' → no match
+step plan steps-nest-thermostat.json: 79.0-86.5 'Tuck the wires into the base and push the Nest display onto it until it clicks.' → no match
+step plan steps-nest-thermostat.json: 87.0-93.5 'Finish setting up the thermostat in the phone app.' → no match
+step plan steps-replace-thermostat.json: 6.0-8.0 'Pull the cover off the old Honeywell thermostat.' → 6.0-9.0 'Pull off the old thermostat cover.'
+step plan steps-replace-thermostat.json: 8.5-11.5 'Hold a voltage tester to the old thermostat wiring to check for power.' → no match
+step plan steps-replace-thermostat.json: 18.5-20.5 'Switch off the furnace breaker in the breaker box.' → no match
+step plan steps-replace-thermostat.json: 21.0-28.5 'Check the old thermostat wiring again with the voltage tester to confirm there is no power.' → no match
+step plan steps-replace-thermostat.json: 31.0-38.0 'Unscrew the two screws and pull the old base plate off the wall.' → 30.0-39.0 'Unscrew and pull the old base from the wall.'
+step plan steps-replace-thermostat.json: 39.0-42.0 'Screw the new Honeywell base plate to the wall with the wires fed through its opening.' → no match
+step plan steps-replace-thermostat.json: 44.0-58.5 'Connect each wire to the matching terminal on the new base: G, Y, W and R, the same letters it used on the old base.' → no match
+step plan steps-replace-thermostat.json: 59.0-60.0 'Switch the furnace breaker back on.' → no match
+step plan steps-solder-through-hole.json: 39.0-48.0 'Dab flux paste from the Plusivo soldering paste tub onto the holes of the green perfboard.' → no match
+step plan steps-solder-through-hole.json: 50.0-79.0 "Push the blue resistor's two leads through two holes and seat it flat against the board." → no match
+step plan steps-solder-through-hole.json: 80.0-95.0 'On the underside, bend the two resistor leads outward along the board so the resistor holds itself in place, and smear a little paste on them.' → no match
+step plan steps-solder-through-hole.json: 96.0-104.0 'Clip the board, solder side up, into the helping-hands alligator clip.' → no match
+step plan steps-solder-through-hole.json: 115.0-128.0 'Wipe the soldering iron tip on the wet yellow sponge, then tin it with a little solder.' → no match
+step plan steps-solder-through-hole.json: 132.0-144.0 "Heat the first lead's joint on the bottom row with the iron for about three seconds and feed solder in until it fills the pad." → no match
+step plan steps-solder-through-hole.json: 145.0-156.0 "Solder the second lead's joint on the upper row the same way." → no match
+step plan steps-solder-through-hole.json: 157.0-163.0 'Reheat the first, bottom-row joint and add a little more solder until it is shiny.' → no match
+step plan steps-solder-through-hole.json: 164.0-176.0 'Snip the excess resistor leads off flush with the joints using the flush cutters.' → no match
+211 frames, estimated $2.24; step plan 6 of 67
+BAD step1-done.jpg step 1: truth done, got wrong · 2995 ms {'hand': 0, 'objects': 2886, 'geometry': 108} · $0.0075
+    s1c1=0.0✕ s1c2=0.04✕  hint="Your red snap wire isn't in the white breadboard yet."
+    found: white breadboard=yes, red snap wire=yes, black snap wire=yes
+BAD step1-done_dim.jpg step 1: truth done, got wrong · 6536 ms {'hand': 0, 'objects': 6418, 'geometry': 118} · $0.0075
+    s1c1=0.0✕ s1c2=0.06✕  hint="Your red snap wire isn't in the white breadboard yet."
+    found: white breadboard=yes, red snap wire=yes, black snap wire=yes
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure · 10595 ms {'hand': 0, 'objects': 10553, 'geometry': 42} · $0.0075
+    s1c1=0.0✕  hint="Your red snap wire isn't in the white breadboard yet."
+    found: white breadboard=yes, red snap wire=yes, black snap wire=NO
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 14027 ms {'hand': 0, 'objects': 14024, 'geometry': 4} · $0.0075
+      hint=None
+    found: white breadboard=NO, red snap wire=yes, black snap wire=NO
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure · 17786 ms {'hand': 0, 'objects': 17732, 'geometry': 54} · $0.0075
+    s1c2=0.04✕  hint="Your black snap wire isn't in the white breadboard yet."
+    found: white breadboard=yes, red snap wire=NO, black snap wire=yes
+BAD step2-done.jpg step 2: truth done, got wrong · 20393 ms {'hand': 0, 'objects': 20231, 'geometry': 161} · $0.0050
+    s2c1=0.0✕  hint="Your blue LED isn't in the white breadboard yet."
+    found: white breadboard=yes, blue LED=yes
+BAD step2-done_dim.jpg step 2: truth done, got wrong · 20031 ms {'hand': 0, 'objects': 19839, 'geometry': 192} · $0.0050
+    s2c1=0.0✕  hint="Your blue LED isn't in the white breadboard yet."
+    found: white breadboard=yes, blue LED=yes
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure · 17859 ms {'hand': 0, 'objects': 17853, 'geometry': 6} · $0.0050
+      hint=None
+    found: white breadboard=yes, blue LED=NO
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 16102 ms {'hand': 0, 'objects': 16101, 'geometry': 0} · $0.0050
+      hint=None
+    found: white breadboard=NO, blue LED=NO
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure · 15523 ms {'hand': 0, 'objects': 15520, 'geometry': 3} · $0.0050
+      hint=None
+    found: white breadboard=yes, blue LED=NO
+BAD step3-done.jpg step 3: truth done, got unsure · 14872 ms {'hand': 0, 'objects': 14867, 'geometry': 5} · $0.0075
+      hint=None
+    found: white breadboard=yes, short red jumper=NO, blue LED=yes
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 16367 ms {'hand': 0, 'objects': 16362, 'geometry': 5} · $0.0075
+      hint=None
+    found: white breadboard=yes, short red jumper=NO, blue LED=yes
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 17401 ms {'hand': 0, 'objects': 17397, 'geometry': 5} · $0.0075
+      hint=None
+    found: white breadboard=yes, short red jumper=NO, blue LED=NO
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 19598 ms {'hand': 0, 'objects': 19597, 'geometry': 0} · $0.0075
+      hint=None
+    found: white breadboard=NO, short red jumper=NO, blue LED=NO
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 20644 ms {'hand': 0, 'objects': 20629, 'geometry': 15} · $0.0075
+      hint=None
+    found: white breadboard=yes, short red jumper=NO, blue LED=NO
+BAD step4-done.jpg step 4: truth done, got unsure · 21117 ms {'hand': 0, 'objects': 21112, 'geometry': 4} · $0.0075
+      hint=None
+    found: white breadboard=yes, beige resistor=NO, blue LED=yes
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 21759 ms {'hand': 0, 'objects': 21755, 'geometry': 5} · $0.0075
+      hint=None
+    found: white breadboard=yes, beige resistor=NO, blue LED=yes
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure · 21132 ms {'hand': 0, 'objects': 21128, 'geometry': 4} · $0.0075
+      hint=None
+    found: white breadboard=yes, beige resistor=NO, blue LED=yes
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 20975 ms {'hand': 0, 'objects': 20975, 'geometry': 0} · $0.0075
+      hint=None
+    found: white breadboard=NO, beige resistor=NO, blue LED=NO
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure · 21371 ms {'hand': 0, 'objects': 21365, 'geometry': 6} · $0.0075
+      hint=None
+    found: white breadboard=yes, beige resistor=NO, blue LED=NO
+BAD step5-done.jpg step 5: truth done, got unsure · 21760 ms {'hand': 0, 'objects': 21622, 'geometry': 138} · $0.0075
+    s5c1=0.74✕ s5c2=0.0✕  hint="Your blue LED isn't in the white breadboard yet."
+    found: white breadboard=yes, blue LED=yes, blue battery=NO
+BAD step5-done_dim.jpg step 5: truth done, got unsure · 22428 ms {'hand': 0, 'objects': 22299, 'geometry': 129} · $0.0075
+    s5c1=0.75✕ s5c2=0.0✕  hint="Your blue LED isn't in the white breadboard yet."
+    found: white breadboard=yes, blue LED=yes, blue battery=NO
+OK  step5-incomplete.jpg step 5: truth not_done, got unsure · 21619 ms {'hand': 0, 'objects': 21558, 'geometry': 62} · $0.0075
+    s5c1=0.01✕ s5c2=0.0✕  hint="Your blue LED isn't in the white breadboard yet."
+    found: white breadboard=yes, blue LED=yes, blue battery=NO
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 21982 ms {'hand': 0, 'objects': 21982, 'geometry': 0} · $0.0075
+    s5c2=0.0✕  hint="I can't see the blue battery."
+    found: white breadboard=NO, blue LED=NO, blue battery=NO
+OK  step5-wrong_colour.jpg step 5: truth wrong, got unsure · 21765 ms {'hand': 0, 'objects': 21762, 'geometry': 3} · $0.0075
+    s5c2=0.0✕  hint="I can't see the blue battery."
+    found: white breadboard=yes, blue LED=NO, blue battery=NO
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 12176 ms {'hand': 0, 'objects': 12157, 'geometry': 19} · $0.0025
+      hint=None
+    found: white cable=NO
+BAD step2-done.jpg step 2: truth done, got unsure · 8566 ms {'hand': 0, 'objects': 8564, 'geometry': 3} · $0.0050
+    s2c1=0.94✓  hint=None
+    found: white cable=yes, exposed wires=NO
+BAD step1-done.jpg step 1: truth done, got unsure · 29358 ms {'hand': 0, 'objects': 19705, 'geometry': 2, 'judge': 2322} · $0.0056
+      hint=None
+    found: white cable=yes
+    judged: s1c1 FAIL 0.65 (The white cable looks bare and the clear piece is held in the hand, not on the cable.)
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 27171 ms {'hand': 0, 'objects': 16608, 'geometry': 2, 'judge': 2672} · $0.0058
+      hint=None
+    found: white cable=yes
+    judged: s1c1 FAIL 0.55 (The visible white cable in the learner picture shows no clear boot on it.)
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 8023 ms {'hand': 0, 'objects': 8020, 'geometry': 3} · $0.0050
+    s2c1=0.93✓  hint=None
+    found: white cable=yes, exposed wires=NO
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure · 26725 ms {'hand': 0, 'objects': 15423, 'geometry': 2, 'judge': 2620} · $0.0047
+      hint=None
+    found: white cable=yes
+    judged: s1c1 pass 0.65 (A small clear piece appears to be on the white cable near the top, not on the mat.)
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure · 20068 ms {'hand': 0, 'objects': 9840, 'geometry': 2, 'judge': 1543} · $0.0046
+      hint=None
+    found: white cable=yes
+    judged: s1c1 FAIL 0.3 (No clear boot is visible on the white cable and the cable end is hidden by fingers.)
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure · 9353 ms {'hand': 0, 'objects': 9353, 'geometry': 0} · $0.0050
+    s2c1=0.0✕  hint="I can't see the white cable."
+    found: white cable=NO, exposed wires=NO
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 9159 ms {'hand': 0, 'objects': 9157, 'geometry': 2} · $0.0050
+    s2c1=0.88✓  hint=None
+    found: white cable=yes, exposed wires=NO
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure · 10836 ms {'hand': 0, 'objects': 10834, 'geometry': 2} · $0.0050
+    s2c1=0.9✓  hint=None
+    found: white cable=yes, exposed wires=NO
+BAD step3-done.jpg step 3: truth done, got unsure · 19199 ms {'hand': 0, 'objects': 19193, 'geometry': 6} · $0.0200
+      hint=None
+    found: orange-white wire=NO, orange wire=NO, green-white wire=yes, blue wire=NO, blue-white wire=NO, green wire=yes, brown-white wire=NO, brown wire=NO
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 25799 ms {'hand': 0, 'objects': 25796, 'geometry': 4} · $0.0200
+      hint=None
+    found: orange-white wire=NO, orange wire=NO, green-white wire=yes, blue wire=NO, blue-white wire=NO, green wire=yes, brown-white wire=NO, brown wire=NO
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 35272 ms {'hand': 0, 'objects': 35271, 'geometry': 0} · $0.0200
+      hint=None
+    found: orange-white wire=NO, orange wire=NO, green-white wire=NO, blue wire=NO, blue-white wire=NO, green wire=NO, brown-white wire=NO, brown wire=NO
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 43880 ms {'hand': 0, 'objects': 43879, 'geometry': 0} · $0.0200
+      hint=None
+    found: orange-white wire=NO, orange wire=NO, green-white wire=NO, blue wire=NO, blue-white wire=NO, green wire=NO, brown-white wire=NO, brown wire=NO
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 50051 ms {'hand': 0, 'objects': 50043, 'geometry': 7} · $0.0200
+      hint=None
+    found: orange-white wire=NO, orange wire=NO, green-white wire=yes, blue wire=NO, blue-white wire=NO, green wire=yes, brown-white wire=NO, brown wire=NO
+BAD step4-done.jpg step 4: truth done, got unsure · 49299 ms {'hand': 0, 'objects': 49294, 'geometry': 5} · $0.0050
+    s4c1=0.67✓ s4c2=0✕  hint='I count 0 of the wire ends, not 8.'
+    found: white cable=yes, wire ends=NO
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 43220 ms {'hand': 0, 'objects': 43216, 'geometry': 5} · $0.0050
+    s4c1=0.63✓ s4c2=0✕  hint='I count 0 of the wire ends, not 8.'
+    found: white cable=yes, wire ends=NO
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure · 35785 ms {'hand': 0, 'objects': 35781, 'geometry': 4} · $0.0050
+    s4c1=0.73✓ s4c2=0✕  hint='I count 0 of the wire ends, not 8.'
+    found: white cable=yes, wire ends=NO
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 28283 ms {'hand': 0, 'objects': 28279, 'geometry': 4} · $0.0050
+    s4c1=0.62✓ s4c2=0✕  hint='I count 0 of the wire ends, not 8.'
+    found: white cable=yes, wire ends=NO
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure · 20940 ms {'hand': 0, 'objects': 20936, 'geometry': 4} · $0.0050
+    s4c1=0.6✓ s4c2=0✕  hint='I count 0 of the wire ends, not 8.'
+    found: white cable=yes, wire ends=NO
+BAD step5-done.jpg step 5: truth done, got unsure · 15663 ms {'hand': 0, 'objects': 15658, 'geometry': 4} · $0.0075
+      hint=None
+    found: clear connector=yes, white cable=NO, ordered wires=NO
+BAD step5-done_dim.jpg step 5: truth done, got unsure · 16870 ms {'hand': 0, 'objects': 16866, 'geometry': 4} · $0.0075
+      hint=None
+    found: clear connector=yes, white cable=NO, ordered wires=NO
+OK  step5-incomplete.jpg step 5: truth not_done, got unsure · 18427 ms {'hand': 0, 'objects': 18423, 'geometry': 4} · $0.0075
+      hint=None
+    found: clear connector=yes, white cable=NO, ordered wires=NO
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 18896 ms {'hand': 0, 'objects': 18896, 'geometry': 0} · $0.0075
+      hint=None
+    found: clear connector=NO, white cable=NO, ordered wires=NO
+OK  step5-wrong_colour.jpg step 5: truth wrong, got unsure · 20513 ms {'hand': 0, 'objects': 20509, 'geometry': 4} · $0.0075
+      hint=None
+    found: clear connector=yes, white cable=NO, ordered wires=NO
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 11458 ms {'hand': 0, 'objects': 11457, 'geometry': 0} · $0.0025
+      hint=None
+    found: clear connector=NO
+BAD step7-done.jpg step 7: truth done, got wrong · 8777 ms {'hand': 0, 'objects': 8758, 'geometry': 19} · $0.0050
+    s7c1=0.0✕  hint="Your white cable isn't in the clear connector yet."
+    found: clear connector=yes, white cable=yes
+OK  step6-done.jpg step 6: truth done, got done · 28513 ms {'hand': 0, 'objects': 19323, 'geometry': 2, 'judge': 1219} · $0.0042
+      hint=None
+    found: clear connector=yes
+    judged: s6c1 pass 0.95 (Clear boot is visibly slid up over the back of the clear plug on the white cable.)
+OK  step6-done_dim.jpg step 6: truth done, got done · 27095 ms {'hand': 0, 'objects': 16867, 'geometry': 2, 'judge': 2292} · $0.0039
+      hint=None
+    found: clear connector=yes
+    judged: s6c1 pass 0.7 (Learner shows the clear boot around the back of the plug, but the image is blurry.)
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure · 24101 ms {'hand': 0, 'objects': 14784, 'geometry': 2, 'judge': 1781} · $0.0046
+      hint=None
+    found: clear connector=yes
+    judged: s6c1 pass 0.45 (Blurry learner image seems to show a sleeve over the back of the plug, but detail is unclear.)
+BAD step7-done_dim.jpg step 7: truth done, got unsure · 9677 ms {'hand': 0, 'objects': 9671, 'geometry': 6} · $0.0050
+      hint=None
+    found: clear connector=yes, white cable=NO
+BAD step6-wrong_colour.jpg step 6: truth wrong, got done · 20243 ms {'hand': 0, 'objects': 9894, 'geometry': 2, 'judge': 1344} · $0.0044
+      hint=None
+    found: clear connector=yes
+    judged: s6c1 pass 0.75 (Clear boot is visible covering the back of the plug on the white cable.)
+OK  step7-incomplete.jpg step 7: truth not_done, got unsure · 10097 ms {'hand': 0, 'objects': 10093, 'geometry': 4} · $0.0050
+      hint=None
+    found: clear connector=yes, white cable=NO
+OK  step7-missing_part.jpg step 7: truth not_done, got unsure · 10034 ms {'hand': 0, 'objects': 10032, 'geometry': 2} · $0.0050
+      hint=None
+    found: clear connector=NO, white cable=yes
+OK  step7-wrong_colour.jpg step 7: truth wrong, got wrong · 10625 ms {'hand': 0, 'objects': 10606, 'geometry': 20} · $0.0050
+    s7c1=0.7✕  hint="Your white cable isn't in the clear connector yet."
+    found: clear connector=yes, white cable=yes
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 9161 ms {'hand': 0, 'objects': 9131, 'geometry': 31} · $0.0025
+    s1c1=0.0✕  hint="I can't see the white rope."
+    found: white rope=NO
+OK  step1-done.jpg step 1: truth done, got done · 20193 ms {'hand': 0, 'objects': 11843, 'geometry': 2, 'judge': 1561} · $0.0055
+    s1c1=0.91✓  hint=None
+    found: white rope=yes
+    judged: s1c2 pass 0.95 (Learner rope shows a loose white figure-eight with two clear openings.); s1c3 pass 0.95 (A long white tail with green marks hangs down from the knot.)
+OK  step1-done_dim.jpg step 1: truth done, got done · 20224 ms {'hand': 0, 'objects': 11767, 'geometry': 2, 'judge': 1307} · $0.0041
+    s1c1=0.92✓  hint=None
+    found: white rope=yes
+    judged: s1c2 pass 0.95 (Learner rope shows a loose figure-eight with two clear openings.); s1c3 pass 0.9 (A long white tail extends down from the figure-eight.)
+OK  step1-incomplete.jpg step 1: truth not_done, got wrong · 21862 ms {'hand': 0, 'objects': 11533, 'geometry': 3, 'judge': 1593} · $0.0053
+    s1c1=0.81✓  hint='You have a nice loop with a long white tail, but the twist is missing. Twist the loop once more to make the figure-eight shape with two openings like in the tutorial.'
+    found: white rope=yes
+    judged: s1c2 FAIL 0.95 (Learner shows a single simple loop with no figure-eight crossing.); s1c3 pass 0.95 (A long white free tail extends down from the loop.)
+BAD step1-wrong_colour.jpg step 1: truth wrong, got done · 19653 ms {'hand': 0, 'objects': 9695, 'geometry': 150, 'judge': 2106} · $0.0044
+    s1c1=0.77✓  hint=None
+    found: white rope=yes
+    judged: s1c2 pass 0.95 (Learner rope shows a loose figure-eight with two clear openings.); s1c3 pass 0.9 (A long white tail extends down from the knot on the left.)
+OK  step2-done.jpg step 2: truth done, got done · 17350 ms {'hand': 0, 'objects': 9955, 'geometry': 7, 'judge': 1468} · $0.0078
+    s2c1=0.8✓ s2c2=0.87✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s2c3 pass 0.95 (Learner rope encircles trunk with tail on right and knot held on left.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 11479 ms {'hand': 0, 'objects': 11475, 'geometry': 4} · $0.0050
+    s2c1=0.0✕ s2c2=0.82✓  hint="I can't see the white rope."
+    found: white rope=NO, tree trunk=yes
+OK  step2-done_dim.jpg step 2: truth done, got done · 18815 ms {'hand': 0, 'objects': 9925, 'geometry': 7, 'judge': 1679} · $0.0077
+    s2c1=0.75✓ s2c2=0.86✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s2c3 pass 0.85 (Learner rope encircles trunk with knot held on left and tail visible on right.)
+OK  step2-incomplete.jpg step 2: truth not_done, got wrong · 22385 ms {'hand': 0, 'objects': 9797, 'geometry': 6, 'judge': 2343} · $0.0069
+    s2c1=0.53✓ s2c2=0.71✓  hint='You are holding the white rope straight in front of the trunk. Pass the tail fully around the trunk so the loose knot stays on one side.'
+    found: white rope=yes, tree trunk=yes
+    judged: s2c3 FAIL 0.9 (Learner rope is held straight across in front of trunk, not encircling it with a knot to one side.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 13776 ms {'hand': 0, 'objects': 13772, 'geometry': 4} · $0.0050
+    s3c1=0.0✕ s3c2=0.8✓  hint="I can't see the white rope."
+    found: white rope=NO, tree trunk=yes
+BAD step2-wrong_colour.jpg step 2: truth wrong, got done · 23053 ms {'hand': 0, 'objects': 12334, 'geometry': 859, 'judge': 1855} · $0.0080
+    s2c1=0.73✓ s2c2=0.84✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s2c3 pass 0.75 (White rope is seen on both left and right sides of the trunk with knot held left, implying wrap around.)
+BAD step3-done.jpg step 3: truth done, got unsure · 22948 ms {'hand': 0, 'objects': 13794, 'geometry': 698, 'judge': 2256} · $0.0073
+    s3c1=0.91✓ s3c2=0.84✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s3c3 pass 0.65 (The white rope in the learner knot shows doubled strands following the same turns without obvious crossing.); s3c4 pass 0.7 (The tail in the learner picture exits at the bottom alongside the standing end.)
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 26353 ms {'hand': 0, 'objects': 15828, 'geometry': 141, 'judge': 2610} · $0.0074
+    s3c1=0.92✓ s3c2=0.8✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s3c3 pass 0.45 (Learner knot is small, dark and partly covered but strands look parallel.); s3c4 pass 0.4 (Tail appears to hang down near standing end but fingers obscure exit.)
+OK  step3-incomplete.jpg step 3: truth not_done, got wrong · 22070 ms {'hand': 0, 'objects': 13054, 'geometry': 559, 'judge': 2456} · $0.0080
+    s3c1=0.92✓ s3c2=0.85✓  hint='You have a single figure-eight so far, but the tutorial shows doubled parallel strands. Keep feeding your white tail around to follow the first rope all the way through until it comes out next to the standing end.'
+    found: white rope=yes, tree trunk=yes
+    judged: s3c3 FAIL 0.85 (LEARNER shows only a single strand figure-eight with the tail crossing, not doubled parallel strands.); s3c4 FAIL 0.85 (LEARNER tail points sideways and does not exit alongside the standing end like the tutorial.)
+BAD step3-wrong_colour.jpg step 3: truth wrong, got done · 20953 ms {'hand': 0, 'objects': 9703, 'geometry': 7, 'judge': 3070} · $0.0081
+    s3c1=0.86✓ s3c2=0.82✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s3c3 pass 0.85 (Learner knot shows doubled white strands lying parallel through the figure-eight without visible crossing.); s3c4 pass 0.85 (Learner tail exits the bottom of the knot alongside the standing end like the tutorial.)
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 13634 ms {'hand': 0, 'objects': 13168, 'geometry': 467} · $0.0050
+    s4c1=0.0✕  hint="I can't see the white rope."
+    found: white rope=NO, tree trunk=yes
+OK  step4-done.jpg step 4: truth done, got done · 21140 ms {'hand': 0, 'objects': 10571, 'geometry': 661, 'judge': 1796} · $0.0077
+    s4c1=0.91✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s4c2 pass 0.85 (Learner knot shows strands lying parallel and snug with no obvious twists.); s4c3 pass 0.85 (Three doubled strands are visible paired together at the knot.)
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 21796 ms {'hand': 0, 'objects': 13109, 'geometry': 569, 'judge': 2046} · $0.0080
+    s4c1=0.88✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s4c2 pass 0.65 (Learner knot appears dressed with parallel strands but image is dark and partly covered by fingers.); s4c3 pass 0.65 (Three doubled rope sections are visible at the knot despite dim lighting.)
+BAD step4-incomplete.jpg step 4: truth not_done, got done · 21283 ms {'hand': 0, 'objects': 12918, 'geometry': 6, 'judge': 1927} · $0.0074
+    s4c1=0.91✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s4c2 pass 0.85 (Learner knot appears snug with strands lying side-by-side and no obvious crossing or twist.); s4c3 pass 0.8 (Learner knot shows doubled strands entering, exiting, and wrapping the knot as parallel pairs.)
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure · 25585 ms {'hand': 0, 'objects': 14403, 'geometry': 8, 'judge': 2682} · $0.0071
+    s4c1=0.84✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s4c2 pass 0.65 (Learner knot appears dressed with parallel strands but detail is small and partly covered by fingers.); s4c3 pass 0.6 (Three doubled strands appear present at the knot though view is distant and partially obscured.)
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 11761 ms {'hand': 0, 'objects': 11757, 'geometry': 4} · $0.0050
+    s5c1=0.0✕ s5c2=0.82✓  hint="I can't see the white rope."
+    found: white rope=NO, tree trunk=yes
+OK  step5-done.jpg step 5: truth done, got done · 21230 ms {'hand': 0, 'objects': 10679, 'geometry': 4595, 'judge': 1501} · $0.0074
+    s5c1=0.84✓ s5c2=0.83✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s5c3 pass 0.95 (White rope knot sits tight against the trunk with a snug loop.)
+OK  step5-done_dim.jpg step 5: truth done, got done · 21220 ms {'hand': 0, 'objects': 13043, 'geometry': 540, 'judge': 1536} · $0.0070
+    s5c1=0.85✓ s5c2=0.78✓  hint=None
+    found: white rope=yes, tree trunk=yes
+    judged: s5c3 pass 0.9 (Learner white rope knot sits tight against the trunk with a snug loop.)
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 23449 ms {'hand': 0, 'objects': 12994, 'geometry': 113, 'judge': 1364} · $0.0077
+    s5c1=0.91✓ s5c2=0.79✓  hint='Your white rope knot is sitting away from the trunk with a loose loop. Slide the knotted loop up to pull the white rope snug around the dark bark like in the tutorial.'
+    found: white rope=yes, tree trunk=yes
+    judged: s5c3 FAIL 0.9 (Learner knot sits left of trunk with visible gap and slack loop, not cinched against bark.)
+OK  step5-wrong_colour.jpg step 5: truth wrong, got wrong · 25128 ms {'hand': 0, 'objects': 14787, 'geometry': 596, 'judge': 1868} · $0.0069
+    s5c1=0.83✓ s5c2=0.77✓  hint='Your white knot is sitting away from the bark with a wide V to the trunk; slide it up to touch the trunk and pull the loop snug like in the tutorial.'
+    found: white rope=yes, tree trunk=yes
+    judged: s5c3 FAIL 0.85 (Learner knot sits away from trunk with loose V strands, not cinched against bark.)
+OK  step6-done.jpg step 6: truth done, got done · 17173 ms {'hand': 0, 'objects': 6701, 'geometry': 6, 'judge': 2138} · $0.0077
+    s6c1=0.91✓ s6c2=0.71✓  hint=None
+    found: white rope=yes, stopper knot=yes
+    judged: s6c3 pass 0.92 (Learner tail shows a small double-wrapped overhand stopper below the main knot.)
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 9765 ms {'hand': 0, 'objects': 9765, 'geometry': 0} · $0.0050
+    s6c1=0.0✕ s6c2=0.0✕  hint="I can't see the white rope."
+    found: white rope=NO, stopper knot=NO
+OK  step6-done_dim.jpg step 6: truth done, got done · 18883 ms {'hand': 0, 'objects': 8941, 'geometry': 5, 'judge': 1502} · $0.0077
+    s6c1=0.87✓ s6c2=0.79✓  hint=None
+    found: white rope=yes, stopper knot=yes
+    judged: s6c3 pass 0.85 (Learner shows a small stopper knot on the tail below the main knot.)
+BAD step6-incomplete.jpg step 6: truth not_done, got done · 19428 ms {'hand': 0, 'objects': 8953, 'geometry': 4, 'judge': 1847} · $0.0076
+    s6c1=0.9✓ s6c2=0.83✓  hint=None
+    found: white rope=yes, stopper knot=yes
+    judged: s6c3 pass 0.95 (Learner shows a small stopper knot on the tail below the main knot like the tutorial.)
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure · 11703 ms {'hand': 0, 'objects': 11697, 'geometry': 6} · $0.0050
+    s1c1=0.64✓  hint=None
+    found: wall box=yes, voltage tester=NO
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 12146 ms {'hand': 0, 'objects': 12144, 'geometry': 2} · $0.0050
+    s1c1=0.0✕  hint="I can't see the wall box."
+    found: wall box=NO, voltage tester=yes
+BAD step6-wrong_colour.jpg step 6: truth wrong, got done · 22559 ms {'hand': 0, 'objects': 10534, 'geometry': 5, 'judge': 1124} · $0.0074
+    s6c1=0.9✓ s6c2=0.82✓  hint=None
+    found: white rope=yes, stopper knot=yes
+    judged: s6c3 pass 0.92 (Learner shows a small stopper knot on the tail below the main knot matching tutorial.)
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure · 12581 ms {'hand': 0, 'objects': 12581, 'geometry': 0} · $0.0050
+    s1c1=0.0✕  hint="I can't see the wall box."
+    found: wall box=NO, voltage tester=NO
+OK  step1-done.jpg step 1: truth done, got done · 22556 ms {'hand': 0, 'objects': 9733, 'geometry': 4, 'judge': 1626} · $0.0079
+    s1c1=0.53✓  hint=None
+    found: wall box=yes, voltage tester=yes
+    judged: s1c2 pass 0.9 (Learner yellow tester tip in blue box shows no red glow.)
+OK  step1-done_dim.jpg step 1: truth done, got done · 22624 ms {'hand': 0, 'objects': 10510, 'geometry': 4, 'judge': 1963} · $0.0074
+    s1c1=0.62✓  hint=None
+    found: wall box=yes, voltage tester=yes
+    judged: s1c2 pass 0.95 (The yellow tester in the blue box shows no red glow.)
+BAD step2-done.jpg step 2: truth done, got unsure · 11180 ms {'hand': 0, 'objects': 11178, 'geometry': 2} · $0.0050
+    s2c1=0✕  hint='I count 0 of the ground wire, not 2.'
+    found: ground wire=NO, wall box=yes
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 10940 ms {'hand': 0, 'objects': 10938, 'geometry': 2} · $0.0050
+    s2c1=0✕  hint='I count 0 of the ground wire, not 2.'
+    found: ground wire=NO, wall box=yes
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure · 11521 ms {'hand': 0, 'objects': 11518, 'geometry': 2} · $0.0050
+    s2c1=0✕  hint='I count 0 of the ground wire, not 2.'
+    found: ground wire=NO, wall box=yes
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 11101 ms {'hand': 0, 'objects': 11101, 'geometry': 0} · $0.0050
+    s2c1=0✕  hint='I count 0 of the ground wire, not 2.'
+    found: ground wire=NO, wall box=NO
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure · 11891 ms {'hand': 0, 'objects': 11891, 'geometry': 0} · $0.0050
+    s2c1=0✕  hint='I count 0 of the ground wire, not 2.'
+    found: ground wire=NO, wall box=NO
+BAD step3-done.jpg step 3: truth done, got wrong · 13214 ms {'hand': 0, 'objects': 13210, 'geometry': 4} · $0.0050
+    s3c1=3✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, voltage tester=yes
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 14120 ms {'hand': 0, 'objects': 14114, 'geometry': 5} · $0.0050
+    s3c1=3✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, voltage tester=NO
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 14176 ms {'hand': 0, 'objects': 14172, 'geometry': 4} · $0.0050
+    s3c1=1✕  hint='I count 1 of the black wire, not 2.'
+    found: black wire=yes, voltage tester=NO
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 14787 ms {'hand': 0, 'objects': 14782, 'geometry': 5} · $0.0050
+    s3c1=3✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, voltage tester=NO
+BAD step4-done.jpg step 4: truth done, got unsure · 16090 ms {'hand': 0, 'objects': 16086, 'geometry': 4} · $0.0075
+    s4c1=1✕  hint='I count 1 of the white wire, not 2.'
+    found: white wire=yes, wire nut=NO, wall box=yes
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 16659 ms {'hand': 0, 'objects': 16655, 'geometry': 4} · $0.0075
+    s4c1=1✕  hint='I count 1 of the white wire, not 2.'
+    found: white wire=yes, wire nut=NO, wall box=yes
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure · 18225 ms {'hand': 0, 'objects': 18221, 'geometry': 4} · $0.0075
+    s4c1=1✕  hint='I count 1 of the white wire, not 2.'
+    found: white wire=yes, wire nut=NO, wall box=NO
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 19302 ms {'hand': 0, 'objects': 19299, 'geometry': 2} · $0.0075
+    s4c1=0✕  hint='I count 0 of the white wire, not 2.'
+    found: white wire=NO, wire nut=NO, wall box=yes
+OK  step3-missing_part.jpg step 3: truth not_done, got wrong · 33342 ms {'hand': 0, 'objects': 14322, 'geometry': 4, 'judge': 1589} · $0.0073
+    s3c1=2✓  hint='Your yellow tester is on the lower black wire like in the tutorial but no glow is visible. Restore power briefly and re-test until the tip lights up on that wire.'
+    found: black wire=yes, voltage tester=yes
+    judged: s3c2 FAIL 0.75 (Tester tip on lower black wire shows no visible glow in learner image.)
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure · 19128 ms {'hand': 0, 'objects': 19122, 'geometry': 5} · $0.0075
+    s4c1=2✓  hint=None
+    found: white wire=yes, wire nut=NO, wall box=NO
+BAD step5-done.jpg step 5: truth done, got wrong · 17714 ms {'hand': 0, 'objects': 17692, 'geometry': 23} · $0.0050
+    s5c1=3✕ s5c2=0.08✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, wall box=yes
+BAD step5-done_dim.jpg step 5: truth done, got wrong · 16969 ms {'hand': 0, 'objects': 16945, 'geometry': 24} · $0.0050
+    s5c1=3✕ s5c2=0.21✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, wall box=yes
+OK  step5-incomplete.jpg step 5: truth not_done, got wrong · 15670 ms {'hand': 0, 'objects': 15647, 'geometry': 23} · $0.0050
+    s5c1=3✕ s5c2=0.12✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, wall box=yes
+OK  step5-missing_part.jpg step 5: truth not_done, got wrong · 14811 ms {'hand': 0, 'objects': 14789, 'geometry': 22} · $0.0050
+    s5c1=2✓ s5c2=0.13✕  hint="Your black wire isn't in the wall box yet."
+    found: black wire=yes, wall box=yes
+OK  step5-wrong_colour.jpg step 5: truth wrong, got unsure · 14534 ms {'hand': 0, 'objects': 14532, 'geometry': 2} · $0.0050
+    s5c1=3✕  hint='I count 3 of the black wire, not 2.'
+    found: black wire=yes, wall box=NO
+BAD step6-done.jpg step 6: truth done, got unsure · 15863 ms {'hand': 0, 'objects': 15861, 'geometry': 2} · $0.0075
+    s6c1=1✕  hint='I count 1 of the black wire, not 2.'
+    found: light switch=NO, ground wire=NO, black wire=yes
+BAD step6-done_dim.jpg step 6: truth done, got unsure · 16678 ms {'hand': 0, 'objects': 16676, 'geometry': 2} · $0.0075
+    s6c1=1✕  hint='I count 1 of the black wire, not 2.'
+    found: light switch=NO, ground wire=NO, black wire=yes
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure · 17779 ms {'hand': 0, 'objects': 17777, 'geometry': 2} · $0.0075
+    s6c1=1✕  hint='I count 1 of the black wire, not 2.'
+    found: light switch=NO, ground wire=NO, black wire=yes
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 19513 ms {'hand': 0, 'objects': 19513, 'geometry': 0} · $0.0075
+    s6c1=0✕  hint='I count 0 of the black wire, not 2.'
+    found: light switch=NO, ground wire=NO, black wire=NO
+OK  step6-wrong_colour.jpg step 6: truth wrong, got unsure · 20002 ms {'hand': 0, 'objects': 20000, 'geometry': 2} · $0.0075
+    s6c1=1✕  hint='I count 1 of the black wire, not 2.'
+    found: light switch=NO, ground wire=NO, black wire=yes
+BAD step7-done.jpg step 7: truth done, got unsure · 20683 ms {'hand': 0, 'objects': 20679, 'geometry': 4} · $0.0050
+      hint=None
+    found: light switch=yes, wall box=NO
+BAD step7-done_dim.jpg step 7: truth done, got unsure · 18641 ms {'hand': 0, 'objects': 18638, 'geometry': 4} · $0.0050
+      hint=None
+    found: light switch=yes, wall box=NO
+OK  step7-incomplete.jpg step 7: truth not_done, got unsure · 18108 ms {'hand': 0, 'objects': 18108, 'geometry': 0} · $0.0050
+      hint=None
+    found: light switch=NO, wall box=NO
+OK  step7-missing_part.jpg step 7: truth not_done, got unsure · 16678 ms {'hand': 0, 'objects': 16678, 'geometry': 0} · $0.0050
+      hint=None
+    found: light switch=NO, wall box=NO
+OK  step7-wrong_colour.jpg step 7: truth wrong, got unsure · 15062 ms {'hand': 0, 'objects': 15061, 'geometry': 0} · $0.0050
+      hint=None
+    found: light switch=NO, wall box=NO
+BAD step8-done.jpg step 8: truth done, got unsure · 14625 ms {'hand': 0, 'objects': 14623, 'geometry': 2} · $0.0050
+      hint=None
+    found: cover plate=NO, light switch=yes
+BAD step8-done_dim.jpg step 8: truth done, got unsure · 13988 ms {'hand': 0, 'objects': 13986, 'geometry': 2} · $0.0050
+      hint=None
+    found: cover plate=NO, light switch=yes
+OK  step8-incomplete.jpg step 8: truth not_done, got unsure · 15353 ms {'hand': 0, 'objects': 15351, 'geometry': 3} · $0.0050
+      hint=None
+    found: cover plate=NO, light switch=yes
+OK  step8-missing_part.jpg step 8: truth not_done, got unsure · 14848 ms {'hand': 0, 'objects': 14848, 'geometry': 0} · $0.0050
+      hint=None
+    found: cover plate=NO, light switch=NO
+OK  step8-wrong_colour.jpg step 8: truth wrong, got unsure · 14422 ms {'hand': 0, 'objects': 14420, 'geometry': 2} · $0.0050
+      hint=None
+    found: cover plate=NO, light switch=yes
+BAD step1-done.jpg step 1: truth done, got unsure · 14307 ms {'hand': 0, 'objects': 14303, 'geometry': 3} · $0.0050
+    s1c1=0.78✓  hint=None
+    found: old backplate=yes, smartphone=NO
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 14205 ms {'hand': 0, 'objects': 14202, 'geometry': 3} · $0.0050
+    s1c1=0.7✓  hint=None
+    found: old backplate=yes, smartphone=NO
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure · 14244 ms {'hand': 0, 'objects': 14244, 'geometry': 0} · $0.0050
+    s1c1=0.0✕  hint="I can't see the old backplate."
+    found: old backplate=NO, smartphone=NO
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 13929 ms {'hand': 0, 'objects': 13928, 'geometry': 0} · $0.0050
+    s1c1=0.0✕  hint="I can't see the old backplate."
+    found: old backplate=NO, smartphone=NO
+BAD step2-done.jpg step 2: truth done, got unsure · 15323 ms {'hand': 0, 'objects': 15323, 'geometry': 0} · $0.0075
+    s2c2=0.0✕ s2c3=0.0✕  hint="I can't see the red wire."
+    found: old backplate=NO, red wire=NO, white wire=NO
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 16504 ms {'hand': 0, 'objects': 16504, 'geometry': 0} · $0.0075
+    s2c2=0.0✕ s2c3=0.0✕  hint="I can't see the red wire."
+    found: old backplate=NO, red wire=NO, white wire=NO
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure · 17917 ms {'hand': 0, 'objects': 17911, 'geometry': 6} · $0.0075
+    s2c2=0.0✕ s2c3=0.0✕  hint="I can't see the red wire."
+    found: old backplate=yes, red wire=NO, white wire=NO
+BAD step3-done.jpg step 3: truth done, got unsure · 20583 ms {'hand': 0, 'objects': 20577, 'geometry': 6} · $0.0100
+    s3c4=1✕  hint='I count 1 of the mounting screw, not 2.'
+    found: new base=NO, red wire=yes, white wire=yes, mounting screw=yes
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 22837 ms {'hand': 0, 'objects': 22831, 'geometry': 6} · $0.0100
+    s3c4=1✕  hint='I count 1 of the mounting screw, not 2.'
+    found: new base=NO, red wire=yes, white wire=yes, mounting screw=yes
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 24780 ms {'hand': 0, 'objects': 24780, 'geometry': 0} · $0.0100
+    s3c4=0✕  hint='I count 0 of the mounting screw, not 2.'
+    found: new base=NO, red wire=NO, white wire=NO, mounting screw=NO
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 26147 ms {'hand': 0, 'objects': 26146, 'geometry': 0} · $0.0100
+    s3c4=0✕  hint='I count 0 of the mounting screw, not 2.'
+    found: new base=NO, red wire=NO, white wire=NO, mounting screw=NO
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 27773 ms {'hand': 0, 'objects': 27769, 'geometry': 4} · $0.0100
+    s3c4=1✕  hint='I count 1 of the mounting screw, not 2.'
+    found: new base=NO, red wire=NO, white wire=yes, mounting screw=yes
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 19417 ms {'hand': 0, 'objects': 19415, 'geometry': 2} · $0.0050
+    s4c3=0.0✕ s4c4=0.57✓  hint="I can't see the red wire."
+    found: red wire=NO, white wire=yes
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure · 17170 ms {'hand': 0, 'objects': 17168, 'geometry': 2} · $0.0050
+    s4c3=0.0✕ s4c4=0.74✓  hint="I can't see the red wire."
+    found: red wire=NO, white wire=yes
+BAD step5-done.jpg step 5: truth done, got unsure · 14539 ms {'hand': 0, 'objects': 14539, 'geometry': 0} · $0.0050
+      hint=None
+    found: display panel=NO, new base=NO
+OK  step4-done.jpg step 4: truth done, got done · 41428 ms {'hand': 0, 'objects': 26648, 'geometry': 4, 'judge': 2050} · $0.0082
+    s4c3=0.71✓ s4c4=0.87✓  hint=None
+    found: red wire=yes, white wire=yes
+    judged: s4c1 pass 0.95 (Learner red wire's bare end is inserted in the RC tab at lower left.); s4c2 pass 0.95 (Learner white wire's bare end is inserted in the W1 tab at upper right.)
+OK  step4-done_dim.jpg step 4: truth done, got done · 37017 ms {'hand': 0, 'objects': 23897, 'geometry': 4, 'judge': 1719} · $0.0070
+    s4c3=0.7✓ s4c4=0.81✓  hint=None
+    found: red wire=yes, white wire=yes
+    judged: s4c1 pass 0.85 (Red wire bare end is at the lower-left RC tab in learner picture.); s4c2 pass 0.9 (White wire bare end is inserted at the upper-right W1 tab.)
+BAD step5-done_dim.jpg step 5: truth done, got unsure · 10487 ms {'hand': 0, 'objects': 10483, 'geometry': 4} · $0.0050
+      hint=None
+    found: display panel=yes, new base=NO
+OK  step4-incomplete.jpg step 4: truth not_done, got wrong · 35004 ms {'hand': 0, 'objects': 21777, 'geometry': 4, 'judge': 2885} · $0.0073
+    s4c3=0.75✓ s4c4=0.73✓  hint='You are holding the wires in the middle — push the red bare end into the lower-left Rc tab and the white bare end into the upper-right W1 tab until each clicks.'
+    found: red wire=yes, white wire=yes
+    judged: s4c1 FAIL 0.85 (Red wire is held in fingers in the center, not inserted into the Rc tab.); s4c2 FAIL 0.75 (White wire is in the center hole, not inserted into the W1 side which is out of view.)
+OK  step5-incomplete.jpg step 5: truth not_done, got unsure · 10271 ms {'hand': 0, 'objects': 10271, 'geometry': 0} · $0.0050
+      hint=None
+    found: display panel=NO, new base=NO
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 11341 ms {'hand': 0, 'objects': 11341, 'geometry': 0} · $0.0050
+      hint=None
+    found: display panel=NO, new base=NO
+BAD step6-done.jpg step 6: truth done, got unsure · 10341 ms {'hand': 0, 'objects': 10341, 'geometry': 0} · $0.0050
+    s6c2=0.0✕  hint="I can't see the smartphone."
+    found: display panel=NO, smartphone=NO
+BAD step6-done_dim.jpg step 6: truth done, got unsure · 11700 ms {'hand': 0, 'objects': 11700, 'geometry': 0} · $0.0050
+    s6c2=0.0✕  hint="I can't see the smartphone."
+    found: display panel=NO, smartphone=NO
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure · 12711 ms {'hand': 0, 'objects': 12708, 'geometry': 3} · $0.0050
+    s6c2=0.96✓  hint=None
+    found: display panel=NO, smartphone=yes
+OK  step1-done.jpg step 1: truth done, got done · 13726 ms {'hand': 0, 'objects': 13724, 'geometry': 2} · $0.0025
+    s1c1=0.64✓  hint=None
+    found: old mechanism plate=yes
+OK  step1-done_dim.jpg step 1: truth done, got done · 12840 ms {'hand': 0, 'objects': 12837, 'geometry': 2} · $0.0025
+    s1c1=0.53✓  hint=None
+    found: old mechanism plate=yes
+OK  step1-incomplete.jpg step 1: truth not_done, got unsure · 10139 ms {'hand': 0, 'objects': 10138, 'geometry': 0} · $0.0025
+    s1c1=0.0✕  hint="I can't see the old mechanism plate."
+    found: old mechanism plate=NO
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 9815 ms {'hand': 0, 'objects': 9815, 'geometry': 0} · $0.0025
+    s1c1=0.0✕  hint="I can't see the old mechanism plate."
+    found: old mechanism plate=NO
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure · 8424 ms {'hand': 0, 'objects': 8424, 'geometry': 0} · $0.0025
+    s1c1=0.0✕  hint="I can't see the old mechanism plate."
+    found: old mechanism plate=NO
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure · 7126 ms {'hand': 0, 'objects': 7125, 'geometry': 0} · $0.0025
+    s2c1=0.0✕  hint="I can't see the furnace breaker."
+    found: furnace breaker=NO
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 7165 ms {'hand': 0, 'objects': 7165, 'geometry': 0} · $0.0025
+    s2c1=0.0✕  hint="I can't see the furnace breaker."
+    found: furnace breaker=NO
+BAD step3-done.jpg step 3: truth done, got unsure · 8620 ms {'hand': 0, 'objects': 8615, 'geometry': 6} · $0.0050
+    s3c1=0.53✓ s3c2=0.0✕  hint="I can't see the voltage tester."
+    found: old mechanism plate=yes, voltage tester=NO
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 9696 ms {'hand': 0, 'objects': 9693, 'geometry': 2} · $0.0050
+    s3c1=0.52✓ s3c2=0.0✕  hint="I can't see the voltage tester."
+    found: old mechanism plate=yes, voltage tester=NO
+BAD step2-done.jpg step 2: truth done, got unsure · 18395 ms {'hand': 0, 'objects': 7915, 'geometry': 128, 'judge': 2634} · $0.0058
+    s2c1=0.7✓  hint=None
+    found: furnace breaker=yes
+    judged: s2c2 FAIL 0.4 (The furnace breaker toggle position is too blurry to confirm fully off.)
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 9980 ms {'hand': 0, 'objects': 9974, 'geometry': 6} · $0.0050
+    s3c1=0.64✓ s3c2=0.0✕  hint="I can't see the voltage tester."
+    found: old mechanism plate=yes, voltage tester=NO
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 19441 ms {'hand': 0, 'objects': 7906, 'geometry': 3, 'judge': 3655} · $0.0054
+    s2c1=0.66✓  hint=None
+    found: furnace breaker=yes
+    judged: s2c2 pass 0.55 (The black breaker by the Furnace label appears in the off-side position like the tutorial.)
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 12029 ms {'hand': 0, 'objects': 12028, 'geometry': 0} · $0.0050
+    s3c1=0.0✕ s3c2=0.0✕  hint="I can't see the old mechanism plate."
+    found: old mechanism plate=NO, voltage tester=NO
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 11461 ms {'hand': 0, 'objects': 11461, 'geometry': 0} · $0.0050
+    s3c1=0.0✕ s3c2=0.0✕  hint="I can't see the old mechanism plate."
+    found: old mechanism plate=NO, voltage tester=NO
+BAD step4-done.jpg step 4: truth done, got unsure · 17342 ms {'hand': 0, 'objects': 17283, 'geometry': 60} · $0.0150
+    s4c1=0.72✓ s4c2=1.0✓ s4c3=1.0✓  hint=None
+    found: old base=yes, red wire=yes, green wire=yes, yellow wire=NO, white wire=NO, wall hole=yes
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 20609 ms {'hand': 0, 'objects': 20549, 'geometry': 60} · $0.0150
+    s4c1=0.55✓ s4c2=1.0✓ s4c3=1.0✓  hint=None
+    found: old base=yes, red wire=yes, green wire=yes, yellow wire=NO, white wire=NO, wall hole=yes
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure · 26447 ms {'hand': 0, 'objects': 26437, 'geometry': 9} · $0.0150
+    s4c1=0.0✕ s4c2=0.23✕  hint="I can't see the old base."
+    found: old base=NO, red wire=yes, green wire=NO, yellow wire=NO, white wire=NO, wall hole=yes
+OK  step4-missing_part.jpg step 4: truth not_done, got unsure · 32635 ms {'hand': 0, 'objects': 32612, 'geometry': 23} · $0.0150
+    s4c1=0.0✕ s4c2=0.87✕ s4c3=0.86✕  hint="I can't see the old base."
+    found: old base=NO, red wire=yes, green wire=yes, yellow wire=NO, white wire=NO, wall hole=yes
+OK  step4-wrong_colour.jpg step 4: truth wrong, got unsure · 39270 ms {'hand': 0, 'objects': 39246, 'geometry': 23} · $0.0150
+    s4c1=0.0✕ s4c3=1.0✓  hint="I can't see the old base."
+    found: old base=NO, red wire=NO, green wire=yes, yellow wire=NO, white wire=NO, wall hole=yes
+BAD step5-done.jpg step 5: truth done, got unsure · 38785 ms {'hand': 0, 'objects': 38783, 'geometry': 3} · $0.0050
+    s5c1=9✕  hint='I count 9 of the mounting screw, not 2.'
+    found: new plate=NO, mounting screw=yes
+BAD step5-done_dim.jpg step 5: truth done, got unsure · 33416 ms {'hand': 0, 'objects': 33413, 'geometry': 2} · $0.0050
+    s5c1=8✕  hint='I count 8 of the mounting screw, not 2.'
+    found: new plate=NO, mounting screw=yes
+OK  step5-incomplete.jpg step 5: truth not_done, got unsure · 28787 ms {'hand': 0, 'objects': 28785, 'geometry': 2} · $0.0050
+    s5c1=2✓  hint=None
+    found: new plate=NO, mounting screw=yes
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 24175 ms {'hand': 0, 'objects': 24173, 'geometry': 2} · $0.0050
+    s5c1=9✕  hint='I count 9 of the mounting screw, not 2.'
+    found: new plate=NO, mounting screw=yes
+OK  step5-wrong_colour.jpg step 5: truth wrong, got unsure · 19818 ms {'hand': 0, 'objects': 19815, 'geometry': 3} · $0.0050
+    s5c1=8✕  hint='I count 8 of the mounting screw, not 2.'
+    found: new plate=NO, mounting screw=yes
+BAD step6-done.jpg step 6: truth done, got unsure · 18346 ms {'hand': 0, 'objects': 18330, 'geometry': 16} · $0.0150
+      hint='I found 12 terminals, not 6. Move the camera so every terminal screw shows.'
+    found: red wire=yes, green wire=yes, yellow wire=yes, white wire=NO, G terminal=NO, Y terminal=NO, W terminal=NO, R terminal=NO
+BAD step6-done_dim.jpg step 6: truth done, got unsure · 24002 ms {'hand': 0, 'objects': 23986, 'geometry': 16} · $0.0150
+      hint='I found 12 terminals, not 6. Move the camera so every terminal screw shows.'
+    found: red wire=yes, green wire=yes, yellow wire=yes, white wire=NO, G terminal=NO, Y terminal=NO, W terminal=NO, R terminal=NO
+OK  step6-incomplete.jpg step 6: truth not_done, got unsure · 28543 ms {'hand': 0, 'objects': 28525, 'geometry': 18} · $0.0150
+      hint='I found 20 terminals, not 6. Move the camera so every terminal screw shows.'
+    found: red wire=yes, green wire=yes, yellow wire=yes, white wire=NO, G terminal=NO, Y terminal=NO, W terminal=NO, R terminal=NO
+OK  step6-missing_part.jpg step 6: truth not_done, got unsure · 33413 ms {'hand': 0, 'objects': 33397, 'geometry': 16} · $0.0150
+      hint='I found 14 terminals, not 6. Move the camera so every terminal screw shows.'
+    found: red wire=yes, green wire=yes, yellow wire=yes, white wire=NO, G terminal=NO, Y terminal=NO, W terminal=NO, R terminal=NO
+OK  step6-wrong_colour.jpg step 6: truth wrong, got unsure · 38936 ms {'hand': 0, 'objects': 38926, 'geometry': 10} · $0.0150
+      hint='I found 11 terminals, not 6. Move the camera so every terminal screw shows.'
+    found: red wire=NO, green wire=yes, yellow wire=NO, white wire=NO, G terminal=NO, Y terminal=NO, W terminal=NO, R terminal=NO
+OK  step7-incomplete.jpg step 7: truth not_done, got unsure · 25138 ms {'hand': 0, 'objects': 25107, 'geometry': 31} · $0.0025
+    s7c1=0.0✕  hint="I can't see the new thermostat."
+    found: new thermostat=NO
+OK  step7-missing_part.jpg step 7: truth not_done, got unsure · 19192 ms {'hand': 0, 'objects': 19191, 'geometry': 0} · $0.0025
+    s7c1=0.0✕  hint="I can't see the new thermostat."
+    found: new thermostat=NO
+BAD step1-done.jpg step 1: truth done, got unsure · 6725 ms {'hand': 0, 'objects': 6706, 'geometry': 19} · $0.0025
+    s1c1=0.0✕  hint="I can't see the green board."
+    found: green board=NO
+BAD step1-done_dim.jpg step 1: truth done, got unsure · 5796 ms {'hand': 0, 'objects': 5795, 'geometry': 0} · $0.0025
+    s1c1=0.0✕  hint="I can't see the green board."
+    found: green board=NO
+OK  step7-done_dim.jpg step 7: truth done, got done · 40644 ms {'hand': 0, 'objects': 32827, 'geometry': 3, 'judge': 1449} · $0.0048
+    s7c1=0.96✓  hint=None
+    found: new thermostat=yes
+    judged: s7c2 pass 0.95 (The LEARNER screen clearly shows 89 powered on.)
+OK  step1-missing_part.jpg step 1: truth not_done, got unsure · 6038 ms {'hand': 0, 'objects': 6038, 'geometry': 0} · $0.0025
+    s1c1=0.0✕  hint="I can't see the green board."
+    found: green board=NO
+BAD step1-incomplete.jpg step 1: truth not_done, got done · 8586 ms {'hand': 0, 'objects': 8583, 'geometry': 3} · $0.0025
+    s1c1=0.79✓  hint=None
+    found: green board=yes
+BAD step7-wrong_colour.jpg step 7: truth wrong, got done · 23006 ms {'hand': 0, 'objects': 15017, 'geometry': 3, 'judge': 1654} · $0.0040
+    s7c1=0.96✓  hint=None
+    found: new thermostat=yes
+    judged: s7c2 pass 0.97 (The learner thermostat display clearly shows 89 powered on.)
+OK  step1-wrong_colour.jpg step 1: truth wrong, got unsure · 6412 ms {'hand': 0, 'objects': 6412, 'geometry': 0} · $0.0025
+    s1c1=0.0✕  hint="I can't see the green board."
+    found: green board=NO
+BAD step2-done.jpg step 2: truth done, got unsure · 6593 ms {'hand': 0, 'objects': 6587, 'geometry': 6} · $0.0050
+      hint=None
+    found: green board=yes, yellow paste=NO
+BAD step2-done_dim.jpg step 2: truth done, got unsure · 6983 ms {'hand': 0, 'objects': 6980, 'geometry': 2} · $0.0050
+      hint=None
+    found: green board=yes, yellow paste=NO
+OK  step2-incomplete.jpg step 2: truth not_done, got unsure · 9253 ms {'hand': 0, 'objects': 9253, 'geometry': 0} · $0.0050
+      hint=None
+    found: green board=NO, yellow paste=NO
+OK  step7-done.jpg step 7: truth done, got done · 60214 ms {'hand': 0, 'objects': 38199, 'geometry': 109, 'judge': 16725} · $0.0035
+    s7c1=0.96✓  hint=None
+    found: new thermostat=yes
+    judged: s7c2 pass 0.97 (Learner white thermostat display clearly shows 89 powered on.)
+OK  step2-missing_part.jpg step 2: truth not_done, got unsure · 9387 ms {'hand': 0, 'objects': 9387, 'geometry': 0} · $0.0050
+      hint=None
+    found: green board=NO, yellow paste=NO
+OK  step2-wrong_colour.jpg step 2: truth wrong, got unsure · 11437 ms {'hand': 0, 'objects': 11437, 'geometry': 0} · $0.0050
+      hint=None
+    found: green board=NO, yellow paste=NO
+BAD step3-done.jpg step 3: truth done, got unsure · 12575 ms {'hand': 0, 'objects': 12572, 'geometry': 3} · $0.0050
+    s3c1=0✕  hint='I count 0 of the blue resistor, not 1.'
+    found: green board=yes, blue resistor=NO
+BAD step3-done_dim.jpg step 3: truth done, got unsure · 12667 ms {'hand': 0, 'objects': 12664, 'geometry': 3} · $0.0050
+    s3c1=0✕  hint='I count 0 of the blue resistor, not 1.'
+    found: green board=yes, blue resistor=NO
+OK  step3-incomplete.jpg step 3: truth not_done, got unsure · 11937 ms {'hand': 0, 'objects': 11937, 'geometry': 0} · $0.0050
+    s3c1=0✕  hint='I count 0 of the blue resistor, not 1.'
+    found: green board=NO, blue resistor=NO
+OK  step3-missing_part.jpg step 3: truth not_done, got unsure · 12341 ms {'hand': 0, 'objects': 12340, 'geometry': 0} · $0.0050
+    s3c1=0✕  hint='I count 0 of the blue resistor, not 1.'
+    found: green board=NO, blue resistor=NO
+OK  step3-wrong_colour.jpg step 3: truth wrong, got unsure · 15064 ms {'hand': 0, 'objects': 15063, 'geometry': 0} · $0.0050
+    s3c1=0✕  hint='I count 0 of the blue resistor, not 1.'
+    found: green board=NO, blue resistor=NO
+BAD step4-done.jpg step 4: truth done, got unsure · 16018 ms {'hand': 0, 'objects': 16014, 'geometry': 4} · $0.0075
+    s4c1=0✕ s4c3=0.0✕  hint='I count 0 of the solder joint, not 2.'
+    found: green board=yes, blue resistor=NO, solder joint=NO
+BAD step4-done_dim.jpg step 4: truth done, got unsure · 16569 ms {'hand': 0, 'objects': 16557, 'geometry': 12} · $0.0075
+    s4c1=0✕ s4c3=0.0✕  hint='I count 0 of the solder joint, not 2.'
+    found: green board=yes, blue resistor=NO, solder joint=NO
+OK  step4-incomplete.jpg step 4: truth not_done, got unsure · 17321 ms {'hand': 0, 'objects': 17317, 'geometry': 4} · $0.0075
+    s4c1=0✕ s4c3=0.0✕  hint='I count 0 of the solder joint, not 2.'
+    found: green board=yes, blue resistor=NO, solder joint=NO
+BAD step5-done.jpg step 5: truth done, got unsure · 19234 ms {'hand': 0, 'objects': 19231, 'geometry': 3} · $0.0050
+      hint=None
+    found: green board=yes, blue resistor=NO
+BAD step5-done_dim.jpg step 5: truth done, got unsure · 19723 ms {'hand': 0, 'objects': 19552, 'geometry': 171} · $0.0050
+      hint=None
+    found: green board=yes, blue resistor=NO
+OK  step5-incomplete.jpg step 5: truth not_done, got unsure · 18541 ms {'hand': 0, 'objects': 18537, 'geometry': 3} · $0.0050
+      hint=None
+    found: green board=yes, blue resistor=NO
+OK  step5-missing_part.jpg step 5: truth not_done, got unsure · 16407 ms {'hand': 0, 'objects': 16407, 'geometry': 0} · $0.0050
+      hint=None
+    found: green board=NO, blue resistor=NO
+OK  step5-wrong_colour.jpg step 5: truth wrong, got unsure · 15962 ms {'hand': 0, 'objects': 15959, 'geometry': 3} · $0.0050
+      hint=None
+    found: green board=yes, blue resistor=NO
+recorded the model answers in eval/cfbench/recorded-uncalibrated.jsonl
+
+done_accuracy: 133 of 211
+done_accuracy_ci: [0.563, 0.693]
+done_accuracy_measured: None
+done_accuracy_judged: None
+wrong_advances: 9 of 123
+wrong_corrections: 8 of 88
+unsure_rate: 165 of 211 (78%)
+mistake_catch_rate: 114 of 123
+latency_ms_p50: 17.7 s
+latency_ms_p90: 28.5 s
+cost_per_check_usd: $0.0065
+spent_usd: 1.3766
+step_plan_accuracy: 6 of 67
+wrote eval/cfbench/reports-uncalibrated/2026-11-02.json

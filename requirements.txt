@@ -1,0 +1,12 @@
+fastapi==0.162.0
+uvicorn==0.54.0
+python-multipart==0.0.32
+httpx2==2.16.0
+websockets==15.0.1  # the voice WebSocket: uvicorn serves /ws/voice with it, and the proxy dials Meta's realtime endpoint
+numpy==2.5.4
+meta-sam-parser==0.1.0
+tzdata==2025.2  # time zones for ZoneInfo on Windows and slim images
+Pillow==13.0.0         # crops and resizes the judged-check images (server/spark.py)
+pypdfium2==5.14.0      # renders manual PDF pages to images (server/manual.py, CR-006)
+imageio-ffmpeg==0.6.0  # ffmpeg for local runs (uploads, end frames); the Docker image uses its system ffmpeg
+yt-dlp==2026.10.26  # paste a YouTube/Vimeo link instead of a file (server/tutorials.py fetch_link)

@@ -1,0 +1,200 @@
+{
+ "prompt_version": "step_details-0.4",
+ "model": "muse-spark-1.3",
+ "cost_usd": 0.07336195,
+ "actor": "robot arm",
+ "steps": {
+  "1": {
+   "say": "Pick up the green cube from the left tray. Place it into the bottom-right corner of the right tray.",
+   "placements": [
+    "green cube → bottom-right corner cell of the destination clear grid on the right side of the table (the right tray); in the video: bottom-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Putting it back in the left tray - the right tray should hold only the green cube after this step.",
+    "Using the wrong color - the red, blue and yellow cubes stay in the left tray."
+   ],
+   "check_yourself": "The green cube sits in the bottom-right corner inside the right clear grid as seen from above.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "2": {
+   "say": "Pick up the blue cube from the left tray. Place it into the bottom-left corner of the right tray.",
+   "placements": [
+    "blue cube → bottom-left corner cell of the right clear grid on the right side, to the left of the green cube; in the video: bottom-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Swapping corners - green stays bottom-right, blue goes bottom-left.",
+    "Dropping it in the left tray - the right tray should now hold two cubes."
+   ],
+   "check_yourself": "The blue cube sits in the bottom-left corner inside the right clear grid as seen from above with the green cube.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "3": {
+   "say": "Pick up the yellow cube from the left tray. Place it into the top-right corner of the right tray.",
+   "placements": [
+    "yellow cube → top-right corner cell of the right clear grid on the right side, above the green cube; in the video: top-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Putting yellow in a bottom corner - the top-right should be empty before this step.",
+    "Knocking the green or blue cube out of place - all three should sit in separate corners."
+   ],
+   "check_yourself": "The yellow cube sits in the top-right corner inside the right clear grid as seen from above with the green and blue cubes.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "4": {
+   "say": "Pick up the red cube from the left tray. Place it into the top-left corner of the right tray.",
+   "placements": [
+    "red cube → top-left corner cell of the right clear grid on the right side, above the blue cube and to the left of the yellow cube; in the video: top-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Leaving the red cube in the left tray - the left tray should be empty after this step.",
+    "Stacking red on another cube - each cube sits in its own corner cell."
+   ],
+   "check_yourself": "All four colored cubes sit in the four corners inside the right clear grid as seen from above.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "5": {
+   "say": "Pick up the green cube from the right tray. Return it into the bottom-right corner of the left tray.",
+   "placements": [
+    "green cube → bottom-right corner cell of the source clear grid on the left side of the table (the left tray); in the video: bottom-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Returning the wrong color first - move only the green cube in this step.",
+    "Putting it in the right tray again - it belongs in the left tray now."
+   ],
+   "check_yourself": "The green cube sits in the bottom-right corner inside the left clear grid as seen from above.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "6": {
+   "say": "Pick up the blue cube from the right tray. Return it into the bottom-left corner of the left tray.",
+   "placements": [
+    "blue cube → bottom-left corner cell of the left clear grid on the left side, to the left of the green cube; in the video: bottom-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Swapping blue and green corners - blue goes bottom-left, green stays bottom-right.",
+    "Leaving blue in the right tray - the right tray should now hold only yellow and red."
+   ],
+   "check_yourself": "The blue cube sits in the bottom-left corner inside the left clear grid as seen from above with the green cube.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "7": {
+   "say": "Pick up the yellow cube from the right tray. Return it into the top-right corner of the left tray.",
+   "placements": [
+    "yellow cube → top-right corner cell of the left clear grid on the left side, above the green cube; in the video: top-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Putting yellow in a bottom corner - it belongs top-right above green.",
+    "If the yellow cube slips off center, it is not seated in its corner cell."
+   ],
+   "check_yourself": "The yellow cube sits in the top-right corner inside the left clear grid as seen from above with the green and blue cubes.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "8": {
+   "say": "Pick up the red cube from the right tray. Return it into the top-left corner of the left tray.",
+   "placements": [
+    "red cube → top-left corner cell of the left clear grid on the left side, above the blue cube; in the video: top-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Leaving red in the right tray - the right tray should be empty after this step.",
+    "If a corner looks empty in the left tray, that cube is in the wrong cell."
+   ],
+   "check_yourself": "All four colored cubes sit in the four corners inside the left clear grid as seen from above.",
+   "safety": "Keep fingers clear of the moving robot arm before it starts."
+  },
+  "9": {
+   "say": "Pick up the red block from the left tray. Place it into the bottom-right corner of the right tray.",
+   "placements": [
+    "red block → bottom-right corner cell of the destination clear grid on the right side of the table (the right tray); in the video: bottom-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Gripping the wrong color - leave the green, blue and yellow blocks in the left tray.",
+    "Placing it outside the grid - it must sit inside the bottom-right cell."
+   ],
+   "check_yourself": "The red block sits in the bottom-right corner inside the right clear grid as seen from above.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "10": {
+   "say": "Pick up the green block from the left tray. Place it into the bottom-left corner of the right tray.",
+   "placements": [
+    "green block → bottom-left corner cell of the right clear grid on the right side, to the left of the red block; in the video: bottom-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Swapping red and green - red stays bottom-right, green goes bottom-left.",
+    "If the block tips over, the gripper did not set it flat in its cell."
+   ],
+   "check_yourself": "The green block sits in the bottom-left corner inside the right clear grid as seen from above with the red block.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "11": {
+   "say": "Pick up the blue block from the left tray. Place it into the top-right corner of the right tray.",
+   "placements": [
+    "blue block → top-right corner cell of the right clear grid on the right side, above the red block; in the video: top-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Putting blue in a bottom corner - it belongs top-right.",
+    "If only two blocks are in the right tray, you missed this blue block."
+   ],
+   "check_yourself": "The blue block sits in the top-right corner inside the right clear grid as seen from above with the red and green blocks.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "12": {
+   "say": "Pick up the yellow block from the left tray. Place it into the top-left corner of the right tray.",
+   "placements": [
+    "yellow block → top-left corner cell of the right clear grid on the right side, above the green block and to the left of the blue block; in the video: top-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Leaving yellow in the left tray - the left tray should be empty after this step.",
+    "Stacking yellow on another block - each block sits in its own corner cell."
+   ],
+   "check_yourself": "All four colored blocks sit in the four corners inside the right clear grid as seen from above.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "13": {
+   "say": "Pick up the red block from the right tray. Return it into the bottom-right corner of the left tray.",
+   "placements": [
+    "red block → bottom-right corner cell of the left clear grid on the left side of the table (the left tray); in the video: bottom-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Moving the wrong color - move only the red block in this step.",
+    "Putting it back in the right tray - it belongs in the left tray now."
+   ],
+   "check_yourself": "The red block sits in the bottom-right corner inside the left clear grid as seen from above.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "14": {
+   "say": "Pick up the green block from the right tray. Return it into the bottom-left corner of the left tray.",
+   "placements": [
+    "green block → bottom-left corner cell of the left clear grid on the left side, to the left of the red block; in the video: bottom-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Swapping green and red corners - green goes bottom-left, red stays bottom-right.",
+    "If the green block is tilted, it is not seated flat in its cell."
+   ],
+   "check_yourself": "The green block sits in the bottom-left corner inside the left clear grid as seen from above with the red block.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "15": {
+   "say": "Pick up the blue block from the right tray. Return it into the top-right corner of the left tray.",
+   "placements": [
+    "blue block → top-right corner cell of the left clear grid on the left side, above the red block; in the video: top-right corner as seen from above"
+   ],
+   "watch_for": [
+    "Putting blue in a bottom corner - it belongs top-right.",
+    "Leaving blue in the right tray - only the yellow block should remain there."
+   ],
+   "check_yourself": "The blue block sits in the top-right corner inside the left clear grid as seen from above with the red and green blocks.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  },
+  "16": {
+   "say": "Pick up the yellow block from the right tray. Return it into the top-left corner of the left tray.",
+   "placements": [
+    "yellow block → top-left corner cell of the left clear grid on the left side, above the green block; in the video: top-left corner as seen from above"
+   ],
+   "watch_for": [
+    "Leaving yellow in the right tray - the right tray should be empty after this step.",
+    "If a corner looks empty in the left tray, that block is in the wrong cell."
+   ],
+   "check_yourself": "All four colored blocks sit in the four corners inside the left clear grid as seen from above.",
+   "safety": "Keep hands out of the gripper pinch points before it closes."
+  }
+ }
+}

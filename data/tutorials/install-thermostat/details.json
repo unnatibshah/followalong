@@ -1,0 +1,99 @@
+{
+ "prompt_version": "step_details-0.4",
+ "model": "muse-spark-1.3",
+ "cost_usd": 0.08903825,
+ "actor": "hand",
+ "steps": {
+  "1": {
+   "say": "Pull the two white wires and two black wires out of the gray wall box. Twist off and remove the orange caps so four bare copper ends stick out.",
+   "placements": [
+    "two white insulated house wires with bare copper tips, the neutral return pair in the video -> pulled out to stick up and out of the top opening of the gray wall box, in the video: one left-top and one right-side",
+    "two black insulated house wires with bare copper tips, the hot pair in the video -> pulled out to stick up and out of the top opening of the same gray wall box",
+    "two orange twist-on caps -> twisted off the wire ends by hand and set aside off-camera"
+   ],
+   "watch_for": [
+    "if you see only two wires, the other pair is still tucked inside - pull all four out",
+    "if any orange cap still covers copper, pull it off - you must see bare metal to test"
+   ],
+   "check_yourself": "Four bare copper ends - two white and two black in the video - stick out of the gray box with no caps on.",
+   "safety": "Keep the breaker off and do not touch any bare copper until you have proven no power."
+  },
+  "2": {
+   "say": "Touch the yellow tester's black and red probe tips to the bare wire ends. Confirm the tester shows no power before you touch the wires.",
+   "placements": [
+    "yellow tester black probe metal tip -> touched to bare copper end of house wire sticking out of gray box, in the video: to the lower twisted bare joint",
+    "yellow tester red probe metal tip -> touched to bare copper end of the other house wire sticking out of gray box"
+   ],
+   "watch_for": [
+    "if the tester lights or beeps, power is still on - stop and turn the breaker off",
+    "if the probe only touches plastic insulation you get a false dead reading - touch bare copper only"
+   ],
+   "check_yourself": "The yellow tester stays dark and silent when both probes touch the bare wire ends.",
+   "safety": "Treat every wire as live until the tester proves dead, and keep fingers off the metal probe tips."
+  },
+  "3": {
+   "say": "Twist the two white house wires together and screw on the yellow twist nut tight. Push that yellow nut to the bottom inside the gray box, leaving the two black wires hanging out.",
+   "placements": [
+    "two white insulated solid house wires, the paired neutrals in the video -> twisted together copper-to-copper and capped with yellow twist-on nut screwed on tight by hand -> pushed and tucked inside bottom of gray wall box, in the video: yellow nut sits inside bottom of box",
+    "two black insulated solid house wires -> left pulled out sticking out of gray box with bare ends exposed for thermostat"
+   ],
+   "watch_for": [
+    "if bare copper still shows outside the yellow nut, it is loose - re-twist and re-screw the nut",
+    "if you capped a black wire with the whites, you have the wrong pair - only whites go under yellow"
+   ],
+   "check_yourself": "The two white ends disappear under one yellow nut inside the box and only two bare black ends stick out.",
+   "safety": "Keep the breaker off - the bare black ends will be live when power returns, so do not touch their copper."
+  },
+  "4": {
+   "say": "Twist one black thermostat lead to one black house wire. Screw on the red cone nut tight and let the thermostat hang, leaving the second black house wire alone.",
+   "placements": [
+    "one black stranded thermostat lead, short black pigtail from the hanging black thermostat base -> twisted copper-to-copper to bare end of one black solid house wire sticking out of gray box, the video does not label which black is supply versus heater, in the video: the left-side joint",
+    "red twist-on cone nut -> screwed clockwise by hand over that twisted black-to-black joint, left sitting at top opening of gray box, in the video: red nut at top of box"
+   ],
+   "watch_for": [
+    "if you can pull the wires apart, the twist is loose - re-twist and re-tighten the red nut",
+    "if you use both thermostat leads on the same house wire, you have no circuit - use only one lead now"
+   ],
+   "check_yourself": "One black-to-black joint is covered by the red nut at the box mouth with the thermostat hanging, and one bare black house wire still hangs free.",
+   "safety": "Keep the breaker off and do not touch the other bare black end while you twist this joint."
+  },
+  "5": {
+   "say": "Twist the remaining black thermostat lead to the remaining bare black house wire. Screw on the twist nut tight so both black joints are capped and the thermostat hangs from the box.",
+   "placements": [
+    "second black stranded thermostat lead from hanging black thermostat base -> twisted copper-to-copper to bare end of the remaining second black solid house wire sticking out of gray box, in the video: upper right side of box opening",
+    "twist-on cone nut over second joint, red in narration -> screwed clockwise tight over second black-to-black twist at box mouth, finished frame shows one red nut clearly at top and the second twisted joint at upper right; match the picture"
+   ],
+   "watch_for": [
+    "if copper shows outside the nut, the joint is exposed - re-seat wires and tighten",
+    "if the first red-nutted joint pulls loose while you work, re-tighten it before tucking"
+   ],
+   "check_yourself": "Both black wall wires are joined to thermostat leads at the box mouth and the black thermostat with white knob hangs from the box.",
+   "safety": "Keep the breaker off - both black ends are hot legs when powered, so handle only insulation."
+  },
+  "6": {
+   "say": "Fold the nuts and wires into the gray box. Hold the black thermostat base with white knob flat over the opening and drive the top and bottom screws snug and straight.",
+   "placements": [
+    "black rectangular plastic thermostat base with center white round knob -> centered flat over rectangular opening of gray wall box covering wires and nuts, in the video: vertical over white wall",
+    "two silver mounting screws through top and bottom slots of black base -> driven with screwdriver/drill bit into top and bottom threaded tabs of gray wall box until snug and straight"
+   ],
+   "watch_for": [
+    "if wires pinch behind the base, it will not sit flat - re-tuck wires inside",
+    "if the base is crooked, loosen screws, straighten vertical, and re-tighten"
+   ],
+   "check_yourself": "The black rectangular base with center white round knob sits flat and vertical covering the wall opening with top and bottom screws tight.",
+   "safety": ""
+  },
+  "7": {
+   "say": "Push the white square cover with round dial straight onto the black base until it clicks. Center it on the wall.",
+   "placements": [
+    "white square plastic front cover with center round dial and bottom vent slots, marked Honeywell Home 5 to 30 C in the video -> pushed straight by hand onto the black base until seated, centered on white wall, in the video: dial facing out"
+   ],
+   "watch_for": [
+    "if the cover is upside down, vents will be on top - turn so vents are at bottom",
+    "if the cover rocks, it is not snapped on - press evenly until flush"
+   ],
+   "check_yourself": "A white square Honeywell cover with center dial sits flat and centered on the white wall with no black showing.",
+   "safety": ""
+  }
+ }
+}

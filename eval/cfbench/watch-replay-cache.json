@@ -1,0 +1,86 @@
+{
+ "eval/cfbench/frames/breadboard-led/step1-incomplete.jpg|0|watch-0.4": {
+  "status": "working",
+  "observation": "Live shows hands holding white and blue wires above breadboard, neither seated yet; tutorial finished has both upright in separate top-edge rows. In progress, no mistake visible.",
+  "say": "",
+  "latency_ms": 1315,
+  "cost_usd": 0.0024784
+ },
+ "eval/cfbench/frames/breadboard-led/step1-wrong_colour.jpg|1|watch-0.4": {
+  "status": "working",
+  "observation": "Hands positioning white and blue wires over top edge of breadboard, neither fully seated yet, in progress matching tutorial start.",
+  "say": "",
+  "latency_ms": 783,
+  "cost_usd": 0.0022409
+ },
+ "eval/cfbench/frames/breadboard-led/step1-missing_part.jpg|2|watch-0.4": {
+  "status": "cant_see",
+  "observation": "Breadboard center is obscured by blur, wires held above, cannot confirm insertion rows",
+  "say": "I can't see the top of the board. Move your hand and tilt down so the holes show.",
+  "latency_ms": 1552,
+  "cost_usd": 0.00256115
+ },
+ "eval/cfbench/frames/breadboard-led/step1-done.jpg|3|watch-0.4": {
+  "status": "working",
+  "observation": "Hands inserting white and blue wires at top edge of breadboard, white appears seated, blue still being positioned, matching separate rows, in progress.",
+  "say": "",
+  "latency_ms": 1202,
+  "cost_usd": 0.0024956500000000003
+ },
+ "eval/cfbench/frames/breadboard-led/step2-incomplete.jpg|0|watch-0.4": {
+  "status": "cant_see",
+  "observation": "Live view shows hands around small breadboard but resistor placement not visible, too far and covered.",
+  "say": "I can't see the resistor on the breadboard. Move the phone closer to the white board.",
+  "latency_ms": 2164,
+  "cost_usd": 0.0028296
+ },
+ "eval/cfbench/frames/breadboard-led/step2-wrong_colour.jpg|1|watch-0.4": {
+  "status": "cant_see",
+  "observation": "Hands are covering the top of the white breadboard so the resistor legs and rows cannot be seen",
+  "say": "Hold your hands clear for a second so I can see the top of the board.",
+  "latency_ms": 3386,
+  "cost_usd": 0.0038859000000000003
+ },
+ "eval/cfbench/frames/breadboard-led/step2-missing_part.jpg|2|watch-0.4": {
+  "status": "cant_see",
+  "observation": "Hands still covering the top of the breadboard, resistor legs and rows not visible",
+  "say": "I still can't see where the resistor legs are going. Pull your fingers back from the top of the board for a moment.",
+  "latency_ms": 1507,
+  "cost_usd": 0.0030931500000000002
+ },
+ "eval/cfbench/frames/breadboard-led/step2-done.jpg|3|watch-0.4": {
+  "status": "cant_see",
+  "observation": "hands still covering top of breadboard, resistor legs and rows not visible",
+  "say": "Lift your fingers off the board for a sec so the top rows show.",
+  "latency_ms": 2098,
+  "cost_usd": 0.00314815
+ },
+ "eval/cfbench/frames/breadboard-led/step3-incomplete.jpg|0|watch-0.4": {
+  "status": "working",
+  "observation": "Hands holding blue LED just above breadboard, not yet inserted, board largely covered by hands so rows not visible",
+  "say": "",
+  "latency_ms": 1112,
+  "cost_usd": 0.0021508499999999997
+ },
+ "eval/cfbench/frames/breadboard-led/step3-wrong_colour.jpg|1|watch-0.4": {
+  "status": "mistake",
+  "observation": "Live view shows an orange-glowing LED inserted on the board instead of the blue LED, while tutorial shows bright blue.",
+  "say": "Oh, wait, that's glowing orange. Pull it out and put in the round blue LED with its legs in those same rows.",
+  "latency_ms": 2140,
+  "cost_usd": 0.0029924
+ },
+ "eval/cfbench/frames/breadboard-led/step3-missing_part.jpg|2|watch-0.4": {
+  "status": "cant_see",
+  "observation": "Live view has breadboard area pixelated/covered, LED and rows not visible; cannot judge LED color or placement.",
+  "say": "I can't see the breadboard, it's blurred out. Hold the phone steady and uncover the right side of the board.",
+  "latency_ms": 1473,
+  "cost_usd": 0.00281015
+ },
+ "eval/cfbench/frames/breadboard-led/step3-done.jpg|3|watch-0.4": {
+  "status": "looks_done",
+  "observation": "Blue LED upright on right side glowing blue, matching tutorial finished state",
+  "say": "",
+  "latency_ms": 728,
+  "cost_usd": 0.0023329
+ }
+}

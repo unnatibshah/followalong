@@ -1,0 +1,261 @@
+"""Bundled replays from CF-Bench, so the demo runs with no camera, no key and no person in the loop.
+
+Each step of the session is the real engine's answer (re-run offline from the recorded SAM 3.1 / Muse Spark answers of the
+`soft` re-score in eval/cfbench/recorded-soft.jsonl: the product rule, actor outlined next to the objects) on a CF-Bench frame:
+
+    with-mistakes   per step: a counterfactual mistake (wrong colour, missing part, unfinished) the engine called
+                    `wrong`, then the learner "fixes" it (the finished frame), the check and its confirm re-check
+    clean           per step: the finished frame only
+
+    cd app
+    .venv/bin/python tools/make_replays.py install-thermostat breadboard-led ...
+"""
+
+import asyncio
+import json
+import shutil
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+APP = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(APP))
+from server import evaluate, recordings  # noqa: E402
+from server.checks import engine  # noqa: E402
+from server.config import JUDGED_PROMPT  # noqa: E402
+from server.providers import end_box  # noqa: E402
+
+LABELS = APP / "eval" / "cfbench" / "labels.jsonl"
+RECORDED = APP / "eval" / "cfbench" / "recorded-soft.jsonl"
+MISTAKES = ("wrong_colour", "missing_part", "incomplete")
+
+
+async def judge(lab: dict, rec: dict, kind: str, cache: dict) -> dict:
+    """The engine on one frame, every model answer from the recording (no network)."""
+    real = evaluate.sam.segment, evaluate.spark.judge
+    evaluate.sam.segment, evaluate.spark.judge = evaluate._replaying(rec)
+    try:
+        step = evaluate.ablate(evaluate.step_of(lab, cache), "soft")  # the product rule: actor outlined, never waited for
+        end = APP / "data" / "tutorials" / lab["tutorial_id"] / "frames" / f"step-{lab['step_id']}.jpg"
+        res = await engine.run(step, (APP / lab["frame"]).read_bytes(), kind, end_frame=end.read_bytes(),
+                               end_box=end_box(end, step) if step.get("objects") else None)
+        # offline re-runs time nothing: put back the API latencies the live run recorded (object requests run in
+        # parallel, so the stage is the slowest one; Muse Spark's is already in its recorded answer)
+        segs = [v["latency_ms"] for k, v in rec["segments"].items() if k != "hand" and "latency_ms" in v]
+        if "objects" in res["stages_ms"] and segs:
+            res["stages_ms"]["objects"] = max(segs)
+            res["latency_ms"] = sum(res["stages_ms"].values())
+        return res
+    finally:
+        evaluate.sam.segment, evaluate.spark.judge = real
+
+
+async def build(tid: str, name: str, mistakes: bool) -> str:
+    labels = [lab for lab in evaluate.load_labels(LABELS) if lab["tutorial_id"] == tid]
+    rec = evaluate.load_recorded(RECORDED)
+    cache = {}
+    plan = evaluate.plan_for(tid, cache)
+    t0 = datetime(2026, 11, 1, 18, 0, tzinfo=timezone.utc)
+    events, results, ms = [], [], 0
+    frames = recordings.DATA / "recordings" / name / "frames"
+    shutil.rmtree(frames.parent, ignore_errors=True)
+    frames.mkdir(parents=True)
+
+    def ev(type_, step=None, **data):
+        at = (t0 + timedelta(milliseconds=ms)).isoformat().replace("+00:00", "Z")
+        events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
+                       "mode": "live", "data": data})
+
+    def show(lab):
+        shutil.copy(APP / lab["frame"], frames / f"preview-{ms}.jpg")
+
+    async def check(lab, step, n, kind, trigger):
+        res = await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], kind, cache)
+        show(lab)
+        ev("check" if kind == "full" else "recheck", step, kind=kind, check_no=n, trigger=trigger, verdict=res["verdict"])
+        results.append({"step_id": step, "kind": kind, "check_no": n, "trigger": trigger, "frame": lab["frame"],
+                        "prompt_version": JUDGED_PROMPT["version"], "result": res})
+        return res
+
+    summary = []
+    ev("session_start", plan_hash=plan["plan_hash"])
+    for st in plan["steps"]:
+        sid = st["id"]
+        by = {lab["case"]: lab for lab in labels if lab["step_id"] == sid}
+        verdicts = {c: (await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "full", cache))["verdict"] for c, lab in by.items()}
+        ms += 1000
+        ev("step_play", sid, reason="first" if sid == 1 else "advance")
+        ms += int((st["end"] - st["start"]) * 1000)
+        ev("step_wait", sid)
+        if "incomplete" in by:
+            show(by["incomplete"])  # the learner at work
+        n = 0
+        bad = next((c for c in MISTAKES if verdicts.get(c) == "wrong"), None) if mistakes else None
+        if bad:
+            ms += 3000
+            n += 1
+            res = await check(by[bad], sid, n, "full", "still")
+            ev("mistake_shown", sid, failed_checks=[x["check_id"] for x in res["results"] if not x["pass"]])
+            ms += 7000  # the learner fixes it
+        good = next((c for c in ("done", "done_dim") if verdicts.get(c) == "done"), None)
+        if good:
+            ms += 2500
+            n += 1
+            await check(by[good], sid, n, "full", "fixed" if bad else "still")
+            ms += 1200
+            n += 1
+            res = await check(by[good], sid, n, "recheck", "recheck")
+            if res["verdict"] != "done":  # the measured-only confirm disagreed: move on by hand, as a learner would
+                ms += 1500
+                ev("action", sid, name="next")
+        else:  # the engine never said done on this step: the learner presses Next
+            ms += 2500
+            ev("action", sid, name="next")
+        ms += 500
+        ev("advance", sid)
+        summary.append(f"{sid}:{bad or '-'}/{good or 'next'}")
+    ev("session_end", reason="completed")
+    d = recordings.BUNDLED / name
+    shutil.rmtree(d, ignore_errors=True)
+    d.mkdir(parents=True)
+    title = f"{plan_title(tid)} · {'with mistakes' if mistakes else 'clean run'} (CF-Bench, generated)"
+    meta = {"id": name, "tutorial_id": tid, "title": title, "who": "cfbench", "volunteer_code": None,
+            "consent_ref": None, "delete_on_request": False, "plan_hash": plan["plan_hash"],
+            "prompt_version": JUDGED_PROMPT["version"], "recorded_at": events[0]["at"]}
+    (d / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    (d / "timeline.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events), encoding="utf-8")
+    (d / "results.jsonl").write_text("".join(json.dumps(r) + "\n" for r in results), encoding="utf-8")
+    return f"{name}: " + " ".join(summary)
+
+
+WATCH_CACHE = APP / "eval" / "cfbench" / "watch-replay-cache.json"
+
+
+async def looks(tid: str, step: dict, frames: list[dict], plan: dict) -> list[dict]:
+    """The live watcher on each frame in order, with its memory of the previous looks (real Muse Spark calls,
+    cached in eval/cfbench/watch-replay-cache.json so a rebuild is free and identical)."""
+    from server import providers, voice
+    cache = json.loads(WATCH_CACHE.read_text(encoding="utf-8")) if WATCH_CACHE.exists() else {}
+    notes, said, out = [], [], []
+    det = providers.tutorials.details(tid, "x")
+    ctx = {**plan, "title": plan_title(tid), "actor": providers.tutorials.actor(tid, "x")}
+    for i, lab in enumerate(frames):
+        key = f"{lab['frame']}|{len(notes)}|{voice.WATCH_PROMPT['version']}"
+        if key not in cache:
+            end = APP / "data" / "tutorials" / tid / "frames" / f"step-{step['id']}.jpg"
+            cache[key] = await voice.watch(ctx, det, step, {"recent": notes[-5:], "said": said[-3:], "elapsed_s": 8 + 6 * i,
+                                                            "encourage": i == 0}, (APP / lab["frame"]).read_bytes(),
+                                           end.read_bytes(), None)
+            WATCH_CACHE.write_text(json.dumps(cache, indent=1) + "\n", encoding="utf-8")
+        r = cache[key]
+        if r.get("observation"):
+            notes.append(r["observation"])
+        if r.get("say"):
+            said.append(r["say"])
+        out.append(r)
+    return out
+
+
+async def build_live(tid: str, name: str) -> str:
+    """A live-coach session: per step, the learner at work, then a mistake (wrong part / unfinished), a hand over
+    the work, the fix; each frame gets the live watcher's real look (what it saw, what it said), and the fix goes
+    through the grounded check like in the app."""
+    labels = [lab for lab in evaluate.load_labels(LABELS) if lab["tutorial_id"] == tid]
+    rec = evaluate.load_recorded(RECORDED)
+    cache = {}
+    plan = evaluate.plan_for(tid, cache)
+    t0 = datetime(2026, 11, 2, 18, 0, tzinfo=timezone.utc)
+    events, results, ms = [], [], 0
+    frames = recordings.DATA / "recordings" / name / "frames"
+    shutil.rmtree(frames.parent, ignore_errors=True)
+    frames.mkdir(parents=True)
+
+    def ev(type_, step=None, **data):
+        at = (t0 + timedelta(milliseconds=ms)).isoformat().replace("+00:00", "Z")
+        events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
+                       "mode": "live", "data": data})
+
+    def show(lab):
+        shutil.copy(APP / lab["frame"], frames / f"preview-{ms}.jpg")
+
+    summary = []
+    ev("session_start", plan_hash=plan["plan_hash"])
+    for st in plan["steps"]:
+        sid = st["id"]
+        by = {lab["case"]: lab for lab in labels if lab["step_id"] == sid}
+        seq = [by[c] for c in ("incomplete", "wrong_colour", "missing_part", "done") if c in by]
+        seen = await looks(tid, st, seq, plan)
+        ms += 1000
+        ev("step_play", sid, reason="first" if sid == 1 else "advance")
+        ms += int((st["end"] - st["start"]) * 1000)
+        ev("step_wait", sid)
+        ms += 6500  # the coach reads out the step's directions (and its safety line)
+        n, said_any = 0, []
+        for lab, r in zip(seq, seen):
+            show(lab)
+            ms += 2200  # a look takes ~1.5-3 s
+            if lab["case"] == "done" or r["status"] == "looks_done":
+                if lab["case"] != "done":
+                    continue  # the watcher thought an unfinished frame was done: the grounded check isn't run on it here
+                ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say="")
+                res = await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "full", cache)
+                n += 1
+                ev("check", sid, kind="full", check_no=n, trigger="check_me", verdict=res["verdict"])
+                results.append({"step_id": sid, "kind": "full", "check_no": n, "trigger": "check_me", "frame": lab["frame"],
+                                "prompt_version": JUDGED_PROMPT["version"], "result": res})
+                if res["verdict"] == "done":
+                    ms += 1500
+                    n += 1
+                    rr = await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "recheck", cache)
+                    ev("recheck", sid, kind="recheck", check_no=n, trigger="recheck", verdict=rr["verdict"])
+                    results.append({"step_id": sid, "kind": "recheck", "check_no": n, "trigger": "recheck",
+                                    "frame": lab["frame"], "prompt_version": JUDGED_PROMPT["version"], "result": rr})
+                    if rr["verdict"] != "done":
+                        ms += 1500
+                        ev("action", sid, name="next")
+                else:
+                    ms += 4000
+                    ev("action", sid, name="next")
+                ms += 4500  # "Yes, that's right! Next up..."
+                break
+            ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say=r.get("say", ""))
+            if r.get("say"):
+                said_any.append(r["status"])
+                ms += 300 * len(r["say"].split())  # let the line finish before the next thing happens
+        else:
+            ms += 2500
+            ev("action", sid, name="next")
+        ms += 500
+        ev("advance", sid)
+        summary.append(f"{sid}:{'/'.join(said_any) or '-'}")
+    ev("session_end", reason="completed")
+    d = recordings.BUNDLED / name
+    shutil.rmtree(d, ignore_errors=True)
+    d.mkdir(parents=True)
+    meta = {"id": name, "tutorial_id": tid, "title": f"{plan_title(tid)} · live coach (generated)", "who": "cfbench",
+            "volunteer_code": None, "consent_ref": None, "delete_on_request": False, "plan_hash": plan["plan_hash"],
+            "prompt_version": JUDGED_PROMPT["version"], "recorded_at": events[0]["at"]}
+    (d / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    (d / "timeline.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events), encoding="utf-8")
+    (d / "results.jsonl").write_text("".join(json.dumps(r) + "\n" for r in results), encoding="utf-8")
+    return f"{name}: " + " ".join(summary)
+
+
+def plan_title(tid: str) -> str:
+    meta = json.loads((APP / "server" / "fixtures" / "tutorials.json").read_text(encoding="utf-8"))
+    return next(t["title"] for t in meta if t["id"] == tid)
+
+
+async def main(tids: list[str]) -> None:
+    if tids and tids[0] == "--live":  # the live-coach replay (the demo): first tutorial named `with-mistakes`
+        for i, tid in enumerate(tids[1:]):
+            print(await build_live(tid, "with-mistakes" if i == 0 else f"{tid}-live-coach"))
+        return
+    for i, tid in enumerate(tids):
+        # the first tutorial's mistakes replay is `with-mistakes`, the one S11 picks by default
+        print(await build(tid, "with-mistakes" if i == 0 else f"{tid}-mistakes", True))
+        print(await build(tid, f"{tid}-clean", False))
+
+
+if __name__ == "__main__":
+    asyncio.run(main(sys.argv[1:] or ["install-thermostat"]))

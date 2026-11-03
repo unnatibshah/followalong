@@ -1,0 +1,9 @@
+# Browser motion detection (TD §4.1), served by /api/config `motion`; the browser reads it on load (reload the page
+# after an edit). Never still (a flickering lamp, autofocus, a shaky camera)? Raise still_fraction or pixel_delta.
+sample_w = 160          # greyscale sample size
+sample_h = 90
+sample_ms = 100         # one sample every 100 ms
+pixel_delta = 25        # a pixel "changed" above this brightness change (of 255)
+still_fraction = 0.02   # still while under 2% of pixels change...
+still_ms = 1500         # ...for this long; then a check runs
+recheck_delay_ms = 1000 # the re-check after a `done`

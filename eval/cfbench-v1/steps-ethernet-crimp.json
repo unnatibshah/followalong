@@ -1,0 +1,62 @@
+{
+  "tutorial_id": "ethernet-crimp",
+  "note": "Ground truth labelled by a Claude agent from the Muse Voice Transcribe narration and 1 fps frames, blind to the model's plan; not yet human-reviewed. Uncertain: untwist and order may be judged as one or two steps (labelled as one, since the hands interleave them); the boot is slid on after inserting the connector here (video says it should go on first), and the 0-11 s handling of connector and boot is treated as intro.",
+  "steps": [
+    {
+      "start": 0.0,
+      "end": 11.0,
+      "instruction": "Thread the clear boot onto the cable before terminating.",
+      "done_looks_like": "The clear boot sits on the white cable near its end.",
+      "evidence": "[0.0] 'make sure that's on the cable before you terminate'; clear boot handled at the cable end t=5-7. Added in review: the first labelling pass called this intro.",
+      "confidence": 0.6
+    },
+    {
+      "start": 12.0,
+      "end": 17.0,
+      "instruction": "Score the white Cat6 jacket with the yellow-handled snips and pull it off the end.",
+      "done_looks_like": "About 1-2 inches of the four twisted pairs stick out bare from the end of the white cable.",
+      "evidence": "Transcript [0.0] 'start with scoring the jacket'; frames t=13-15 snips on the cable end, t=16-17 jacket slug pulled off, t=18 twisted pairs exposed.",
+      "confidence": 0.8
+    },
+    {
+      "start": 18.0,
+      "end": 60.0,
+      "instruction": "Untwist the four pairs and line the wires up in T568B order: orange-white, orange, green-white, blue, blue-white, green, brown-white, brown.",
+      "done_looks_like": "Eight straightened wires held side by side in T568B colour order from left to right.",
+      "evidence": "Transcript [0.0]-[48.8] 'separating the wires... T568B... orange white orange... green white blue... brown white brown'; T-568B chart overlay on screen t=22-62; frames t=18-59 untwisting and arranging. Untwisting and ordering are interleaved pair by pair, so merged into one step.",
+      "confidence": 0.7
+    },
+    {
+      "start": 60.5,
+      "end": 77.0,
+      "instruction": "Flatten the ordered wires and snip them straight across so they are short enough to fit into the RJ45 connector.",
+      "done_looks_like": "The eight wires sit flat in a row with ends cut evenly about half an inch past the jacket.",
+      "evidence": "Transcript [60.7] 'make sure they're nice and flat and just get enough so it will fit up into the RJ45 connector'; frames t=61-72 pinching wires flat, t=73-76 snips cutting across the ends, t=77 snips set down.",
+      "confidence": 0.75
+    },
+    {
+      "start": 79.0,
+      "end": 89.0,
+      "instruction": "Push the wires into the clear RJ45 connector, clip side down, until every wire reaches the front and the jacket is inside the connector.",
+      "done_looks_like": "Clear RJ45 connector on the cable end with all eight coloured wires touching the front and the white jacket seated under the strain-relief.",
+      "evidence": "Transcript [77.0] 'put it in the connector and make sure they're all the way up there and make sure that sleeve is nice and tight'; frames t=80-82 connector meets wires, t=83-88 pushing and checking, t=89 connector held up seated.",
+      "confidence": 0.8
+    },
+    {
+      "start": 90.0,
+      "end": 108.0,
+      "instruction": "Slide the boot along the cable up onto the back of the RJ45 connector.",
+      "done_looks_like": "The clear boot covers the back of the connector where the cable enters it.",
+      "evidence": "Transcript [77.0] 'you would want the boot on before you terminate but since this is a loose cable... let's put that up there'; frames t=90-103 working the boot along the cable, t=104-108 boot pushed onto the connector. Kept as its own step because the video shows it done as a separate hands-on action.",
+      "confidence": 0.6
+    },
+    {
+      "start": 111.0,
+      "end": 125.0,
+      "instruction": "Put the connector into the RJ45 slot of the Klein Tools crimper and squeeze the handles fully.",
+      "done_looks_like": "Crimped RJ45 connector out of the crimper with its gold pins pressed down flush onto the wires.",
+      "evidence": "Transcript [109.3] 'now we're ready to crimp... Klein tools crimps... put it in there and give it a nice squeeze'; frames t=112 crimper picked up, t=116-122 connector in the jaws and squeezed, t=124-128 finished connector shown.",
+      "confidence": 0.85
+    }
+  ]
+}

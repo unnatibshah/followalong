@@ -1,0 +1,3074 @@
+{
+  "run_at": "2026-11-02T21:33:13Z",
+  "note": "CF-Bench v2 (CC BY tutorials) · re-scored from recorded model answers (no calls; costs are the recorded run's, no latencies)",
+  "label_count": 303,
+  "held_out_count": 303,
+  "tuning_count": 0,
+  "labeller_agreement": null,
+  "step_plan_accuracy": null,
+  "done_accuracy": "213 of 303",
+  "done_accuracy_ci": [
+    0.649,
+    0.752
+  ],
+  "done_accuracy_measured": null,
+  "done_accuracy_judged": null,
+  "wrong_advances": "49 of 177",
+  "wrong_corrections": "17 of 126",
+  "unsure_rate": "67 of 303 (22%)",
+  "mistake_catch_rate": "90 of 177",
+  "latency_ms_p50": null,
+  "latency_ms_p90": null,
+  "cost_per_session_usd": null,
+  "cost_per_check_usd": "$0.0076",
+  "spent_usd": 0.0,
+  "variation_flips_of_20": null,
+  "groups": {
+    "dim": {
+      "count": 63,
+      "done_accuracy": "41 of 63"
+    },
+    "normal": {
+      "count": 240,
+      "done_accuracy": "172 of 240"
+    },
+    "shifted": {
+      "count": 303,
+      "done_accuracy": "213 of 303"
+    }
+  },
+  "config_hash": "db32797b",
+  "frames": [
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 18,
+      "cost_usd": 0.0147
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 10,
+      "cost_usd": 0.0141
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 10,
+      "cost_usd": 0.0148
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 8,
+      "cost_usd": 0.0125
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0125
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0129
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/breadboard-led/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0095
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0099
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0103
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": "sam_failed",
+      "latency_ms": 0,
+      "cost_usd": 0
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0078
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step4-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step4-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 4,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0087
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0081
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0078
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step5-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step5-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 5,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0104
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step6-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step6-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 6,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step7-done.jpg",
+      "case": "done",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step7-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step7-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0104
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step7-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step7-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 7,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step8-done.jpg",
+      "case": "done",
+      "step_id": 8,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0102
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step8-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 8,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.011
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step8-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 8,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step8-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 8,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/ethernet-crimp/step8-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 8,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0071
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0072
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0071
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0082
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0072
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0081
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/figure-eight-knot/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0134
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0133
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0125
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0087
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.0079
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0082
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.009
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.007
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step4-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0071
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step4-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 4,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0082
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step5-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0079
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step5-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 5,
+      "truth": "wrong",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0069
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0082
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0077
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step6-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step6-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 6,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.0085
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step7-done.jpg",
+      "case": "done",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0036
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step7-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0044
+    },
+    {
+      "frame": "eval/cfbench/frames/install-thermostat/step7-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0041
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.0067
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0059
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0097
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0101
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0094
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0093
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.007
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0065
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0088
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0098
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step4-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step4-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 4,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0071
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0069
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step5-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0046
+    },
+    {
+      "frame": "eval/cfbench/frames/jump-start-car/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0054
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 10,
+      "cost_usd": 0.0107
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 9,
+      "cost_usd": 0.0108
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 9,
+      "cost_usd": 0.0113
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 10,
+      "cost_usd": 0.0096
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0094
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step4-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step4-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 4,
+      "truth": "wrong",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0049
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0045
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0041
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0131
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 8,
+      "cost_usd": 0.0121
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step6-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 7,
+      "cost_usd": 0.0141
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step6-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 6,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.01
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step7-done.jpg",
+      "case": "done",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.008
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step7-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step7-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step7-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step7-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 7,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0065
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step8-done.jpg",
+      "case": "done",
+      "step_id": 8,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 97,
+      "cost_usd": 0.0102
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step8-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 8,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 96,
+      "cost_usd": 0.0102
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step8-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 8,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 87,
+      "cost_usd": 0.0095
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step8-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 8,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 85,
+      "cost_usd": 0.0096
+    },
+    {
+      "frame": "eval/cfbench/frames/light-switch/step8-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 8,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 92,
+      "cost_usd": 0.0094
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 21,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 21,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 16,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 20,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0077
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.0078
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0072
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0093
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0101
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0084
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.013
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0091
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0093
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0095
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step4-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step4-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 4,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 29,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 38,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 29,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step5-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 29,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step5-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 5,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 27,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0068
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0067
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step6-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.0067
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step6-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 6,
+      "truth": "wrong",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0071
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step7-done.jpg",
+      "case": "done",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0103
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step7-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 7,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0092
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step7-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0107
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step7-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 7,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0093
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step7-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 7,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step8-done.jpg",
+      "case": "done",
+      "step_id": 8,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0093
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step8-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 8,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0096
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step8-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 8,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0094
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step8-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 8,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step8-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 8,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step9-done.jpg",
+      "case": "done",
+      "step_id": 9,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0064
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step9-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 9,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.007
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step9-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 9,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step9-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 9,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 2,
+      "cost_usd": 0.0081
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step9-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 9,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0066
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step10-done.jpg",
+      "case": "done",
+      "step_id": 10,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 28,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step10-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 10,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 28,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step10-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 10,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 25,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step10-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 10,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 31,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step10-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 10,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 28,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step11-done.jpg",
+      "case": "done",
+      "step_id": 11,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0091
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step11-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 11,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0088
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step11-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 11,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0092
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step11-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 11,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step11-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 11,
+      "truth": "wrong",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0093
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step12-done.jpg",
+      "case": "done",
+      "step_id": 12,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0094
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step12-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 12,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0088
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step12-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 12,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 5,
+      "cost_usd": 0.0088
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step12-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 12,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step12-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 12,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step13-done.jpg",
+      "case": "done",
+      "step_id": 13,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 31,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step13-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 13,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 32,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step13-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 13,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 29,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step13-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 13,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step13-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 13,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step14-done.jpg",
+      "case": "done",
+      "step_id": 14,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 25,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step14-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 14,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 28,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step14-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 14,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 25,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step14-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 14,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 29,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step14-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 14,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 29,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step15-done.jpg",
+      "case": "done",
+      "step_id": 15,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 27,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step15-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 15,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 28,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step15-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 15,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 27,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step15-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 15,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step15-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 15,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 28,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step16-done.jpg",
+      "case": "done",
+      "step_id": 16,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 21,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step16-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 16,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 26,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step16-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 16,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 32,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step16-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 16,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/robot-pick-place/step16-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 16,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 22,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.0054
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.0051
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0045
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0065
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0075
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0062
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0069
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0067
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0064
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0076
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0047
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.0045
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0069
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0066
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step5-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step5-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 5,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.007
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.007
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0069
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0064
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step6-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "waiting",
+      "fallback": null,
+      "latency_ms": 1,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/solder-wires/step6-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 6,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0062
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step1-done.jpg",
+      "case": "done",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step1-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 1,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step1-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0072
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step1-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 1,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step1-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 1,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0078
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step2-done.jpg",
+      "case": "done",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0078
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step2-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 2,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step2-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0068
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step2-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 2,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step2-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 2,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0072
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step3-done.jpg",
+      "case": "done",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.009
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step3-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 3,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0086
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step3-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0071
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step3-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 3,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step3-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 3,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0081
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step4-done.jpg",
+      "case": "done",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step4-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 4,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step4-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0076
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step4-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 4,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step4-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 4,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0079
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step5-done.jpg",
+      "case": "done",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.007
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step5-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 5,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0069
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step5-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step5-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 5,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step5-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 5,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0073
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step6-done.jpg",
+      "case": "done",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0074
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step6-done_dim.jpg",
+      "case": "done_dim",
+      "step_id": 6,
+      "truth": "done",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.0061
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step6-incomplete.jpg",
+      "case": "incomplete",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "wrong",
+      "fallback": null,
+      "latency_ms": 4,
+      "cost_usd": 0.006
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step6-missing_part.jpg",
+      "case": "missing_part",
+      "step_id": 6,
+      "truth": "not_done",
+      "verdict": "unsure",
+      "fallback": null,
+      "latency_ms": 0,
+      "cost_usd": 0.005
+    },
+    {
+      "frame": "eval/cfbench/frames/tie-a-tie/step6-wrong_colour.jpg",
+      "case": "wrong_colour",
+      "step_id": 6,
+      "truth": "wrong",
+      "verdict": "done",
+      "fallback": null,
+      "latency_ms": 3,
+      "cost_usd": 0.0063
+    }
+  ],
+  "ablation": "soft"
+}

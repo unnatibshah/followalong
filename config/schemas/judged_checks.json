@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["results", "hint"],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "pass", "confidence", "reason"],
+        "properties": {
+          "id": {"type": "string"},
+          "pass": {"type": "boolean"},
+          "confidence": {"type": "number"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "hint": {"type": "string"}
+  }
+}

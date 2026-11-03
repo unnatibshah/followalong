@@ -1,0 +1,558 @@
+{
+ "breadboard-led": [
+  {
+   "step": 1,
+   "disabled": [
+    "s1c1",
+    "s1c2"
+   ],
+   "values": {
+    "s1c1": 0.0,
+    "s1c2": 0.04
+   },
+   "objects_dropped": [],
+   "goal_added": true
+  },
+  {
+   "step": 2,
+   "disabled": [
+    "s2c1"
+   ],
+   "values": {
+    "s2c1": 0.0
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [
+    "s3c1",
+    "s3c2"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "short red jumper"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 4,
+   "disabled": [
+    "s4c1",
+    "s4c2"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "beige resistor"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 5,
+   "disabled": [
+    "s5c1",
+    "s5c2"
+   ],
+   "values": {
+    "s5c1": 0.74,
+    "s5c2": 0.0
+   },
+   "objects_dropped": [
+    "blue battery"
+   ],
+   "goal_added": false
+  }
+ ],
+ "ethernet-crimp": [
+  {
+   "step": 1,
+   "disabled": [],
+   "values": {
+    "present:white cable": 0.96
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 2,
+   "disabled": [],
+   "values": {
+    "s2c1": 0.93
+   },
+   "objects_dropped": [
+    "exposed wires"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [
+    "s3c1",
+    "s3c2",
+    "s3c3",
+    "s3c4",
+    "s3c5",
+    "s3c6",
+    "s3c7"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "orange-white wire",
+    "orange wire",
+    "blue wire",
+    "blue-white wire",
+    "brown-white wire",
+    "brown wire"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 4,
+   "disabled": [
+    "s4c2"
+   ],
+   "values": {
+    "s4c1": 0.69,
+    "s4c2": 0
+   },
+   "objects_dropped": [
+    "wire ends"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 5,
+   "disabled": [
+    "s5c1",
+    "s5c2"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "white cable",
+    "ordered wires"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 6,
+   "disabled": [],
+   "values": {
+    "present:clear connector": 0.81
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 7,
+   "disabled": [
+    "s7c1"
+   ],
+   "values": {
+    "s7c1": 0.7
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  }
+ ],
+ "figure-eight-knot": [
+  {
+   "step": 1,
+   "disabled": [],
+   "values": {
+    "s1c1": 0.93
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 2,
+   "disabled": [],
+   "values": {
+    "s2c1": 0.9,
+    "s2c2": 0.88
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [],
+   "values": {
+    "s3c1": 0.92,
+    "s3c2": 0.79
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 4,
+   "disabled": [],
+   "values": {
+    "s4c1": 0.94
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 5,
+   "disabled": [],
+   "values": {
+    "s5c1": 0.91,
+    "s5c2": 0.86
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 6,
+   "disabled": [],
+   "values": {
+    "s6c1": 0.93,
+    "s6c2": 0.84
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  }
+ ],
+ "light-switch": [
+  {
+   "step": 1,
+   "disabled": [],
+   "values": {
+    "s1c1": 0.71
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 2,
+   "disabled": [
+    "s2c1",
+    "s2c2"
+   ],
+   "values": {
+    "s2c1": 0
+   },
+   "objects_dropped": [
+    "ground wire"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [],
+   "values": {
+    "s3c1": 2
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 4,
+   "disabled": [
+    "s4c1",
+    "s4c2",
+    "s4c3"
+   ],
+   "values": {
+    "s4c1": 1
+   },
+   "objects_dropped": [
+    "wire nut"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 5,
+   "disabled": [
+    "s5c1",
+    "s5c2"
+   ],
+   "values": {
+    "s5c1": 3
+   },
+   "objects_dropped": [
+    "wall box"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 6,
+   "disabled": [
+    "s6c1",
+    "s6c2",
+    "s6c3"
+   ],
+   "values": {
+    "s6c1": 1
+   },
+   "objects_dropped": [
+    "light switch",
+    "ground wire"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 7,
+   "disabled": [
+    "s7c1"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "wall box"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 8,
+   "disabled": [
+    "s8c1"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "cover plate"
+   ],
+   "goal_added": false
+  }
+ ],
+ "nest-thermostat": [
+  {
+   "step": 1,
+   "disabled": [],
+   "values": {
+    "s1c1": 0.91
+   },
+   "objects_dropped": [
+    "smartphone"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 2,
+   "disabled": [
+    "s2c2",
+    "s2c3"
+   ],
+   "values": {
+    "s2c2": 0.0,
+    "s2c3": 0.0
+   },
+   "objects_dropped": [
+    "old backplate",
+    "red wire",
+    "white wire"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [
+    "s3c1",
+    "s3c2"
+   ],
+   "values": {
+    "s3c1": 0.71,
+    "s3c2": 0.82,
+    "s3c3": 1.0,
+    "s3c4": 2
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 4,
+   "disabled": [],
+   "values": {
+    "s4c3": 0.7,
+    "s4c4": 0.81
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 5,
+   "disabled": [],
+   "values": {
+    "present:display panel": 0.57,
+    "present:new base": 0.0
+   },
+   "objects_dropped": [
+    "new base"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 6,
+   "disabled": [
+    "s6c2"
+   ],
+   "values": {
+    "s6c2": 0.0
+   },
+   "objects_dropped": [
+    "display panel",
+    "smartphone"
+   ],
+   "goal_added": false
+  }
+ ],
+ "replace-thermostat": [
+  {
+   "step": 1,
+   "disabled": [],
+   "values": {
+    "s1c1": 0.66
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 2,
+   "disabled": [],
+   "values": {
+    "s2c1": 0.8
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [
+    "s3c2"
+   ],
+   "values": {
+    "s3c1": 0.78,
+    "s3c2": 0.0
+   },
+   "objects_dropped": [
+    "voltage tester"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 4,
+   "disabled": [
+    "s4c4",
+    "s4c5"
+   ],
+   "values": {
+    "s4c1": 0.75,
+    "s4c2": 1.0,
+    "s4c3": 1.0
+   },
+   "objects_dropped": [
+    "yellow wire",
+    "white wire"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 5,
+   "disabled": [
+    "s5c1",
+    "s5c2"
+   ],
+   "values": {
+    "s5c1": 7
+   },
+   "objects_dropped": [
+    "new plate"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 6,
+   "disabled": [
+    "s6c1",
+    "s6c2",
+    "s6c3",
+    "s6c4"
+   ],
+   "values": {
+    "s6c4": 0.0
+   },
+   "objects_dropped": [
+    "white wire",
+    "G terminal",
+    "Y terminal",
+    "W terminal"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 7,
+   "disabled": [],
+   "values": {
+    "s7c1": 0.98
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  }
+ ],
+ "solder-through-hole": [
+  {
+   "step": 1,
+   "disabled": [],
+   "values": {
+    "s1c1": 0.86
+   },
+   "objects_dropped": [],
+   "goal_added": false
+  },
+  {
+   "step": 2,
+   "disabled": [],
+   "values": {
+    "present:green board": 0.86,
+    "present:yellow paste": 0.0
+   },
+   "objects_dropped": [
+    "yellow paste"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 3,
+   "disabled": [
+    "s3c1",
+    "s3c2"
+   ],
+   "values": {
+    "s3c1": 0
+   },
+   "objects_dropped": [
+    "blue resistor"
+   ],
+   "goal_added": true
+  },
+  {
+   "step": 4,
+   "disabled": [
+    "s4c1",
+    "s4c2",
+    "s4c3"
+   ],
+   "values": {
+    "s4c1": 0,
+    "s4c3": 0.0
+   },
+   "objects_dropped": [
+    "blue resistor",
+    "solder joint"
+   ],
+   "goal_added": false
+  },
+  {
+   "step": 5,
+   "disabled": [
+    "s5c1"
+   ],
+   "values": {},
+   "objects_dropped": [
+    "blue resistor"
+   ],
+   "goal_added": false
+  }
+ ]
+}
