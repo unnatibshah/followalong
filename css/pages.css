@@ -374,3 +374,10 @@ body[data-theme="light"] #main { padding-bottom: calc(84px + env(safe-area-inset
 .rec-preview { width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: #000; object-fit: cover; }
 .wrap-row { flex-wrap: wrap; }
 .row { display: flex; align-items: center; }
+/* Home once you have history: the same message, smaller, so Continue sits right under it */
+.hero.compact { padding-top: clamp(24px, 4vw, 44px); padding-bottom: 8px; gap: 40px; }
+.hero.compact .display { font-size: clamp(44px, 4.8vw, 68px); }
+.hero.compact .hero-copy { gap: 20px; }
+.hero.compact .lede { font-size: 17px; }
+.hero.compact .hero-frame { aspect-ratio: 16 / 9; }
+.hero-hello { font: 500 15px var(--sans); color: var(--ink-4); }

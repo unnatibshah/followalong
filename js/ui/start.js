@@ -20,8 +20,9 @@ export async function render(root) {
 
   // The first 5 seconds: what it is, what goes in, what you get, who it's for, what to press
   const toLib = () => root.querySelector('#fa-explore').scrollIntoView({ behavior: 'smooth' });
-  const hero = h('section', { class: 'wrap hero' },
+  const hero = h('section', { class: ['wrap hero', returning && 'compact'] },
     h('div', { class: 'hero-copy' },
+      returning && h('span', { class: 'hero-hello' }, `${hello()}${past.length ? ` \u00b7 ${past.length} session${past.length === 1 ? '' : 's'} so far` : ''}`),
       h('span', { class: 'hero-eyebrow' }, h('span', { class: 'dot accent', 'aria-hidden': 'true' }), 'Real-time visual guidance for hands-on work'),
       h('h1', { class: 'display' }, 'Instructions that see your work.'),
       h('p', { class: 'lede' }, 'FollowAlong turns any video, manual or set of photos into a live, step-by-step guide. It follows along '
@@ -33,7 +34,8 @@ export async function render(root) {
         h('span', { class: 'hero-chip strong', role: 'listitem' }, 'A guide that checks every step')),
       h('div', { class: 'hero-actions' },
         h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'See it in action', icon('arrow')),
-        h('button', { class: 'btn-underline', onclick: toLib }, 'Start a guide ↓')),
+        returning ? h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: openCreate }, icon('plus'), 'New guide')
+          : h('button', { class: 'btn-underline', onclick: toLib }, 'Start a guide ↓')),
       h('div', { class: 'hero-uses', 'aria-label': 'Built for' },
         h('span', { class: 'fine' }, 'Built for'),
         ['Electronics', 'Repairs & installs', 'Assembly', 'Training', 'Robotics'].map((t) => h('span', { class: 'hero-use' }, t)))),
@@ -55,13 +57,8 @@ export async function render(root) {
       ['03', 'Hands-free and safe', 'Ask, interrupt, go back, by voice, in 7 languages. Risky steps wait for your confirmation, and teams see exactly where people get stuck.']].map(([n, t, d]) =>
       h('div', { class: 'how-item' }, h('span', { class: 'mono muted' }, n), h('span', { class: 'how-title' }, t), h('span', { class: 'how-text' }, d)))));
 
-  const top = returning
-    ? h('section', { class: 'wrap home-head' },
-      h('div', {}, h('h1', { class: 'home-title' }, hello()),
-        h('p', { class: 'home-sub' }, past.length ? `${past.length} session${past.length === 1 ? '' : 's'} so far. Pick up where you left off, or start something new.`
-          : 'Pick up where you left off, or start something new.')),
-      h('button', { class: 'btn btn-accent', type: 'button', onclick: openCreate }, icon('plus'), 'New guide'))
-    : h('div', {}, hero, how);
+  // The purpose is always on Home: the full welcome on a first visit, a compact one once you have something going
+  const top = returning ? hero : h('div', {}, hero, how);
 
   const cont = left.length ? h('section', { class: 'wrap home-sec' },
     h('h2', { class: 'sec-title' }, 'Continue'), h('div', { class: 'cont-row' }, left.map(continueCard))) : '';
