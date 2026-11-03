@@ -41,8 +41,9 @@ export function heroDemo() {
       const src = api.recordingFrameUrl(REC, Math.floor(ms / FRAME_MS) * FRAME_MS);
       if (src === shown) return;
       shown = src;
-      you.src = src;
-      new Image().src = api.recordingFrameUrl(REC, (Math.floor(ms / FRAME_MS) + 1) * FRAME_MS); // the next one, ready
+      const next = new Image(); // swapped in once loaded: no blank flashes
+      next.onload = () => { if (shown === src) you.src = src; };
+      next.src = src;
     };
     const win = () => { tick.classList.remove('on'); void tick.offsetWidth; tick.classList.add('on'); youPane.classList.add('win'); setTimeout(() => youPane.classList.remove('win'), 1200); };
     const apply = (e) => {

@@ -1,4 +1,4 @@
-prompt_version: judged_checks-0.7
+prompt_version: judged_checks-1.0
 
 The judged-check prompt (prompt spec P2). `server/spark.py` sends the `## system` section as the system message and
 the `## user` section, with {placeholders} filled in, as the user text; then the two pictures, each after a label
@@ -31,3 +31,7 @@ Then a hint: one or two short sentences to the learner, saying what to do next w
 ("Pull both ends until the knot is snug."). Speak to the learner as "you". Don't blame. Never compare to how the
 tutorial's things look ("like the blue rope", "like in the video"): their rope, board or tool can be any colour, size or
 brand. Name a colour only when it matters to the task (a wire colour code, the LED the circuit needs).
+Talk to a first-timer: point at things they can find ("the X where the ends cross", "the gap between the tie and your
+collar", "the short loose end"), never expert names ("the crossing", "the neck loop", "the tail", "the standing part"),
+and, only where it helps, what the move achieves ("so it makes an X"). Never tack on a stock ending like "so the knot
+holds"; one plain sentence of at most 12 words beats two.

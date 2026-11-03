@@ -130,7 +130,16 @@ export async function render(root) {
   if (camVideo) el.liveMedia.append(camVideo);
   // Replay: the recorded preview frame at the replay clock (GET /api/recordings/{id}/frames/{ms}).
   const recFrame = replayMode ? h('img', { class: 'frame-img', alt: 'Recorded view of the learner\'s desk' }) : null;
-  const showRecorded = (ms) => { const src = api.recordingFrameUrl(app.recordingId, ms); if (recFrame.getAttribute('src') !== src) recFrame.src = src; };
+  // Swapped in only once the next picture has loaded, so the recorded video never flashes blank between frames
+  let wantFrame = '';
+  const showRecorded = (ms) => {
+    const src = api.recordingFrameUrl(app.recordingId, ms);
+    if (src === wantFrame) return;
+    wantFrame = src;
+    const next = new Image();
+    next.onload = () => { if (wantFrame === src) recFrame.src = src; };
+    next.src = src;
+  };
   // On the 250 ms grid make_replays.py writes a live-coach replay's frames on, so each frame is fetched once
   const showRecordedAt = (sec) => showRecorded(Math.floor((sec * 1000) / 250) * 250);
   if (recFrame) { el.liveMedia.append(recFrame); showRecorded(0); }
@@ -272,6 +281,8 @@ export async function render(root) {
         return h('li', { class: ['guide-item', state] }, h('span', { class: 'guide-mark', 'aria-hidden': 'true' }, state === 'done' ? '\u2713' : String(i + 1)),
           h('span', { class: 'guide-text' }, t));
       })),
+      // what you're aiming for, so every move has a point
+      detailOf(n)?.check_yourself && !doneAll ? h('div', { class: 'guide-goal' }, detailOf(n).check_yourself) : '',
     );
   }
   // "Help me": the current action again, in other words (live); a replay only plays what was recorded
@@ -462,7 +473,9 @@ export async function render(root) {
       if (safetyShownFor !== ctx.step) { safetyShownFor = ctx.step; el.safety.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' }); }
     }
     if (ctx.state === S.ASKING) {
-      el.askQ.textContent = ctx.finalAsk ? finalQuestion(ctx.step) : askQuestion(steps[ctx.step - 1], last);
+      // in the guide's own plain words ("It should look like ..."), else the check's question
+      const plain = detailOf(ctx.step)?.check_yourself;
+      el.askQ.textContent = ctx.finalAsk ? finalQuestion(ctx.step) : plain ? `${plain} ${T('looks_like_this')}` : askQuestion(steps[ctx.step - 1], last);
       el.ask.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
     }
     if (mistake) el.caption.scrollIntoView({ block: 'nearest', behavior: reducedMotion() ? 'auto' : 'smooth' });
@@ -1006,7 +1019,20 @@ export async function render(root) {
   window.addEventListener('pagehide', onHide);
   const heartbeat = setInterval(() => log('heartbeat', ctx.step), 60000);
 
-  const replay = replayMode ? createReplay({ timeline, dispatch, onFinish: () => finish('completed'), onEvent: (e) => showRecordedAt(e.off),
+  // A replay waits for the coach the way a person would: a question is heard out and answered (you see the answer)
+  // before anything moves on, and a step isn't left mid-sentence.
+  const replayDispatch = async (ev) => {
+    if (ev.type === 'ask_yes' || ev.type === 'ask_no') {
+      await whenQuiet(15000);
+      if (finished) return;
+      el.heard.textContent = ev.type === 'ask_yes' ? 'Yes, it does.' : 'No, it doesn\u2019t.';
+      el.reply.textContent = ''; el.voiceCap.hidden = false;
+      await new Promise((r) => { later(r, 1400); });
+      later(() => { el.heard.textContent = ''; if (!el.reply.textContent) el.voiceCap.hidden = true; }, 2600); // seen; the step's caption comes back
+    } else if (ev.type === 'next' || ev.type === 'skip') await whenQuiet(10000);
+    if (!finished) await dispatch(ev);
+  };
+  const replay = replayMode ? createReplay({ timeline, dispatch: replayDispatch, onFinish: () => finish('completed'), onEvent: (e) => showRecordedAt(e.off),
     onTick: showRecordedAt,
     onQuestion: (text) => askQuestionAloud(text, false),
     onCoach: (d, step) => {  // a recorded look of the live coach, replayed like the live one (it speaks, the note updates)

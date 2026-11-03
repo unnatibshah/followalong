@@ -23,15 +23,22 @@ export function render(root) {
   const row = (r) => h('button', { class: 'act', type: 'button', onclick: () => { app.tutorialId = r.tid; app.mode = 'live'; nav('ready'); } },
     h('div', { class: 'act-media' }, stepFrame(r.tid, Math.max(1, Math.min(r.steps_done || 1, r.steps_total || 1)))),
     h('div', { class: 'act-body' },
-      h('span', { class: 'act-title' }, r.title || 'A guide', r.mode === 'replay' && h('span', { class: 'tag' }, 'Replay')),
+      h('span', { class: 'act-title' }, r.title || 'A guide', r.mode === 'replay' && h('span', { class: 'tag' }, 'Replay'),
+        r.times > 1 && h('span', { class: 'tag' }, `${r.times} sessions`)),
       h('span', { class: 'act-meta' }, `${r.steps_done} of ${r.steps_total} steps · ${mins(r.duration_s || 0)} · `
         + `${r.mistakes ? `${r.mistakes} mistake${r.mistakes === 1 ? '' : 's'} caught` : 'no mistakes'}`
         + `${r.hardest ? ` · hardest: step ${r.hardest}` : ''}`),
       h('span', { class: 'act-time' }, new Date(r.at).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }))),
     h('span', { class: ['act-badge', r.steps_done >= r.steps_total ? 'done' : 'part'] }, r.steps_done >= r.steps_total ? icon('check') : `${r.steps_done}/${r.steps_total}`));
 
-  const groups = [];
+  // One row per guide (and per replay vs live): its latest session, with how many times you've done it
+  const seen = new Map();
   for (const r of all) {
+    const k = `${r.tid}|${r.mode}`;
+    if (seen.has(k)) seen.get(k).times += 1; else seen.set(k, { ...r, times: 1 });
+  }
+  const groups = [];
+  for (const r of seen.values()) {
     const d = day(r.at);
     if (!groups.length || groups[groups.length - 1].d !== d) groups.push({ d, items: [] });
     groups[groups.length - 1].items.push(r);

@@ -8,6 +8,6 @@
   "consent_ref": null,
   "delete_on_request": false,
   "plan_hash": "sha256:7ae56b24b8d3ebf626b8214ac4282ed6e2c9ab55330ea2777efe909d4f7e270c",
-  "prompt_version": "judged_checks-0.7",
+  "prompt_version": "judged_checks-1.0",
   "recorded_at": "2026-11-03T18:00:00.000Z"
 }

@@ -785,24 +785,6 @@
   "latency_ms": 2804,
   "cost_usd": 0.0026796
  },
- "eval/cross/tie-a-tie-session/step5-look1-091.20.jpg|0|watch-1.0": {
-  "status": "looks_done",
-  "observation": "Wide end is hanging straight down centered in front through the knot, matching the tutorial finished state.",
-  "on_action": 3,
-  "substitute": "",
-  "say": "",
-  "latency_ms": 3366,
-  "cost_usd": 0.0026671
- },
- "eval/cross/tie-a-tie-session/step5-look2-097.20.jpg|1|watch-1.0": {
-  "status": "looks_done",
-  "observation": "Wide end hanging straight down centered through the front wrap, matching tutorial finished state.",
-  "on_action": 3,
-  "substitute": "",
-  "say": "",
-  "latency_ms": 1705,
-  "cost_usd": 0.0023227
- },
  "eval/cross/tie-a-tie-session/step6-look1-115.70.jpg|0|watch-1.0": {
   "status": "working",
   "observation": "Hand is gripping the knot and sliding it upward toward the collar, knot not yet fully seated centered under collar.",
@@ -820,15 +802,6 @@
   "say": "",
   "latency_ms": 2799,
   "cost_usd": 0.0030252
- },
- "eval/cross/tie-a-tie-session/step5-look3-103.20.jpg|2|watch-1.0": {
-  "status": "looks_done",
-  "observation": "Wide end hanging straight down centered through front wrap, hand at knot",
-  "on_action": 3,
-  "substitute": "",
-  "say": "",
-  "latency_ms": 2771,
-  "cost_usd": 0.001455
  },
  "eval/cross/tie-a-tie-session/step6-look3-125.20.jpg|2|watch-1.0": {
   "status": "looks_done",
@@ -919,5 +892,599 @@
   "say": "I need to see the tips of both ends to check the length, back the camera up a little.",
   "latency_ms": 4030,
   "cost_usd": 0.0029773499999999997
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look1-011.77.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "rope lying flat forming a tall narrow loop, crossing point at bottom edge partly out of frame, no hand holding",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good start, you've got the bend. Now lay the short end right across the front so it makes a 6.",
+  "latency_ms": 8174,
+  "cost_usd": 0.00673825
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look2-014.00.jpg|1|watch-1.1": {
+  "status": "looks_done",
+  "observation": "pink rope on table formed into open loop with short end lying across front of long part, hands holding the cross",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 7579,
+  "cost_usd": 0.00698925
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look3-016.22.jpg|2|watch-1.1": {
+  "status": "looks_done",
+  "observation": "pink rope on table in open loop shape with short end lying across front of long part, matching tutorial loop",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2867,
+  "cost_usd": 0.00432475
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look1-022.50.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "Live rope shows the cross with pink over the long part and short end to the right, but no hand pinching the lower loop yet; twist above loop forming, not finished to tutorial shape.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got that cross. Now pinch the lower loop to hold it and bring that short end behind.",
+  "latency_ms": 5126,
+  "cost_usd": 0.00517075
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look2-026.25.jpg|1|watch-1.1": {
+  "status": "working",
+  "observation": "Live rope still shows the cross with pink over the upright, finger near but not pinching the lower loop, twist above loop not yet formed like tutorial.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 5723,
+  "cost_usd": 0.00505675
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look3-030.00.jpg|2|watch-1.1": {
+  "status": "working",
+  "observation": "Live rope shows the cross with pink over the long part and short end to the right, but no hand pinching the lower loop; twist above loop not yet formed to tutorial shape.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 5249,
+  "cost_usd": 0.004863
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look4-033.00.jpg|3|watch-1.1": {
+  "status": "working",
+  "observation": "Live rope still shows the cross with the hand down at the bottom, but the upper twist is not yet closed into the tutorial shape with an open loop below.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Keep holding that bottom part still and take the short end behind the long part and out to the side.",
+  "latency_ms": 7098,
+  "cost_usd": 0.00655525
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look1-037.15.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "Hands holding a multicolor cord on a table, fingers positioning the short end near the upper bend, lower loop not yet threaded and knot not tightened.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Push that short end down through the front of the lower loop so it comes out below.",
+  "latency_ms": 3633,
+  "cost_usd": 0.004912
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look2-039.77.jpg|1|watch-1.1": {
+  "status": "working",
+  "observation": "Multicolor cord on table in loose crossing shape, short end not yet through lower loop, knot not tightened - same as last look",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2776,
+  "cost_usd": 0.00297815
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look3-042.40.jpg|2|watch-1.1": {
+  "status": "working",
+  "observation": "Multicolor cord in loose figure-eight shape on table, short end threaded down through lower loop and out below, knot not yet tightened into snug stacked loops",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Now pull the long part up and the short end down slowly so it pulls tight.",
+  "latency_ms": 4228,
+  "cost_usd": 0.00538025
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look4-044.50.jpg|3|watch-1.1": {
+  "status": "working",
+  "observation": "Multicolor cord in loose figure-eight shape on table, short end through lower loop and out below, knot not yet pulled tight into snug stacked loops",
+  "on_action": 2,
+  "substitute": "a cord instead of the rope",
+  "say": "",
+  "latency_ms": 3454,
+  "cost_usd": 0.00517325
+ },
+ "eval/cross/tie-a-tie-session/step1-look1-031.72.jpg|0|watch-1.1": {
+  "status": "cant_see",
+  "observation": "tie is around the neck under collar with both ends hanging, but ends are cut off at bottom so length difference can't be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I can't see the ends of your tie. Tilt the phone down a little so I can see how long each side hangs.",
+  "latency_ms": 3453,
+  "cost_usd": 0.0045495
+ },
+ "eval/cross/tie-a-tie-session/step1-look2-034.32.jpg|1|watch-1.1": {
+  "status": "cant_see",
+  "observation": "tie around neck with both ends hanging but bottom ends still out of frame so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the ends of your tie. Tilt down a bit more so both tips show.",
+  "latency_ms": 3098,
+  "cost_usd": 0.00457175
+ },
+ "eval/cross/tie-a-tie-session/step1-look3-036.92.jpg|2|watch-1.1": {
+  "status": "cant_see",
+  "observation": "tie around neck with both ends hanging but tips still cut off out of frame so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the tips to check the lengths. Tilt down till both ends show.",
+  "latency_ms": 3628,
+  "cost_usd": 0.0034071500000000003
+ },
+ "eval/cross/tie-a-tie-session/step1-look4-039.00.jpg|3|watch-1.1": {
+  "status": "cant_see",
+  "observation": "tie around neck with both ends hanging but tips still out of frame so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still need to see the tips to check one side hangs much lower. Point the camera lower till both ends are in view.",
+  "latency_ms": 2384,
+  "cost_usd": 0.00450375
+ },
+ "eval/cross/tie-a-tie-session/step2-look1-045.30.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "both tie ends hanging straight down in front of shirt, not yet crossed into an X",
+  "on_action": 2,
+  "substitute": "",
+  "say": "You've got the ends centered. Now lay the wide end across the front to make that X.",
+  "latency_ms": 4019,
+  "cost_usd": 0.0033944
+ },
+ "eval/cross/tie-a-tie-session/step2-look2-048.05.jpg|1|watch-1.1": {
+  "status": "working",
+  "observation": "both tie ends still hanging straight down in front of shirt, no cross formed yet",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3662,
+  "cost_usd": 0.0035224
+ },
+ "eval/cross/tie-a-tie-session/step2-look3-050.80.jpg|2|watch-1.1": {
+  "status": "working",
+  "observation": "wide end hanging centered in front of narrow end, no X cross formed yet, hands holding top of wide end",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4170,
+  "cost_usd": 0.0050225
+ },
+ "eval/cross/tie-a-tie-session/step2-look4-053.00.jpg|3|watch-1.1": {
+  "status": "looks_done",
+  "observation": "wide end now lies diagonally across the front of the narrow end forming an X just below the collar, matching tutorial",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2380,
+  "cost_usd": 0.00442775
+ },
+ "eval/cross/tie-a-tie-session/step3-look1-058.90.jpg|0|watch-1.1": {
+  "status": "cant_see",
+  "observation": "Hands covering knot area, wide end tip not visible pointing up, cannot confirm behind cross or through neck gap",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the wide end. Move your hands aside and tilt down so I can see the gap by your collar.",
+  "latency_ms": 3342,
+  "cost_usd": 0.004726
+ },
+ "eval/cross/tie-a-tie-session/step3-look2-062.15.jpg|1|watch-1.1": {
+  "status": "working",
+  "observation": "Wide end hangs down in front on the right, not up through the neck gap; hands holding the cross area",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Bring that wide end behind the cross and push it up through the gap by your collar.",
+  "latency_ms": 5380,
+  "cost_usd": 0.00545175
+ },
+ "eval/cross/tie-a-tie-session/step3-look3-065.40.jpg|2|watch-1.1": {
+  "status": "working",
+  "observation": "hands on the cross area, wide end hanging down in front, tip not pointing up through the neck gap",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3843,
+  "cost_usd": 0.00505075
+ },
+ "eval/cross/tie-a-tie-session/step3-look4-068.00.jpg|3|watch-1.1": {
+  "status": "mistake",
+  "observation": "wide end held out to the side in front of the cross, not up through the neck gap, tip not pointing up",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Hold on, that wide end's still out in front. Tuck it behind the cross and push it up through the gap by your collar.",
+  "latency_ms": 9588,
+  "cost_usd": 0.0047568
+ },
+ "eval/cross/tie-a-tie-session/step4-look1-074.79.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "Hands at collar with tie hanging center, no flat horizontal band across front yet, wide end visible at side, step not started",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got it centered. Now bring that wide end out to your side and wrap it flat across the front.",
+  "latency_ms": 3693,
+  "cost_usd": 0.00311115
+ },
+ "eval/cross/tie-a-tie-session/step4-look2-077.37.jpg|1|watch-1.1": {
+  "status": "working",
+  "observation": "Hands at collar holding the cross, wide end hanging to the side, no flat horizontal band across the front yet - step not finished",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 5302,
+  "cost_usd": 0.00387165
+ },
+ "eval/cross/tie-a-tie-session/step4-look3-079.94.jpg|2|watch-1.1": {
+  "status": "working",
+  "observation": "Hands holding tie at collar center, wide end hanging vertical, no flat horizontal band across front yet - step not finished",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3250,
+  "cost_usd": 0.0031034
+ },
+ "eval/cross/tie-a-tie-session/step4-look4-082.00.jpg|3|watch-1.1": {
+  "status": "working",
+  "observation": "Hands holding tie at collar center, wide end hanging vertical down middle, no flat horizontal band across the front yet - step not started",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2931,
+  "cost_usd": 0.00480775
+ },
+ "eval/cross/tie-a-tie-session/step6-look1-115.70.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "Hand is on the knot at the collar shaping it, knot is forming near center but not yet fully snug and centered like tutorial",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you've got the knot up there. Now slide it right up snug and centered under your collar.",
+  "latency_ms": 3372,
+  "cost_usd": 0.00292615
+ },
+ "eval/cross/tie-a-tie-session/step6-look2-120.45.jpg|1|watch-1.1": {
+  "status": "working",
+  "observation": "knot now slid up under collar and centered, wide end hanging but not yet straightened flat over narrow end",
+  "on_action": 3,
+  "substitute": "",
+  "say": "Now lay that wide end straight down the middle so it hangs flat.",
+  "latency_ms": 4802,
+  "cost_usd": 0.00366415
+ },
+ "eval/cross/tie-a-tie-session/step6-look3-125.20.jpg|2|watch-1.1": {
+  "status": "looks_done",
+  "observation": "knot centered snug under collar with wide end hanging straight down center",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 1850,
+  "cost_usd": 0.0026194
+ },
+ "eval/cross/tie-a-tie-session/step5-look1-092.39.jpg|0|watch-1.1": {
+  "status": "working",
+  "observation": "Wide end lifted up high, knot band formed in center, not yet pulled down through front loop - mid step 5 action 1 to 2",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you've got that wide end up top. Now push it down through that front band so it hangs down the middle.",
+  "latency_ms": 2768,
+  "cost_usd": 0.00245755
+ },
+ "eval/cross/tie-a-tie-session/step5-look2-097.97.jpg|1|watch-1.1": {
+  "status": "looks_done",
+  "observation": "Wide end now hanging straight down through center of front band over narrow end, matching finished state",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2357,
+  "cost_usd": 0.00286965
+ },
+ "eval/cross/tie-a-tie-session/step5-look3-103.54.jpg|2|watch-1.1": {
+  "status": "looks_done",
+  "observation": "Wide end hanging straight down through center of front band over narrow end, matching tutorial finished state",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2041,
+  "cost_usd": 0.0024685500000000003
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look1-011.77.jpg|0|watch-1.2": {
+  "status": "cant_see",
+  "observation": "Top of a loop on wood, but the crossing point at the bottom is cut off out of frame so over-under cannot be judged.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I can't see the crossing. Tilt down a little.",
+  "latency_ms": 5309,
+  "cost_usd": 0.00515575
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look2-014.00.jpg|1|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Hands holding pink rope crossed over the long part forming a loop above, matching the over-cross structure despite rotated orientation.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 5717,
+  "cost_usd": 0.00585875
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look3-016.22.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Pink rope lying flat with short end crossed over the front of the long part, forming a round open loop above the cross, matching the tutorial's over-cross structure despite lying flat and rotated.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3948,
+  "cost_usd": 0.00498775
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look1-022.50.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Rainbow cord on table with a cross of pink over the long vertical part, short yellow tip held low in hand, no open bottom loop or wrap around yet, twist not formed.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good start with the cross. Now open the bottom loop with your other hand.",
+  "latency_ms": 6207,
+  "cost_usd": 0.0060365
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look2-026.25.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "Rainbow cord still lying in a simple cross on table, short yellow end low left, no open bottom loop held and no wrap behind and around the long part yet, twist not formed unlike tutorial twist with ha",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4526,
+  "cost_usd": 0.005176
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look3-030.00.jpg|2|watch-1.2": {
+  "status": "idle",
+  "observation": "Rainbow cord still in simple cross on table, no hand holding bottom loop, no wrap behind long part, twist not formed",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Pick up the bottom loop and pinch it open.",
+  "latency_ms": 4606,
+  "cost_usd": 0.0053105
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look4-033.00.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "Rainbow cord still lying in simple cross on table, short yellow end low left, no open bottom loop held and no wrap behind and around long part yet, twist not formed",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4200,
+  "cost_usd": 0.00441325
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look1-037.15.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Hands mid-action threading multicolor cord, eight not yet tightened, different rope than tutorial but same structure forming.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got the shape started. Push that short end down through the bottom loop.",
+  "latency_ms": 3011,
+  "cost_usd": 0.00471375
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look2-039.77.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "multicolor cord looped on table, short end not yet pushed down through bottom loop, eight not tightened",
+  "on_action": 1,
+  "substitute": "a multicolor cord instead of the rope",
+  "say": "",
+  "latency_ms": 2663,
+  "cost_usd": 0.0026849
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look3-042.40.jpg|2|watch-1.2": {
+  "status": "working",
+  "observation": "Multicolor cord in loose eight shape on table, tail appears through bottom loop but knot not yet tightened snug.",
+  "on_action": 2,
+  "substitute": "a multicolor cord instead of the rope",
+  "say": "Now pull both ends apart to tighten it.",
+  "latency_ms": 5476,
+  "cost_usd": 0.0035468
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look4-044.50.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "loose eight lying on table with tail through bottom loop, not yet pulled tight into neat shape",
+  "on_action": 2,
+  "substitute": "a multicolor cord instead of the rope",
+  "say": "Pull the long part and short end apart.",
+  "latency_ms": 3135,
+  "cost_usd": 0.00466125
+ },
+ "eval/cross/tie-a-tie-session/step1-look1-031.72.jpg|0|watch-1.2": {
+  "status": "cant_see",
+  "observation": "tie is around collar with both sides down front, but ends are cropped out so length difference can't be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I can't see the tie ends. Tilt down to show both ends.",
+  "latency_ms": 3762,
+  "cost_usd": 0.0031751500000000003
+ },
+ "eval/cross/tie-a-tie-session/step1-look2-034.32.jpg|1|watch-1.2": {
+  "status": "cant_see",
+  "observation": "tie around collar visible but both ends cropped out, length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the ends. Point the camera lower.",
+  "latency_ms": 1803,
+  "cost_usd": 0.004023
+ },
+ "eval/cross/tie-a-tie-session/step1-look3-036.92.jpg|2|watch-1.2": {
+  "status": "cant_see",
+  "observation": "tie is around collar with both sides down front, but ends are cropped out so length difference can't be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I can't see the ends yet. Tilt down a bit more.",
+  "latency_ms": 2484,
+  "cost_usd": 0.0026673499999999998
+ },
+ "eval/cross/tie-a-tie-session/step1-look4-039.00.jpg|3|watch-1.2": {
+  "status": "cant_see",
+  "observation": "tie around collar with both sides down front, but ends cropped out so length difference can't be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the ends. Tilt the phone down more.",
+  "latency_ms": 2740,
+  "cost_usd": 0.0029005999999999997
+ },
+ "eval/cross/tie-a-tie-session/step2-look1-045.30.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Tie ends hanging parallel down shirt, no X formed yet below collar, hand holding one side.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Now cross the wide end over to make an X.",
+  "latency_ms": 2827,
+  "cost_usd": 0.0025706500000000003
+ },
+ "eval/cross/tie-a-tie-session/step2-look2-048.05.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "Tie ends still hanging parallel down shirt with no X formed below collar",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3812,
+  "cost_usd": 0.00502175
+ },
+ "eval/cross/tie-a-tie-session/step2-look3-050.80.jpg|2|watch-1.2": {
+  "status": "working",
+  "observation": "wide pink tie hanging centered down shirt with no X below collar, hand gripping top of wide end",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4114,
+  "cost_usd": 0.00517225
+ },
+ "eval/cross/tie-a-tie-session/step2-look4-053.00.jpg|3|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Wide end crossed over narrow end forming X below collar, matching tutorial",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 1909,
+  "cost_usd": 0.0040595
+ },
+ "eval/cross/tie-a-tie-session/step3-look1-058.90.jpg|0|watch-1.2": {
+  "status": "cant_see",
+  "observation": "Hands covering the knot area, wide end and X not visible, cannot judge position.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the tie. Move your hands back a bit.",
+  "latency_ms": 2250,
+  "cost_usd": 0.00249715
+ },
+ "eval/cross/tie-a-tie-session/step3-look2-062.15.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "Wide end hanging down on right, not yet behind X or up through neck loop; knot area now partly visible.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Take the wide end behind the cross. Then push it up through the gap.",
+  "latency_ms": 5330,
+  "cost_usd": 0.00525425
+ },
+ "eval/cross/tie-a-tie-session/step3-look3-065.40.jpg|2|watch-1.2": {
+  "status": "cant_see",
+  "observation": "Hands are around the knot, wide end hanging down front, X where ends cross not visible.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the cross. Move both hands aside a little.",
+  "latency_ms": 4835,
+  "cost_usd": 0.00553075
+ },
+ "eval/cross/tie-a-tie-session/step3-look4-068.00.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "Wide end held out to the side, not yet behind the X and not up through the neck loop; X now visible.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Slide that wide end behind the cross.",
+  "latency_ms": 4210,
+  "cost_usd": 0.00341265
+ },
+ "eval/cross/tie-a-tie-session/step4-look1-074.79.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Hands at collar, wide end hanging to side, no flat band across front yet",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Bring that wide end across the front so it makes a flat band.",
+  "latency_ms": 3050,
+  "cost_usd": 0.004394
+ },
+ "eval/cross/tie-a-tie-session/step4-look2-077.37.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "Hands holding tie at collar, wide end hanging to side, no flat horizontal band across front yet matching tutorial",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4092,
+  "cost_usd": 0.00490125
+ },
+ "eval/cross/tie-a-tie-session/step4-look3-079.94.jpg|2|watch-1.2": {
+  "status": "working",
+  "observation": "Hands at collar holding tie, wide end hanging down, no flat horizontal band across front yet",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2382,
+  "cost_usd": 0.004029
+ },
+ "eval/cross/tie-a-tie-session/step4-look4-082.00.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "Hands at collar holding tie, no flat horizontal band across front yet, same as last looks",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2028,
+  "cost_usd": 0.0022959
+ },
+ "eval/cross/tie-a-tie-session/step5-look1-092.39.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Wide end is lifted up near the collar, front band still in place, tuck not yet done.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got it up there. Now tuck it down through the front band.",
+  "latency_ms": 4117,
+  "cost_usd": 0.00321215
+ },
+ "eval/cross/tie-a-tie-session/step5-look2-097.97.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "Wide end lifted up near collar, not yet tucked through front band, hand at knot",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3351,
+  "cost_usd": 0.00295765
+ },
+ "eval/cross/tie-a-tie-session/step5-look3-103.54.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Hand at knot with wide end hanging centered down through front band, matching finished tuck.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3056,
+  "cost_usd": 0.0030664
+ },
+ "eval/cross/tie-a-tie-session/step6-look1-115.70.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "hand gripping the knot and sliding it upward, knot still below collar, wide end centered",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you're sliding it up. Push it to your collar.",
+  "latency_ms": 5014,
+  "cost_usd": 0.0029304
+ },
+ "eval/cross/tie-a-tie-session/step6-look2-120.45.jpg|1|watch-1.2": {
+  "status": "looks_done",
+  "observation": "knot is up at collar centered as neat triangle, wide end hanging centered",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2135,
+  "cost_usd": 0.00418
+ },
+ "eval/cross/tie-a-tie-session/step6-look3-125.20.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "knot slid up centered under collar as neat triangle, wide end hanging centered, matching tutorial finish",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2506,
+  "cost_usd": 0.00427225
  }
 }

@@ -1,47 +1,47 @@
 {
- "prompt_version": "step_details-0.9",
+ "prompt_version": "step_details-1.2",
  "model": "muse-spark-1.3",
- "cost_usd": 0.080079,
+ "cost_usd": 0.07686375,
  "actor": "hand",
  "steps": {
   "1": {
-   "title": "Connect the white and blue wires",
-   "say": "Hold the small white board steady on the table. Push the white thin wire into a top hole on the left side. Push the blue thin wire into a top hole on the right side.",
+   "title": "Plug in the two battery wires",
+   "say": "Hold the small board steady with one hand. Push the left battery wire into a top empty five-hole row. Push the right battery wire into another top empty five-hole row.",
    "placements": [
-    "white thin insulated wire from battery minus side → top edge 5-hole cross row on left side of small white plug board, pushed about one centimetre deep by fingers until firm, sharing row with future resistor leg; in the video: left top hole area",
-    "blue thin insulated wire from battery plus side → top edge 5-hole cross row on right side of same board, several holes to the right of white wire in a different connected group, pushed about one centimetre deep by fingers until firm, sharing row with future LED long leg; in the video: right top hole area"
+    "left battery lead → a hole in the top half on the left side in its own five-hole row (in the video: white wire at top left edge)",
+    "right battery lead → a hole in the top half on the right side in a different five-hole row from the left lead (in the video: blue wire at top right edge)"
    ],
    "watch_for": [
-    "if both wires sit in the same connected 5-hole row the power is shorted, lift one wire to a different group a few holes away",
-    "if a wire feels loose or falls out it is not deep enough, push it straight down about one centimetre until it grips"
+    "if both wires sit in the same five-hole row the batteries are joined, move one wire to a different row",
+    "if a wire wobbles or falls out it is not in far enough, push gently until it grips"
    ],
-   "check_yourself": "It should look like the small white board sitting flat with a white wire sticking up on the left top and a blue wire sticking up on the right top.",
+   "check_yourself": "It should look like two thin wires standing up from the top of the board.",
    "safety": ""
   },
   "2": {
-   "title": "Add the striped resistor across",
-   "say": "Push one leg of the blue striped resistor into the row with the white wire. Push the other leg into a free row a few holes to the right.",
+   "title": "Lay the resistor across the board",
+   "say": "Pick up the tiny striped resistor by its middle. Push one thin leg into the left wire row. Push the other thin leg into an empty middle row.",
    "placements": [
-    "small blue striped resistor with two thin wire legs → across top of board with left leg in same 5-hole cross row as white wire on left side and right leg in a separate 5-hole cross row a few holes to the right toward the middle, body lying flat just above board, legs pushed by fingers; in the video: body across top left to middle"
+    "small striped resistor → one thin leg in the same five-hole row as the left battery wire and the other thin leg in an empty middle five-hole row across the centre gap (in the video: lying across the top half)"
    ],
    "watch_for": [
-    "if both legs of the striped resistor share the same 5-hole row the resistor is bypassed, move one leg to a different row a few holes away",
-    "if a leg sits in the same row as the blue wire instead of the white wire the circuit stays open, move the left leg to share the white wire row"
+    "if both legs sit in the same five-hole row the part does nothing, move one leg to a different row",
+    "if the thin legs touch each other above the board, spread them so only the tips go in"
    ],
-   "check_yourself": "It should look like a tiny blue striped tube lying flat across the top of the board with thin legs going down on the left and middle.",
+   "check_yourself": "It should look like a tiny striped bridge lying flat on the board.",
    "safety": ""
   },
   "3": {
-   "title": "Plug in the blue LED",
-   "say": "Hold the small blue dome light with two thin legs between your fingers. Push the short leg into the row that holds the resistor end. Push the long leg into the row that holds the blue wire.",
+   "title": "Plug in the LED",
+   "say": "Find the longer leg of the small light. Push the longer leg into the resistor middle row. Push the shorter leg into the right wire row.",
    "placements": [
-    "blue domed LED light with one long plus leg and one short minus leg with flat side → upright on right side of board with short leg in same 5-hole cross row as right leg of resistor and long leg in same 5-hole cross row as blue wire a hole or two away, pushed by fingers until seated with dome above board; in the video: right edge top area glowing blue"
+    "small light with two legs → longer leg in the same five-hole row as the resistor middle end and shorter leg in the same five-hole row as the right battery wire on the right side (in the video: right edge with longer leg left and shorter leg right)"
    ],
    "watch_for": [
-    "if the light stays dark the legs are probably swapped, pull it out and swap so the long leg shares the blue wire row and the short leg shares the resistor row",
-    "if the light glows only when you hold it its legs are loose, push each leg straight down until seated"
+    "if the light stays dark the legs are probably swapped, pull it out and switch the two holes",
+    "if a leg shares the wrong row the circle is broken, legs must sit in the two rows described"
    ],
-   "check_yourself": "It should look like the small blue dome standing straight up on the right side of the board and glowing bright blue.",
+   "check_yourself": "It should look like a tiny light standing up and glowing.",
    "safety": ""
   }
  }

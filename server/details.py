@@ -90,7 +90,13 @@ async def main(ids: list[str]) -> None:
         folder = DATA / "tutorials" / tid
         info = await probe(folder / "video.mp4")
         text = await narration(folder / "video.mp4", {}) if info["audio"] else None
-        det = await build(plan, folder, info["duration"], text)
+        for attempt in (1, 2):  # the model now and then returns broken JSON: one more try
+            try:
+                det = await build(plan, folder, info["duration"], text)
+                break
+            except json.JSONDecodeError:
+                if attempt == 2:
+                    raise
         (folder / "details.json").write_text(json.dumps(det, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"{tid}: {len(det['steps'])}/{len(plan['steps'])} steps, ${det['cost_usd']:.3f}", flush=True)
 
