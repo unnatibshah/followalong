@@ -114,3 +114,24 @@ test('a line said before the browser has loaded its voices waits for them instea
   onVoices();
   assert.deepEqual(spoken.map((u) => u.text), ['Your turn.']);
 });
+
+test('a finished lesson waits for the coach to finish its last line, but never forever', async () => {
+  const spoken = [];
+  globalThis.SpeechSynthesisUtterance = class { constructor(text) { this.text = text; } };
+  globalThis.speechSynthesis = { getVoices: () => [{ name: 'Samantha', lang: 'en-US', localService: true }],
+    speak: (u) => spoken.push(u), cancel: () => {} };
+  const { speak, whenQuiet } = await import('../web/js/speech.js?quiet');
+  await whenQuiet(50);                                   // nothing being said: at once
+  speak("That was the last step.");
+  let done = false;
+  const wait = whenQuiet(2000).then(() => { done = true; });
+  await new Promise((r) => setTimeout(r, 30));
+  assert.equal(done, false);                             // still talking
+  spoken[0].onend();
+  await wait;                                            // resolves after the breath that follows the line
+  assert.equal(done, true);
+  speak('A line that never ends.');
+  const t0 = Date.now();
+  await whenQuiet(120);                                  // a stuck voice can't hold the lesson open
+  assert.ok(Date.now() - t0 < 1000);
+});

@@ -100,6 +100,16 @@ function waitForVoices(s) {
 
 export const speaking = () => !!current || queue.length > 0;
 
+/** Resolves when the coach has finished talking (at once if it isn't), or after `maxMs` whatever happens. */
+export function whenQuiet(maxMs = 6000) {
+  return new Promise((done) => {
+    if (!speaking()) { done(); return; }
+    let off = () => {};
+    const timer = setTimeout(() => { off(); done(); }, maxMs);
+    off = onSpeech((talking) => { if (!talking) { clearTimeout(timer); off(); done(); } });
+  });
+}
+
 /** Text written for the screen, shaped for a speech engine: no "In the video:" asides (those are for reading), no
  *  arrows, brackets or semicolons, which voices either skip or read as one breathless run. */
 export function speakable(text) {
