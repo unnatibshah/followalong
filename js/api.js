@@ -60,8 +60,18 @@ async function request(method, path, { json, form, blob } = {}) {
   if (json !== undefined) { opts.body = JSON.stringify(json); opts.headers['Content-Type'] = 'application/json'; }
   if (form) opts.body = form;
   if (blob) { opts.body = blob; opts.headers['Content-Type'] = blob.type; }
+  // Never hang: a server that stops answering becomes a clear error (uploads of a whole video get much longer)
+  const ctrl = new AbortController();
+  const limit = method === 'POST' && path === '/api/tutorials' ? 600000 : 30000;
+  const timer = setTimeout(() => ctrl.abort(), limit);
+  opts.signal = ctrl.signal;
   let res;
-  try { res = await fetch(url, opts); } catch { throw new ApiError(0, { error: { code: 'network', message: "Can't reach the FollowAlong server." } }); }
+  try { res = await fetch(url, opts); } catch (err) {
+    clearTimeout(timer);
+    if (err?.name === 'AbortError') throw new ApiError(0, { error: { code: 'timeout', message: "The FollowAlong server isn't answering. Check it's running, then try again." } });
+    throw new ApiError(0, { error: { code: 'network', message: "Can't reach the FollowAlong server." } });
+  }
+  clearTimeout(timer);
   if (res.status === 204) return null;
   const type = res.headers.get('content-type') || '';
   const body = type.includes('application/json') ? await res.json() : await res.text();

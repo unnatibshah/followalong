@@ -7,7 +7,7 @@ import { hasCamera, cameraView, grabFrame } from '../camera.js';
 import { thermostatScene } from '../thermostatscene.js';
 import { askMic } from '../voice.js';
 import { nav } from '../router.js';
-import { speak, hush } from '../speech.js';
+import { speak, hush, whenQuiet } from '../speech.js';
 
 let micBlocked = false;
 export const devBlockMic = () => { micBlocked = true; };
@@ -60,9 +60,15 @@ export async function render(root) {
   // The coach checks the framing: a look every ~2.5 s; two good looks in a row and the lesson starts by itself
   const video = media instanceof SVGElement ? media : root.querySelector('video');
   const say = (text) => { found.replaceChildren(h('span', {}, text)); if (app.voiceOn !== false) speak(text, 'setup'); };
-  let good = 0, lastSaid = '', stopped = false, started = Date.now();
+  let good = 0, lastSaid = '', stopped = false, looks = 0;
+  const started = Date.now();
   async function look() {
     if (stopped || !root.isConnected) return;
+    if (document.hidden) { setTimeout(look, 2500); return; } // no looks (and no API calls) in a background tab
+    if (++looks > 24) { // about a minute without a clear view: stop asking the model, the button still starts
+      found.replaceChildren(h('span', {}, 'Start when you\u2019re ready. I\u2019ll tell you during the lesson if I can\u2019t see.'));
+      return;
+    }
     try {
       const frame = await grabFrame(video);
       const res = await api.watch(app.sessionId, frame, { step_id: 1, recent: [], said: [lastSaid], elapsed_s: Math.round((Date.now() - started) / 1000), encourage: false });
@@ -73,9 +79,15 @@ export async function render(root) {
         const line = res.say || 'I can\u2019t see your work area yet. Point the camera at your hands and the table.';
         if (line !== lastSaid) { lastSaid = line; say(line); }
       } else if (++good >= 2 || !hasCamera()) {
+        if (app.voiceOn === null && app.config.voice !== 'off') { // the microphone question is still open: starting now would leave the coach silent
+          found.replaceChildren(h('span', {}, 'Looks good. Answer the microphone question and we\u2019ll start.'));
+          setTimeout(look, 1500);
+          return;
+        }
         stopped = true;
         say('Perfect, I can see your work area. Let\u2019s start.');
-        setTimeout(() => { if (root.isConnected) nav('follow'); }, 2600);
+        await Promise.all([whenQuiet(5000), new Promise((r) => setTimeout(r, 1800))]); // let the line finish
+        if (root.isConnected) nav('follow');
         return;
       } else found.replaceChildren(icon('spin', 'spin sam'), h('span', {}, 'Looks good so far\u2026'));
     } catch (err) {

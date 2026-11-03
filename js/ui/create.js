@@ -40,6 +40,7 @@ export function openCreate() {
     busy.hidden = false;
     try {
       const { id, status, duplicate } = pages ? await api.uploadManual(pages) : url ? await api.uploadLink(url) : await api.upload(file);
+      if (!sheet.isConnected) { toast('Your guide is being built. You\u2019ll find it in Library.'); return; } // closed meanwhile
       closeAll();
       app.tutorialId = id;
       app.mode = 'live';
@@ -47,6 +48,7 @@ export function openCreate() {
       nav(duplicate && status === 'ready' ? 'ready' : 'understanding');
     } catch (err) {
       busy.hidden = true;
+      if (!sheet.isConnected) { toast(err.message); return; }
       if (INLINE.includes(err.code)) say(err.message);
       else { closeAll(); showError(err); }
     }
@@ -121,9 +123,10 @@ export function openCreate() {
         if (!sheet.isConnected && recorder?.state === 'recording') { dropped = true; recorder.stop(); }
       };
       recorder.onstop = () => {
+        const type = (recorder?.mimeType || chunks[0]?.type || 'video/webm').split(';')[0]; // Safari records MP4
         stream.getTracks().forEach((t) => t.stop());
         recorder = null;
-        if (!dropped) upload(new File(chunks, 'my-recording.webm', { type: 'video/webm' }));
+        if (!dropped) upload(new File(chunks, `my-recording.${type.includes('mp4') ? 'mp4' : 'webm'}`, { type }));
       };
       recorder.start(1000);
       const preview = h('video', { class: 'rec-preview', muted: true, playsInline: true, autoplay: true });
@@ -148,6 +151,9 @@ export function openCreate() {
     h('p', { class: 'sheet-fine' }, 'Use something you have the rights to. It’s sent to Meta’s AI to find the steps, and on the hosted demo it’s '
       + 'deleted after 24 hours. By continuing you confirm you’re 18 or older and agree to ', h('a', { href: '#/terms', onclick: closeAll }, 'the terms'), '.')));
   // Drop a video, a PDF or page photos anywhere on the sheet
+  // a file dropped next to the sheet must not open in the tab
+  sheet.parentElement.addEventListener('dragover', (e) => e.preventDefault());
+  sheet.parentElement.addEventListener('drop', (e) => e.preventDefault());
   sheet.addEventListener('dragover', (e) => { e.preventDefault(); if (live) sheet.classList.add('drag'); });
   sheet.addEventListener('dragleave', () => sheet.classList.remove('drag'));
   sheet.addEventListener('drop', (e) => {

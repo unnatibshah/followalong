@@ -9,7 +9,7 @@ import { showError } from '../overlays.js';
 const heat = (v) => (v === 0 ? 'h0' : v < 0.08 ? 'h1' : v < 0.13 ? 'h2' : v < 0.2 ? 'h3' : v < 0.3 ? 'h4' : 'h5');
 
 export async function render(root) {
-  const tid = 'install-thermostat'; // the default bundled tutorial
+  const tid = app.tutorialId || 'breadboard-led'; // the guide you were just following, else a sample guide
   let meta, plan, view;
   try { [meta, plan, view] = await Promise.all([api.tutorial(tid), api.plan(tid), api.creator(tid)]); } catch (err) { showError(err); return null; }
   const rows = view.steps, sessions = view.sessions;

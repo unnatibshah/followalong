@@ -33,7 +33,8 @@ export function render(root) {
 
   root.append(h('div', { class: 'page-light' }, h('div', { class: 'wrap col gap-xl summary' },
     h('div', { class: 'split' },
-      h('div', { class: 'hero-frame' }, stepFrame(app.tutorialId, s.steps_total), h('span', { class: 'pill tl' }, 'Your finished work')),
+      h('div', { class: 'hero-frame' }, app.summaryPhoto ? h('img', { class: 'frame-img', src: app.summaryPhoto, alt: 'Your finished work' })
+        : stepFrame(app.tutorialId, s.steps_total), h('span', { class: 'pill tl' }, app.summaryPhoto ? 'Your finished work' : 'How it should look')),
       h('div', { class: 'col gap-m' },
         h('h1', { class: 'display md' }, s.steps_done === s.steps_total ? (DONE[app.tutorialId] || `You finished ${title}`) : `You did ${s.steps_done} of ${s.steps_total} steps`),
         h('div', { class: 'sum-line' }, line),

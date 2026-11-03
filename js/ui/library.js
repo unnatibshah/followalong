@@ -4,6 +4,7 @@ import { api } from '../api.js';
 import { app } from '../state.js';
 import { showDialog, closeAll, showError, toast } from '../overlays.js';
 import { openCreate } from './create.js';
+import { clearProgress } from '../progress.js';
 import { empty, guideCard, isMine, skeletons } from './cards.js';
 
 let tab = 'mine'; // remembered while the app is open
@@ -18,7 +19,7 @@ export async function render(root) {
     [h('button', { class: 'btn btn-ghost-dark', onclick: closeAll }, 'Cancel'),
       h('button', { class: 'btn btn-accent', onclick: async () => {
         closeAll();
-        try { await api.deleteTutorial(t.id); all = all.filter((x) => x.id !== t.id); draw(); toast('Guide deleted.'); } catch (err) { showError(err); }
+        try { await api.deleteTutorial(t.id); clearProgress(t.id); all = all.filter((x) => x.id !== t.id); draw(); toast('Guide deleted.'); } catch (err) { showError(err); }
       } }, 'Delete')]);
 
   function draw() {
