@@ -61,6 +61,8 @@ export async function render(root) {
   // One action at a time: the step's directions split into their sentences; the coach says and shows the current one
   const actionsOf = (n) => { const say = detailOf(n)?.say; return (say ? say.split(/(?<=[.!?])\s+/) : [stepOf(n)?.instruction || '']).map((x) => x.trim()).filter(Boolean); };
   let actionAt = 0; // the action being done now, in the current step
+  const wrongs = {}; // "not quite"s per step
+  let progressAt = Date.now(), helpedFor = ''; // when the learner last moved on; which action we already re-explained
   const lcFirst = (t) => t.charAt(0).toLowerCase() + t.slice(1);
   const enabledChecks = (n) => stepOf(n).checks.filter((c) => c.enabled !== false);
   // A full check of this step calls Muse Spark (judged checks the camera can see; always-ask ones never go out).
@@ -270,7 +272,7 @@ export async function render(root) {
           h('span', { class: 'guide-text' }, t));
       })),
       turn && !doneAll && !replayMode && app.config.live_enabled ? h('button', { class: 'guide-explain', type: 'button',
-        onclick: () => askQuestionAloud(`I don't understand this part: "${list[actionAt] || titleOf(n)}". Explain just this again in different, simpler words, in one or two short sentences.`) },
+        onclick: () => askQuestionAloud(`I don't understand this part: "${list[actionAt] || titleOf(n)}". Explain just this again in different, simpler words, in one or two short sentences.`, true, T('explain_btn')) },
       T('explain_btn')) : '');
   }
   /** The learner has moved on to action i (the camera saw it, or a recorded look did): show it and say it. */
@@ -278,6 +280,7 @@ export async function render(root) {
     const list = actionsOf(ctx.step);
     if (ctx.state !== S.WAITING || i <= actionAt || i >= list.length) return false;
     actionAt = i;
+    progressAt = Date.now();
     paintGuide(ctx.step);
     coachSay(T('good_now', { text: lcFirst(list[i]) }), true, true, ctx.step);
     return true;
@@ -608,8 +611,10 @@ export async function render(root) {
     if (ctx.state === S.PAUSED) { player.pause(); return; }
     if (before.state === S.PAUSED) { player.resume(); }
     // The learner's turn: hold the step's end frame, even if the video hadn't reached it (replay skips, Check me).
-    if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { player.freeze(stepOf(ctx.step)); flash = null; }
-    if (before.state === S.MISTAKE && ctx.state !== S.MISTAKE) player.freeze(stepOf(ctx.step));
+    // Your turn: the step keeps playing as a silent loop beside you, so nobody has to pause or rewind it
+    if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { flash = null; player.sound(false); player.loopStep(stepOf(ctx.step)); }
+    if (before.state === S.MISTAKE && ctx.state === S.WAITING) player.loopStep(stepOf(ctx.step));
+    if (ctx.state === S.PLAYING && before.state !== S.PLAYING) player.sound(true); // watching: the tutorial speaks
     if (before.step !== ctx.step) { actionAt = 0; resetWatch(); if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
     if (ctx.state === S.SAFETY && before.state !== S.SAFETY && before.state !== S.PAUSED) {
       log('safety_shown', ctx.step, { hazard: hazard(ctx.step) });
@@ -620,12 +625,14 @@ export async function render(root) {
       log('step_wait', ctx.step); motion?.rearm(); // your turn: move first
       // a hazard is said first; a gated one was already said and confirmed
       const safety = before.state === S.SAFETY ? '' : detailOf(ctx.step)?.safety;
-      actionAt = 0;
+      actionAt = 0; progressAt = Date.now();
       coachSay(`${before.state === S.SAFETY ? `${T('safe_thanks')} ` : ''}${safety ? `${safety} ` : ''}${T('your_turn')} ${actionsOf(ctx.step)[0] || directions(ctx.step)}`,
         true, !!voiceCtl || !!safety, ctx.step);
     }
     if (ctx.state === S.MISTAKE) {
-      coachSay(mistakeLine(last), true, !!voiceCtl, ctx.step); // the caption shows it anyway
+      // A second "not quite" on the same step: the check may simply not know this setup, so offer the learner's word
+      wrongs[ctx.step] = (wrongs[ctx.step] || 0) + 1;
+      coachSay(`${mistakeLine(last)}${wrongs[ctx.step] >= 2 && !replayMode ? ` ${T('override_offer')}` : ''}`, true, !!voiceCtl, ctx.step); // the caption shows it anyway
       clipPaused = false; clipPlay = false;
       player.loop(stepOf(ctx.step));
       if (reducedMotion()) player.pause();
@@ -832,11 +839,11 @@ export async function render(root) {
   el.muteBtn.addEventListener('click', () => { replayVoice = !replayVoice; if (!replayVoice) hush(); paint(); });
   if (app.voiceOn) voiceOn();
 
-  async function askQuestionAloud(text, spoken = true) {
+  async function askQuestionAloud(text, spoken = true, shown = text) {
     const n = ++questionNo;
     const history = convo.slice(-8);
-    if (convo[convo.length - 1]?.text !== text) remember('user', text);
-    el.heard.textContent = text;
+    if (convo[convo.length - 1]?.text !== text) remember('user', shown || text);
+    el.heard.textContent = shown;
     el.reply.textContent = 'Muse Spark is looking…';
     el.voiceCap.hidden = false;
     try {
@@ -894,7 +901,23 @@ export async function render(root) {
       if (['cap_reached', 'limit_reached', 'no_api_key'].includes(err.code)) { watcherStopped = true; toast(err.message); }
     } finally { looking -= 1; }
   }
+  let subSaid = false; // a substitute is acknowledged once per lesson, like a person would
+  function noteSubstitute(sub, step) {
+    if (subSaid || !sub) return false;
+    subSaid = true;
+    coachSay(T('substitute_ok', { text: sub }), true, true, step);
+    return true;
+  }
   function onLook(res, step) {
+    if (noteSubstitute(res.substitute, step)) { lastLineAt = Date.now(); }
+    // Stuck on the same action for a while (no mistake to fix): explain it again, more simply, like a person would
+    const key = `${step}:${actionAt}`;
+    if (ctx.state === S.WAITING && ['working', 'idle'].includes(res.status) && Date.now() - progressAt > 15000 && helpedFor !== key && !replayMode) {
+      helpedFor = key;
+      const list = actionsOf(step);
+      askQuestionAloud(`I'm stuck on this part: "${list[actionAt] || titleOf(step)}". Explain just this again in different, simpler words, in one or two short sentences.`, true, 'Looks like you might be stuck. Let me put it another way.');
+      return;
+    }
     // They've finished an action: say the next one (and nothing else this look)
     if (res.on_action && res.status === 'working' && advanceAction(res.on_action - 1)) { lastLineAt = Date.now(); return; }
     if (res.status === 'looks_done') { // the model thinks it's done: the grounded check (SAM 3.1) confirms or not
@@ -971,6 +994,7 @@ export async function render(root) {
     onQuestion: (text) => askQuestionAloud(text, false),
     onCoach: (d, step) => {  // a recorded look of the live coach, replayed like the live one (it speaks, the note updates)
       if (d.observation) { el.watchNote.textContent = `👁 ${d.observation}`; el.watchNote.dataset.state = d.status; }
+      noteSubstitute(d.substitute, step);
       // older recordings have no on_action: each "working" look moves on one action
       if (d.status === 'working' && advanceAction(d.on_action ? d.on_action - 1 : actionAt + 1) && !d.say) return;
       if (d.status === 'mistake' && lastStatus === 'mistake' && Date.now() - lastLineAt < 6000) return; // said once
@@ -1037,7 +1061,8 @@ export async function render(root) {
 // English defaults for the coach's fixed lines (the server's copy: config/phrases.json), used until /api/phrases answers
 const PHRASES_EN = {
   your_turn: 'Your turn.', good_now: 'Nice. Now {text}', explain_btn: 'Explain it differently',
-  ok_next: 'Great. Next up, step {n}: {text}', looks_like_this: 'Does yours look like that?', safety_first: 'Safety first.', safety_confirm: 'Say "ready" or tap "It\'s safe" when you\'ve done that.',
+  ok_next: 'Great. Next up, step {n}: {text}', looks_like_this: 'Does yours look like that?',
+  substitute_ok: "You're using {text}. That works.", safety_first: 'Safety first.', safety_confirm: 'Say "ready" or tap "It\'s safe" when you\'ve done that.',
   not_quite: 'Not quite.', try_again: 'Try again: {text}', yes_next: "Yes, that's right! Next up, step {n}: {text}",
   yes_last: "Yes, that's right! That was the last step. Great work.", not_sure: "I'm not completely sure.", say_yes_no: 'Say yes or no.',
   cant_see_yet: "I can't see your work yet. Move your hands out of the way and ask me again.",
@@ -1047,6 +1072,7 @@ const PHRASES_EN = {
   welcome_back: 'Welcome back. Picking up at step {n}.',
   confirm_done: 'This one matters, so you have the final say. Check: {text} Is that right? Say yes or no.',
   override_ok: 'Okay, you know your setup. Moving on.', override_check: 'Okay, let me look again properly.',
+  override_offer: "If yours does the same job, say \u201cit's right\u201d and we'll keep going.",
   too_dark: "It's a bit dark for me. Can you turn on a light, or move closer to one?",
   too_blurry: "The picture's blurry. Hold the camera steady, or tap the screen to focus.", safe_thanks: 'Thanks. Go ahead.',
   step_label: 'Step {n}',

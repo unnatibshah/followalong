@@ -35,6 +35,7 @@ export function createPlayer({ src, standIn, onEnd, onTime, onSoundBlocked }) {
       sound() {}, // the drawn stand-in has no audio
       playStep: (step) => run('step', step.start, step.end),
       loop: (step) => run('loop', step.key_clip_start, step.key_clip_end),
+      loopStep: (step) => run('loop', step.start, Math.max(step.start + 1, step.done_at || step.end)), // the reference during your turn
       pause() { if (!paused && mode !== 'idle') { paused = true; done += (performance.now() - t0) / 1000; cancelAnimationFrame(raf); } },
       resume() { if (paused) { paused = false; t0 = performance.now(); raf = requestAnimationFrame(tick); } },
       freeze() { mode = 'idle'; cancelAnimationFrame(raf); },
@@ -75,6 +76,7 @@ export function createPlayer({ src, standIn, onEnd, onTime, onSoundBlocked }) {
     el,
     playStep: (step) => run('step', step.start, step.end),
     loop: (step) => run('loop', step.key_clip_start, step.key_clip_end),
+      loopStep: (step) => run('loop', step.start, Math.max(step.start + 1, step.done_at || step.end)), // the reference during your turn
     pause() { paused = true; video.pause(); },
     resume() { if (paused && mode !== 'idle') { paused = false; play(); schedule(); } },
     /** Tutorial sound on or off; call it from a tap (or after one) so the browser allows it. */

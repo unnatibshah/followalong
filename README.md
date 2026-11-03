@@ -220,7 +220,7 @@ otherwise changed. Credit, as CC BY asks: title, creator, link, licence (CC BY 3
 | Make a crossover Ethernet cable | “CAT6 CROSSOVER CABLE - HOW TO - QUICK & EASY!” | Ultimate Tech Hub | [youtube.com/watch?v=VZZq7MbvAuE](https://www.youtube.com/watch?v=VZZq7MbvAuE) |
 | Robot arm: pick and place blocks | “Dobot Magician Lite Pick & Place - Suction Cup Vs Gripper #robot #robotics #technology” | Amatya Katyayan | [youtube.com/watch?v=tfN4FUlOfzg](https://www.youtube.com/watch?v=tfN4FUlOfzg) |
 
-**Practice footage from different videos.** The replay's "you" camera is a different CC BY video from the tutorial it follows, so nothing is checked against its own source: *Tie a figure-eight knot* uses [“Activity at Home: Tie a Figure 8 Knot”](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) by Terrapin Adventures (a pink cord on a wooden table). Every look and check in it ran live on those frames.
+**Practice footage from different videos.** Each replay's "you" camera is a different CC BY video from the tutorial it follows, so nothing is checked against its own source: *Tie a half Windsor knot* uses [“Ties for Fun Tutorial: The Half-Windsor”](https://www.youtube.com/watch?v=S5rGTh-O7Wg) by tiesforfun, and *Tie a figure-eight knot* uses [“Activity at Home: Tie a Figure 8 Knot”](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) by Terrapin Adventures (a pink cord on a wooden table). Every look and check in them ran live on those frames.
 
 Links pasted into the app are accepted only when the video is Creative Commons licensed; uploads must be videos you
 have the rights to. The first version of this project used standard-licence YouTube videos; they are not in this

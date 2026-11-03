@@ -361,9 +361,9 @@ def test_hands_free_intents(said, name):
 
 def test_watch_answer_is_validated_in_code():
     assert voice.clean_watch({"status": "looks_done", "observation": " knot  done ", "on_action": 3, "say": "Great!"}) == \
-        {"status": "looks_done", "observation": "knot done", "on_action": 3, "say": ""}  # the measured check announces it
+        {"status": "looks_done", "observation": "knot done", "on_action": 3, "substitute": "", "say": ""}  # the measured check announces it
     assert voice.clean_watch({"status": "nonsense", "on_action": 99, "say": "**Oh, wait**, wrong row. Pull it out. Then more. More."}) == \
-        {"status": "working", "observation": "", "on_action": None, "say": "Oh, wait, wrong row. Pull it out."}
+        {"status": "working", "observation": "", "on_action": None, "substitute": "", "say": "Oh, wait, wrong row. Pull it out."}
     assert voice.actions("Hold the rope. Cross the end over. ") == ["Hold the rope.", "Cross the end over."]
 
 

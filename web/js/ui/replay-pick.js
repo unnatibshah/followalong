@@ -24,9 +24,10 @@ export async function render(root) {
   // Describe each recording from its own timeline, so the subtitle can't drift from the data.
   const timelines = await Promise.all(recs.map((r) => api.timeline(r.id).catch(() => [])));
   const subs = timelines.map((tl) => {
-    const m = tl.filter((e) => e.type === 'mistake_shown' || (e.type === 'coach' && e.data?.status === 'mistake')).length,
+    const m = tl.filter((e) => e.type === 'mistake_shown' || (e.type === 'coach' && e.data?.status === 'mistake')
+        || (e.type === 'check' && e.data?.verdict === 'wrong')).length,
       q = tl.filter((e) => e.type === 'ask_shown').length;
-    return m || q ? [m && plural(m, 'mistake'), q && plural(q, 'question')].filter(Boolean).join(' and ') : 'every step passes';
+    return m || q ? [m && plural(m, 'correction'), q && plural(q, 'question')].filter(Boolean).join(' and ') : 'every step passes';
   });
   let pick = recs.findIndex((r) => r.id === app.recordingId);
   if (pick < 0) pick = Math.max(0, recs.findIndex((r) => r.id === 'figure-eight-pink-cord'));

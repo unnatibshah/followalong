@@ -586,5 +586,653 @@
   "say": "",
   "latency_ms": 10487,
   "cost_usd": 0.00644475
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "hand pinching a small loop at top with two strands crossing below, but no large open loop hanging below the cross yet",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4172,
+  "cost_usd": 0.0049275
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look2.jpg|1|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Hands forming a large open loop with the short end crossed over the front of the standing part on a flat surface, matching the crossing structure though rotated from hanging orientation",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 5549,
+  "cost_usd": 0.00546925
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look3.jpg|2|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Hands holding a large open loop flat on wood with the pink end crossed over the front of the standing part, same crossing structure as tutorial though rotated flat.",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 7788,
+  "cost_usd": 0.00694825
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look4.jpg|3|watch-0.9": {
+  "status": "looks_done",
+  "observation": "large open loop with pink tail crossed over the front of the standing part, same crossing structure as tutorial though laid flat and rotated",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3761,
+  "cost_usd": 0.00503325
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "Multicolor rope on wood with vertical standing part crossed by loop and yellow tail held to the right behind it, matching the behind-and-to-right twist; lower loop not fully in frame but structure loo",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, that's behind and out to the side. Keep going.",
+  "latency_ms": 7136,
+  "cost_usd": 0.006138
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look2.jpg|1|watch-0.9": {
+  "status": "mistake",
+  "observation": "pink rope crossing in front of the vertical standing part with yellow tail to the left, no behind twist visible, different from tutorial twist with end out to the side behind",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Oh, wait, that end's lying in front of the standing part. Lift it off and take it behind the long hanging part and around to the right side.",
+  "latency_ms": 7747,
+  "cost_usd": 0.00725925
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look3.jpg|2|watch-0.9": {
+  "status": "mistake",
+  "observation": "pink rope lying across the front of the vertical standing part with yellow tail to the left, no behind twist to the right side",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Oh, wait, that end's still in front. Lift it off and take it behind the long hanging part and around to the right side.",
+  "latency_ms": 4719,
+  "cost_usd": 0.00364035
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look4.jpg|3|watch-0.9": {
+  "status": "mistake",
+  "observation": "pink rope lying across the front of the vertical standing part with yellow tail to the left, no behind twist to the right",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Hold on, that loop's still sitting in front of the long part. Lift it off and pass it behind the long hanging part, then around to the right side.",
+  "latency_ms": 3892,
+  "cost_usd": 0.00513025
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "Hands are pinching the short tail and guiding it through a loop, knot not yet tightened into figure-eight shape.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3654,
+  "cost_usd": 0.00476325
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look2.jpg|1|watch-0.9": {
+  "status": "working",
+  "observation": "thin multicolor cord on wood table in loose twist shape, tail alongside vertical strands, not yet threaded and tightened into figure-eight",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3799,
+  "cost_usd": 0.004934
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look3.jpg|2|watch-0.9": {
+  "status": "working",
+  "observation": "thin multicolor cord on wood forming loose figure-eight shape, not yet pulled snug like tutorial's tight upright eight",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3430,
+  "cost_usd": 0.004289
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look4.jpg|3|watch-0.9": {
+  "status": "working",
+  "observation": "thin multicolor cord on wood in loose figure-eight shape, hand at top, not yet pulled snug into tight upright eight",
+  "on_action": 2,
+  "substitute": "a thin cord instead of the rope",
+  "say": "",
+  "latency_ms": 2469,
+  "cost_usd": 0.00418425
+ },
+ "eval/cross/figure-eight-fishing-line/step1-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Live view shows a thin light cord held in hand against dark shirt, but the crossing and loop size are too small and blurry to confirm against tutorial.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I can't see the loop clearly. Hold it out and bring the phone in closer.",
+  "latency_ms": 6300,
+  "cost_usd": 0.00365335
+ },
+ "eval/cross/figure-eight-fishing-line/step1-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands are pinched together hiding thin cord, cross and hanging loop not visible to judge against tutorial.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Pull your hands a little apart so I can see the cross and the loop below.",
+  "latency_ms": 3133,
+  "cost_usd": 0.004334
+ },
+ "eval/cross/figure-eight-fishing-line/step1-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "thin light cord pinched between hands against dark shirt, cross and hanging loop not visible to judge",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Hold the cord out away from your shirt so the cross and loop below show clearly.",
+  "latency_ms": 4406,
+  "cost_usd": 0.00357185
+ },
+ "eval/cross/figure-eight-fishing-line/step1-look4.jpg|3|watch-0.9": {
+  "status": "working",
+  "observation": "Hands hold a thin light cord stretched between them with a hook hanging, no cross over front and no big open loop below visible",
+  "on_action": 1,
+  "substitute": "a thin cord instead of the rope",
+  "say": "",
+  "latency_ms": 4926,
+  "cost_usd": 0.0054175
+ },
+ "eval/cross/figure-eight-fishing-line/step2-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Live view shows thin white line held near a hook, but the cross and twist detail is too small and washed out to judge position behind and around.",
+  "on_action": 1,
+  "substitute": "a fishing line instead of the rope",
+  "say": "I can't see the twist clearly, that line's really thin. Bring the phone in close on the loop.",
+  "latency_ms": 4637,
+  "cost_usd": 0.00358035
+ },
+ "eval/cross/figure-eight-fishing-line/step2-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Person standing far from camera holding thin white cord, twist and loop detail too small to judge behind and around position",
+  "on_action": 1,
+  "substitute": "a thin cord instead of the rope",
+  "say": "Hold that loop right up to the lens and keep it still so I can see the twist.",
+  "latency_ms": 4575,
+  "cost_usd": 0.00486525
+ },
+ "eval/cross/figure-eight-fishing-line/step2-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Live view is far away, thin line held in hands, twist and loop detail too small to judge behind and around position",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the twist, you're too far back. Bring that knot right up to the lens.",
+  "latency_ms": 2763,
+  "cost_usd": 0.0044655
+ },
+ "eval/cross/figure-eight-fishing-line/step2-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Close-up hands holding white rope, image overexposed and blurry, twist behind and around position not discernible",
+  "on_action": 1,
+  "substitute": "",
+  "say": "That's too close and washed out now, I can't see the cross. Pull back a bit and hold it still in good light.",
+  "latency_ms": 3266,
+  "cost_usd": 0.0043895
+ },
+ "eval/cross/figure-eight-fishing-line/step3-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Close-up of hands holding yellow rope, loop structure and tail threading not visible behind fingers.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the loops right now, your hands are covering them. Pull back a little so I can see the whole knot.",
+  "latency_ms": 4067,
+  "cost_usd": 0.0029706
+ },
+ "eval/cross/figure-eight-fishing-line/step3-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands hold a yellow twisted section above a large white loop, but fingers cover the threading path so cannot confirm tail through bottom loop or tightening.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't tell where the tail went, shift it out from behind your fingers so both loops show clearly.",
+  "latency_ms": 6647,
+  "cost_usd": 0.00602625
+ },
+ "eval/cross/figure-eight-fishing-line/step3-look3.jpg|2|watch-0.9": {
+  "status": "working",
+  "observation": "Hands pulling yellow rope taut with a small tightened knot in the center, eight loops not clearly visible from this stretched horizontal angle",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 6914,
+  "cost_usd": 0.006223
+ },
+ "eval/cross/figure-eight-fishing-line/step3-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding yellow rope with small knot at top, eight loops obscured by fingers so threading and final shape cannot be confirmed",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the eight shape, it's hidden behind your fingers. Hold it out so the whole knot shows.",
+  "latency_ms": 4786,
+  "cost_usd": 0.0036056
+ },
+ "eval/cross/tie-a-tie-session/step1-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "tie is around neck under collar with both ends hanging front, but bottom ends are cropped out so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I can't see the ends of the tie. Tilt the phone down a little so I can see how long each side hangs.",
+  "latency_ms": 3646,
+  "cost_usd": 0.004545
+ },
+ "eval/cross/tie-a-tie-session/step1-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "tie is around neck under collar but bottom ends remain cropped out so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the ends of the tie. Tilt the phone down a bit more so both tips are in view.",
+  "latency_ms": 3047,
+  "cost_usd": 0.0047785
+ },
+ "eval/cross/tie-a-tie-session/step1-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "tie around neck under collar with both ends hanging front, but tips are cropped out so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the tips to check the length. Tilt the phone down a little more.",
+  "latency_ms": 2461,
+  "cost_usd": 0.00453725
+ },
+ "eval/cross/tie-a-tie-session/step1-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "tie around neck under collar with both ends hanging front, but tips cropped out so length difference cannot be judged",
+  "on_action": 2,
+  "substitute": "",
+  "say": "I still can't see the tips to check the length. Tilt the phone down a little more.",
+  "latency_ms": 2971,
+  "cost_usd": 0.00475375
+ },
+ "eval/cross/tie-a-tie-session/step2-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "Tie draped around collar with both ends hanging down, no crossing yet, hand on the wide end area",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3551,
+  "cost_usd": 0.0028862
+ },
+ "eval/cross/tie-a-tie-session/step2-look2.jpg|1|watch-0.9": {
+  "status": "working",
+  "observation": "Tie draped around collar with both ends hanging straight down, no X crossing formed yet",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2441,
+  "cost_usd": 0.00419575
+ },
+ "eval/cross/tie-a-tie-session/step2-look3.jpg|2|watch-0.9": {
+  "status": "working",
+  "observation": "Wide end held in front center, narrow end behind, no X crossing formed yet below collar",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2812,
+  "cost_usd": 0.00266965
+ },
+ "eval/cross/tie-a-tie-session/step2-look4.jpg|3|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Wide end crossed over front of narrow end forming X below collar, matching tutorial finished state",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2433,
+  "cost_usd": 0.0042445
+ },
+ "eval/cross/tie-a-tie-session/step3-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "live hands at center collar holding crossing, wide pink end hanging down on right, not yet brought up through neck opening",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2752,
+  "cost_usd": 0.00448875
+ },
+ "eval/cross/tie-a-tie-session/step3-look2.jpg|1|watch-0.9": {
+  "status": "working",
+  "observation": "hands holding crossing at center collar, wide pink end hanging down on right, not yet brought up through neck opening",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 1810,
+  "cost_usd": 0.0026171999999999996
+ },
+ "eval/cross/tie-a-tie-session/step3-look3.jpg|2|watch-0.9": {
+  "status": "idle",
+  "observation": "hands holding the crossing at center collar, wide pink end hanging down, not yet brought up through neck opening",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Bring that wide end up behind the crossing and straight through the neck opening.",
+  "latency_ms": 3369,
+  "cost_usd": 0.0036119499999999996
+ },
+ "eval/cross/tie-a-tie-session/step3-look4.jpg|3|watch-0.9": {
+  "status": "working",
+  "observation": "hands holding the crossing at center collar, wide pink end still out to side and hanging down, not yet taken behind and up through neck opening",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3223,
+  "cost_usd": 0.0027546999999999997
+ },
+ "eval/cross/tie-a-tie-session/step4-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "Hands are pinching the center of the knot area, wide end hanging to the side, no flat band across the front visible yet.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 6505,
+  "cost_usd": 0.00532675
+ },
+ "eval/cross/tie-a-tie-session/step4-look2.jpg|1|watch-0.9": {
+  "status": "working",
+  "observation": "Hands pinching center of knot, wide end hanging, no flat band across front yet matching tutorial",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2081,
+  "cost_usd": 0.0025196999999999997
+ },
+ "eval/cross/tie-a-tie-session/step4-look3.jpg|2|watch-0.9": {
+  "status": "working",
+  "observation": "Hands holding center of knot, wide end hanging down, no horizontal band across front yet",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2201,
+  "cost_usd": 0.0024397
+ },
+ "eval/cross/tie-a-tie-session/step4-look4.jpg|3|watch-0.9": {
+  "status": "working",
+  "observation": "hands still pinching the center of the knot area, no flat band wrapped across the front visible yet",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2158,
+  "cost_usd": 0.00397875
+ },
+ "eval/cross/tie-a-tie-session/step5-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "hands at the knot with wide end hanging centered down front through wrap, matching tutorial finished position",
+  "on_action": 3,
+  "substitute": "",
+  "say": "Good, that's through and centered. Keep going.",
+  "latency_ms": 4504,
+  "cost_usd": 0.00536225
+ },
+ "eval/cross/tie-a-tie-session/step5-look2.jpg|1|watch-0.9": {
+  "status": "looks_done",
+  "observation": "wide end pulled down through front wrap hanging centered over narrow end, matching tutorial finished position",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2412,
+  "cost_usd": 0.00274095
+ },
+ "eval/cross/tie-a-tie-session/step5-look3.jpg|2|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Wide end pulled down through front wrap hanging centered over narrow end, matching tutorial finished position",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2549,
+  "cost_usd": 0.00424175
+ },
+ "eval/cross/tie-a-tie-session/step5-look4.jpg|3|watch-0.9": {
+  "status": "looks_done",
+  "observation": "wide end pulled down through front wrap hanging centered over narrow end, hand at knot",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2038,
+  "cost_usd": 0.0028309499999999996
+ },
+ "eval/cross/tie-a-tie-session/step6-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "Hand gripping the knot and sliding it up toward the collar, knot not yet fully centered and shaped into final neat triangle.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you've got it up near the collar. Keep pinching it into shape.",
+  "latency_ms": 4739,
+  "cost_usd": 0.00480975
+ },
+ "eval/cross/tie-a-tie-session/step6-look2.jpg|1|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Knot is slid up centered just under collar forming neat triangle with wide end hanging straight down, matching finished state",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 1975,
+  "cost_usd": 0.0025987
+ },
+ "eval/cross/tie-a-tie-session/step6-look3.jpg|2|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Knot is centered just under collar as neat triangle with wide end hanging straight down, matching tutorial finished state",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2106,
+  "cost_usd": 0.00244045
+ },
+ "eval/cross/tie-a-tie-session/step6-look4.jpg|3|watch-0.9": {
+  "status": "looks_done",
+  "observation": "Knot is centered just under collar as neat triangle with wide end hanging straight down, matching finished state",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 1648,
+  "cost_usd": 0.0025061999999999997
+ },
+ "eval/cross/solder-wires-session/step1-look1.jpg|0|watch-0.9": {
+  "status": "working",
+  "observation": "Hands holding soldering iron and thin wires over table, no blue stripping tool visible, copper appears exposed but wires not laid apart",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 6323,
+  "cost_usd": 0.004285199999999999
+ },
+ "eval/cross/solder-wires-session/step1-look2.jpg|1|watch-0.9": {
+  "status": "working",
+  "observation": "Hands holding soldering iron to thin dark wires over table, copper ends visible but wires held together in hands not laid apart, no stripping tool in view",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 7310,
+  "cost_usd": 0.0049642
+ },
+ "eval/cross/solder-wires-session/step1-look3.jpg|2|watch-0.9": {
+  "status": "working",
+  "observation": "Hands holding soldering iron to thin stripped wire ends over table, wires held together not laid apart, no stripping tool visible",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4962,
+  "cost_usd": 0.00491725
+ },
+ "eval/cross/solder-wires-session/step1-look4.jpg|3|watch-0.9": {
+  "status": "working",
+  "observation": "Hands holding soldering iron to thin wire ends over table, wires held together not laid apart, no blue stripping tool in view though copper ends appear exposed",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 6605,
+  "cost_usd": 0.004933600000000001
+ },
+ "eval/cross/solder-wires-session/step2-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Live view shows hands with soldering iron on dark table with black and colored wires, no clear white wire loop or twisted copper join visible like tutorial bottom centre.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the two white wires. Tilt down to show the copper tips in the middle.",
+  "latency_ms": 3822,
+  "cost_usd": 0.0031666999999999997
+ },
+ "eval/cross/solder-wires-session/step2-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands working with black wires and connectors on dark table near laptop, the two white wires with copper tips are not visible in frame.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Bring the copper ends close to the camera so I can see the join.",
+  "latency_ms": 4517,
+  "cost_usd": 0.0037116999999999996
+ },
+ "eval/cross/solder-wires-session/step2-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding soldering iron and black wires on dark table near laptop; the two white wires and twisted copper join at middle are not visible in frame.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Lift the join up clear of the other wires so I can see the copper tips.",
+  "latency_ms": 3668,
+  "cost_usd": 0.0035779
+ },
+ "eval/cross/solder-wires-session/step2-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding soldering iron on black wires, the two wires to be twisted are not visible in frame",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the bare ends. Put the iron down and hold the two ends up to the camera.",
+  "latency_ms": 2767,
+  "cost_usd": 0.0031211999999999998
+ },
+ "eval/cross/solder-wires-session/step3-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding red and black wires over table, no white loop, no black flux stick, and no clear twisted copper join visible to judge flux.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the twisted join up close. Bring the join and the black stick into frame.",
+  "latency_ms": 4998,
+  "cost_usd": 0.00391995
+ },
+ "eval/cross/solder-wires-session/step3-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding black and red wires, no white loop, no black flux stick, and no close twisted join visible to judge flux.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Hold the join still and move the camera in close so I can see the twisted copper and the stick.",
+  "latency_ms": 3461,
+  "cost_usd": 0.0049055
+ },
+ "eval/cross/solder-wires-session/step3-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding red and black wires, no white loop, no black flux stick, no close twisted copper join visible to judge flux",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't judge the flux \u2014 hold the twisted copper up close to the camera with the stick touching it.",
+  "latency_ms": 2993,
+  "cost_usd": 0.00322195
+ },
+ "eval/cross/solder-wires-session/step3-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding red and black wires over dark table, join area too small and far to see twist or flux, no black stick visible",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't make out the copper where they meet. Lift the twist right up to the lens and hold it steady.",
+  "latency_ms": 4087,
+  "cost_usd": 0.00398145
+ },
+ "eval/cross/solder-wires-session/step4-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding black wires and iron above table, join too small and far to see iron contact or solder spread",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the copper join close up. Bring the phone in tight on the twist.",
+  "latency_ms": 3283,
+  "cost_usd": 0.004603
+ },
+ "eval/cross/solder-wires-session/step4-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "hands holding wires above table, join and iron tip and solder spread not visible close up",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the join. Move the phone right in close on the copper twist.",
+  "latency_ms": 2745,
+  "cost_usd": 0.0045435
+ },
+ "eval/cross/solder-wires-session/step4-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding wires and iron above table, join too small and far to see contact or solder spread",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't judge the solder from this far. Hold the join still and bring the camera right to the copper.",
+  "latency_ms": 2359,
+  "cost_usd": 0.0028886999999999997
+ },
+ "eval/cross/solder-wires-session/step4-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands over table with wires, copper join and iron tip still too far and not visible close up to judge contact or solder spread",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Push the camera in until the bare copper twist fills the frame so I can see the iron and solder on it.",
+  "latency_ms": 4408,
+  "cost_usd": 0.00386595
+ },
+ "eval/cross/solder-wires-session/step5-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "live view shows hands tools and loose wires on table but no clear white wire join or black tube visible",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the white wire join. Bring it into the center close up.",
+  "latency_ms": 1811,
+  "cost_usd": 0.00238295
+ },
+ "eval/cross/solder-wires-session/step5-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "live view shows hands with soldering iron on wires but no clear white wire join or black tube visible",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Hold the white wire up close so I can see the join and the black tube.",
+  "latency_ms": 2774,
+  "cost_usd": 0.00449375
+ },
+ "eval/cross/solder-wires-session/step5-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "hands holding soldering iron to thin wires on table, no short black tube visible covering a join",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the short black tube. Hold it up close to the camera with the white wire join.",
+  "latency_ms": 2463,
+  "cost_usd": 0.0030072
+ },
+ "eval/cross/solder-wires-session/step5-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "hands holding soldering iron to wires on table, no short black tube visible over a join",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the short black tube yet. Hold the white wire join and the tube up close in the center.",
+  "latency_ms": 3951,
+  "cost_usd": 0.0030349
+ },
+ "eval/cross/solder-wires-session/step6-look1.jpg|0|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Table with various wires and tools visible, but the white wire loop, black tube, and hot gun nozzle are not in frame to judge heating.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I can't see the white wire or heat gun. Bring the wire loop and tube into the center of the picture.",
+  "latency_ms": 2807,
+  "cost_usd": 0.0030607
+ },
+ "eval/cross/solder-wires-session/step6-look2.jpg|1|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands working on black wires on table with soldering-type tool; white wire loop, black tube, and hot gun nozzle not visible to judge heating.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the white loop and tube. Lift them into view with the heat gun nozzle.",
+  "latency_ms": 5129,
+  "cost_usd": 0.0035941999999999997
+ },
+ "eval/cross/solder-wires-session/step6-look3.jpg|2|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Hands holding a soldering-type tool over black wires on table; white wire loop, black tube, and hot gun nozzle not in frame to judge heating.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the white loop and tube. Lift them into view with the heat gun nozzle.",
+  "latency_ms": 2335,
+  "cost_usd": 0.0044945
+ },
+ "eval/cross/solder-wires-session/step6-look4.jpg|3|watch-0.9": {
+  "status": "cant_see",
+  "observation": "Live view shows hands and black wires on table, white wire loop with black tube and hot gun nozzle not visible to judge heating.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the heating. Bring the white wire with the black tube close to the camera.",
+  "latency_ms": 2045,
+  "cost_usd": 0.0028797
  }
 }

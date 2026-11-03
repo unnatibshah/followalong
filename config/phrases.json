@@ -27,5 +27,7 @@
   "good_now": "Nice. Now {text}",
   "explain_btn": "Explain it differently",
   "ok_next": "Great. Next up, step {n}: {text}",
-  "looks_like_this": "Does yours look like that?"
+  "looks_like_this": "Does yours look like that?",
+  "substitute_ok": "You're using {text}. That works.",
+  "override_offer": "If yours does the same job, say “it's right” and we'll keep going."
 }

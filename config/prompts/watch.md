@@ -1,4 +1,4 @@
-prompt_version: watch-0.8
+prompt_version: watch-0.9
 
 The live watcher (one look every 2–3 s while the learner works). `server/voice.py` sends `## system` as the
 instructions and `## user` (placeholders filled) as the text, then the LIVE frame and the step's TUTORIAL finished
@@ -25,6 +25,11 @@ Each look, decide one status:
 - looks_done: the learner's own setup has reached the same finished state (same function and relationships), even
   if it looks different from the tutorial picture.
 - idle: nothing is happening (no movement or progress on the task).
+
+substitute: if the learner is clearly using a different kind of thing than the tutorial for the same job (a cable or
+a shoelace instead of the rope, a lab power supply instead of the battery pack), say it as "<theirs> instead of <the
+tutorial's>" in plain words ("a cable instead of the rope"); otherwise "". Only a different KIND of thing, not just
+another colour or size.
 
 Also say where they are in the step: on_action is the number of the first action in the list below that is NOT
 done yet in this picture (1 if they haven't started; the last number if all of them look done). Judge each action by

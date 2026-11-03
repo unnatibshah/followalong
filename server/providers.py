@@ -747,7 +747,7 @@ class LiveVoice:
                     "next_look_ms": gateway.limiter.next_look_ms()}
         except OSError:
             raise ApiError("bad_request", "The frame must be a JPEG.")
-        return {**{k: res.get(k) for k in ("status", "observation", "on_action", "say", "latency_ms")},
+        return {**{k: res.get(k) for k in ("status", "observation", "on_action", "substitute", "say", "latency_ms")},
                 "next_look_ms": gateway.limiter.next_look_ms()}
 
 

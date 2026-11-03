@@ -1,0 +1,38 @@
+[
+ {
+  "start": 28.0,
+  "end": 42.0,
+  "done_at": 39,
+  "instruction": "Drape the tie around your raised collar."
+ },
+ {
+  "start": 42.0,
+  "end": 55.0,
+  "done_at": 53,
+  "instruction": "Cross the wide blade over the narrow tail."
+ },
+ {
+  "start": 55.0,
+  "end": 70.0,
+  "done_at": 68,
+  "instruction": "Bring the wide blade behind and up through the neck loop."
+ },
+ {
+  "start": 70.0,
+  "end": 84.0,
+  "done_at": 82,
+  "instruction": "Wrap the wide blade across the front to form a loop."
+ },
+ {
+  "start": 84.0,
+  "end": 110.0,
+  "done_at": 108,
+  "instruction": "Pull the wide blade down through the front loop."
+ },
+ {
+  "start": 110.0,
+  "end": 131.0,
+  "done_at": 129,
+  "instruction": "Pinch a dimple and slide the knot to the collar."
+ }
+]

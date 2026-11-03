@@ -318,9 +318,10 @@ async def _close(ws: WebSocket, code: int = 1000) -> None:
 # ---- the live watcher: one look every 2–3 s while the learner works (prompt `watch`) ----
 
 WATCH_STATUS = ["working", "mistake", "cant_see", "looks_done", "idle"]
-WATCH_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["status", "observation", "on_action", "say"],
+WATCH_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["status", "observation", "on_action", "substitute", "say"],
                 "properties": {"status": {"type": "string", "enum": WATCH_STATUS},
-                               "observation": {"type": "string"}, "on_action": {"type": "integer"}, "say": {"type": "string"}}}
+                               "observation": {"type": "string"}, "on_action": {"type": "integer"},
+                               "substitute": {"type": "string"}, "say": {"type": "string"}}}
 
 
 def actions(say: str) -> list[str]:
@@ -359,6 +360,7 @@ def clean_watch(raw: dict) -> dict:
     on = raw.get("on_action")
     return {"status": status, "observation": " ".join(str(raw.get("observation") or "").split())[:200],
             "on_action": on if isinstance(on, int) and 1 <= on <= 20 else None,
+            "substitute": " ".join(str(raw.get("substitute") or "").split())[:80],
             "say": "" if status == "looks_done" else say}
 
 

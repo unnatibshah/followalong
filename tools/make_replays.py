@@ -230,7 +230,7 @@ async def build_live(tid: str, name: str) -> str:
             if lab["case"] in ("done", "done_dim") or r["status"] == "looks_done":
                 if lab["case"] not in ("done", "done_dim"):
                     continue  # the watcher thought an unfinished frame was done: the grounded check isn't run on it here
-                ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say="", on_action=r.get("on_action"))
+                ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say="", on_action=r.get("on_action"), substitute=r.get("substitute", ""))
                 res = await judge(lab, rec[evaluate.record_key(lab, "full", "soft")], "full", cache)
                 n += 1
                 ev("check", sid, kind="full", check_no=n, trigger="check_me", verdict=res["verdict"])
@@ -251,7 +251,7 @@ async def build_live(tid: str, name: str) -> str:
                     ev("action", sid, name="next")
                 ms += 4500  # "Yes, that's right! Next up..."
                 break
-            ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say=r.get("say", ""), on_action=r.get("on_action"))
+            ev("coach", sid, status=r["status"], observation=r.get("observation", ""), say=r.get("say", ""), on_action=r.get("on_action"), substitute=r.get("substitute", ""))
             if r.get("say"):
                 said_any.append(r["status"])
                 ms += 300 * len(r["say"].split())  # let the line finish before the next thing happens
@@ -283,16 +283,48 @@ CROSS = {
         "title": "Tie a figure-eight knot",
         "steps": {1: (8.5, 18.0), 2: (18.0, 33.0), 3: (33.5, 44.5)}, "end": 47.6,  # the end card starts at 48 s
     },
+    "tie-a-tie": {
+        "name": "tie-a-tie-session", "video": "https://www.youtube.com/watch?v=S5rGTh-O7Wg",
+        "credit": "\u201cTies for Fun Tutorial: The Half-Windsor\u201d by tiesforfun, CC BY",
+        "title": "Tie a half Windsor knot", "steps": "auto",
+    },
 }
-# Tried and left out (Nov 3): gigametre's "Simple resistor/LED circuit" as breadboard practice footage. The camera is
+# Tried and left out (Nov 3): ASFN Fishing's figure-eight (a hook knot in fishing line: another task), BTC Biker's
+# soldering (an extension wire and a ring terminal: another job), and gigametre's "Simple resistor/LED circuit" as breadboard practice footage. The camera is
 # far back, hands cover the wires through step 1, and the LED is never lit, so the checks (rightly) never pass.
 
 CROSS_DIR = APP / "eval" / "cross"
 
 
-async def build_cross(tid: str) -> str:
+async def practice_steps(video: Path, src: Path, plan: dict, spec: dict) -> dict:
+    """{tutorial step id: (start, end)} in the practice video: Muse Spark finds its steps (cached in steps.json), and
+    they're lined up with the tutorial's in order: one to one when the counts match, otherwise by share of the work."""
     from server import tutorials as tut
-    spec = CROSS[tid]
+    from server.gateway import gateway
+    cached = src / "steps.json"
+    if cached.exists():
+        found = json.loads(cached.read_text(encoding="utf-8"))
+    else:
+        duration = (await tut.probe(video))["duration"]
+        fid = await gateway.upload_file(video, 3600)
+        found = [{k: s.get(k) for k in ("start", "end", "done_at", "instruction")} for s in await tut.find_steps(fid, duration, {})]
+        cached.write_text(json.dumps(found, indent=1) + "\n", encoding="utf-8")
+    lo, hi = spec.get("window", (0, 1e9))
+    found = [s for s in found if s["start"] >= lo and (s.get("done_at") or s["end"]) <= hi] or found
+    ours = plan["steps"]
+    ends = lambda s: s.get("done_at") or s["end"]  # noqa: E731
+    if len(found) == len(ours):
+        return {o["id"]: (f["start"], ends(f)) for o, f in zip(ours, found)}
+    t0, t1 = found[0]["start"], ends(found[-1])
+    u0, u1 = ours[0]["start"], ends(ours[-1])
+    k = (t1 - t0) / max(1e-6, u1 - u0)
+    return {o["id"]: (t0 + (o["start"] - u0) * k, t0 + (ends(o) - u0) * k) for o in ours}
+
+
+async def build_cross(key: str) -> str:
+    from server import tutorials as tut
+    spec = CROSS[key]
+    tid = spec.get("tutorial", key)
     name = spec["name"]
     plan = evaluate.plan_for(tid, {})
     src = CROSS_DIR / name
@@ -301,6 +333,9 @@ async def build_cross(tid: str) -> str:
     if not video.exists():
         got = await asyncio.to_thread(tut.fetch_link, spec["video"], 600, src)
         Path(got["path"]).rename(video)
+    if spec["steps"] == "auto":
+        spec = {**spec, "steps": await practice_steps(video, src, plan, spec)}
+        spec.setdefault("end", max(b for _, b in spec["steps"].values()) + 4)
     cache_f = src / "checks.json"
     checks = json.loads(cache_f.read_text(encoding="utf-8")) if cache_f.exists() else {}
 
@@ -347,6 +382,12 @@ async def build_cross(tid: str) -> str:
 
     summary = []
     ev("session_start", plan_hash=plan["plan_hash"])
+    # The setup the app does first: the coach looks at the work area, then says it's ready
+    first = spec["steps"][plan["steps"][0]["id"]][0]
+    ev("coach", 1, status="setup", observation="", say="Show me your work area.")
+    work(3000, max(0, first - 3), first)
+    ev("coach", 1, status="setup", observation="", say="Perfect, I can see your work area. Let\u2019s start.")
+    ms += 2600
     for st in plan["steps"]:
         sid = st["id"]
         a, b = spec["steps"][sid]
@@ -371,7 +412,7 @@ async def build_cross(tid: str) -> str:
             ms = stamp - back + 3000 * j
             last = j == len(seen) - 1
             ev("coach", sid, status=r["status"], observation=r.get("observation", ""),
-               say="" if last else r.get("say", ""), on_action=r.get("on_action"))
+               say="" if last else r.get("say", ""), on_action=r.get("on_action"), substitute=r.get("substitute", ""))
             if r.get("say") and not last:
                 said.append(r["status"])
         ms = stamp
@@ -406,8 +447,12 @@ async def build_cross(tid: str) -> str:
         elif res["verdict"] == "unsure":
             ms += 4000
             ev("ask_answer", sid, answer="yes")
-        else:
+        else:  # the check still says no: the coach offers the learner's word (as the app does), and they take it
+            ms += 3000
+            ev("coach", sid, status="setup", observation="", say="If yours does the same job, say \u201cit\u2019s right\u201d and we\u2019ll keep going.")
             ms += 4000
+            ev("coach", sid, status="setup", observation="", say="Okay, you know your setup. Moving on.")
+            ms += 2500
             ev("action", sid, name="next")
         ms += 4500
         ev("advance", sid)
@@ -432,8 +477,8 @@ def plan_title(tid: str) -> str:
 
 async def main(tids: list[str]) -> None:
     if tids and tids[0] == "--cross":  # a different person's video as the learner (CROSS)
-        for tid in tids[1:] or list(CROSS):
-            print(await build_cross(tid))
+        for key in tids[1:] or list(CROSS):
+            print(await build_cross(key))
         return
     if tids and tids[0] == "--live":  # the live-coach replay (the demo): first tutorial named `with-mistakes`
         for i, tid in enumerate(tids[1:]):
