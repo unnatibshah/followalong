@@ -10,7 +10,6 @@ import * as checklist from './ui/checklist.js';
 import * as consent from './ui/consent.js';
 import * as cameraSetup from './ui/camera-setup.js';
 import * as follow from './ui/follow.js';
-import * as summary from './ui/summary.js';
 import * as replayPick from './ui/replay-pick.js';
 import * as creator from './ui/creator.js';
 import * as evaluation from './ui/evaluation.js';
@@ -22,7 +21,7 @@ import * as activity from './ui/activity.js';
 
 const ROUTES = {
   '': [start, 'light'], understanding: [understanding, 'dark'], ready: [ready, 'dark'], review: [review, 'dark'], checklist: [checklist, 'light'],
-  consent: [consent, 'dark'], camera: [cameraSetup, 'dark'], follow: [follow, 'dark'], summary: [summary, 'light'],
+  consent: [consent, 'dark'], camera: [cameraSetup, 'dark'], follow: [follow, 'dark'],
   replay: [replayPick, 'light'], creator: [creator, 'light'], evaluation: [evaluation, 'light'],
   privacy: [legal.privacy, 'light'], terms: [legal.terms, 'light'], annotate: [annotate, 'light'], ops: [ops, 'light'],
   library: [library, 'light'], activity: [activity, 'light'],

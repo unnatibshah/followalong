@@ -1,10 +1,10 @@
-// Site header: a light one for the start/replay/summary pages, a dark one with the flow steps for S2–S9.
+// Site header: a light one for the start and replay pages, a dark one with the flow steps for S2–S9.
 import { h, clear, icon } from './dom.js';
 import { openCreate } from './create.js';
 import { app } from '../state.js';
 
-const LIVE_FLOW = [['ready', 'Ready'], ['review', 'Checks'], ['consent', 'Consent'], ['camera', 'Camera'], ['follow', 'Follow along'], ['summary', 'Summary']];
-const REPLAY_FLOW = [['replay', 'Replay'], ['follow', 'Follow along'], ['summary', 'Summary']];
+const LIVE_FLOW = [['ready', 'Ready'], ['review', 'Checks'], ['consent', 'Consent'], ['camera', 'Camera'], ['follow', 'Follow along']];
+const REPLAY_FLOW = [['replay', 'Replay'], ['follow', 'Follow along']];
 
 export function renderHeader(el, route, theme) {
   clear(el);

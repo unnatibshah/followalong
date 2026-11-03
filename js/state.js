@@ -15,7 +15,6 @@ export const app = {
   recordingId: null,   // chosen on S11
   sessionId: null,     // POST /api/sessions
   checkNo: {},         // per-step /checks counter for the current session
-  summary: null,       // POST /api/sessions/{id}/end
   reviewStep: 1,       // S4 selection (S12 "Edit checks" jumps here)
   keysOn: true,        // single-letter shortcuts (WCAG 2.1.4)
   voiceOn: null,       // null: not chosen yet → S6 turns it on (asks for the microphone); false: turned off
@@ -28,7 +27,6 @@ export function newSession(id, mode) {
   app.sessionId = id;
   app.mode = mode;
   app.checkNo = {};
-  app.summary = null;
 }
 
 export const nextCheckNo = (step) => (app.checkNo[step] = (app.checkNo[step] || 0) + 1);

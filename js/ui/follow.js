@@ -13,8 +13,9 @@ import { showError, showOverlay, toast } from '../overlays.js';
 import { nav } from '../router.js';
 import { checkLabel, formatValue, newObjects } from './plan-text.js';
 import { createVoice, askMic } from '../voice.js';
-import { whenQuiet, speak, hush, onSpeech, setVoiceLang } from '../speech.js';
-import { saveProgress, clearProgress } from '../progress.js';
+import { whenQuiet, speak, hush, setVoiceLang } from '../speech.js';
+import { saveProgress, clearProgress, saveRun } from '../progress.js';
+import { chime } from '../chime.js';
 
 const ORB = {
   playing: 'Watch', hands: 'Your turn', blocked: "Can't see it all", checking: 'Taking a look',
@@ -90,24 +91,14 @@ export async function render(root) {
   // ---- static structure ----
   const el = {};
   const pill = (cls, ...kids) => h('div', { class: `pill ${cls}` }, ...kids);
-  const player = createPlayer({
-    src: api.videoUrl(app.tutorialId), standIn: drawsStandIn(app.tutorialId),
-    onEnd: () => { if (!replayMode) dispatch({ type: 'step_end' }); },
-    onTime: (t, frac) => { el.playTime.textContent = mmss(t); el.playFill.style.width = `${Math.round(frac * 100)}%`; },
-    onSoundBlocked: () => { el.soundBtn.hidden = false; },
-  });
-  // The learner tapped Start (consent) or Play (replay) to get here, so the tutorial may play with its sound
-  player.sound(true);
+  // The tutorial loops the current step, silently, beside the learner: nothing freezes, nobody waits for it
+  const player = createPlayer({ src: api.videoUrl(app.tutorialId), standIn: drawsStandIn(app.tutorialId) });
 
   el.orbIcon = h('span', { class: 'orb-icon', 'aria-hidden': 'true' });
   el.orbWord = h('span', { class: 'orb-word' });
   el.orb = h('div', { class: 'orb' }, el.orbIcon, el.orbWord);
 
   el.tutLabel = pill('tl');
-  el.frozen = pill('tr mono', icon('pause'), h('span'));
-  el.playTime = h('span', {}, '0:00');
-  el.playFill = h('div', { class: 'bar-fill' });
-  el.playBar = h('div', { class: 'play-bar' }, icon('play'), el.playTime, h('div', { class: 'bar' }, el.playFill), h('span', {}, mmss(meta.duration_s)));
   // The clip runs unless paused; with reduced motion it starts as a still frame until Play (NFR-61).
   const clipRunning = () => !clipPaused && (!reducedMotion() || clipPlay);
   el.clipBtn = h('button', { class: 'pill tr clip-btn', onclick: (e) => {
@@ -119,10 +110,8 @@ export async function render(root) {
   el.clipStill = h('div', { class: 'panel-cover' }, h('button', { class: 'round-play', 'aria-label': 'Play the clip',
     onclick: (e) => { e.stopPropagation(); clipPlay = true; clipPaused = false; player.resume(); paint(); } }, icon('play')));
   el.pausedCover = h('div', { class: 'panel-cover' }, h('div', { class: 'round-play' }, icon('play')));
-  el.soundBtn = h('button', { class: 'sound-chip', type: 'button', hidden: true,
-    onclick: (e) => { e.stopPropagation(); el.soundBtn.hidden = true; player.sound(true); } }, '\ud83d\udd08 Tap for sound');
   el.tut = h('div', { class: 'panel tut', onclick: () => togglePause('button'), title: 'Pause or resume (P)' },
-    player.el, el.soundBtn, el.tutLabel, el.frozen, el.playBar, el.clipBtn, el.loopBar, el.clipStill, el.pausedCover);
+    player.el, el.tutLabel, el.clipBtn, el.loopBar, el.clipStill, el.pausedCover);
 
   el.liveMedia = h('div', { class: 'live-media' });
   el.liveOverlay = h('div', { class: 'live-overlay' });
@@ -134,12 +123,23 @@ export async function render(root) {
   el.meter.hidden = true;
   el.framing = pill('tr framing');
   el.framing.hidden = true;
-  el.live = h('div', { class: 'panel live' }, el.liveMedia, el.liveOverlay, el.liveLabel, el.passPill, el.meter, el.framing);
+  // A finished step: a green ring around your work and a tick (with a chime), so you know without reading
+  el.winMark = h('div', { class: 'win-mark', 'aria-hidden': 'true' }, icon('check'));
+  el.live = h('div', { class: 'panel live' }, el.liveMedia, el.liveOverlay, el.liveLabel, el.passPill, el.meter, el.framing, el.winMark);
   const camVideo = hasCamera() && !replayMode ? cameraView() : null;
   if (camVideo) el.liveMedia.append(camVideo);
   // Replay: the recorded preview frame at the replay clock (GET /api/recordings/{id}/frames/{ms}).
   const recFrame = replayMode ? h('img', { class: 'frame-img', alt: 'Recorded view of the learner\'s desk' }) : null;
-  const showRecorded = (ms) => { const src = api.recordingFrameUrl(app.recordingId, ms); if (recFrame.getAttribute('src') !== src) recFrame.src = src; };
+  // Swapped in only once the next picture has loaded, so the recorded video never flashes blank between frames
+  let wantFrame = '';
+  const showRecorded = (ms) => {
+    const src = api.recordingFrameUrl(app.recordingId, ms);
+    if (src === wantFrame) return;
+    wantFrame = src;
+    const next = new Image();
+    next.onload = () => { if (wantFrame === src) recFrame.src = src; };
+    next.src = src;
+  };
   // On the 250 ms grid make_replays.py writes a live-coach replay's frames on, so each frame is fetched once
   const showRecordedAt = (sec) => showRecorded(Math.floor((sec * 1000) / 250) * 250);
   if (recFrame) { el.liveMedia.append(recFrame); showRecorded(0); }
@@ -219,17 +219,22 @@ export async function render(root) {
   el.watchNote = h('div', { class: 'watch-note', 'aria-live': 'off', hidden: true }, '👁 Watching…');
   el.micBtn = h('button', { class: 'btn btn-outline-dark btn-sm mic-btn', type: 'button' });
   el.muteBtn = h('button', { class: 'btn btn-outline-dark btn-sm', type: 'button', hidden: !replayMode });
-  const ctl = (label, key, onclick, primary) => {
-    const b = h('button', { class: ['btn', primary ? 'btn-accent' : 'btn-outline-dark', 'ctl'], onclick, title: `${label} (${key})` },
-      h('span', { class: 'ctl-label' }, label), h('kbd', { class: 'key' }, key));
-    return b;
-  };
+  // The bar: four things you need with busy hands. Everything else is in ⋯.
+  const ctl = (label, key, onclick, primary) => h('button', { class: ['btn', primary ? 'btn-accent' : 'btn-outline-dark', 'ctl'], type: 'button', onclick, title: `${label} (${key})` },
+    h('span', { class: 'ctl-label' }, label), h('kbd', { class: 'key' }, key));
   el.controls = {
-    check: ctl('Check me', 'C', () => act('check_me', 'button'), true),
-    again: ctl('Again', 'A', () => act('again', 'button')),
-    next: ctl('Next', 'N', () => act('next', 'button')),
-    skip: ctl('Skip', 'S', () => act('skip', 'button')),
+    back: ctl('Back', 'B', () => jump(ctx.step - 1)),
     pause: ctl('Pause', 'P', () => togglePause('button')),
+    skip: ctl('Skip', 'S', () => act('skip', 'button')),
+    help: ctl('Help me', 'H', () => helpMe(), true),
+  };
+  const item = (label, key, onclick) => h('button', { class: 'more-item', type: 'button', onclick: () => { el.more.open = false; onclick(); } },
+    h('span', {}, label), key && h('kbd', { class: 'key' }, key));
+  el.menu = {
+    check: item('Check my work now', 'C', () => act('check_me', 'button')),
+    again: item('Show the step again', 'A', () => act('again', 'button')),
+    decided: item('How it decided', 'D', () => toggleDrawer()),
+    keys: item('Keyboard shortcuts', '', openKeyboardPanel),
   };
   el.talkBtn = h('button', { class: 'btn btn-outline-dark ctl talk-btn', title: 'Hold to talk (hold V)', hidden: true },
     h('span', { class: 'ctl-label' }, 'Hold to talk'), h('kbd', { class: 'key' }, 'V'));
@@ -237,7 +242,6 @@ export async function render(root) {
   // used to end the clip early, and a clip under 0.3 s is never sent).
   el.talkBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); el.talkBtn.setPointerCapture?.(e.pointerId); voiceCtl?.press(); });
   for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) el.talkBtn.addEventListener(ev, () => voiceCtl?.release());
-  el.drawerBtn = h('button', { class: 'btn-round', title: 'How it decided (D)', 'aria-label': 'How it decided', 'aria-expanded': 'false', onclick: () => toggleDrawer() }, 'D');
   el.drawer = h('aside', { class: 'drawer', 'aria-label': 'How it decided', hidden: true });
 
   const head = h('div', { class: 'follow-head' });
@@ -271,24 +275,32 @@ export async function render(root) {
     const safety = detailOf(n)?.safety;
     el.guide.replaceChildren(
       safety ? h('div', { class: 'guide-safety' }, '\u26a0\ufe0f ', safety) : '',
-      h('div', { class: 'guide-k' }, turn ? (doneAll ? 'Done' : 'Now') : 'Watch first. Then you\u2019ll:'),
+      h('div', { class: 'guide-k' }, doneAll ? 'Done' : turn ? 'Now' : 'Next'),
       h('ol', { class: 'guide-list' }, list.map((t, i) => {
         const state = doneAll || (turn && i < actionAt) ? 'done' : turn && i === actionAt ? 'now' : 'next';
         return h('li', { class: ['guide-item', state] }, h('span', { class: 'guide-mark', 'aria-hidden': 'true' }, state === 'done' ? '\u2713' : String(i + 1)),
           h('span', { class: 'guide-text' }, t));
       })),
-      turn && !doneAll && !replayMode && app.config.live_enabled ? h('button', { class: 'guide-explain', type: 'button',
-        onclick: () => askQuestionAloud(`I don't understand this part: "${list[actionAt] || titleOf(n)}". Explain just this again in different, simpler words, in one or two short sentences.`, true, T('explain_btn')) },
-      T('explain_btn')) : '');
+      // what you're aiming for, so every move has a point
+      detailOf(n)?.check_yourself && !doneAll ? h('div', { class: 'guide-goal' }, detailOf(n).check_yourself) : '',
+    );
+  }
+  // "Help me": the current action again, in other words (live); a replay only plays what was recorded
+  function helpMe() {
+    if (replayMode || ctx.state === S.DONE || !app.config.live_enabled) return;
+    const list = actionsOf(ctx.step);
+    progressAt = Date.now();
+    askQuestionAloud(`I don't understand this part: "${list[actionAt] || titleOf(ctx.step)}". Explain just this again in different, simpler words, in one or two short sentences.`, true, T('explain_btn'));
   }
   /** The learner has moved on to action i (the camera saw it, or a recorded look did): show it and say it. */
-  function advanceAction(i) {
+  // `quiet`: the look has its own line about it (the running commentary), so don't also say "Nice. Now …"
+  function advanceAction(i, quiet = false) {
     const list = actionsOf(ctx.step);
     if (ctx.state !== S.WAITING || i <= actionAt || i >= list.length) return false;
     actionAt = i;
     progressAt = Date.now();
     paintGuide(ctx.step);
-    coachSay(T('good_now', { text: lcFirst(list[i]) }), true, true, ctx.step);
+    if (!quiet) coachSay(T('good_now', { text: lcFirst(list[i]) }), true, true, ctx.step);
     return true;
   }
 
@@ -312,11 +324,13 @@ export async function render(root) {
           h('div', { class: 'talk' }, el.caption, el.voiceCap, el.safety, el.mistakeActs, el.ask, el.askForm)),
         el.rail),
       h('div', { class: 'follow-bar' },
-        h('div', { class: 'badges' }, el.micBtn, el.muteBtn, el.badges.spark, el.badges.sam, el.badges.voice, el.listening,
-          h('button', { class: 'btn-text accent', onclick: openKeyboardPanel }, 'Keyboard')),
-        h('div', { class: 'controls' }, el.talkBtn, Object.values(el.controls), el.drawerBtn))),
+        h('div', { class: 'controls' }, el.talkBtn, Object.values(el.controls), el.listening,
+          el.more = h('details', { class: 'more' }, h('summary', { class: 'btn btn-outline-dark ctl more-btn', 'aria-label': 'More' }, '\u22ef'),
+            h('div', { class: 'more-menu' }, el.micBtn, el.muteBtn, Object.values(el.menu),
+              h('div', { class: 'badges' }, h('span', { class: 'fine' }, 'Running on'), el.badges.spark, el.badges.sam, el.badges.voice)))))),
     el.drawer);
   root.append(followEl);
+  followEl.addEventListener('click', (e) => { if (el.more.open && !el.more.contains(e.target)) el.more.open = false; });
 
   // ---- view ----
   function orbKey() {
@@ -406,16 +420,11 @@ export async function render(root) {
     el.orbWord.textContent = key === 'done' ? `Step ${n} done` : ORB[key];
     const sparkNow = usesSpark(ctx.step) && ctx.inFlight?.kind === 'full'; // re-checks and measured-only steps don't call it
     // A hands_ok step is checked while you hold it: say "check me" (or press C) instead of letting go
-    el.statusText.textContent = stepOf(n).hands_ok && (key === 'hands' || key === 'not_quite')
+    el.statusText.textContent = !replayMode && stepOf(n).hands_ok && (key === 'hands' || key === 'not_quite')
       ? 'Keep holding it. Say "check me" or press C.' : STATUS[key](n, sparkNow);
 
     // tutorial panel
-    const playing = ctx.state === S.PLAYING && !flash;
-    el.tutLabel.textContent = key === 'unsure' ? `tutorial step ${n}` : key === 'not_quite'
-      ? `⟲ Replaying ${mmss(step.key_clip_start)}–${mmss(step.key_clip_end)}` : 'Tutorial';
-    el.frozen.hidden = !([S.WAITING, S.CHECKING, S.CONFIRMING].includes(ctx.state) || flash);
-    el.frozen.lastChild.textContent = `paused at the end of step ${n}`;
-    el.playBar.hidden = !playing;
+    el.tutLabel.textContent = key === 'not_quite' ? `⟲ The key moment, ${mmss(step.key_clip_start)}–${mmss(step.key_clip_end)}` : `Tutorial · step ${n}`;
     const mistake = ctx.state === S.MISTAKE;
     const clipOn = mistake && clipRunning();
     el.clipBtn.hidden = !mistake || (!clipOn && !clipPaused); // the still frame has its own round Play button
@@ -424,12 +433,12 @@ export async function render(root) {
     el.loopBar.classList.toggle('running', clipOn);
     el.clipStill.hidden = !(mistake && !clipOn && !clipPaused);
     el.pausedCover.hidden = ctx.state !== S.PAUSED;
-    el.tut.classList.toggle('shrink', ['hands', 'blocked', 'checking'].includes(key));
 
     // live panel
     paintLive(key, ctx.step);
     el.live.dataset.orb = key;
-    el.liveLabel.lastChild.textContent = key === 'unsure' ? 'your desk now' : replayMode ? 'You · recorded' : 'You · live';
+    el.live.classList.toggle('win', !!flash);
+    el.liveLabel.lastChild.textContent = replayMode ? 'You · recorded' : 'You · live';
     const shown = flashLast?.results || [];
     el.passPill.hidden = !flash || !shown.length;
     el.passPill.textContent = `✓ ${shown.filter((r) => r.pass).length} of ${shown.length} passed`;
@@ -522,14 +531,18 @@ export async function render(root) {
     el.micBtn.setAttribute('aria-pressed', String(!!voiceCtl));
     el.micBtn.hidden = app.config.voice === 'off' || ctx.state === S.DONE || document.documentElement.hasAttribute('data-static');
     el.talkBtn.hidden = voiceCtl?.mode !== 'push_to_talk' || ctx.state === S.DONE;
-    el.askForm.hidden = (voiceCtl && voiceCtl.mode !== 'off') || ctx.state === S.DONE;
+    el.askForm.hidden = replayMode || (voiceCtl && voiceCtl.mode !== 'off') || ctx.state === S.DONE;
     el.talkBtn.querySelector('.key').hidden = !app.keysOn;
     const done = ctx.state === S.DONE;
     for (const [k, b] of Object.entries(el.controls)) {
-      b.disabled = done || (replayMode && k !== 'pause');
+      b.hidden = replayMode && k !== 'pause'; // a replay plays what was recorded
+      b.disabled = done;
       b.querySelector('.key').hidden = !app.keysOn;
     }
-    el.controls.check.disabled ||= !!ctx.inFlight || ctx.state === S.CAPPED;
+    el.controls.back.disabled ||= ctx.step <= 1;
+    el.controls.help.hidden ||= !app.config.live_enabled;
+    el.menu.check.hidden = el.menu.again.hidden = replayMode;
+    el.menu.check.disabled = done || !!ctx.inFlight || ctx.state === S.CAPPED;
     el.controls.pause.querySelector('.ctl-label').textContent = ctx.state === S.PAUSED ? 'Resume' : 'Pause';
     if (bannerPause) bannerPause.textContent = ctx.state === S.PAUSED ? '▶ Play' : '⏸ Pause';
     if (drawerOpen) paintDrawer(n);
@@ -598,7 +611,6 @@ export async function render(root) {
     drawerOpen = force ?? !drawerOpen;
     el.drawer.hidden = !drawerOpen;
     followEl?.classList.toggle('why', drawerOpen); // the outlines are for "how it decided", not for following along
-    el.drawerBtn.setAttribute('aria-expanded', String(drawerOpen));
     paint();
   }
 
@@ -615,12 +627,13 @@ export async function render(root) {
 
   function onChange(before) {
     if (ctx.state === S.PAUSED) { player.pause(); return; }
-    if (before.state === S.PAUSED) { player.resume(); }
-    // The learner's turn: hold the step's end frame, even if the video hadn't reached it (replay skips, Check me).
+    if (before.state === S.PAUSED) {
+      player.resume();
+      if (ctx.state === S.PLAYING && !flash) later(begin, 0); // paused just as a step began
+    }
     // Your turn: the step keeps playing as a silent loop beside you, so nobody has to pause or rewind it
-    if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { flash = null; player.sound(false); player.loopStep(stepOf(ctx.step)); }
+    if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { flash = null; player.loopStep(stepOf(ctx.step)); }
     if (before.state === S.MISTAKE && ctx.state === S.WAITING) { player.loopStep(stepOf(ctx.step)); progressAt = Date.now(); }
-    if (ctx.state === S.PLAYING && before.state !== S.PLAYING) player.sound(true); // watching: the tutorial speaks
     if (before.step !== ctx.step) { actionAt = 0; resetWatch(); if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
     if (ctx.state === S.SAFETY && before.state !== S.SAFETY && before.state !== S.PAUSED) {
       log('safety_shown', ctx.step, { hazard: hazard(ctx.step) });
@@ -632,12 +645,13 @@ export async function render(root) {
       // a hazard is said first; a gated one was already said and confirmed
       const safety = before.state === S.SAFETY ? '' : detailOf(ctx.step)?.safety;
       actionAt = 0; progressAt = Date.now();
-      coachSay(`${before.state === S.SAFETY ? `${T('safe_thanks')} ` : ''}${safety ? `${safety} ` : ''}${T('your_turn')} ${actionsOf(ctx.step)[0] || directions(ctx.step)}`,
+      coachSay(`${before.state === S.SAFETY ? `${T('safe_thanks')} ` : ''}${safety ? `${safety} ` : ''}${actionsOf(ctx.step)[0] || directions(ctx.step)}`,
         true, !!voiceCtl || !!safety, ctx.step);
     }
     if (ctx.state === S.MISTAKE) {
       // A second "not quite" on the same step: the check may simply not know this setup, so offer the learner's word
       wrongs[ctx.step] = (wrongs[ctx.step] || 0) + 1;
+      chime('soft');
       coachSay(`${mistakeLine(last)}${wrongs[ctx.step] >= 2 && !replayMode ? ` ${T('override_offer')}` : ''}`, true, !!voiceCtl, ctx.step); // the caption shows it anyway
       clipPaused = false; clipPlay = false;
       player.loop(stepOf(ctx.step));
@@ -658,14 +672,10 @@ export async function render(root) {
       log('step_play', fx.step, { reason: fx.reason });
       const start = () => {
         flash = null;
-        const paused = ctx.state === S.PAUSED && ctx.prev === S.PLAYING; // paused during the "step done" flash
-        if (ctx.step === fx.step && (ctx.state === S.PLAYING || paused)) {
-          player.playStep(stepOf(fx.step));
-          if (paused) player.pause(); // resume() continues from the step's start
-        }
         paint();
+        if (ctx.step === fx.step) begin(); // paused during the "step done" moment: it begins on resume
       };
-      if ((fx.reason === 'advance' || fx.reason === 'override') && ev.type !== 'next') { flash = before.step; paint(); later(start, ADVANCE_FLASH_MS); } else start();
+      if ((fx.reason === 'advance' || fx.reason === 'override') && ev.type !== 'next') { flash = before.step; chime('done'); paint(); later(start, ADVANCE_FLASH_MS); } else start();
     } else if (fx.type === 'check') {
       await runCheck(fx);
     } else if (fx.type === 'schedule_recheck') {
@@ -677,10 +687,13 @@ export async function render(root) {
       log('cap_reached', ctx.step, { code: fx.code });
       showOverlay('cap');
     } else if (fx.type === 'done') {
-      flash = before.step; flashLast = last; paint(); // no `advance` event for the last step: the summary adds it (data dictionary)
+      flash = before.step; flashLast = last; chime('done'); paint(); // no `advance` event for the last step: the server's summary adds it
       later(() => finish('completed'), ADVANCE_FLASH_MS);
     }
   }
+
+  // A step begins with your turn: the tutorial loops it beside you while the coach says the first action
+  function begin() { if (ctx.state === S.PLAYING) dispatch({ type: 'step_end' }); }
 
   async function runCheck(fx) {
     const step = ctx.step;
@@ -748,7 +761,7 @@ export async function render(root) {
   }
 
   function jump(n, via = 'button') {
-    if (replayMode || ctx.state === S.DONE) return;
+    if (replayMode || ctx.state === S.DONE || n < 1 || n > steps.length) return;
     log('action', ctx.step, { name: 'jump', to: n, via });
     dispatch({ type: 'jump', step: n });
   }
@@ -776,13 +789,7 @@ export async function render(root) {
     replay?.stop();
     motion?.stop();
     // Finished: a proper ending on this screen (every step ticked, "You did it", the coach's last line), held long
-    // enough to land, then the summary. Leaving early goes straight there.
-    // The summary shows the learner's finished work: the replay's last practice frame, or the camera's last picture
-    app.summaryPhoto = null;
-    if (completed) {
-      if (replayMode) app.summaryPhoto = api.recordingFrameUrl(app.recordingId, 1e9);
-      else if (camVideo) grabFrame(camVideo).then((b) => { if (b) app.summaryPhoto = URL.createObjectURL(b); }).catch(() => {});
-    }
+    // enough to land, then Home, with the session saved to Activity.
     if (completed) {
       // coachSay stays quiet once finished; this one line is the ending, said after whatever was still queued is dropped
       el.reply.textContent = T('yes_last'); el.voiceCap.hidden = false;
@@ -792,12 +799,18 @@ export async function render(root) {
           h('div', { class: 'finale-sub' }, `All ${steps.length} step${steps.length === 1 ? '' : 's'} of ${meta.title}, checked.`))));
       el.segs.querySelectorAll('.seg').forEach((x) => x.classList.add('done'));
     }
-    const [summary] = await Promise.all([api.endSession(sid, reason).catch((err) => { toast(err.message); return null; }),
+    const [s] = await Promise.all([api.endSession(sid, reason).catch(() => null),
       completed ? whenQuiet(7000) : null, completed ? new Promise((r) => setTimeout(r, 2600)) : null]);
-    app.summary = summary;
-    app.summaryTitle = meta.title;
-    app.summaryPlan = plan;
-    if (followEl.isConnected) nav('summary'); // they may have left during the ending
+    const doneSteps = s?.steps_done ?? (completed ? steps.length : ctx.step - 1);
+    if (s) {
+      saveRun({ id: sid, tid: app.tutorialId, title: meta.title, mode: app.mode, steps_done: s.steps_done, steps_total: s.steps_total,
+        duration_s: s.duration_s, mistakes: new Set(s.mistakes.map((m) => m.step_id)).size, hardest: s.hardest_step_id || null });
+    }
+    app.sessionId = null;
+    if (!followEl.isConnected) return; // they left during the ending
+    toast(completed ? `${meta.title}: all ${steps.length} steps done.${s ? ' Saved to Activity.' : ''}`
+      : `Stopped at step ${ctx.step}, ${doneSteps} of ${steps.length} done.${s ? ' Saved to Activity.' : ''}`);
+    nav('');
   }
 
   // ---- voice (live only, after the S6 switch; off in replay) ----
@@ -886,6 +899,7 @@ export async function render(root) {
   // The server sets the pace (next_look_ms): every 1.5 s when the API key has room, slower when many people are
   // practising at once; a look it had no room for comes back `busy` and is simply skipped.
   let LOOK_MS = 1500;
+  const COMMENT_GAP_MS = 4000; // running commentary: at most a line every 4 s while things change
   const STILL_MS = 8000, MAX_LOOKS = 2;
   let lookSeq = 0, shownSeq = 0;
   let lastLook = 0, looking = 0, stepStart = Date.now(), lastLine = '', lastLineAt = 0, lastCantSee = 0;
@@ -930,8 +944,9 @@ export async function render(root) {
       askQuestionAloud(`I'm stuck on this part: "${list[actionAt] || titleOf(step)}". Explain just this again in different, simpler words, in one or two short sentences.`, true, 'Looks like you might be stuck. Let me put it another way.');
       return;
     }
-    // They've finished an action: say the next one (and nothing else this look)
-    if (res.on_action && res.status === 'working' && advanceAction(res.on_action - 1)) { lastLineAt = Date.now(); return; }
+    // They've finished an action: the guide moves on, and the coach says the look's own line, or the next action
+    const said = (res.say || '').trim();
+    if (res.on_action && res.status === 'working' && advanceAction(res.on_action - 1, !!said && said !== lastLine) && !said) { lastLineAt = Date.now(); return; }
     if (res.status === 'looks_done') { // the model thinks it's done: the grounded check (SAM 3.1) confirms or not
       if (Date.now() > doneCooldown && !ctx.inFlight && [S.WAITING, S.MISTAKE].includes(ctx.state)) {
         doneCooldown = Date.now() + 6000;
@@ -944,6 +959,7 @@ export async function render(root) {
     const line = (res.say || '').trim();
     if (!line || line === lastLine) return;
     if (res.status === 'cant_see' && Date.now() - lastCantSee < 10000) return; // don't nag about the camera
+    if (res.status === 'working' && Date.now() - lastLineAt < COMMENT_GAP_MS) return; // commentary, not chatter
     // overlapping looks often see the same mistake: say it once, again only if it's still there 6 s later
     if (res.status === 'mistake' && lastStatus === 'mistake' && Date.now() - lastLineAt < 6000) return;
     lastStatus = res.status;
@@ -958,8 +974,6 @@ export async function render(root) {
     const since = Date.now() - lastLook;
     if ((Date.now() - lastMove < LOOK_MS * 2 && since >= LOOK_MS) || (!looking && since >= STILL_MS)) look();
   }, 250) : null;
-  // While the coach talks, the tutorial video is turned down so the two never talk over each other
-  const stopDucking = onSpeech((talking) => el.tut.querySelectorAll('video').forEach((v) => { v.volume = talking ? 0.15 : 1; }));
   function mistakeLine(res) {
     // The check's reason is for "How it decided"; out loud the coach says what to do: the hint (English), or the
     // current action again in the learner's language
@@ -985,6 +999,8 @@ export async function render(root) {
     if (k === 'v') { if (voiceCtl?.mode !== 'push_to_talk') return false; voiceCtl.press(); return true; }
     if (k === 'd') { toggleDrawer(); return true; }
     if (k === 'p') { togglePause('key'); return true; }
+    if (k === 'b') { jump(ctx.step - 1, 'key'); return true; }
+    if (k === 'h') { helpMe(); return true; }
     const map = { c: 'check_me', a: 'again', n: 'next', s: 'skip' };
     if (map[k]) { act(map[k], 'key'); return true; }
     if ((k === 'y' || k === 'r') && ctx.state === S.ASKING) { answer(k === 'y' ? 'yes' : 'no', 'key'); return true; }
@@ -1001,15 +1017,29 @@ export async function render(root) {
   window.addEventListener('pagehide', onHide);
   const heartbeat = setInterval(() => log('heartbeat', ctx.step), 60000);
 
-  const replay = replayMode ? createReplay({ timeline, dispatch, onFinish: () => finish('completed'), onEvent: (e) => showRecordedAt(e.off),
+  // A replay waits for the coach the way a person would: a question is heard out and answered (you see the answer)
+  // before anything moves on, and a step isn't left mid-sentence.
+  const replayDispatch = async (ev) => {
+    if (ev.type === 'ask_yes' || ev.type === 'ask_no') {
+      await whenQuiet(15000);
+      if (finished) return;
+      el.heard.textContent = ev.type === 'ask_yes' ? 'Yes, it does.' : 'No, it doesn\u2019t.';
+      el.reply.textContent = ''; el.voiceCap.hidden = false;
+      await new Promise((r) => { later(r, 1400); });
+    } else if (ev.type === 'next' || ev.type === 'skip') await whenQuiet(10000);
+    if (!finished) await dispatch(ev);
+  };
+  const replay = replayMode ? createReplay({ timeline, dispatch: replayDispatch, onFinish: () => finish('completed'), onEvent: (e) => showRecordedAt(e.off),
     onTick: showRecordedAt,
     onQuestion: (text) => askQuestionAloud(text, false),
     onCoach: (d, step) => {  // a recorded look of the live coach, replayed like the live one (it speaks, the note updates)
       if (d.observation) { el.watchNote.textContent = `👁 ${d.observation}`; el.watchNote.dataset.state = d.status; }
       noteSubstitute(d.substitute, step);
       // older recordings have no on_action: each "working" look moves on one action
-      if (d.status === 'working' && advanceAction(d.on_action ? d.on_action - 1 : actionAt + 1) && !d.say) return;
+      if (d.status === 'working' && advanceAction(d.on_action ? d.on_action - 1 : actionAt + 1, !!d.say) && !d.say) return;
       if (d.status === 'mistake' && lastStatus === 'mistake' && Date.now() - lastLineAt < 6000) return; // said once
+      if (d.status === 'cant_see' && Date.now() - lastCantSee < 10000) return; // don't nag about the camera
+      if (d.status === 'cant_see') lastCantSee = Date.now();
       if (d.say) { lastStatus = d.status; lastLineAt = Date.now(); coachSay(d.say, true, true, step, d.status === 'mistake'); }
     } }) : null;
   // ---- framing: light and focus, measured on the phone (free, instant); said once, then again only if it persists ----
@@ -1042,8 +1072,8 @@ export async function render(root) {
   log('step_play', ctx.step, { reason: resumed ? 'resume' : 'first' });
   if (resumed) { log('resumed', ctx.step); coachSay(T('welcome_back', { n: ctx.step }), true, true, ctx.step); }
   if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title);
-  player.playStep(stepOf(ctx.step));
   paint();
+  begin();
   replay?.start();
   motion?.start();
 
@@ -1054,7 +1084,6 @@ export async function render(root) {
     document.removeEventListener('visibilitychange', onVisible);
     wakeLock?.release().catch(() => {});
     voiceCtl?.stop();
-    stopDucking();
     hush(); // the coach never talks over another page (a finished lesson already waited for its last line)
     window.removeEventListener('keyup', onKeyUp);
     replay?.stop();
@@ -1072,7 +1101,7 @@ export async function render(root) {
 
 // English defaults for the coach's fixed lines (the server's copy: config/phrases.json), used until /api/phrases answers
 const PHRASES_EN = {
-  your_turn: 'Your turn.', good_now: 'Nice. Now {text}', explain_btn: 'Explain it differently',
+  good_now: 'Nice. Now {text}', explain_btn: 'Explain it differently',
   ok_next: 'Great. Next up, step {n}: {text}', looks_like_this: 'Does yours look like that?',
   substitute_ok: "You're using {text}. That works.", safety_first: 'Safety first.', safety_confirm: 'Say "ready" or tap "It\'s safe" when you\'ve done that.',
   not_quite: 'Not quite.', try_again: 'Try again: {text}', yes_next: "Yes, that's right! Next up, step {n}: {text}",

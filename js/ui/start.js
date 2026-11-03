@@ -3,7 +3,7 @@
 import { h, icon } from './dom.js';
 import { api } from '../api.js';
 import { app } from '../state.js';
-import { stepFrame } from '../thermostatscene.js';
+import { heroDemo } from './hero-demo.js';
 import { runs, unfinished } from '../progress.js';
 import { openCreate } from './create.js';
 import { continueCard, guideCard, isMine, skeletons, slider } from './cards.js';
@@ -33,22 +33,13 @@ export async function render(root) {
         h('span', { class: 'hero-arrow', 'aria-hidden': 'true' }, '→'),
         h('span', { class: 'hero-chip strong', role: 'listitem' }, 'A guide that checks every step')),
       h('div', { class: 'hero-actions' },
-        h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'See it in action', icon('arrow')),
+        h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'Watch the demo', icon('arrow')),
         returning ? h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: openCreate }, icon('plus'), 'New guide')
-          : h('button', { class: 'btn-underline', onclick: toLib }, 'Start a guide ↓')),
+          : h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: toLib }, icon('camera'), 'Try it with your camera')),
       h('div', { class: 'hero-uses', 'aria-label': 'Built for' },
         h('span', { class: 'fine' }, 'Built for'),
         ['Electronics', 'Repairs & installs', 'Assembly', 'Training', 'Robotics'].map((t) => h('span', { class: 'hero-use' }, t)))),
-    h('div', { class: 'hero-art' },
-      h('a', { href: '#/replay', class: 'hero-frame', 'aria-label': 'See it in action' },
-        // A real check: the CC BY tutorial's step-3 frame with only the LED recoloured (web/img/README.md)
-        h('img', { class: 'frame-img', src: 'img/hero-mistake.jpg', alt: 'A breadboard with the wrong, orange LED pushed in', decoding: 'async' }),
-        h('div', { class: 'hero-badge' }, icon('x'), h('span', {}, 'Not quite')),
-        h('div', { class: 'hero-inset' }, stepFrame('breadboard-led', 2), h('span', { class: 'inset-tag' }, '3 s loop')),
-        h('div', { class: 'hero-hint' }, "That's the orange LED. Use the round blue one, legs in the same rows.")),
-      h('div', { class: 'hero-legend', 'aria-hidden': 'true' },
-        ['shows the step', 'sees your work', 'flags the mistake', 'you fix it', 'next step'].flatMap((t, i) =>
-          [i ? h('span', { class: 'rule' }) : null, h('span', { class: i === 2 ? 'slip' : '' }, t)]))));
+    h('div', { class: 'hero-art' }, heroDemo()));
 
   const how = h('section', { class: 'wrap' }, h('div', { class: 'how' },
     h('div', { class: 'how-lead' }, 'The instructions you already have, turned into a guide that knows when you\u2019ve got it right.'),
