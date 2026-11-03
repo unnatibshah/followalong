@@ -1,5 +1,5 @@
-// S6 Camera setup: live preview (or the stand-in), work-area frame, one visibility check of step 1's objects
-// (check_no 0: outside the follow-along numbering, so a recorded session's checks match its replay).
+// S6 Camera setup: the coach looks through the camera every couple of seconds and says what it needs ("move back, I
+// can't see the table") until it can see the work area, then says so and starts the lesson by itself.
 import { h, icon } from './dom.js';
 import { api } from '../api.js';
 import { app } from '../state.js';
@@ -7,6 +7,7 @@ import { hasCamera, cameraView, grabFrame } from '../camera.js';
 import { thermostatScene } from '../thermostatscene.js';
 import { askMic } from '../voice.js';
 import { nav } from '../router.js';
+import { speak, hush } from '../speech.js';
 
 let micBlocked = false;
 export const devBlockMic = () => { micBlocked = true; };
@@ -14,7 +15,7 @@ export const devBlockMic = () => { micBlocked = true; };
 export async function render(root) {
   if (!app.sessionId || app.mode !== 'live') { nav('consent'); return null; }
   const media = hasCamera() ? cameraView() : thermostatScene({ tutorial: app.tutorialId, variant: 'before', surface: 'desk' });
-  const found = h('div', { class: 'seen' }, icon('spin', 'spin sam'), h('span', {}, 'SAM 3.1 is looking for your pieces…'));
+  const found = h('div', { class: 'seen' }, icon('spin', 'spin sam'), h('span', {}, 'Let me see your work area\u2026'));
   const micNote = h('div', { class: 'note warn-dark', hidden: true }, 'Voice is off. Buttons and shortcuts still work.');
   const sw = h('button', { class: 'switch-row', role: 'switch', 'aria-checked': String(!!app.voiceOn) },
     h('span', {}, 'Hands-free voice coach ', h('span', { class: 'dim normal' }, '· recommended: ask "am I doing it right?"')), h('span', { class: 'switch teal', 'aria-hidden': 'true' }));
@@ -37,7 +38,8 @@ export async function render(root) {
   const corner = (c) => h('span', { class: `corner ${c}` });
 
   root.append(h('div', { class: 'wrap-wide' },
-    h('h1', { class: 'title-serif' }, 'Point your camera down at your desk'),
+    h('h1', { class: 'title-serif' }, 'Show me your work area'),
+    h('p', { class: 'dim setup-sub' }, 'Point the camera at your hands and the things you\u2019ll use. I\u2019ll tell you when it\u2019s right, then we start.'),
     h('div', { class: 'split-cam' },
       h('div', { class: 'media-frame' }, media,
         h('div', { class: 'work-area' }, corner('tl'), corner('tr'), corner('bl'), corner('br'), h('span', { class: 'pill bl' }, 'Work area')),
@@ -55,12 +57,33 @@ export async function render(root) {
         h('button', { class: 'btn btn-accent btn-lg', onclick: () => nav('follow') }, 'Looks good, start →'),
         h('a', { href: '#/replay', class: 'btn-text accent center' }, 'No webcam? Watch a replay')))));
 
-  try {
-    const frame = await grabFrame(media instanceof SVGElement ? media : root.querySelector('video'));
-    const res = await api.check(app.sessionId, frame, { step_id: 1, kind: 'visibility', check_no: 0, trigger: 'check_me', trigger_at: Date.now() });
-    found.replaceChildren(...res.objects.map((o) => h('span', { class: o.found ? 'ok' : 'miss' }, o.found ? `✓ ${o.name}` : `✗ ${o.name} (can't see)`)));
-  } catch (err) {
-    found.replaceChildren(h('span', { class: 'miss' }, err.message));
+  // The coach checks the framing: a look every ~2.5 s; two good looks in a row and the lesson starts by itself
+  const video = media instanceof SVGElement ? media : root.querySelector('video');
+  const say = (text) => { found.replaceChildren(h('span', {}, text)); if (app.voiceOn !== false) speak(text, 'setup'); };
+  let good = 0, lastSaid = '', stopped = false, started = Date.now();
+  async function look() {
+    if (stopped || !root.isConnected) return;
+    try {
+      const frame = await grabFrame(video);
+      const res = await api.watch(app.sessionId, frame, { step_id: 1, recent: [], said: [lastSaid], elapsed_s: Math.round((Date.now() - started) / 1000), encourage: false });
+      if (stopped || !root.isConnected) return;
+      if (res.status === 'busy') { setTimeout(look, 2500); return; }
+      if (res.status === 'cant_see') {
+        good = 0;
+        const line = res.say || 'I can\u2019t see your work area yet. Point the camera at your hands and the table.';
+        if (line !== lastSaid) { lastSaid = line; say(line); }
+      } else if (++good >= 2 || !hasCamera()) {
+        stopped = true;
+        say('Perfect, I can see your work area. Let\u2019s start.');
+        setTimeout(() => { if (root.isConnected) nav('follow'); }, 2600);
+        return;
+      } else found.replaceChildren(icon('spin', 'spin sam'), h('span', {}, 'Looks good so far\u2026'));
+    } catch (err) {
+      found.replaceChildren(h('span', { class: 'miss' }, err.message));
+      return; // the button still starts the lesson
+    }
+    setTimeout(look, 2500);
   }
-  return null;
+  setTimeout(look, 1200); // let the camera settle first
+  return () => { stopped = true; hush(); };
 }
