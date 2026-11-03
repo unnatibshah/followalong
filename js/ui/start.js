@@ -180,7 +180,8 @@ export async function render(root) {
     }
   }
   chooseBtn.addEventListener('click', () => input.click());
-  drop.addEventListener('click', (e) => { if (live && e.target !== input && !e.target.closest('button, a')) input.click(); });
+  // A button's own picker click bubbles up here too: only a click on the zone itself opens the video picker
+  drop.addEventListener('click', (e) => { if (live && !e.target.closest('button, a, input')) input.click(); });
   input.addEventListener('change', () => upload(input.files[0]));
   manualBtn.addEventListener('click', () => manualInput.click());
   manualInput.addEventListener('change', () => { upload(null, null, [...manualInput.files]); manualInput.value = ''; });
