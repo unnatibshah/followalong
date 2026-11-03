@@ -280,10 +280,13 @@ CROSS = {
     "figure-eight-knot": {
         "name": "figure-eight-pink-cord", "video": "https://www.youtube.com/watch?v=Sq3Ndf_jm_Y",
         "credit": "\u201cActivity at Home: Tie a Figure 8 Knot\u201d by Terrapin Adventures, CC BY",
-        "title": "Tie a figure-eight knot \u00b7 someone else\u2019s cord (a different video)",
+        "title": "Tie a figure-eight knot",
         "steps": {1: (8.5, 18.0), 2: (18.0, 33.0), 3: (33.5, 44.5)}, "end": 47.6,  # the end card starts at 48 s
     },
 }
+# Tried and left out (Nov 3): gigametre's "Simple resistor/LED circuit" as breadboard practice footage. The camera is
+# far back, hands cover the wires through step 1, and the LED is never lit, so the checks (rightly) never pass.
+
 CROSS_DIR = APP / "eval" / "cross"
 
 
@@ -325,9 +328,13 @@ async def build_cross(tid: str) -> str:
     def grid():
         return -(-ms // FRAME_MS) * FRAME_MS
 
+    def grab(t: float):
+        img = cfbench.grab(video, t)
+        return img.crop(spec["crop"]).resize((1280, 720)) if spec.get("crop") else img
+
     def still(t: float, sid: int, tag: str) -> str:  # a look's frame, kept with the replay's sources
         rel = f"eval/cross/{name}/step{sid}-{tag}.jpg"
-        cfbench.grab(video, t).save(APP / rel, quality=88)
+        grab(t).save(APP / rel, quality=88)
         shutil.copy(APP / rel, frames / f"preview-{grid()}.jpg")
         return rel
 
@@ -335,7 +342,7 @@ async def build_cross(tid: str) -> str:
         nonlocal ms
         n = max(1, dur_ms // FRAME_MS)
         for i in range(n):
-            cfbench.grab(video, a + (b - a) * i / max(1, n - 1)).save(frames / f"preview-{grid()}.jpg", quality=80)
+            grab(a + (b - a) * i / max(1, n - 1)).save(frames / f"preview-{grid()}.jpg", quality=80)
             ms += FRAME_MS
 
     summary = []

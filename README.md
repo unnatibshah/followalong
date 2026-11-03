@@ -45,9 +45,10 @@ git clone https://github.com/unnatibshah/followalong.git && cd followalong
 docker compose up            # or: ./run.sh  (Python 3.12+)
 ```
 
-Open http://localhost:8000 → **Watch a replay**. The replay runs the real app on a generated learner session: each
-"You" frame is a CF-Bench frame and each verdict is the real SAM 3.1 + Muse Spark answer recorded for it — wrong-colour
-wires, missing parts and unfinished steps get caught, then the fix passes and the next step plays.
+Open http://localhost:8000 → **See it in action**. Each replay runs the real app on a practice session filmed in a
+**different** video from the tutorial it follows (another person, other parts, another table): the tutorial teaches,
+that footage is "you", and every look and every check in it ran live on those frames (SAM 3.1 + Muse Spark), then was
+recorded so it replays without a camera or a key.
 
 **Live mode, hosted:** [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/unnatibshah/followalong)
 Render asks for your `MODEL_API_KEY` (kept in Render's secret settings, never in the repo).
@@ -219,7 +220,7 @@ otherwise changed. Credit, as CC BY asks: title, creator, link, licence (CC BY 3
 | Make a crossover Ethernet cable | “CAT6 CROSSOVER CABLE - HOW TO - QUICK & EASY!” | Ultimate Tech Hub | [youtube.com/watch?v=VZZq7MbvAuE](https://www.youtube.com/watch?v=VZZq7MbvAuE) |
 | Robot arm: pick and place blocks | “Dobot Magician Lite Pick & Place - Suction Cup Vs Gripper #robot #robotics #technology” | Amatya Katyayan | [youtube.com/watch?v=tfN4FUlOfzg](https://www.youtube.com/watch?v=tfN4FUlOfzg) |
 
-**Learner footage from a different video.** The replay *Tie a figure-eight knot · someone else's cord* uses [“Activity at Home: Tie a Figure 8 Knot”](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) by Terrapin Adventures (CC BY) as the learner's camera: another person, a pink cord on a wooden table, against the tutorial above. Every look and check in it ran live on those frames.
+**Practice footage from different videos.** The replay's "you" camera is a different CC BY video from the tutorial it follows, so nothing is checked against its own source: *Tie a figure-eight knot* uses [“Activity at Home: Tie a Figure 8 Knot”](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) by Terrapin Adventures (a pink cord on a wooden table). Every look and check in it ran live on those frames.
 
 Links pasted into the app are accepted only when the video is Creative Commons licensed; uploads must be videos you
 have the rights to. The first version of this project used standard-licence YouTube videos; they are not in this

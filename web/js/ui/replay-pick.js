@@ -29,7 +29,7 @@ export async function render(root) {
     return m || q ? [m && plural(m, 'mistake'), q && plural(q, 'question')].filter(Boolean).join(' and ') : 'every step passes';
   });
   let pick = recs.findIndex((r) => r.id === app.recordingId);
-  if (pick < 0) pick = Math.max(0, recs.findIndex((r) => r.id === 'with-mistakes'));
+  if (pick < 0) pick = Math.max(0, recs.findIndex((r) => r.id === 'figure-eight-pink-cord'));
   const art = h('div', { class: 'hero-frame still' });
   const paintArt = () => art.replaceChildren(stepFrame(recs[pick].tutorial_id, 1),
     h('span', { class: 'pill tl' }, `▶ Recorded session · ${recs[pick]?.tutorial_id || ''}`));
@@ -39,7 +39,7 @@ export async function render(root) {
     const input = h('input', { type: 'radio', name: 'fa-rec', value: r.id, checked: i === pick, class: 'radio' });
     input.addEventListener('change', () => { pick = i; root.querySelectorAll('.rec-opt').forEach((l, j) => l.classList.toggle('on', j === i)); paintArt(); });
     return h('label', { class: ['rec-opt', i === pick && 'on'] }, input, h('span', { class: 'strong' }, r.title), h('span', { class: 'muted' }, subs[i]),
-      r.credit && h('span', { class: 'muted fine' }, `Learner footage: ${r.credit}`));
+      r.credit && h('span', { class: 'muted fine' }, `Practice footage: ${r.credit}`));
   });
 
   async function play() {

@@ -44,7 +44,8 @@ def loose(prompt: str, step: dict) -> str | None:
 # not a "rope". Tried only when the plan's own word finds nothing. ponytail: a short hand list; grow it from misses.
 SYNONYMS = {"rope": ["string", "cord", "knot"], "cord": ["string", "rope", "knot"], "string": ["cord", "rope"],
             "shoelace": ["lace", "string"], "wire": ["cable", "lead"], "cable": ["wire", "cord"], "screw": ["bolt"],
-            "bolt": ["screw"], "tie": ["necktie"], "breadboard": ["board"], "clamp": ["clip"], "clip": ["clamp"]}
+            "bolt": ["screw"], "tie": ["necktie"], "breadboard": ["board"], "clamp": ["clip"], "clip": ["clamp"],
+            "battery": ["battery pack", "power supply"]}
 
 
 def alternatives(prompt: str, step: dict) -> list[str]:

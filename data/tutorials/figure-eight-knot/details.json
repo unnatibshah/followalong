@@ -1,47 +1,46 @@
 {
- "prompt_version": "step_details-0.8",
+ "prompt_version": "step_details-0.9",
  "model": "muse-spark-1.3",
- "cost_usd": 0.05713725,
+ "cost_usd": 0.063051,
  "actor": "hand",
  "steps": {
   "1": {
    "title": "Make a loop in the rope",
-   "say": "Hold the long hanging part steady with your left hand. Bring the short loose end over the front of the long hanging part. Let the bottom hang as a round open loop.",
+   "say": "Hold the long hanging part steady in your left hand. Bring the short loose end across the front and to the left. Leave a big open loop hanging below the cross.",
    "placements": [
-    "short loose end of your rope → laid left to right across front of long hanging part to form one round open loop hanging below the crossing in center of frame in front of you (in the video: blue rope with red flecks outdoors, loose end points left, loop about fist size)"
+    "short loose end of your rope → across the front of the long hanging part to the left, leaving a large open loop hanging below the cross (in the video: end points left, loop hangs down to the lower right in the center of the frame)"
    ],
    "watch_for": [
-    "If the loop closes or twists, the short end went under instead of over the front. Start again with the end lying flat across the front.",
-    "If you see no open circle below, the loop is too small. Make it about fist size so fingers fit through later."
+    "If the end goes behind instead of across the front, the cross will hide the end and the loop will twist open.",
+    "If the loop is tiny, you will not be able to push the end through later, so start with a loop as big as your fist."
    ],
-   "check_yourself": "It should look like one round open loop with the short loose end lying flat across the long hanging part above the loop.",
+   "check_yourself": "It should look like one open loop hanging below with the short end lying across the front like the top of the number 6.",
    "safety": ""
   },
   "2": {
-   "title": "Wrap end behind the rope",
-   "say": "Hold the round loop open with your left hand. Bring the short loose end behind the long hanging part and out to the side.",
+   "title": "Wrap the end around behind",
+   "say": "Take the short loose end behind the long hanging part. Bring it around to the right side.",
    "placements": [
-    "short loose end of your rope → passed behind the long hanging part from front to back and out to the side to make an upper twist just above the lower loop in center of frame (in the video: blue rope with red flecks, loose end sticks out to the right behind the upright part)"
+    "short loose end of your rope → behind the long hanging part and around to the right side, forming a twist at the cross above the lower loop (in the video: end sticks out to the right behind the upright part, loop hangs straight below)"
    ],
    "watch_for": [
-    "If the short end stays in front of the long part, you went the wrong way. It must disappear behind then stick out to the side.",
-    "If the lower loop disappears, you pulled too far. Keep the lower loop open and round below the twist."
+    "If you bring the end around the front instead of behind, the top will look flat with no clear twist.",
+    "If you let go of the first cross, the bottom loop collapses and you lose the open shape, so keep pinching the cross."
    ],
-   "check_yourself": "It should look like a lower round loop with an upper twist and the short loose end sticking out sideways behind the long part.",
+   "check_yourself": "It should look like a twist pinched at the top with an open loop hanging below and the short end sticking out sideways behind.",
    "safety": ""
   },
   "3": {
-   "title": "Thread end through loop and tighten",
-   "say": "Push the short loose end down through the lower loop. Pull both ends gently until the eight shape tightens.",
+   "title": "Push the end through and tighten",
+   "say": "Push the short loose end through the big bottom loop. Pull the long part and the short end apart to tighten.",
    "placements": [
-    "short loose end of your rope → pushed down through the opening of the lower round loop from top to bottom in center of frame leaving a short length below (in the video: blue rope with red flecks, end comes out below the knot)",
-    "long hanging part above and short loose end below → pulled steadily in opposite directions with both hands until the two stacked loops close into a tight figure eight shape (in the video: snug knot outdoors with upper and lower loops the same size)"
+    "short loose end of your rope → through the inside of the large bottom loop to the middle, then pulled down while the long hanging part is pulled up until snug (in the video: tight upright eight in the center with the short tail hanging straight down below the knot)"
    ],
    "watch_for": [
-    "If the knot looks like a simple oval, the end missed the lower loop. Undo and push the end fully down through the opening.",
-    "If the eight shape is loose and floppy, it will slip. Pull both ends again until the crossing is snug."
+    "If you go through the small top twist instead of the big bottom loop, you will not get two even stacked loops.",
+    "If you do not pull it snug, the eight looks loose and wobbly and slides, so pull both ends firmly apart."
    ],
-   "check_yourself": "It should look like a tight number eight with two stacked loops and a short end hanging straight below the knot.",
+   "check_yourself": "It should look like a neat figure eight with one loop above and one loop below and a short end hanging straight down.",
    "safety": ""
   }
  }

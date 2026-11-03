@@ -1,4 +1,4 @@
-prompt_version: step_details-0.8
+prompt_version: step_details-0.9
 
 The step-details prompt. `server/details.py` sends `## system` as the instructions and `## user` (with {duration} and
 {steps} filled in) as the text before the video, then the narration (when there is speech) and each step's finished
@@ -21,8 +21,9 @@ How a person explains it (this matters as much as precision):
 - Give them a picture they already know when it helps: "a loop like the number 6", "like threading a needle",
   "like a shoelace bow".
 - The learner's things won't match the video's: a rope, cable, shirt, board or tool can be any colour, thickness,
-  size or material. Name a colour only when it matters to the task (wire colour codes, "the red clamp on the plus
-  post", the LED colour the circuit needs); otherwise say "your rope", "the board", "the long part". Never name a part
+  size or material. Name a colour only when it's a code the learner must follow (house wiring black, white and green;
+  Ethernet pair order; "the red clamp on the plus post"); an LED, a jumper wire or a rope works in any colour, so say
+  "the LED", "a wire", "your rope", "the long part". Never name a part
   only by its colour when similar parts share it; say which one by where it is or what it does.
 - After the action, say briefly what they should see now ("You should now have two loops, one above the other.").
 Only state what the video, the narration or the finished frames show. Never invent a position: if a location isn't

@@ -1,90 +1,88 @@
 {
- "prompt_version": "step_details-0.8",
+ "prompt_version": "step_details-0.9",
  "model": "muse-spark-1.3",
- "cost_usd": 0.0827995,
+ "cost_usd": 0.09253625,
  "actor": "hand",
  "steps": {
   "1": {
    "title": "Strip both wire ends bare",
-   "say": "Hold one white wire in your left hand. Push its tip into the blue tool, then squeeze to peel off about one centimetre. Do the same with the other white wire.",
+   "say": "Lay the two white wires apart on the table in front of you. Strip about one centimetre of coating off each wire tip with the blue stripping tool.",
    "placements": [
-    "your first white wire end → with about one centimetre of white cover peeled off to show shiny copper inside (in the video: white wire on right side of blue mat)",
-    "your second white wire end → with about one centimetre of white cover peeled off to show shiny copper inside (in the video: white wire on left side of blue mat)",
-    "blue peeling tool with red buttons → squeezed around each white wire end near the tip to cut and pull the cover (in the video: held above centre of blue mat)"
+    "first white wire tip → about one centimetre inside blue and red stripping tool jaws to cut outer coating, in the video: right hand wire over blue table",
+    "second white wire tip → about one centimetre inside blue and red stripping tool jaws to cut outer coating, in the video: left hand wire over blue table"
    ],
    "watch_for": [
-    "if the copper strands are cut through, you squeezed too deep and need a larger hole",
-    "if white cover is still over the tip, you peeled too little and need to peel to about one centimetre"
+    "if copper strands look cut or missing, you squeezed too hard or stripped more than about one centimetre",
+    "if coating still covers the tip, the tool did not pull cleanly so strip again"
    ],
-   "check_yourself": "It should look like two white wires lying apart with short shiny copper tips showing.",
-   "safety": "Keep your fingers away from the sharp cutting jaws."
+   "check_yourself": "It should look like two white wires lying apart with short shiny copper ends exposed.",
+   "safety": "Keep your fingers clear of the stripping tool jaws when you squeeze."
   },
   "2": {
-   "title": "Twist the bare ends together",
-   "say": "Push the copper tips of the two white wires together end to end. Twist them around each other with your fingers until tight.",
+   "title": "Twist bare ends together",
+   "say": "Hold one white wire in each hand with the copper tips touching end to end. Twist the two copper tips around each other to lock them tight.",
    "placements": [
-    "bare copper ends of the two white wires → pushed together end to end in the middle of the work space and twisted around each other tight by fingers (in the video: bottom centre of blue mat forming one white loop)"
+    "two bare copper ends → pushed end to end then twisted around each other at middle of loop, in the video: bottom centre of white wire circle on blue table"
    ],
    "watch_for": [
-    "if the join pulls apart when tugged, it was twisted too loose and needs more twisting",
-    "if sharp copper points stick out, they were not twisted flat and will poke through"
+    "if the join pulls apart with a light tug, the copper ends were not twisted tight enough",
+    "if sharp copper points stick out, twist them flat or they will poke through the tube"
    ],
-   "check_yourself": "It should look like one white wire loop with a small tight copper twist in the middle.",
+   "check_yourself": "It should look like one white wire loop with copper ends twisted into a small neat join.",
    "safety": ""
   },
   "3": {
-   "title": "Coat the join with paste",
-   "say": "Dip the thin black stick into the cleaning paste called flux. Dab the wet tip all over the copper twist in the middle.",
+   "title": "Spread flux on twisted join",
+   "say": "Hold the white wire loop steady with one hand. Dab a little flux paste onto the twisted copper join with the small black stick.",
    "placements": [
-    "cleaning paste called flux → dabbed to cover all around the twisted copper middle of the white wire loop (in the video: bottom centre of white loop on blue mat)",
-    "thin black applicator stick → touched with wet paste tip all over the twisted copper middle (in the video: held from top to bottom centre)"
+    "flux paste → dabbed with thin black stick to cover whole twisted copper join in middle of white loop, in the video: bottom centre of loop on blue table"
    ],
    "watch_for": [
-    "if dry copper still shows, you missed a spot and the melted metal will not spread there",
-    "if paste is all over the white cover, you used too much and should wipe it clean"
+    "if dry copper still shows, you missed a spot so add a little more flux to the join",
+    "if thick blobs drip off, you used too much flux so wipe the extra away"
    ],
-   "check_yourself": "It should look like the copper twist in the middle of the white loop looks wet and darker.",
-   "safety": "Keep the paste off your skin and eyes."
+   "check_yourself": "It should look like the twisted copper join looks wet and shiny in the middle of the white loop.",
+   "safety": ""
   },
   "4": {
-   "title": "Melt metal over the join",
-   "say": "Hold the hot iron tip against the copper twist in the middle. Touch the thin silver wire to the twist, then let it melt and spread.",
+   "title": "Melt solder onto the join",
+   "say": "Hold the hot soldering iron tip against the white wire copper join. Touch the thin silver solder wire to the join until it melts and spreads.",
    "placements": [
-    "hot pointed iron tool → point held touching the copper twist in the middle of the white loop (in the video: iron coming from top to bottom centre of blue mat)",
-    "thin silver wire → touched to the heated copper twist in the middle until melted silver spreads through and round the back (in the video: fed from right side to bottom centre)"
+    "hot soldering iron tip preloaded with solder → pressed against twisted copper join at middle of white wire loop, in the video: iron comes down from top centre",
+    "thin silver solder wire → touched to hot join until melted silver spreads along copper, in the video: fed from right hand"
    ],
    "watch_for": [
-    "if the silver balls up and will not spread, the twist was too cold or had too little paste",
-    "if the silver looks dull and lumpy, it moved while cooling and needs reheating until smooth"
+    "if solder balls up and will not spread, the join is not hot enough so hold the iron longer",
+    "if the white coating melts back, the iron was on too long or too close to the coating"
    ],
-   "check_yourself": "It should look like the middle twist is covered in smooth shiny silver with no copper showing.",
-   "safety": "Do not touch the hot metal tip at any time."
+   "check_yourself": "It should look like the centre join is covered with smooth shiny silver solder between the white wires.",
+   "safety": "Never touch the hot iron tip and hold the wire well back from the heat."
   },
   "5": {
-   "title": "Slide black tube over join",
-   "say": "Push the short black tube over one white end. Slide it along until it covers the silver middle with white showing both sides.",
+   "title": "Slide tube over the join",
+   "say": "Pick up the short black tube with one hand. Slide the tube over the white wire and centre it on the join.",
    "placements": [
-    "short black tube → pushed over one white wire end and slid along to the centre to cover the silver middle with white showing both sides (in the video: slid from right end to bottom centre of white loop)"
+    "short black shrink tube → threaded onto one white wire end then slid to middle to cover whole silver join, in the video: bottom centre of loop with white showing both sides"
    ],
    "watch_for": [
-    "if silver still shows at either end, the tube is off centre and needs sliding to cover it",
-    "if the tube is loose and slides easily, it is too big and needs a smaller tube"
+    "if bare silver or copper still shows at either end, the tube is off centre so slide it to cover",
+    "if the tube is loose and slides freely, it is too wide so use a shorter snug tube"
    ],
-   "check_yourself": "It should look like a black tube sitting over the middle with white wire showing on both sides.",
+   "check_yourself": "It should look like a black tube covers the soldered join with white coating visible on both sides.",
    "safety": ""
   },
   "6": {
-   "title": "Shrink the tube with heat",
-   "say": "Hold the white wire steady with one hand. Wave the hot air nozzle gently back and forth over the black tube.",
+   "title": "Heat sleeve tight around join",
+   "say": "Hold the white wire steady well back from the black tube. Aim the hot gun nozzle at the tube and sweep gently until it shrinks tight.",
    "placements": [
-    "hot air nozzle → waved gently back and forth just above the black tube in the middle of the white loop until snug (in the video: silver nozzle from top left over bottom centre of blue mat)"
+    "hot gun silver nozzle → held just above black tube at middle of white wire loop and swept gently along tube, in the video: nozzle from top left over blue table"
    ],
    "watch_for": [
-    "if the tube is still loose, you removed the heat too soon and need more gentle heat",
-    "if the white cover melts or bubbles, you held the heat too long in one spot"
+    "if the tube still slides loosely, it is not hot enough so warm it a little longer",
+    "if the white coating bubbles or browns, you overheated it so lift the heat away sooner"
    ],
-   "check_yourself": "It should look like the black tube is tight and snug all around the white wire.",
-   "safety": "Keep the hot air off your skin at all times."
+   "check_yourself": "It should look like the black sleeve is shrunk tight around the white wire with no bare metal showing.",
+   "safety": "Keep your fingers clear of the hot air and do not touch the hot tube."
   }
  }
 }

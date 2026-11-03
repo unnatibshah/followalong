@@ -1,96 +1,93 @@
 {
- "prompt_version": "step_details-0.8",
+ "prompt_version": "step_details-0.9",
  "model": "muse-spark-1.3",
- "cost_usd": 0.08405475,
+ "cost_usd": 0.074128,
  "actor": "hand",
  "steps": {
   "1": {
-   "title": "Park cars face to face",
-   "say": "Drive the two cars nose to nose with fronts close but not touching. Turn off both engines. Set the brakes hard.",
+   "title": "Face cars together and switch off",
+   "say": "Pull the two cars nose to nose with fronts close but not touching. Turn both keys off. Set both parking brakes.",
    "placements": [
-    "good running car → nose to nose facing dead car with fronts close but not touching and both engines off; in the video: red car on grass edge",
-    "dead car that will not start → nose to nose facing good car with fronts close but not touching and both engines off; in the video: black car in parking lot"
+    "working car → nose to nose facing disabled car with fronts close but not touching and both engines off (in the video: black car facing red car in parking lot)",
+    "disabled car → nose to nose facing working car with fronts close but not touching and both engines off (in the video: red hood raised open over front engine bay with engine off)"
    ],
    "watch_for": [
-    "cars parked too far so cables cannot reach, if the cables pull tight repark closer with fronts nearer",
-    "engine left on with dash lights still glowing, if you see lights or hear the engine turn the key off"
+    "If the paint touches paint they are too close and can scratch.",
+    "If the cable ends cannot reach both batteries the cars are too far apart."
    ],
    "check_yourself": "It should look like two fronts almost touching with both engines quiet and both hoods ready to open.",
-   "safety": "Set the brakes hard so neither car can roll."
+   "safety": "Set the parking brakes so neither car can roll."
   },
   "2": {
    "title": "Open hoods and find batteries",
-   "say": "Open both hoods. Prop them up safely. Find the boxy battery in each front corner near the headlights.",
+   "say": "Lift both front hoods. Prop both hoods open. Find the black box battery in each front corner.",
    "placements": [
-    "hood of good car → raised open over front engine space and held up; in the video: red hood up",
-    "hood of dead car → raised open over front engine space and held up with stick; in the video: black hood up held by wood stick",
-    "boxy battery of good car → in front corner of engine space near headlight; in the video: side of red car engine space",
-    "boxy battery of dead car → in front corner of engine space near headlight; in the video: side of black car engine space near yellow fluid bottle"
+    "red car hood → raised open and propped over front engine bay (in the video: red hood held up on left side of frame)",
+    "black car hood → raised open and propped over front engine bay (in the video: black hood held up by wooden stick on right side of frame)",
+    "dead battery → black box with plus and minus posts in front corner of engine bay (in the video: left front corner of red car bay)",
+    "good battery → black box with plus and minus posts in front corner of engine bay (in the video: right front corner of black car bay)"
    ],
    "watch_for": [
-    "mixing up the battery with the washer bottle or air box, if the box has no thick posts marked plus and minus it is not the battery",
-    "hood not propped and can fall, if the hood wobbles push the prop until it locks"
+    "If you cannot see the black box you are looking in the wrong corner so check the other side.",
+    "If the hood will not stay up the prop is not seated so reset it before you lean in."
    ],
-   "check_yourself": "It should look like both hoods standing open with a big boxy battery seen in each front corner.",
-   "safety": "Keep fingers clear of the heavy hood edge so it cannot pinch you."
+   "check_yourself": "It should look like two open engine bays with a black box battery showing in each one.",
+   "safety": "Hold the hood firm so it cannot fall on you."
   },
   "3": {
    "title": "Clip red clamps to plus posts",
-   "say": "Clip the first red clamp to the plus post of the dead battery. Clip the other red clamp to the plus post of the working battery. Wiggle both red clamps so they grip tight and cannot slip.",
+   "say": "Clip the first red clamp to the plus post of the dead battery. Clip the second red clamp to the plus post of the good battery.",
    "placements": [
-    "first red clamp on red wire → plus post of dead battery usually marked plus or under red cover; in the video: post of black battery in black car with red cover lifted",
-    "second red clamp on red wire → plus post of good battery usually marked plus or under red cover; in the video: post of battery in red car engine bay"
+    "first red clamp → plus post of dead battery usually marked plus or under red cover (in the video: front post on black box in red car on left side of frame)",
+    "second red clamp → plus post of good battery usually marked plus or under red cover (in the video: rear post on black battery in black car engine bay)"
    ],
    "watch_for": [
-    "red clamp on the minus post, if the post is marked minus move the red clamp to the plus side",
-    "red clamp loose and rocking, if you can wiggle it off squeeze it tighter until it cannot move"
+    "If the red clamp wiggles the bite is loose so squeeze again until it holds.",
+    "If the red clamps touch each other or bare metal you have a short so keep them apart."
    ],
-   "check_yourself": "It should look like a red clamp biting the plus post on each battery with the red wire running between the cars.",
-   "safety": "Keep the red clamps from touching each other or any bare metal while you work."
+   "check_yourself": "It should look like two red clamps biting both plus posts with metal teeth tight and cables hanging free.",
+   "safety": "Keep the red clamps from touching each other or any bare metal."
   },
   "4": {
-   "title": "Clip black clamps to minus and metal",
-   "say": "Clip one black clamp to the minus post of the working battery. Clip the last black clamp to bare metal on the dead car. Choose a spot away from the battery and moving belts.",
+   "title": "Clip black to minus and metal",
+   "say": "Clip the black clamp to the minus post of the good battery. Clip the other black clamp to bare shiny metal on the dead engine.",
    "placements": [
-    "black clamp on black wire → minus post of good battery usually marked minus; in the video: battery in red car engine bay",
-    "black clamp on black wire → bare unpainted metal bolt on frame of dead car away from battery; in the video: bare metal above headlight in black car engine bay"
+    "black clamp from good side → minus post of good battery usually marked minus (in the video: side post on black battery in black car bay)",
+    "black clamp from dead side → bare shiny metal on dead engine away from battery (in the video: bolt on front frame above headlight with hand holding clamp)"
    ],
    "watch_for": [
-    "black clamp on the minus post of the dead battery, if both clamps are on the dead battery move the last black clamp to bare metal instead",
-    "black clamp on paint or plastic or near belts, if there is no shiny metal bite pick a clean bolt on the frame"
+    "If the second black clamp is on the dead minus post it is wrong so move it to bare metal.",
+    "If any clamp touches moving parts it can catch so keep cables clear of belts."
    ],
-   "check_yourself": "It should look like one black clamp on the working battery minus post and the last black clamp biting bare shiny metal on the dead car.",
-   "safety": "Clip the last black clamp to bare metal never to the dead minus post."
+   "check_yourself": "It should look like one black clamp on the minus post and one black clamp on bare shiny metal away from the battery.",
+   "safety": "Keep the second black clamp away from the dead battery and use bare metal only."
   },
   "5": {
-   "title": "Start working car to charge",
-   "say": "Start the working car engine with its key. Leave it running for a few minutes to charge.",
+   "title": "Start good car and wait",
+   "say": "Sit in the good car. Turn the key to start. Let it run a few minutes to charge.",
    "placements": [
-    "key of working car → key hole beside steering wheel turned to start with dash lights on then left running; in the video: tan dash of red car with key turned"
+    "key in good car ignition → turned to start with foot on brake until engine runs then released (in the video: hand turning key beside steering wheel with orange dash lights lit)"
    ],
    "watch_for": [
-    "starting the dead car too early, if the dead car is cranked before charging wait a few more minutes with the working car running",
-    "working car stalled or turned off, if dash lights go out restart it and keep it running"
+    "If the good engine stops right away the key was not held long enough so start again.",
+    "If the dead battery gets no time it will not charge so wait a few minutes."
    ],
-   "check_yourself": "It should look like the working car dash lit with its engine humming while the cables stay still for a few minutes.",
-   "safety": "Keep hands and clothes clear of spinning belts while the engine runs."
+   "check_yourself": "It should look like the good car running with dash lights on while the cables stay still.",
+   "safety": "Keep hands and clothes clear of the spinning belts and fan."
   },
   "6": {
-   "title": "Start dead car and remove cables",
-   "say": "Start the dead car engine with its key. Lift the red and black clamps clear and apart. Leave the revived car running for a few minutes.",
+   "title": "Start dead car and unclip cables",
+   "say": "Turn the key in the dead car to start it. Pull off the red and black clamps. Let the dead car run a few minutes alone.",
    "placements": [
-    "key of dead car → key hole beside steering wheel turned to start; in the video: dash of black car with key turned",
-    "black clamp from bare metal on dead car → lifted clear of engine space and held apart from other clamps; in the video: lifted off front frame above headlight",
-    "black clamp from minus post of working car → lifted clear of engine space and held apart; in the video: lifted off red car battery",
-    "red clamp from plus post of working car → lifted clear of engine space and held apart; in the video: lifted off red car battery",
-    "red clamp from plus post of dead car → lifted clear of engine space and held apart; in the video: lifted off black car battery"
+    "both black clamps → lifted off minus post and bare metal and held clear of engine (in the video: hand lifting clamp from battery area)",
+    "both red clamps → lifted off plus posts and held clear so no clamp touches metal (in the video: engine bays with clamps removed and cables clear of batteries)"
    ],
    "watch_for": [
-    "clamps touching each other when removing, if you see a spark keep each clamp in separate hands apart",
-    "turning off the revived car right away, if it was just started leave it running a few minutes so it does not die again"
+    "If the dead car dies right away the charge was too short so hook up and wait longer.",
+    "If a loose clamp touches metal while running it can spark so hold each one clear."
    ],
-   "check_yourself": "It should look like both engines humming with all clamps off and the wires clear of both front spaces.",
-   "safety": "Keep the loose clamps apart so they never touch each other."
+   "check_yourself": "It should look like both engine bays with no clamps on and no cables near the spinning parts.",
+   "safety": "Keep hands and clothes clear of the spinning belts while it runs."
   }
  }
 }

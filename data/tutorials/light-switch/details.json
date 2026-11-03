@@ -1,118 +1,122 @@
 {
- "prompt_version": "step_details-0.8",
+ "prompt_version": "step_details-0.9",
  "model": "muse-spark-1.3",
- "cost_usd": 0.1404135,
+ "cost_usd": 0.13259075,
  "actor": "hand",
  "steps": {
   "1": {
-   "title": "Turn off entry bedroom power",
-   "say": "Flip the black breaker toggle for the entry and bedroom to the off position.",
+   "title": "Turn off the entry power",
+   "say": "Push the black power switch marked entry bedroom to off. Leave it off until the cover is back on.",
    "placements": [
-    "black plastic breaker toggle labeled Entry Bedroom → off position inside open gray breaker box in the middle row; in the video: third breaker down on the left side marked Entry Bedroom 1 2"
+    "black power toggle marked entry bedroom → OFF position in grey metal power box, third switch down on left side in the video, pushed with fingertip"
    ],
    "watch_for": [
-    "If the hall light still turns on, you flipped the wrong breaker toggle.",
-    "If the toggle sits in the middle, push it fully to off until it clicks."
+    "if the hallway light still turns on, you pushed the wrong switch",
+    "if the toggle sits in the middle, push it fully to off until it clicks"
    ],
-   "check_yourself": "It should look like the labeled breaker toggle rests in the off position inside the open panel.",
-   "safety": "Touch only the plastic breaker handle with dry hands."
+   "check_yourself": "It should look like the small black switch for entry bedroom resting in the off position inside the open grey box.",
+   "safety": "Keep your fingers only on the plastic switch and off any metal around it."
   },
   "2": {
-   "title": "Take off the wall cover",
-   "say": "Unscrew the four small silver screws from the white rectangular cover. Lift the white rectangular cover straight off the wall.",
+   "title": "Lift off the wall cover",
+   "say": "Unscrew the four small screws in the white cover. Lift the cover straight off the wall.",
    "placements": [
-    "white rectangular double cover → lifted off the wall beside the white door lock leaving two white switches exposed; in the video: cover over the two rocker switches left of the door",
-    "four small silver cover screws → out of the top and bottom corner holes of the cover and into your hand"
+    "four small cover screws → out of corners of white double cover over two switches, in the video: top two and bottom two holes, removed with power drill",
+    "white double cover plate → off the wall into your hand, revealing two white switches behind, in the video: left of white door lock"
    ],
    "watch_for": [
-    "If the cover sticks, you missed a corner screw still holding the top or bottom.",
-    "If a switch moves, you are pulling the switch and not just the cover."
+    "if the cover will not come off, a screw is still holding it",
+    "if paint sticks, wiggle gently or the cover can crack"
    ],
-   "check_yourself": "It should look like two white switches exposed on the wall with no cover.",
+   "check_yourself": "It should look like two white switches sitting open on the wall with no cover.",
    "safety": ""
   },
   "3": {
-   "title": "Take out the right old switch",
-   "say": "Unscrew the top and bottom silver screws on the right white switch. Pull the right white switch straight out from the blue wall hole.",
+   "title": "Take out the old switch",
+   "say": "Unscrew the top and bottom screws on the right white switch. Pull the switch out and cut its two black wires free.",
    "placements": [
-    "right white rocker switch → pulled out from the right side of the blue wall box to your hand; in the video: switch on the right beside the white door lock",
-    "two small silver mounting screws holding the right switch → out of the top and bottom metal tabs and into your hand",
-    "two black wall wires and one bare copper ground wire → left hanging from the blue wall box after cutting free from the old switch"
+    "top and bottom mounting screws on right white switch → out of metal tabs at top and bottom of blue wall hole, in the video: right side of double hole, removed with small screwdriver",
+    "right white switch body → out of blue wall hole into your hand, leaving left white switch still mounted, in the video: right opening beside door trim",
+    "two black wires on back of old switch → cut free with cutters at the switch, leaving short black ends hanging from wall hole in the video"
    ],
    "watch_for": [
-    "If both switches come loose, you unscrewed the left switch instead of the right one.",
-    "If the wires spring back short, you cut them too close to the wall."
+    "if the switch will not pull out, a mounting screw is still tight",
+    "if you cut the wrong wires, you may cut wires for the left switch that stays"
    ],
-   "check_yourself": "It should look like one white switch remains mounted beside an open blue hole with loose wires hanging out.",
-   "safety": "Keep the power off at the breaker before you touch any wire."
+   "check_yourself": "It should look like one white switch still on the left with an open hole and loose wires on the right.",
+   "safety": "Confirm the power is dead with a tester before you touch any wire."
   },
   "4": {
-   "title": "Connect the green safety wire",
-   "say": "Twist the green wire from the new white switch to the bare copper ground wire. Twist a yellow cap onto the joined ends until tight.",
+   "title": "Join the green and bare wires",
+   "say": "Hold the green wire from the new switch against the bare wire from the wall. Twist a yellow cap on tight to cover the bare ends.",
    "placements": [
-    "green insulated wire from the new white switch → twisted together with the bare copper ground wire from the blue wall box under a yellow twist cap; in the video: hanging lower right wires below the left white switch"
+    "green wire from new white switch → twisted together with bare copper wire hanging from blue wall hole, in the video: lower right side of hole near door trim",
+    "small yellow twist cap → screwed clockwise by fingers over joined green and bare ends until tight with no copper showing in the video"
    ],
    "watch_for": [
-    "If bare copper shows below the yellow cap, the twist is loose and can shock you.",
-    "If the green wire joins a black or white wire, you grabbed the wrong wall wire."
+    "if you see bare copper below the cap, the cap is loose",
+    "if the cap falls off with a tug, twist the wires tighter and recap"
    ],
-   "check_yourself": "It should look like a yellow cap joins the green switch wire to the bare ground wire hanging from the box.",
-   "safety": "Keep the power off at the breaker while you twist the wires."
+   "check_yourself": "It should look like a green wire and a bare wire joined under one yellow cap hanging down.",
+   "safety": "Keep the joined bare ends away from the other wall wires while you work."
   },
   "5": {
-   "title": "Join the white wires and cap blue",
-   "say": "Gather the white wires from the wall with the white wire from the new switch. Twist a yellow cap onto the white bundle until tight. Push a second yellow cap onto the lone blue switch wire alone.",
+   "title": "Join white wires and cap blue",
+   "say": "Twist the white wire from the new switch into the white bundle from the wall. Screw a yellow cap on tight to cover the joined white ends. Push a yellow cap alone onto the short blue wire from the new switch.",
    "placements": [
-    "white insulated wire from the new white switch → twisted with the bundle of white wall wires under a yellow twist cap inside the blue wall box; in the video: three white wall wires on the left side",
-    "blue insulated wire from the new white switch → closed alone under its own yellow twist cap near the wall opening; in the video: short blue wire hanging below the switch"
+    "white wire from new white switch → twisted into bundle of white wires from back of blue wall hole, in the video: middle of hole under yellow cap. narration says red cap but frame shows yellow",
+    "small yellow twist cap → screwed clockwise by fingers over joined white ends until tight with no copper showing in the video",
+    "short blue wire from new white switch → capped alone with small yellow cap and left unused near wall opening in the video"
    ],
    "watch_for": [
-    "If any white copper shows below the cap, the bundle is loose and will lose contact.",
-    "If the blue wire is left bare, it can touch other wires so it must have its own cap."
+    "if white copper shows below the cap, unscrew and retwist tighter",
+    "if the blue wire is left open, it can touch other wires so it must stay capped"
    ],
-   "check_yourself": "It should look like yellow caps close the bundled white wires and the lone blue wire near the wall opening.",
-   "safety": "Keep the power off at the breaker while you join the wires."
+   "check_yourself": "It should look like a bundle of white wires under one yellow cap and a lone blue wire closed with another yellow cap.",
+   "safety": "Keep the power off until all the white ends are fully covered."
   },
   "6": {
    "title": "Join black and red switch wires",
-   "say": "Twist the black switch wire to one black wall wire under a yellow cap. Twist the red switch wire to the other black wall wire under a yellow cap.",
+   "say": "Twist the black wire from the new switch to one black wire from the wall. Twist the red wire from the new switch to the other black wall wire. Screw a yellow cap tight onto each joined pair.",
    "placements": [
-    "black insulated wire from the new white switch → twisted to one black wall wire from the blue wall box under a yellow twist cap; in the video: right side black wall wire",
-    "red insulated wire from the new white switch → twisted to the other black wall wire from the blue wall box under a yellow twist cap; in the video: left side black wall wire"
+    "black wire from new white switch → twisted together with one black wire from blue wall hole, in the video: right side of hole hanging down",
+    "red wire from new white switch → twisted together with the other black wire from blue wall hole, in the video: middle of hole",
+    "two small yellow twist caps → screwed clockwise by fingers, one over each black pair until tight with no copper showing in the video"
    ],
    "watch_for": [
-    "If copper shows below a yellow cap, unscrew and retwist until no bare metal shows.",
-    "If a new switch wire joins a white bundle, you used the wrong wall wires and the light will not work."
+    "if bare copper shows below a cap, the joint is loose and can spark",
+    "if the light will not turn on later, a cap may be loose so tug gently to test"
    ],
-   "check_yourself": "It should look like yellow caps join the new switch black and red wires to the black wall wires.",
-   "safety": "Keep the power off at the breaker while you connect the wires."
+   "check_yourself": "It should look like the new switch hanging with its black and red wires each joined to a black wall wire under yellow caps.",
+   "safety": "Keep the two joined pairs apart so the bare ends never touch each other."
   },
   "7": {
-   "title": "Push in and screw the switch",
-   "say": "Fold the wires gently back into the blue wall hole. Push the new white switch into the right side opening. Drive the top and bottom silver screws into the metal tabs.",
+   "title": "Push in and screw new switch",
+   "say": "Tuck the joined wires gently back into the hole in the wall. Push the new white switch into the right side of the hole. Tighten the top and bottom screws with a screwdriver or drill.",
    "placements": [
-    "new white smart switch body → pushed into the right side of the blue double wall box beside the left old white switch; in the video: to the right of the old switch beside the white door frame",
-    "top and bottom small silver mounting screws → through the metal tabs of the new switch into the wall box until snug"
+    "joined wires with yellow caps → folded gently back into blue wall hole behind switches, in the video: pushed into right opening with fingers",
+    "new white switch body → into right side of double wall hole beside left old white switch, in the video: right opening next to door trim",
+    "top and bottom mounting screws on new switch → through metal tabs into box and tightened with power drill from right side of frame in the video"
    ],
    "watch_for": [
-    "If the switch will not go in, wires are bunched behind it so fold them flatter.",
-    "If the switch sits crooked, one mounting screw is tighter than the other."
+    "if the switch will not sit flat, wires are bunched behind it so repack them",
+    "if the metal tabs pinch a wire, pull the switch out and move the wire clear"
    ],
-   "check_yourself": "It should look like a new white smart switch sits mounted beside the old white switch in the open wall box.",
-   "safety": "Keep the power off while you push the wires and turn the screws."
+   "check_yourself": "It should look like a new white switch mounted beside the old white switch in the open wall hole.",
+   "safety": "Keep your fingers clear of the sharp metal edges around the switch tabs."
   },
   "8": {
-   "title": "Put the cover back on",
-   "say": "Set the white double cover over both white switches on the wall. Drive the four small silver screws into the corner holes until snug. Press the lower white button on the right switch to test the green light.",
+   "title": "Put back the wall cover",
+   "say": "Set the white double cover over both switches on the wall. Tighten the four small screws at the corners with a screwdriver.",
    "placements": [
-    "white double rectangular cover → over the left old white switch and the right new white smart switch on the wall beside the door; in the video: covering both switches left of the white door lock",
-    "four small silver cover screws → into the top left and top right and bottom left and bottom right holes of the cover until snug"
+    "white double cover plate → over both left old switch and right new switch on wall, in the video: left of white door lock covering blue hole",
+    "four small cover screws → into top and bottom holes of cover and tightened with small screwdriver by hand, in the video: two at top and two at bottom"
    ],
    "watch_for": [
-    "If the cover rocks, a switch sits too far out so push the switch deeper.",
-    "If the green light is hidden, the cover is upside down so turn it until the holes line up."
+    "if the cover cracks, the corner screws are too tight",
+    "if the small green light is hidden, the cover is upside down so turn it"
    ],
-   "check_yourself": "It should look like a white double cover sits flat on the wall with both switches showing and a small green light on.",
+   "check_yourself": "It should look like a white double cover over the wall with both switches showing and a small green light on.",
    "safety": ""
   }
  }

@@ -298,5 +298,293 @@
   "say": "",
   "latency_ms": 2153,
   "cost_usd": 0.00394225
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look1.jpg|0|watch-0.7": {
+  "status": "working",
+  "observation": "Hand pinching top of multicolor rope with two strands crossing below, small loop at top rather than big loop below cross yet",
+  "on_action": 3,
+  "say": "Good, you've got the cross in front. Now open that loop up nice and big.",
+  "latency_ms": 9483,
+  "cost_usd": 0.00526905
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look2.jpg|1|watch-0.7": {
+  "status": "mistake",
+  "observation": "Rope crossed in front with large loop above the cross instead of hanging below it",
+  "on_action": 3,
+  "say": "Oh, wait, your big loop is above the cross. Turn it so the big loop hangs down below where the end crosses.",
+  "latency_ms": 5825,
+  "cost_usd": 0.00533475
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look3.jpg|2|watch-0.7": {
+  "status": "mistake",
+  "observation": "Rope crossed in front but the large open loop is sitting above the cross on the table, not hanging below it as finished requires",
+  "on_action": 3,
+  "say": "Oh, wait, that big loop's still above the cross. Flip it down so it hangs below where the end crosses.",
+  "latency_ms": 6252,
+  "cost_usd": 0.00526225
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look4.jpg|3|watch-0.7": {
+  "status": "mistake",
+  "observation": "Multicolor rope on table with pink tail crossing in front, but large loop is above the cross and tail points right, not a big loop hanging below",
+  "on_action": 1,
+  "say": "Hold on, that loop's still above. Bring it down below the cross.",
+  "latency_ms": 9437,
+  "cost_usd": 0.00676075
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look1.jpg|0|watch-0.7": {
+  "status": "mistake",
+  "observation": "Live shows yellow tail crossing in front of the green standing part to the right, with no pinched twist at the top, while tutorial shows tail behind forming a twist.",
+  "on_action": 1,
+  "say": "Oh, wait, that tail's sitting in front. Pull it back and pass it behind the standing part, then out to the right.",
+  "latency_ms": 6198,
+  "cost_usd": 0.00517175
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look2.jpg|1|watch-0.7": {
+  "status": "mistake",
+  "observation": "Pink tail still crossing in front of standing part to the right, no twist formed, loop not matching tutorial twist",
+  "on_action": 1,
+  "say": "Hold on, it's still in front. Lift it off and tuck it behind the long part, then out to the right.",
+  "latency_ms": 3576,
+  "cost_usd": 0.0031835500000000003
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look3.jpg|2|watch-0.7": {
+  "status": "mistake",
+  "observation": "Pink tail still lying in front of the standing part to the right with no twist, not behind as required.",
+  "on_action": 1,
+  "say": "Hold on, it's still crossing in front. Pick it up and pass it behind the long part, then out to the right.",
+  "latency_ms": 4611,
+  "cost_usd": 0.004705
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look4.jpg|3|watch-0.7": {
+  "status": "mistake",
+  "observation": "Pink tail still lying in front of the standing part, no twist formed, loop not matching twist shape",
+  "on_action": 1,
+  "say": "Oh, wait, that's still in front with no twist. Slip it back under and around behind the long part to the right.",
+  "latency_ms": 5540,
+  "cost_usd": 0.0049205
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look1.jpg|0|watch-0.7": {
+  "status": "working",
+  "observation": "Hands mid-threading multicolor cord, short tail being pushed through loop, knot not yet tightened into figure-eight",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 2400,
+  "cost_usd": 0.00361
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look2.jpg|1|watch-0.7": {
+  "status": "working",
+  "observation": "Live rope still loose on table with large loop formed, tail positioned near loop but not yet pulled through and tightened into figure-eight shape.",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 3475,
+  "cost_usd": 0.004108
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look3.jpg|2|watch-0.7": {
+  "status": "working",
+  "observation": "Live rope shows loose figure-eight shape on table with tail through the middle, not yet pulled snug like tutorial's tight upright eight.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 2706,
+  "cost_usd": 0.004021
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look4.jpg|3|watch-0.7": {
+  "status": "working",
+  "observation": "Live rope shows loose figure-eight with tail through middle, not yet pulled snug.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 1885,
+  "cost_usd": 0.003631
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look1.jpg|0|watch-0.8": {
+  "status": "working",
+  "observation": "Hand pinching a rope cross on a table, small loop at fingers with two legs running down out of frame, no large open loop below the cross yet.",
+  "on_action": 3,
+  "say": "Good, you've got the cross started. Keep going.",
+  "latency_ms": 9483,
+  "cost_usd": 0.005842
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look2.jpg|1|watch-0.8": {
+  "status": "looks_done",
+  "observation": "Hands holding a large open loop with the short end crossed over the front of the standing part, matching the finished shape though rotated flat on the table.",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 10212,
+  "cost_usd": 0.0055668
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look3.jpg|2|watch-0.8": {
+  "status": "looks_done",
+  "observation": "Rope on table with big open loop and short end crossed over the front, matching the finished cross though laid flat and rotated from the tutorial angle.",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 7058,
+  "cost_usd": 0.00575275
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look4.jpg|3|watch-0.8": {
+  "status": "looks_done",
+  "observation": "Rope lying flat with a large open loop and the end crossed over the front, matching the finished cross shape though rotated from tutorial angle",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 5211,
+  "cost_usd": 0.0048085
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look1.jpg|0|watch-0.8": {
+  "status": "mistake",
+  "observation": "Live rope shows short yellow end crossing in front of the long vertical part, not behind, so no twist formed yet compared to tutorial twist with end behind to the right.",
+  "on_action": 1,
+  "say": "Oh, wait, that short end's in front of the long part. Lift it and pass it behind, then around to the right.",
+  "latency_ms": 4773,
+  "cost_usd": 0.00482125
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look2.jpg|1|watch-0.8": {
+  "status": "mistake",
+  "observation": "Live rope still has the short end in front of the standing part with no twist, unlike tutorial twist with end behind to right and open loop below.",
+  "on_action": 1,
+  "say": "Hold on, it's still in front. Pass that short end behind the long part then out to the right.",
+  "latency_ms": 5744,
+  "cost_usd": 0.00519725
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look3.jpg|2|watch-0.8": {
+  "status": "mistake",
+  "observation": "Live rope still has the short end crossing in front of the long part with no twist, unlike tutorial twist with end behind to the right",
+  "on_action": 1,
+  "say": "Hold on, that twist still isn't there. Take the short end under behind the long part and out to the right.",
+  "latency_ms": 5605,
+  "cost_usd": 0.0048355
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look4.jpg|3|watch-0.8": {
+  "status": "mistake",
+  "observation": "Live rope still has the short end in front of the standing part with no twist, unlike tutorial twist with end behind to right and open loop below",
+  "on_action": 1,
+  "say": "Oh, wait, you're still crossing in front. Tuck that short end behind the long part.",
+  "latency_ms": 3502,
+  "cost_usd": 0.00309925
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look1.jpg|0|watch-0.8": {
+  "status": "working",
+  "observation": "Hands manipulating multicolor rope, threading tail through loop, figure-eight not yet tightened",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 1980,
+  "cost_usd": 0.00233975
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look2.jpg|1|watch-0.8": {
+  "status": "working",
+  "observation": "multicolor rope on wood forming open loop with tail alongside, not yet threaded through and tightened into figure-eight",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 3275,
+  "cost_usd": 0.002588
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look3.jpg|2|watch-0.8": {
+  "status": "working",
+  "observation": "multicolor rope on wood forming loose open eight with tail alongside, not yet threaded through bottom loop and tightened",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 2387,
+  "cost_usd": 0.00241825
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look4.jpg|3|watch-0.8": {
+  "status": "working",
+  "observation": "multicolor rope lying on wood in loose figure-eight shape with tail in center, not yet pulled through bottom loop and tightened",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 4163,
+  "cost_usd": 0.0029965
+ },
+ "eval/cross/breadboard-led-session/step1-look1.jpg|0|watch-0.8": {
+  "status": "cant_see",
+  "observation": "Close-up of hands over a light breadboard, fingers covering most of the top holes. A dark wire is being pushed on the right side but white and blue wire positions cannot be confirmed, image is tight a",
+  "on_action": 2,
+  "say": "I can't see both top wires clearly. Pull your hands back and tilt up a little.",
+  "latency_ms": 7629,
+  "cost_usd": 0.0038751
+ },
+ "eval/cross/breadboard-led-session/step1-look2.jpg|1|watch-0.8": {
+  "status": "cant_see",
+  "observation": "Live view is a tight close-up of a larger breadboard with fingers covering most holes; white wire on left and blue wire positions cannot be confirmed.",
+  "on_action": 2,
+  "say": "Pull back a bit so I can see the whole top edge of the board.",
+  "latency_ms": 6035,
+  "cost_usd": 0.00389025
+ },
+ "eval/cross/breadboard-led-session/step1-look3.jpg|2|watch-0.8": {
+  "status": "cant_see",
+  "observation": "Tight close-up of hands covering most of breadboard top, white and blue wire positions cannot be confirmed.",
+  "on_action": 2,
+  "say": "I still can't see the wires, lift your fingers off the top of the board for a second.",
+  "latency_ms": 4041,
+  "cost_usd": 0.00330425
+ },
+ "eval/cross/breadboard-led-session/step1-look4.jpg|3|watch-0.8": {
+  "status": "cant_see",
+  "observation": "Tight close-up of large breadboard with fingers covering top holes, wire colors and placements cannot be confirmed",
+  "on_action": 2,
+  "say": "I still can't see the top of the board, pull your hand back so I can see both wires.",
+  "latency_ms": 3347,
+  "cost_usd": 0.0029415
+ },
+ "eval/cross/breadboard-led-session/step2-look1.jpg|0|watch-0.8": {
+  "status": "cant_see",
+  "observation": "Live view shows fingers pushing a thin leg into board but resistor body and white wire row are not clearly visible, cannot judge placement.",
+  "on_action": 1,
+  "say": "I can't see the resistor and the white wire row. Pull your hands back a little.",
+  "latency_ms": 8729,
+  "cost_usd": 0.004378
+ },
+ "eval/cross/breadboard-led-session/step2-look2.jpg|1|watch-0.8": {
+  "status": "cant_see",
+  "observation": "hands covering board, resistor body and white wire row not visible, cannot judge leg placement",
+  "on_action": 1,
+  "say": "Hold your hands clear and tilt the phone down so I can see the top of the board.",
+  "latency_ms": 11366,
+  "cost_usd": 0.005573
+ },
+ "eval/cross/breadboard-led-session/step2-look3.jpg|2|watch-0.8": {
+  "status": "cant_see",
+  "observation": "hands cover the board, resistor body and rows not visible, cannot judge leg placement",
+  "on_action": 1,
+  "say": "I still can't see the board under your hands. Lift your fingers off and back the camera up a bit.",
+  "latency_ms": 3873,
+  "cost_usd": 0.00299525
+ },
+ "eval/cross/breadboard-led-session/step2-look4.jpg|3|watch-0.8": {
+  "status": "cant_see",
+  "observation": "hands still covering the board, resistor body and white wire row not visible so leg placement cannot be judged",
+  "on_action": 1,
+  "say": "I still can't see under your hands. Move your fingers away so the board is clear.",
+  "latency_ms": 3303,
+  "cost_usd": 0.00430625
+ },
+ "eval/cross/breadboard-led-session/step3-look1.jpg|0|watch-0.8": {
+  "status": "working",
+  "observation": "Hand holding a red LED over breadboard with legs positioned above board but not yet seated, resistor and wire present underneath",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 2958,
+  "cost_usd": 0.0022475999999999998
+ },
+ "eval/cross/breadboard-led-session/step3-look2.jpg|1|watch-0.8": {
+  "status": "working",
+  "observation": "Hand holding red LED above breadboard, legs not yet seated in rows",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 3335,
+  "cost_usd": 0.0028535
+ },
+ "eval/cross/breadboard-led-session/step3-look3.jpg|2|watch-0.8": {
+  "status": "working",
+  "observation": "Hand holding red LED above breadboard with legs not yet seated, resistor and wire visible below",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 3105,
+  "cost_usd": 0.0041035
+ },
+ "eval/cross/breadboard-led-session/step3-look4.jpg|3|watch-0.8": {
+  "status": "working",
+  "observation": "Red LED now sits on the breadboard with legs inserted, changed from being held above, but it is not glowing",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 10487,
+  "cost_usd": 0.00644475
  }
 }
