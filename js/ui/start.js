@@ -16,43 +16,44 @@ export async function render(root) {
     note.hidden = false;
   };
 
-  // The first 5 seconds: who it's for, what goes in, what it does, what to press
+  // The first 5 seconds: what it is, what goes in, what you get, who it's for, what to press
   const toLib = () => root.querySelector('#fa-lib').scrollIntoView({ behavior: 'smooth' });
   const hero = h('section', { class: 'wrap hero' },
     h('div', { class: 'hero-copy' },
-      h('span', { class: 'hero-eyebrow' }, h('span', { class: 'dot accent', 'aria-hidden': 'true' }), 'A lab partner for every student at the bench'),
-      h('h1', { class: 'display' }, 'It watches your hands and catches the slip.'),
-      h('p', { class: 'lede' }, 'Give FollowAlong a how-to video or a kit manual. It turns it into exact steps, watches you build each one '
-        + 'through your camera, and speaks up the moment something\u2019s off, like a TA standing next to you.'),
+      h('span', { class: 'hero-eyebrow' }, h('span', { class: 'dot accent', 'aria-hidden': 'true' }), 'Real-time visual guidance for hands-on work'),
+      h('h1', { class: 'display' }, 'Instructions that see your work.'),
+      h('p', { class: 'lede' }, 'FollowAlong turns any video, manual or set of photos into a live, step-by-step guide. It follows along '
+        + 'through your camera, checks every step, and tells you the moment something\u2019s off, so it\u2019s right the first time.'),
       h('div', { class: 'hero-inputs', role: 'list', 'aria-label': 'What you can start from' },
-        [['▶', 'a how-to video'], ['📄', 'a kit manual (PDF)'], ['📷', 'snap the pages']].map(([i, t]) =>
+        [['▶', 'Video'], ['📄', 'Manual'], ['📷', 'Photos of the pages']].map(([i, t]) =>
           h('span', { class: 'hero-chip', role: 'listitem' }, h('span', { 'aria-hidden': 'true' }, i), t)),
         h('span', { class: 'hero-arrow', 'aria-hidden': 'true' }, '→'),
-        h('span', { class: 'hero-chip strong', role: 'listitem' }, 'a lesson that checks your work')),
+        h('span', { class: 'hero-chip strong', role: 'listitem' }, 'A guide that checks every step')),
       h('div', { class: 'hero-actions' },
-        h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'Watch it catch a mistake', icon('arrow')),
-        h('button', { class: 'btn-underline', onclick: toLib }, 'Start a lesson ↓')),
-      h('div', { class: 'fine' }, 'SAM 3.1 measures, Muse Spark judges, you just talk to it \u00b7 stops before risky steps \u00b7 7 languages. '
-        + 'The replay needs no camera or key.')),
+        h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'See it in action', icon('arrow')),
+        h('button', { class: 'btn-underline', onclick: toLib }, 'Start a guide ↓')),
+      h('div', { class: 'hero-uses', 'aria-label': 'Built for' },
+        h('span', { class: 'fine' }, 'Built for'),
+        ['Electronics', 'Repairs & installs', 'Assembly', 'Training', 'Robotics'].map((t) => h('span', { class: 'hero-use' }, t)))),
     h('div', { class: 'hero-art' },
-      h('a', { href: '#/replay', class: 'hero-frame', 'aria-label': 'Watch it catch a mistake' },
-        // The coach's mistake moment: the CC BY tutorial's step-3 frame with only the LED recoloured (web/img/README)
+      h('a', { href: '#/replay', class: 'hero-frame', 'aria-label': 'See it in action' },
+        // A real check: the CC BY tutorial's step-3 frame with only the LED recoloured (web/img/README.md)
         h('img', { class: 'frame-img', src: 'img/hero-mistake.jpg', alt: 'A breadboard with the wrong, orange LED pushed in', decoding: 'async' }),
-        h('div', { class: 'hero-badge' }, icon('x'), h('span', {}, 'Oh, wait\u2026')),
+        h('div', { class: 'hero-badge' }, icon('x'), h('span', {}, 'Not quite')),
         h('div', { class: 'hero-inset' }, stepFrame('breadboard-led', 2), h('span', { class: 'inset-tag' }, '3 s loop')),
-        h('div', { class: 'hero-hint' }, "That one's glowing orange. Pull it out and put in the round blue LED, legs in the same rows.")),
+        h('div', { class: 'hero-hint' }, "That's the orange LED. Use the round blue one, legs in the same rows.")),
       h('div', { class: 'hero-legend', 'aria-hidden': 'true' },
-        ['your turn', 'it watches', 'catches the slip', 'you fix it', 'next step'].flatMap((t, i) =>
+        ['shows the step', 'sees your work', 'flags the mistake', 'you fix it', 'next step'].flatMap((t, i) =>
           [i ? h('span', { class: 'rule' }) : null, h('span', { class: i === 2 ? 'slip' : '' }, t)]))));
 
   const how = h('section', { class: 'wrap' }, h('div', { class: 'how' },
-    h('div', { class: 'how-lead' }, 'One teacher, thirty benches. Now every student has someone watching their circuit.'),
-    [['01', 'Bring the instructions', 'A YouTube video, the kit\u2019s PDF, or photos of the paper manual. Muse Spark turns it into exact steps: which row, which pin, which way round, and what can hurt you.'],
-      ['02', 'It watches the bench', 'Every couple of seconds it looks through your camera. SAM 3.1 measures what\u2019s there; Muse Spark judges what geometry can\u2019t: "Oh, wait, that\u2019s the wrong row."'],
-      ['03', 'Hands stay on the work', '"Am I doing it right?" "Go back a step." Hands-free, interruptible, in 7 languages. Teachers see where the class gets stuck.']].map(([n, t, d]) =>
+    h('div', { class: 'how-lead' }, 'The instructions you already have, turned into a guide that knows when you\u2019ve got it right.'),
+    [['01', 'Bring any instructions', 'A how-to video, a PDF manual, or photos of a paper one. Muse Spark turns it into exact steps: which part, where it goes, which way round, and what to be careful of.'],
+      ['02', 'It sees your work', 'Your phone or laptop camera follows along. SAM 3.1 measures what\u2019s there and Muse Spark judges what geometry can\u2019t, so every step is checked before the next one starts.'],
+      ['03', 'Hands-free and safe', 'Ask, interrupt, go back, by voice, in 7 languages. Risky steps wait for your confirmation, and teams see exactly where people get stuck.']].map(([n, t, d]) =>
       h('div', { class: 'how-item' }, h('span', { class: 'mono muted' }, n), h('span', { class: 'how-title' }, t), h('span', { class: 'how-text' }, d)))));
 
-  const grid = h('div', { class: 'cards', role: 'group', 'aria-label': 'Tutorials' });
+  const grid = h('div', { class: 'cards', role: 'group', 'aria-label': 'Guides' });
   // CC BY attribution: title, author, source and licence for every bundled video
   const credits = h('details', { class: 'credits', hidden: true }, h('summary', {}, 'Video credits and licences'));
   // Slider controls: a page = as many whole cards as fit; the counter shows which ones are on screen
@@ -207,9 +208,9 @@ export async function render(root) {
   });
 
   const lib = h('section', { class: 'wrap lib', id: 'fa-lib' },
-    h('div', {}, h('h2', { class: 'section-title' }, 'Pick a tutorial'),
-      h('div', { class: 'section-sub' }, 'Each one is ready to follow. Muse Spark has already split it into steps.'),
-      h('div', { class: 'section-sub muted' }, 'Each one is a Creative Commons (CC BY) video by the creator named on its card, used under that licence. See the credits below.')),
+    h('div', {}, h('h2', { class: 'section-title' }, 'Start a guide'),
+      h('div', { class: 'section-sub' }, 'Ready to follow: each one is already split into checked steps. Or bring your own below.'),
+      h('div', { class: 'section-sub muted' }, 'Sample guides are made from Creative Commons (CC BY) videos, credited on each card and below.')),
     grid, bar, credits, drop, snapInput, snapPanel, linkForm, note);
 
   // Lessons left part-way, in this browser: one tap back to where they were
@@ -222,7 +223,7 @@ export async function render(root) {
   root.append(h('div', { class: 'page-light' }, resume, hero, how, lib,
     h('footer', { class: 'footer' }, h('div', { class: 'wrap footer-row' },
       h('span', {}, 'Built during the Meta AI Hackathon with Muse Spark, SAM 3.1 and Muse Voice Transcribe'),
-      h('div', { class: 'footer-links' }, h('a', { href: '#/evaluation' }, 'Evaluation'), h('a', { href: '#/creator' }, 'For teachers'),
+      h('div', { class: 'footer-links' }, h('a', { href: '#/evaluation' }, 'Evaluation'), h('a', { href: '#/creator' }, 'For teams'),
         h('a', { href: '#/privacy' }, 'Privacy'), h('a', { href: '#/terms' }, 'Terms'),
         !document.documentElement.hasAttribute('data-static') && h('a', { href: '#/ops' }, 'Status'),
         !app.config.hosted && !document.documentElement.hasAttribute('data-static') && h('a', { href: '#/annotate' }, 'Help check (annotate)'))))));

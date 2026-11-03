@@ -1,7 +1,7 @@
 {
   "name": "FollowAlong",
   "short_name": "FollowAlong",
-  "description": "A lab partner for every student: turns a video or kit manual into steps, watches your hands and catches the slip.",
+  "description": "Real-time visual guidance for hands-on work: any video, manual or photos become a live guide that checks every step.",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",

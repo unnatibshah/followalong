@@ -17,7 +17,7 @@ export async function render(root) {
     root.append(h('div', { class: 'page-light' }, h('div', { class: 'wrap-mid col gap-l' },
       h('h1', { class: 'title-serif xl ink' }, 'No recorded sessions yet'),
       h('p', {}, 'Replays appear here once a live session is recorded and promoted (README: Recording a replay session).'),
-      h('a', { href: '#/', class: 'btn btn-accent btn-lg' }, 'Pick a tutorial'))));
+      h('a', { href: '#/', class: 'btn btn-accent btn-lg' }, 'Start a guide'))));
     return null;
   }
   // Describe each recording from its own timeline, so the subtitle can't drift from the data.
