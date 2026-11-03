@@ -35,7 +35,7 @@ def test_main_screens_render_without_errors(base):
     except Exception as e:  # noqa: BLE001 no browser binary here
         pytest.skip(f"no Chromium: {e}")
     try:
-        for route, text in [("#/", "Start a guide"), ("#/replay", "Choose a session"), ("#/evaluation", ""),
+        for route, text in [("#/", "Try it with your camera"), ("#/replay", "Choose a session"), ("#/evaluation", ""),
                             ("#/privacy", "Privacy"), ("#/ops", "Operations")]:
             page, errors = browser.new_page(), []
             page.on("pageerror", lambda e: errors.append(str(e)))

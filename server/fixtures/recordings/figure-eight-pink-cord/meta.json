@@ -9,5 +9,5 @@
   "delete_on_request": false,
   "plan_hash": "sha256:83b9f2c04c1f87d480401564264631bcf4b252f6ecd60282e5e2918991c639e6",
   "prompt_version": "judged_checks-0.7",
-  "recorded_at": "2026-11-03T18:00:00Z"
+  "recorded_at": "2026-11-03T18:00:00.000Z"
 }

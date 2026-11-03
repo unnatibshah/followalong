@@ -69,7 +69,7 @@ async def build(tid: str, name: str, mistakes: bool) -> str:
     frames.mkdir(parents=True)
 
     def ev(type_, step=None, **data):
-        at = (t0 + timedelta(milliseconds=ms)).isoformat().replace("+00:00", "Z")
+        at = (t0 + timedelta(milliseconds=ms)).isoformat(timespec="milliseconds").replace("+00:00", "Z")  # fixed width: sorts by time
         events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
                        "mode": "live", "data": data})
 
@@ -178,7 +178,7 @@ async def build_live(tid: str, name: str) -> str:
     frames.mkdir(parents=True)
 
     def ev(type_, step=None, **data):
-        at = (t0 + timedelta(milliseconds=ms)).isoformat().replace("+00:00", "Z")
+        at = (t0 + timedelta(milliseconds=ms)).isoformat(timespec="milliseconds").replace("+00:00", "Z")  # fixed width: sorts by time
         events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
                        "mode": "live", "data": data})
 
@@ -358,7 +358,7 @@ async def build_cross(key: str) -> str:
     frames.mkdir(parents=True)
 
     def ev(type_, step=None, **data):
-        at = (t0 + timedelta(milliseconds=ms)).isoformat().replace("+00:00", "Z")
+        at = (t0 + timedelta(milliseconds=ms)).isoformat(timespec="milliseconds").replace("+00:00", "Z")  # fixed width: sorts by time
         events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
                        "mode": "live", "data": data})
 
@@ -369,49 +369,67 @@ async def build_cross(key: str) -> str:
         img = cfbench.grab(video, t)
         return img.crop(spec["crop"]).resize((1280, 720)) if spec.get("crop") else img
 
+    kept: set[str] = set()
+
     def still(t: float, sid: int, tag: str) -> str:  # a look's frame, kept with the replay's sources
-        rel = f"eval/cross/{name}/step{sid}-{tag}.jpg"
+        rel = f"eval/cross/{name}/step{sid}-{tag}-{t:06.2f}.jpg"  # its footage time: a cached answer is about this picture
+        kept.add(rel)
         grab(t).save(APP / rel, quality=88)
         shutil.copy(APP / rel, frames / f"preview-{grid()}.jpg")
         return rel
 
-    def work(dur_ms: int, a: float, b: float):
-        nonlocal ms
+    # The practice footage never stops or jumps back, so the learner's video never freezes: the replay's clock is the
+    # footage's, at real speed, except while a hint is read out (slowed, still moving).
+    limit = spec.get("end") or max(b for _, b in spec["steps"].values()) + 4
+    pos = 0.0
+
+    def play_to(t: float, dur_ms: int | None = None):
+        nonlocal ms, pos
+        t = min(max(t, pos), limit)
+        dur_ms = int((t - pos) * 1000) if dur_ms is None else dur_ms
         n = max(1, dur_ms // FRAME_MS)
-        for i in range(n):
-            grab(a + (b - a) * i / max(1, n - 1)).save(frames / f"preview-{grid()}.jpg", quality=80)
+        for i in range(1, n + 1):
+            grab(pos + (t - pos) * i / n).save(frames / f"preview-{grid()}.jpg", quality=80)
             ms += FRAME_MS
+        pos = t
 
     summary = []
     ev("session_start", plan_hash=plan["plan_hash"])
     # The setup the app does first: the coach looks at the work area, then says it's ready
-    first = spec["steps"][plan["steps"][0]["id"]][0]
-    ev("coach", 1, status="setup", observation="", say="Show me your work area.")
-    work(3000, max(0, first - 3), first)
-    ev("coach", 1, status="setup", observation="", say="Perfect, I can see your work area. Let\u2019s start.")
-    ms += 2600
+    order = [st["id"] for st in plan["steps"]]
+    first = spec["steps"][order[0]][0]
+    # (over the step's first moment, slowed: the seconds before it are often the video's title card)
+    pos = first
+    grab(pos).save(frames / "preview-0.jpg", quality=80)
+    ev("coach", 1, status="setup", observation="", say="Show me your hands and what you\u2019re working with.")
+    play_to(first + 0.3, 3000)
+    ev("coach", 1, status="setup", observation="", say="Perfect, I can see everything. Let\u2019s start.")
+    play_to(first + 0.6, 2600)
     for st in plan["steps"]:
         sid = st["id"]
         a, b = spec["steps"][sid]
-        ms += 1000
+        if pos < a:  # the coach checked early: the footage catches up, quickly, while the step-done moment shows
+            play_to(a, 1250)
+        a = max(a, pos)  # an earlier step ran into this one's footage
+        b = max(b, a + 4)
+        # No watching phase: the tutorial loops the step, silently, beside the learner, who starts right away
         ev("step_play", sid, reason="first" if sid == 1 else "advance")
-        ms += int((st["end"] - st["start"]) * 1000)
         ev("step_wait", sid)
         # four looks across the learner's own work on this step; the last on the finished moment
-        marks = [a + (b - a) * f for f in (0.3, 0.55, 0.8, 1.0)]
-        rels, prev = [], a
-        for j, t in enumerate(marks):
-            work(2600 if j else 5200, prev, t)
-            rels.append(still(t, sid, f"look{j + 1}"))
-            prev = t
-            ms += 400
-        seen = await looks(tid, st, [{"frame": r} for r in rels], plan)
-        # the looks' events, at their frames' times (each look ~3 s apart, like the app's 1.5–3 s rhythm)
-        back = 3000 * (len(rels) - 1)
+        # (as live: once the coach thinks it looks done, the check runs on that look's frame)
+        rels, seen_at = [], []
+        for j, f in enumerate((0.3, 0.55, 0.8, 1.0)):
+            play_to(a + (b - a) * f)
+            rels.append(still(pos, sid, f"look{j + 1}"))
+            seen_at.append(ms)
+            seen = await looks(tid, st, [{"frame": r} for r in rels], plan)
+            if j >= 2 and seen[-1]["status"] == "looks_done":  # not before most of the step
+                break
+        # each look's answer about a second after its frame (the live coach's latency)
         stamp = ms
         n, said = 0, []
         for j, r in enumerate(seen):
-            ms = stamp - back + 3000 * j
+            ms = min(stamp, seen_at[j] + 1000)
             last = j == len(seen) - 1
             ev("coach", sid, status=r["status"], observation=r.get("observation", ""),
                say="" if last else r.get("say", ""), on_action=r.get("on_action"), substitute=r.get("substitute", ""))
@@ -426,39 +444,38 @@ async def build_cross(key: str) -> str:
         frame_rel, verdicts = rels[-1], [res["verdict"]]
         # What the app does next, with the learner's own later footage: "not quite" → they keep going and it checks
         # again (each verdict real); "not sure" → it asks, and they say theirs looks like that.
-        later = [t for t in (b + 1.5, b + 2.5) if t < spec.get("end", b + 3)]
-        while res["verdict"] in ("wrong", "waiting") and later:
-            t = later.pop(0)
-            ms += 3500  # the hint is read out
-            work(2000, b, t)
-            frame_rel = still(t, sid, f"fix{len(verdicts)}")
+        tries = 2
+        while res["verdict"] in ("wrong", "waiting") and tries and pos + 1 < limit:
+            tries -= 1
+            play_to(pos + 1.0, 5500)  # the hint is read out while they keep fixing it
+            frame_rel = still(pos, sid, f"fix{len(verdicts)}")
             res = await check(st, frame_rel, "full")
             n += 1
             ev("check", sid, kind="full", check_no=n, trigger="fixed", verdict=res["verdict"])
             results.append({"step_id": sid, "kind": "full", "check_no": n, "trigger": "fixed", "frame": frame_rel,
                             "prompt_version": JUDGED_PROMPT["version"], "result": res})
             verdicts.append(res["verdict"])
-            b = t
+        # the coach talks over the rest of this step's footage, slowed, so the next step's footage isn't used up
         if res["verdict"] == "done":
-            ms += 1500
+            play_to(pos + 0.75, 1500)
             n += 1
             rr = await check(st, frame_rel, "recheck")
             ev("recheck", sid, kind="recheck", check_no=n, trigger="recheck", verdict=rr["verdict"])
             results.append({"step_id": sid, "kind": "recheck", "check_no": n, "trigger": "recheck", "frame": frame_rel,
                             "prompt_version": JUDGED_PROMPT["version"], "result": rr})
         elif res["verdict"] == "unsure":
-            ms += 4000
+            play_to(pos + 1, 4000)
             ev("ask_answer", sid, answer="yes")
         else:  # the check still says no: the coach offers the learner's word (as the app does), and they take it
-            ms += 3000
+            play_to(pos + 0.5, 3000)
             ev("coach", sid, status="setup", observation="", say="If yours does the same job, say \u201cit\u2019s right\u201d and we\u2019ll keep going.")
-            ms += 4000
+            play_to(pos + 0.7, 4000)
             ev("coach", sid, status="setup", observation="", say="Okay, you know your setup. Moving on.")
-            ms += 2500
+            play_to(pos + 0.5, 2500)
             ev("action", sid, name="next")
-        ms += 4500
         ev("advance", sid)
         summary.append(f"{sid}:{'>'.join(verdicts)}/{'/'.join(said) or '-'}")
+    play_to(limit, 4500)  # the ending: "You did it" over the learner's finished work
     ev("session_end", reason="completed")
     d = recordings.BUNDLED / name
     shutil.rmtree(d, ignore_errors=True)
@@ -467,6 +484,15 @@ async def build_cross(key: str) -> str:
             "volunteer_code": None, "consent_ref": None, "delete_on_request": False, "plan_hash": plan["plan_hash"],
             "prompt_version": JUDGED_PROMPT["version"], "recorded_at": events[0]["at"]}
     (d / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    # keep only this build's look frames and the cached answers about them
+    for f in src.glob("step*.jpg"):
+        if f"eval/cross/{name}/{f.name}" not in kept:
+            f.unlink()
+    cache_f.write_text(json.dumps({k: v for k, v in checks.items() if k.split("|")[0] in kept}, indent=1) + "\n", encoding="utf-8")
+    wc = json.loads(WATCH_CACHE.read_text(encoding="utf-8"))
+    WATCH_CACHE.write_text(json.dumps({k: v for k, v in wc.items() if not k.startswith(f"eval/cross/{name}/") or k.split("|")[0] in kept},
+                                      indent=1) + "\n", encoding="utf-8")
+    events.sort(key=lambda e: e["at"])  # looks are stamped at their frames' times, after the frames were made
     (d / "timeline.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events), encoding="utf-8")
     (d / "results.jsonl").write_text("".join(json.dumps(r) + "\n" for r in results), encoding="utf-8")
     return f"{name}: " + " ".join(summary)

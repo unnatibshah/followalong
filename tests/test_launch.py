@@ -122,8 +122,8 @@ def test_translation_round_trip_keeps_ids_lists_and_hazard():
 
 
 def test_phrases_and_details_fall_back_to_english_without_a_translation(c, monkeypatch):
-    assert c.get("/api/phrases").json()["your_turn"] == "Your turn."
-    assert c.get("/api/phrases?lang=xx").json()["your_turn"] == "Your turn."  # unknown language: English
+    assert c.get("/api/phrases").json()["not_quite"] == "Not quite."
+    assert c.get("/api/phrases?lang=xx").json()["not_quite"] == "Not quite."  # unknown language: English
 
 
 def test_session_language_is_kept_and_unknown_is_english(c):
