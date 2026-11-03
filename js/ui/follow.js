@@ -126,6 +126,8 @@ export async function render(root) {
   // Replay: the recorded preview frame at the replay clock (GET /api/recordings/{id}/frames/{ms}).
   const recFrame = replayMode ? h('img', { class: 'frame-img', alt: 'Recorded view of the learner\'s desk' }) : null;
   const showRecorded = (ms) => { const src = api.recordingFrameUrl(app.recordingId, ms); if (recFrame.getAttribute('src') !== src) recFrame.src = src; };
+  // On the 250 ms grid make_replays.py writes a live-coach replay's frames on, so each frame is fetched once
+  const showRecordedAt = (sec) => showRecorded(Math.floor((sec * 1000) / 250) * 250);
   if (recFrame) { el.liveMedia.append(recFrame); showRecorded(0); }
   // Motion (TD §4.1) on the camera; in replay on the recorded frames, for the meter only (checks come from the
   // timeline). The stand-in scene has no motion: Check me (C) still works.
@@ -904,7 +906,8 @@ export async function render(root) {
   window.addEventListener('pagehide', onHide);
   const heartbeat = setInterval(() => log('heartbeat', ctx.step), 60000);
 
-  const replay = replayMode ? createReplay({ timeline, dispatch, onFinish: () => finish('completed'), onEvent: (e) => showRecorded(e.off * 1000),
+  const replay = replayMode ? createReplay({ timeline, dispatch, onFinish: () => finish('completed'), onEvent: (e) => showRecordedAt(e.off),
+    onTick: showRecordedAt,
     onQuestion: (text) => askQuestionAloud(text, false),
     onCoach: (d, step) => {  // a recorded look of the live coach, replayed like the live one (it speaks, the note updates)
       if (d.observation) { el.watchNote.textContent = `👁 ${d.observation}`; el.watchNote.dataset.state = d.status; }
