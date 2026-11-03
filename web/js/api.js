@@ -100,7 +100,8 @@ export const api = {
     headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, where }) }).catch(() => {})),
   savePlan: (id, plan) => request('PUT', `/api/tutorials/${enc(id)}/plan`, { json: plan }),
   videoUrl: (id) => STATIC ? `./api/tutorials/${enc(id)}/video.mp4` : `/api/tutorials/${enc(id)}/video`,
-  frameUrl: (id, step) => STATIC ? `./api/tutorials/${enc(id)}/frames/${step}.jpg` : `/api/tutorials/${enc(id)}/frames/${step}`,
+  // w: 480 or 640 for a smaller copy (the static build writes them as -w480.jpg / -w640.jpg)
+  frameUrl: (id, step, w) => STATIC ? `./api/tutorials/${enc(id)}/frames/${step}${w ? `-w${w}` : ''}.jpg` : `/api/tutorials/${enc(id)}/frames/${step}${w ? `?w=${w}` : ''}`,
   startSession: (body) => request('POST', '/api/sessions', { json: body }),
   check: (sid, frame, meta) => request('POST', `/api/sessions/${enc(sid)}/checks`,
     { form: multipart({ frame: [frame, 'frame.jpg'], meta: JSON.stringify(meta) }) }),
@@ -113,10 +114,10 @@ export const api = {
   endSession: (sid, reason) => request('POST', `/api/sessions/${enc(sid)}/end`, { json: { reason } }),
   endBeacon: (sid) => !STATIC && navigator.sendBeacon(`/api/sessions/${enc(sid)}/end`, new Blob([JSON.stringify({ reason: 'left' })], { type: 'application/json' })),
   recordings: () => request('GET', '/api/recordings'),
-  recordingFrameUrl: (id, ms) => {
-    if (!STATIC) return `/api/recordings/${enc(id)}/frames/${Math.max(0, Math.floor(ms))}`;
+  recordingFrameUrl: (id, ms, w) => {
+    if (!STATIC) return `/api/recordings/${enc(id)}/frames/${Math.max(0, Math.floor(ms))}${w ? `?w=${w}` : ''}`;
     const at = (frameIndex[id] || []).filter((t) => t <= ms).pop() ?? (frameIndex[id] || [0])[0];
-    return `./api/recordings/${enc(id)}/frames/preview-${at}.jpg`;
+    return `./api/recordings/${enc(id)}/frames/preview-${at}${w ? `-w${w}` : ''}.jpg`;
   },
   timeline: async (id) => {
     if (STATIC && !frameIndex[id]) frameIndex[id] = await get(`/api/recordings/${id}/frames`);

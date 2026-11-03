@@ -39,7 +39,7 @@ CAR = re.compile(r"\b(car|cars|engine|hood|bonnet|vehicle|truck)\b", re.I)
 
 
 def tier(safety: str) -> str:
-    text = (safety or "").strip()
+    text = safety.strip() if isinstance(safety, str) else ""  # a model can send a list or null
     if not text:
         return ""
     for line in re.split(r"(?<=[.!?])\s+", text):  # "Keep ..." is a reminder, but only for its own sentence
@@ -60,7 +60,7 @@ def annotate(steps: dict) -> dict:
         v = steps[k]
         t = tier(v.get("safety", ""))
         say = f"{v.get('title') or ''}. {v.get('say') or ''}"  # its title and its spoken direction
-        if t != "gate" and (GATE.search(say) or POWER_OFF.search(say)) and ELECTRIC.search(say + " " + (v.get("safety") or "")):
+        if t != "gate" and (GATE.search(say) or POWER_OFF.search(say)) and ELECTRIC.search(say + " " + str(v.get("safety") or "")):
             t = "gate"
         out[k] = {**v, "hazard": t}
     text = lambda o: " ".join(str(o.get(f) or "") for f in ("title", "say", "safety"))  # noqa: E731

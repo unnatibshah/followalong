@@ -1,6 +1,8 @@
 """HTTP routes per the API spec §2. Data comes from `providers`; this file only validates and shapes."""
 
 import asyncio
+import hashlib
+import io
 import json
 import math
 import os
@@ -8,10 +10,12 @@ import secrets
 import shutil
 import tempfile
 from pathlib import Path
+from functools import lru_cache
 from urllib.parse import urlsplit
 
 from fastapi import APIRouter, Request, WebSocket
 from fastapi.responses import FileResponse, JSONResponse, Response
+from PIL import Image
 
 from . import providers as p
 from . import i18n, safety, voice
@@ -52,7 +56,7 @@ def get_config():
 # ---- tutorials ----
 
 @router.get("/api/tutorials")
-def list_tutorials(request: Request):
+async def list_tutorials(request: Request):  # on the loop: purge() cancels upload tasks and changes p.tutorials.uploads
     return p.tutorials.list(visitor(request))
 
 
@@ -191,6 +195,35 @@ def media(path, media_type: str) -> FileResponse:
     return FileResponse(path, media_type=media_type, headers={"Cache-Control": "no-cache"})
 
 
+FRAME_WIDTHS = (480, 640)  # `?w=`: the Home hero and side-by-side views draw frames 245-560 px wide
+
+
+@lru_cache(maxsize=512)  # ~30 KB each: ~15 MB at most
+def scaled(path: str, mtime: float, w: int) -> bytes:
+    """The JPEG at `path`, `w` px wide (never enlarged), quality 75. `mtime` keys the cache to the file's version."""
+    with Image.open(path) as im:
+        im = im.convert("RGB")
+        im.thumbnail((w, w * 4))
+        buf = io.BytesIO()
+        im.save(buf, "JPEG", quality=75)
+        return buf.getvalue()
+
+
+def frame(request: Request, path: Path, w: int | None, immutable: bool) -> Response:
+    """A JPEG frame, optionally downscaled (`w` in FRAME_WIDTHS, else 400). Bundled frames never change under the same
+    URL, so they're cached a day; uploads revalidate. A matching If-None-Match gets a 304."""
+    if w is not None and w not in FRAME_WIDTHS:
+        raise ApiError("bad_request", f"w is one of {', '.join(map(str, FRAME_WIDTHS))}.")
+    st = path.stat()
+    etag = '"' + hashlib.md5(f"{st.st_mtime}-{st.st_size}-{w}".encode(), usedforsecurity=False).hexdigest() + '"'
+    headers = {"Cache-Control": "public, max-age=86400" if immutable else "no-cache", "ETag": etag}
+    if etag in request.headers.get("if-none-match", ""):
+        return Response(status_code=304, headers=headers)
+    if w is None:
+        return FileResponse(path, media_type="image/jpeg", headers=headers)
+    return Response(scaled(str(path), st.st_mtime, w), media_type="image/jpeg", headers=headers)
+
+
 @router.get("/api/tutorials/{tid}/details")
 async def get_details(tid: str, request: Request, lang: str = "en"):
     steps = p.tutorials.details(tid, visitor(request))
@@ -213,8 +246,8 @@ def get_video(tid: str, request: Request):
 
 
 @router.get("/api/tutorials/{tid}/frames/{step}")
-def get_tutorial_frame(tid: str, step: int, request: Request):
-    return media(p.tutorials.frame(tid, step, visitor(request)), "image/jpeg")
+def get_tutorial_frame(tid: str, step: int, request: Request, w: int | None = None):
+    return frame(request, p.tutorials.frame(tid, step, visitor(request)), w, immutable=tid in p.tutorials.bundled)
 
 
 # ---- sessions ----
@@ -387,7 +420,7 @@ async def end_session(sid: str, request: Request):
 # ---- privacy, monitoring ----
 
 @router.delete("/api/me")
-def delete_my_data(request: Request):
+async def delete_my_data(request: Request):  # on the loop, like DELETE /api/tutorials/{tid}: it cancels upload tasks
     """Delete my data: this browser's uploads, plan edits, session logs and daily counts. The cookie stays (it's what
     finds them) and is cleared by the browser when it expires; nothing else links anything to a person."""
     me = visitor(request)
@@ -435,8 +468,8 @@ def get_timeline(rid: str):
 
 
 @router.get("/api/recordings/{rid}/frames/{t}")
-def get_recording_frame(rid: str, t: str):
-    return media(p.recordings.frame(rid, t), "image/jpeg")
+def get_recording_frame(rid: str, t: str, request: Request, w: int | None = None):
+    return frame(request, p.recordings.frame(rid, t), w, immutable=True)  # bundled replays only
 
 
 @router.get("/api/creator/{tid}")

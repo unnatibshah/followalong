@@ -2,9 +2,10 @@
 import { h, clear, icon } from './dom.js';
 import { openCreate } from './create.js';
 import { app } from '../state.js';
+import { showDialog, closeAll } from '../overlays.js';
 
 const LIVE_FLOW = [['ready', 'Ready'], ['review', 'Checks'], ['consent', 'Consent'], ['camera', 'Camera'], ['follow', 'Follow along']];
-const REPLAY_FLOW = [['replay', 'Replay'], ['follow', 'Follow along']];
+const REPLAY_FLOW = [['replay', 'Pick a demo'], ['follow', 'Watch it']];
 
 export function renderHeader(el, route, theme) {
   clear(el);
@@ -40,6 +41,13 @@ export function renderHeader(el, route, theme) {
   el.append(h('div', { class: 'header-side' }, logo),
     h('nav', { class: 'flow-nav', 'aria-label': 'Steps' }, steps),
     h('div', { class: 'header-side end' },
-      h('span', { class: ['mode-pill', replay ? 'replay' : 'live'] }, h('span', { class: 'dot', 'aria-hidden': 'true' }), replay ? 'Replay' : 'Live'),
-      route === 'follow' && h('button', { class: 'btn btn-ghost-dark btn-sm', onclick: () => window.dispatchEvent(new Event('fa:end-session')) }, 'End session')));
+      // "Live" only once the camera is on; a replay says so in its own banner
+      !replay && ['camera', 'follow'].includes(route) && h('span', { class: 'mode-pill live' }, h('span', { class: 'dot', 'aria-hidden': 'true' }), 'Live'),
+      route === 'follow' && h('button', { class: 'btn btn-ghost-dark btn-sm', onclick: replay ? end : confirmEnd }, 'End session')));
+}
+
+const end = () => { closeAll(); window.dispatchEvent(new Event('fa:end-session')); };
+function confirmEnd() {
+  showDialog('End this session?', [h('p', { class: 'dialog-body' }, 'Your progress is saved, so you can pick up where you left off.')],
+    [h('button', { class: 'btn btn-ghost-dark', onclick: closeAll }, 'Keep going'), h('button', { class: 'btn btn-accent', onclick: end }, 'End session')]);
 }

@@ -215,7 +215,7 @@ export async function render(root) {
 
   const badge = (key, name) => h('div', { class: `badge ${key}` }, h('span', { class: 'dot', 'aria-hidden': 'true' }), name, h('span', { class: 'lat mono' }));
   el.badges = { spark: badge('spark', 'Muse Spark'), sam: badge('sam', 'SAM 3.1'), voice: badge('voice', 'Voice') };
-  el.listening = h('span', { class: 'listening' }, '🎙 Listening');
+  el.listening = h('span', { class: 'listening' }, h('span', { 'aria-hidden': 'true' }, '🎙 '), 'Listening');
   el.watchNote = h('div', { class: 'watch-note', 'aria-live': 'off', hidden: true }, '👁 Watching…');
   el.micBtn = h('button', { class: 'btn btn-outline-dark btn-sm mic-btn', type: 'button' });
   el.muteBtn = h('button', { class: 'btn btn-outline-dark btn-sm', type: 'button', hidden: !replayMode });
@@ -308,9 +308,9 @@ export async function render(root) {
   if (replayMode) {
     bannerPause = h('button', { class: 'btn btn-outline-dark btn-xs', onclick: () => togglePause('button') }, '⏸ Pause');
     banner = h('div', { class: 'replay-banner' },
-      h('span', { class: 'banner-title' }, '▶ Replay of a recorded session', h('span', { class: 'dim' }, ` · ${app.recordingTitle || ''}`)),
+      h('span', { class: 'banner-title' }, 'Replay of a real session', h('span', { class: 'dim' }, ` · ${app.recordingTitle || ''}`)),
       h('div', { class: 'row-actions' }, bannerPause,
-        h('button', { class: 'btn btn-accent btn-xs', onclick: () => { if (ctx.state === S.PAUSED) togglePause('button'); replay.nextKeyMoment(); } }, 'Next key moment →')));
+        h('button', { class: 'btn btn-accent btn-xs', onclick: () => { if (ctx.state === S.PAUSED) togglePause('button'); replay.nextKeyMoment(); } }, 'Skip ahead →')));
   }
 
   const followEl = h('div', { class: 'follow' }, banner,
@@ -421,8 +421,9 @@ export async function render(root) {
     el.orbWord.textContent = key === 'done' ? `Step ${n} done` : ORB[key];
     const sparkNow = usesSpark(ctx.step) && ctx.inFlight?.kind === 'full'; // re-checks and measured-only steps don't call it
     // A hands_ok step is checked while you hold it: say "check me" (or press C) instead of letting go
-    el.statusText.textContent = !replayMode && stepOf(n).hands_ok && (key === 'hands' || key === 'not_quite')
+    const statusNow = !replayMode && stepOf(n).hands_ok && (key === 'hands' || key === 'not_quite')
       ? 'Keep holding it. Say "check me" or press C.' : STATUS[key](n, sparkNow);
+    if (el.statusText.textContent !== statusNow) el.statusText.textContent = statusNow; // a live region: announce changes only
 
     // tutorial panel
     el.tutLabel.textContent = key === 'not_quite' ? `⟲ The key moment, ${mmss(step.key_clip_start)}–${mmss(step.key_clip_end)}` : `Tutorial · step ${n}`;
@@ -488,8 +489,9 @@ export async function render(root) {
       : missing ? `SAM 3.1 couldn't find the ${missing.name}`
       : last?.fallback === 'judge_failed' ? "👁 judged · Muse Spark didn't answer, measured checks passed"
         : enabledChecks(ctx.step).some((c) => c.always_ask) ? "👁 judged · the camera can't see this" : '👁 judged · low confidence';
-    el.yes.textContent = `Yes, next step${app.keysOn ? ' (Y)' : ''}`;
-    el.no.textContent = `No, show me again${app.keysOn ? ' (R)' : ''}`;
+    const keys = app.keysOn && matchMedia('(hover: hover)').matches; // no keyboard hints on a phone
+    el.yes.textContent = `Yes, next step${keys ? ' (Y)' : ''}`;
+    el.no.textContent = `No, show me again${keys ? ' (R)' : ''}`;
     el.yes.disabled = el.no.disabled = replayMode;
 
     // rail
@@ -530,8 +532,8 @@ export async function render(root) {
     el.badges.voice.hidden = app.config.voice === 'off';
     el.listening.hidden = !listening; // only while the microphone is actually listening (FR-92)
     el.watchNote.hidden = !(watcherOn || replayMode) || ![S.WAITING, S.MISTAKE, S.CHECKING, S.CONFIRMING].includes(ctx.state);
-    el.micBtn.textContent = voiceCtl ? '🎙 Voice coach on' : '🎙 Talk to the coach';
-    el.muteBtn.textContent = replayVoice ? '🔊 Coach voice on' : '🔇 Coach voice off';
+    el.micBtn.replaceChildren(h('span', { 'aria-hidden': 'true' }, '🎙 '), voiceCtl ? 'Voice coach on' : 'Talk to the coach');
+    el.muteBtn.replaceChildren(h('span', { 'aria-hidden': 'true' }, replayVoice ? '🔊 ' : '🔇 '), replayVoice ? 'Coach voice on' : 'Coach voice off');
     el.micBtn.setAttribute('aria-pressed', String(!!voiceCtl));
     el.micBtn.hidden = replayMode || app.config.voice === 'off' || ctx.state === S.DONE || document.documentElement.hasAttribute('data-static');
     el.talkBtn.hidden = voiceCtl?.mode !== 'push_to_talk' || ctx.state === S.DONE;

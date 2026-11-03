@@ -196,8 +196,9 @@ def test_recording_round_trips_through_replay(tmp_path, monkeypatch):
     assert {f.name for f in src.iterdir()} == {"meta.json", "timeline.jsonl", "results.jsonl", "frames"}
     meta = json.loads((src / "meta.json").read_text(encoding="utf-8"))
     assert meta["plan_hash"].startswith("sha256:") and "consent_ref" in meta
-    assert len(list((src / "frames").glob("check-*.jpg"))) == 2
+    assert len(list((src / "frames").glob("check-*.jpg"))) == 2 and not list((src / "frames").glob("preview-*"))
     recordings.promote(rid, "tmp-test", "Test run", "consent-v1.pdf", force=False)
+    assert len(list((tmp_path / "data" / "recordings" / "tmp-test" / "frames").glob("preview-*.jpg"))) == 2
     assert c.get("/api/recordings").json()[0]["consent_ref"] == "consent-v1.pdf"
     types = [json.loads(line)["type"] for line in c.get("/api/recordings/tmp-test/timeline").text.splitlines()]
     assert types[0] == "session_start" and types[-1] == "session_end"

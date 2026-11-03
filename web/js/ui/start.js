@@ -34,8 +34,7 @@ export async function render(root) {
         h('span', { class: 'hero-chip strong', role: 'listitem' }, 'A guide that checks every step')),
       h('div', { class: 'hero-actions' },
         h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'Watch the demo', icon('arrow')),
-        returning ? h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: openCreate }, icon('plus'), 'New guide')
-          : h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: toLib }, icon('camera'), 'Try it with your camera')),
+        h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: toLib }, icon('camera'), 'Try it with your camera')),
       h('div', { class: 'hero-uses', 'aria-label': 'Built for' },
         h('span', { class: 'fine' }, 'Built for'),
         ['Electronics', 'Repairs & installs', 'Assembly', 'Training', 'Robotics'].map((t) => h('span', { class: 'hero-use' }, t)))),

@@ -16,7 +16,7 @@ export async function render(root) {
   if (!app.sessionId || app.mode !== 'live') { nav('consent'); return null; }
   const media = hasCamera() ? cameraView() : thermostatScene({ tutorial: app.tutorialId, variant: 'before', surface: 'desk' });
   const INTRO = 'Show me your hands and what you\u2019re working with.';
-  const found = h('div', { class: 'seen' }, icon('spin', 'spin sam'), h('span', {}, INTRO));
+  const found = h('div', { class: 'seen', role: 'status' }, icon('spin', 'spin sam'), h('span', {}, INTRO));
   const micNote = h('div', { class: 'note warn-dark', hidden: true }, 'Voice is off. Buttons and shortcuts still work.');
   const sw = h('button', { class: 'switch-row', role: 'switch', 'aria-checked': String(!!app.voiceOn) },
     h('span', {}, 'Hands-free voice coach ', h('span', { class: 'dim normal' }, '· recommended: ask "am I doing it right?"')), h('span', { class: 'switch teal', 'aria-hidden': 'true' }));

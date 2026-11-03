@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Request
 from fastapi.responses import FileResponse
 
+from .api import _json_body
 from .config import APP, DATA, HOSTED
 from .providers import ApiError, tutorials
 from .store import read_json
@@ -82,7 +83,7 @@ def image(path: str):
 @router.post("/api/annotate")
 async def save(request: Request):
     _local()
-    body = await request.json()
+    body = await _json_body(request)  # non-JSON or not an object: 400
     if body.get("kind") not in KINDS or not isinstance(body.get("key"), str) or len(json.dumps(body)) > 20000:
         raise ApiError("bad_request", "Send kind (steps, frames or coach), key and the answer.")
     HUMAN.mkdir(parents=True, exist_ok=True)

@@ -2,9 +2,11 @@
 request validation, safety wording, link imports, headers and unknown API routes. No live model calls."""
 
 import asyncio
+import inspect
 import io
 import json
 import runpy
+from datetime import timedelta
 
 import httpx2 as httpx
 import pytest
@@ -200,3 +202,45 @@ def test_csp_blocks_plugins_base_and_foreign_forms(c):
 def test_unknown_api_routes_answer_in_the_api_shape(c, method):
     r = getattr(c, method)("/api/no-such-thing")
     assert r.status_code == 404 and r.json()["error"]["code"] == "not_found"
+
+
+# 16. downscaled, cached frames
+def test_frames_scale_on_request_and_bundled_ones_are_cached_a_day(c):
+    from PIL import Image
+    full = c.get("/api/recordings/with-mistakes/frames/0")
+    small = c.get("/api/recordings/with-mistakes/frames/0?w=480")
+    assert small.status_code == 200 and Image.open(io.BytesIO(small.content)).width == 480 < len(full.content)
+    assert small.headers["cache-control"] == full.headers["cache-control"] == "public, max-age=86400"
+    assert small.headers["etag"] != full.headers["etag"]
+    assert c.get("/api/recordings/with-mistakes/frames/0?w=480", headers={"If-None-Match": small.headers["etag"]}).status_code == 304
+    assert c.get("/api/tutorials/light-switch/frames/1?w=640").headers["cache-control"] == "public, max-age=86400"
+    assert c.get("/api/recordings/with-mistakes/frames/0?w=123").json()["error"]["code"] == "bad_request"
+
+
+# 17. annotate
+def test_annotate_refuses_bad_bodies_and_safety_takes_any_type(c):
+    for body in (b"not json", b"[1]"):
+        r = c.post("/api/annotate", content=body)
+        assert r.status_code == 400 and r.json()["error"]["code"] == "bad_request"
+    assert safety.annotate({"1": {"say": "Unscrew it.", "safety": ["sharp"]}, "2": {"safety": 5}})["2"]["hazard"] == ""
+
+
+# 18. state that would grow forever
+def test_daily_reset_drops_session_spend_and_old_ended_sessions_leave_the_cache(tmp_path):
+    clock = Clock("2026-11-06T15:00:00+00:00")
+    b = Budget(tmp_path / "b.json", CAPS, False, clock)
+    b.charge("s1", 0.1)
+    b.add_audio("s1", 3)
+    clock.t += timedelta(days=1)
+    assert b.snapshot()["sessions"] == {} and b.snapshot()["audio_s"] == {} and b.snapshot()["total_usd"] == 0.1
+    s = providers.FileSessions(tmp_path / "sessions")
+    s.sessions = {"old": {"ended": True, "started_at": "2026-01-01T00:00:00Z"},
+                  "open": {"ended": False, "started_at": "2026-01-01T00:00:00Z"}}
+    s.start("v", "light-switch", "replay", "with-mistakes", "sha256:x")
+    assert set(s.sessions) == {"open"}
+
+
+# 19. upload state is only touched on the event loop
+def test_routes_that_drop_uploads_are_async():
+    from server import api
+    assert inspect.iscoroutinefunction(api.list_tutorials) and inspect.iscoroutinefunction(api.delete_my_data)

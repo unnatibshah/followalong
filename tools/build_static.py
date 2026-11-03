@@ -5,7 +5,8 @@ so the bundled replays run with no server, no key and no camera. Live mode and u
 
 Layout mirrors the API (web/js/api.js `file()`): /api/x → api/x.json, timelines → .jsonl, videos → video.mp4,
 end frames → frames/<n>.jpg, replay frames → frames/preview-<ms>.jpg plus frames.json (the index), results.json and
-summary.json (the SessionSummary the server would compute from the recorded timeline).
+summary.json (the SessionSummary the server would compute from the recorded timeline). Each frame also gets its
+downscaled copies, the server's `?w=480` as <name>-w480.jpg (every width in server/api.py FRAME_WIDTHS).
 """
 
 import argparse
@@ -25,7 +26,15 @@ os.environ.pop("MODEL_API_KEY", None)  # the dump is the no-key server: live off
 from fastapi.testclient import TestClient  # noqa: E402
 
 from server import providers, recordings  # noqa: E402
+from server.api import FRAME_WIDTHS, scaled  # noqa: E402
 from server.main import app  # noqa: E402
+
+
+def copy_frame(src: Path, dst: Path) -> None:
+    """src → dst, plus dst-w<width>.jpg for each `?w=` the server accepts (the same bytes it would send)."""
+    shutil.copy(src, dst)
+    for w in FRAME_WIDTHS:
+        dst.with_name(f"{dst.stem}-w{w}.jpg").write_bytes(scaled(str(src), src.stat().st_mtime, w))
 
 
 def main() -> None:
@@ -69,7 +78,7 @@ def main() -> None:
         for st in plan["steps"]:
             src = APP / "data" / "tutorials" / tid / "frames" / f"step-{st['id']}.jpg"
             if src.exists():
-                shutil.copy(src, d / "frames" / f"{st['id']}.jpg")
+                copy_frame(src, d / "frames" / f"{st['id']}.jpg")
     for rec in dump("/api/recordings"):
         rid = rec["id"]
         tl = dump(f"/api/recordings/{rid}/timeline", ".jsonl")
@@ -84,7 +93,7 @@ def main() -> None:
         (d / "frames").mkdir(exist_ok=True)
         ms = []
         for f in (recordings.DATA / "recordings" / rid / "frames").glob("preview-*.jpg"):
-            shutil.copy(f, d / "frames" / f.name)
+            copy_frame(f, d / "frames" / f.name)
             ms.append(int(re.search(r"(\d+)", f.stem)[1]))
         (out / "api" / "recordings" / rid / "frames.json").write_text(json.dumps(sorted(ms)), encoding="utf-8")
     size = sum(f.stat().st_size for f in out.rglob("*") if f.is_file())

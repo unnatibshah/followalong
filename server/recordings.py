@@ -2,8 +2,8 @@
 
 With FA_PROVIDER=recording every live session is saved under $FA_DATA_DIR/recordings/rec-<session id prefix>/ in the
 format the cached provider and replay read: meta.json, timeline.jsonl (the session log), results.jsonl (one line per
-check, keyed by step_id, kind, check_no) and frames/ (check-<ms>.jpg, plus the same frame as preview-<ms>.jpg for
-the replay's "You" panel; ms from the session start).
+check, keyed by step_id, kind, check_no) and frames/ (check-<ms>.jpg; ms from the session start). `promote` copies
+them as preview-<ms>.jpg, the replay's "You" panel.
 
     python -m server.recordings list
     python -m server.recordings promote <id> --as with-mistakes [--title "With mistakes"] [--consent-ref FILE] [--force]
@@ -59,7 +59,6 @@ def save_check(session: dict, meta: dict, frame: bytes, result: dict) -> None:
     d = ROOT / rec_id(session["id"])
     ms = _ms(session)
     (d / "frames" / f"check-{ms}.jpg").write_bytes(frame)
-    (d / "frames" / f"preview-{ms}.jpg").write_bytes(frame)
     _append(d / "results.jsonl", {"step_id": meta["step_id"], "kind": meta["kind"], "check_no": meta["check_no"],
                                   "trigger": meta.get("trigger"), "frame": f"frames/check-{ms}.jpg",
                                   "frame_sha256": hashlib.sha256(frame).hexdigest(),
@@ -68,7 +67,7 @@ def save_check(session: dict, meta: dict, frame: bytes, result: dict) -> None:
 
 def promote(rid: str, name: str, title: str | None, consent_ref: str | None, force: bool) -> Path:
     """Copy a recording into the bundled replays: meta/timeline/results → server/fixtures/recordings/<name>/,
-    preview frames → data/recordings/<name>/frames/. Check frames stay in $FA_DATA_DIR (evaluation, off-repo)."""
+    check frames → data/recordings/<name>/frames/preview-<ms>.jpg (the originals stay in $FA_DATA_DIR for evaluation)."""
     src = ROOT / rid
     if not (src / "meta.json").exists():
         raise SystemExit(f"No recording {rid} in {ROOT}.")
@@ -89,8 +88,8 @@ def promote(rid: str, name: str, title: str | None, consent_ref: str | None, for
     events.sort(key=lambda e: datetime.fromisoformat(e["at"].replace("Z", "+00:00")))
     (dst / "timeline.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events), encoding="utf-8")
     shutil.copy(src / "results.jsonl", dst / "results.jsonl")
-    for f in (src / "frames").glob("preview-*.jpg"):
-        shutil.copy(f, frames / f.name)
+    for f in (src / "frames").glob("check-*.jpg"):  # recordings made before this wrote preview- copies too: same bytes
+        shutil.copy(f, frames / f.name.replace("check-", "preview-", 1))
     return dst
 
 

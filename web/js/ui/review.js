@@ -47,23 +47,23 @@ export async function render(root) {
             : h('span', { class: ['check-text', off && 'off'] }, c.text);
           const btn = (label, on, onclick) => h('button', { class: ['btn-chip', on && 'on'], 'aria-pressed': String(!!on), onclick }, label);
           return h('div', { class: 'check-row' },
-            h('span', { class: `kind-tag ${c.kind}` }, c.kind === 'measured' ? '📏 measured' : '👁 judged'),
-            h('div', { class: 'col gap-xs' }, text, c.needs_review && h('span', { class: 'needs-eyes' }, '⚠ needs your eyes')),
+            h('span', { class: `kind-tag ${c.kind}` }, c.kind === 'measured' ? '📏 by measuring' : '👁 by looking'),
+            h('div', { class: 'col gap-xs' }, text, c.needs_review && h('span', { class: 'needs-eyes' }, 'Worth a quick look: is this right?')),
             h('div', { class: 'row-actions tight' },
               btn(kept.has(c.id) ? '✓ Kept' : 'Keep', kept.has(c.id), () => { kept.has(c.id) ? kept.delete(c.id) : kept.add(c.id); c.enabled = true; paint(); }),
               btn('Edit', editing === c.id, () => { editing = editing === c.id ? null : c.id; paint(); detail.querySelector('input')?.focus(); }),
-              btn(off ? 'Removed ↺' : 'Remove', off, () => { c.enabled = off; kept.delete(c.id); paint(); })));
+              btn(off ? 'Off · turn on' : 'Turn off', off, () => { c.enabled = off; kept.delete(c.id); paint(); })));
         }),
         h('div', { class: 'check-row' }, // hands_ok: checked while the learner holds it (letting go would undo the step)
           h('span', { class: 'kind-tag' }, '✋ hands'),
           h('span', { class: 'check-text' }, s.hands_ok ? 'Checked while you hold it: say "check me".' : 'Checked after you take your hands away.'),
           h('div', { class: 'row-actions tight' }, h('button', { class: ['btn-chip', s.hands_ok && 'on'], 'aria-pressed': String(!!s.hands_ok),
             onclick: () => { s.hands_ok = !s.hands_ok; paint(); } }, s.hands_ok ? '✓ Hands stay in view' : 'Hands stay in view')))),
-      h('div', { class: 'info' }, 'ⓘ ', h('span', { class: 'c-measured' }, 'Measured'), ': decided by code from the outlines. ',
-        h('span', { class: 'c-judged' }, 'Judged'), ': decided by Muse Spark.'));
+      h('div', { class: 'info' }, 'ⓘ ', h('span', { class: 'c-measured' }, 'By measuring'), ': the app measures where things are in the picture. ',
+        h('span', { class: 'c-judged' }, 'By looking'), ': Muse Spark looks at the picture and decides. Checks that are off are skipped.'));
 
     const all = plan.steps.flatMap((x) => x.checks).filter((c) => c.enabled !== false);
-    counts.textContent = `${plan.steps.length} steps · ${all.filter((c) => c.kind === 'measured').length} measured checks · ${all.filter((c) => c.kind === 'judged').length} judged`;
+    counts.textContent = `${plan.steps.length} steps · ${all.length} checks on (${all.filter((c) => c.kind === 'measured').length} by measuring, ${all.filter((c) => c.kind === 'judged').length} by looking)`;
   }
 
   async function save(start = true) {

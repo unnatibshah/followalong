@@ -161,17 +161,6 @@ class FixtureTutorials:
             raise ApiError("not_found")
         return self._upload_meta(u)
 
-    def upload(self, filename: str, visitor: str) -> dict:
-        tid = secrets.token_hex(8)
-        title = Path(filename or "Your video").stem[:60] or "Your video"
-        meta = {"id": tid, "title": title, "source": "upload", "owner_visitor": vhash(visitor), "creator": None,
-                "licence": None, "duration_s": 160.0, "step_count": None, "status": "processing",
-                "progress": "finding_steps 0/10", "created_at": now_iso(), "delete_after": None}
-        self.uploads[tid] = {"meta": meta, "t0": time.time()}
-        (RUNTIME / "tutorials" / tid).mkdir(parents=True, exist_ok=True)
-        (RUNTIME / "tutorials" / tid / "meta.json").write_text(json.dumps(self.uploads[tid]), encoding="utf-8")
-        return {"id": tid, "status": "processing"}
-
     def delete(self, tid: str, visitor: str) -> None:
         if tid in self.bundled:
             raise ApiError("forbidden")
@@ -973,6 +962,10 @@ class FileSessions:
               lang: str = "en", ip: str | None = None) -> str:
         sid, at = secrets.token_hex(16), now_iso()
         self.purge()
+        hour_ago = time.time() - 3600  # the cache keeps ended sessions an hour; _load() rebuilds any from its log
+        for k, s in list(self.sessions.items()):
+            if s["ended"] and _ts(s["started_at"]) < hour_ago:
+                del self.sessions[k]
         if mode == "live":
             visitors.admit_live(visitor, sid, ip)
         if PROVIDER == "recording" and mode == "live":

@@ -47,7 +47,7 @@ export function heroDemo() {
     const total = plan.steps.length;
 
     const show = (ms) => {
-      const src = api.recordingFrameUrl(REC, Math.floor(ms / FRAME_MS) * FRAME_MS);
+      const src = api.recordingFrameUrl(REC, Math.floor(ms / FRAME_MS) * FRAME_MS, 640);
       if (src === shown) return;
       shown = src;
       const next = new Image(); // swapped in once loaded: no blank flashes

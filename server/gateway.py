@@ -153,8 +153,8 @@ class Budget:
 
     def _fresh(self, b: dict) -> dict:
         day = self.clock().date().isoformat()
-        if b.get("day") != day:
-            b.update(day=day, day_usd=0.0)
+        if b.get("day") != day:  # per-session entries go too (a session is at most hours long), so the file stays small
+            b.update(day=day, day_usd=0.0, sessions={}, audio_s={})
         b.setdefault("total_usd", 0.0)
         b.setdefault("sessions", {})
         b.setdefault("audio_s", {})  # voice seconds per session (FA_VOICE_MAX_SECONDS, security T15)
