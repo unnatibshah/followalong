@@ -307,3 +307,21 @@ def test_hand_gate_parallel_logs_a_warning_at_startup(tmp_path):
                          cwd=Path(__file__).parent.parent)
     assert out.returncode == 0, out.stderr
     assert "FA_HAND_GATE_PARALLEL" in out.stderr and "NFR-13" in out.stderr
+
+
+def test_any_colour_rope_but_the_right_colour_wire():
+    """A learner's rope, shirt or LED can be any colour; a wire's colour stays strict when the step has two colours of it."""
+    from server.checks.engine import loose
+    rope = {"objects": [{"name": "blue rope", "sam_prompt": "blue rope"}]}
+    wires = {"objects": [{"name": "red wire", "sam_prompt": "red wire"}, {"name": "white wire", "sam_prompt": "white wire"}]}
+    assert loose("blue rope", rope) == "rope"
+    assert loose("red wire", wires) is None and loose("white wire", wires) is None
+    assert loose("rope", rope) is None  # nothing to drop
+
+
+def test_a_thin_cord_is_still_the_rope():
+    from server.checks.engine import alternatives
+    rope = {"objects": [{"name": "blue rope", "sam_prompt": "blue rope"}]}
+    wires = {"objects": [{"name": "red wire", "sam_prompt": "red wire"}, {"name": "white wire", "sam_prompt": "white wire"}]}
+    assert alternatives("blue rope", rope) == ["rope", "string", "cord", "knot"]
+    assert alternatives("red wire", wires) == []  # colour tells the wires apart: never looser

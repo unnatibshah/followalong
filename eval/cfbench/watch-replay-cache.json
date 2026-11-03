@@ -202,5 +202,101 @@
   "say": "",
   "latency_ms": 2103,
   "cost_usd": 0.00365725
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look1.jpg|0|watch-0.6": {
+  "status": "cant_see",
+  "observation": "Hand holding rope top with two strands crossing below, but bottom loop is out of frame so openness and size can't be judged.",
+  "on_action": 3,
+  "say": "I can't see the loop hanging below. Tilt the phone down a little so I see the full circle.",
+  "latency_ms": 11333,
+  "cost_usd": 0.00439675
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look2.jpg|1|watch-0.6": {
+  "status": "looks_done",
+  "observation": "Pink gradient rope on wood forms a round open loop with the short end laid across the front of the long part, matching the tutorial crossing.",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 4684,
+  "cost_usd": 0.00444675
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look3.jpg|2|watch-0.6": {
+  "status": "looks_done",
+  "observation": "Pink rope on wood forms a round open loop with short end laid flat across front of long part, matching tutorial crossing.",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 2241,
+  "cost_usd": 0.0040835
+ },
+ "eval/cross/figure-eight-pink-cord/step1-look4.jpg|3|watch-0.6": {
+  "status": "looks_done",
+  "observation": "Pink rope on wood forms round open loop with short end over front of long part, matching tutorial.",
+  "on_action": 3,
+  "say": "",
+  "latency_ms": 1861,
+  "cost_usd": 0.00359625
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look1.jpg|0|watch-0.6": {
+  "status": "cant_see",
+  "observation": "Live view shows the upper twist forming but the lower loop is cropped out of frame, and the tail position relative to the standing part is unclear from this angle.",
+  "on_action": 2,
+  "say": "I can't see the lower loop. Pull back a little so I can see the full loop below the twist.",
+  "latency_ms": 9288,
+  "cost_usd": 0.00635825
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look2.jpg|1|watch-0.6": {
+  "status": "mistake",
+  "observation": "Live view shows a crossing on a table with the colored rope in front of the standing part, but the lower loop is still cropped out so full shape can't be confirmed.",
+  "on_action": 2,
+  "say": "Hold on, that end is laying in front of the long part. Lift it up and pass it behind the long part and out to the side.",
+  "latency_ms": 7492,
+  "cost_usd": 0.00651175
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look3.jpg|2|watch-0.6": {
+  "status": "mistake",
+  "observation": "Live view shows colored rope crossing in center with one strand laying in front of the vertical standing part and lower loop out of frame, not matching tutorial twist with tail behind.",
+  "on_action": 2,
+  "say": "Oh, wait, that end's still in front of the long part. Lift it and pass it behind and out to the side.",
+  "latency_ms": 5686,
+  "cost_usd": 0.0055955
+ },
+ "eval/cross/figure-eight-pink-cord/step2-look4.jpg|3|watch-0.6": {
+  "status": "cant_see",
+  "observation": "Pink-yellow-teal rope crossing on table, short yellow tail to side but full lower loop below twist is cropped out, cannot verify shape.",
+  "on_action": 1,
+  "say": "Pull the camera back a little so the whole lower loop under the twist is visible.",
+  "latency_ms": 5901,
+  "cost_usd": 0.00544475
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look1.jpg|0|watch-0.6": {
+  "status": "working",
+  "observation": "Hands holding multicolor rope over wood, short yellow end positioned at upper loop area, knot still loose and open, not yet tightened into figure-eight shape.",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 2971,
+  "cost_usd": 0.0040345
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look2.jpg|1|watch-0.6": {
+  "status": "working",
+  "observation": "Multicolor rope on wood still in loose open shape, short end not yet pushed down through lower loop, no tight eight formed.",
+  "on_action": 1,
+  "say": "",
+  "latency_ms": 2518,
+  "cost_usd": 0.0037945
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look3.jpg|2|watch-0.6": {
+  "status": "working",
+  "observation": "Multicolor rope on wood in loose open figure-eight shape, tail appears through lower loop but knot not yet tightened, no tight eight formed.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 4100,
+  "cost_usd": 0.00444875
+ },
+ "eval/cross/figure-eight-pink-cord/step3-look4.jpg|3|watch-0.6": {
+  "status": "working",
+  "observation": "Pink multicolor rope in loose open figure-eight on wood, tail through lower loop but knot not yet tightened into snug eight.",
+  "on_action": 2,
+  "say": "",
+  "latency_ms": 2153,
+  "cost_usd": 0.00394225
  }
 }

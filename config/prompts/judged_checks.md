@@ -1,4 +1,4 @@
-prompt_version: judged_checks-0.3
+prompt_version: judged_checks-0.4
 
 The judged-check prompt (prompt spec P2). `server/spark.py` sends the `## system` section as the system message and
 the `## user` section, with {placeholders} filled in, as the user text; then the two pictures, each after a label
@@ -23,5 +23,7 @@ For each check below, answer whether it is true in the LEARNER picture:
 
 Return for each check: id, pass (true/false), confidence (0 to 1: how sure you are from what is visible),
 reason (one short sentence about the LEARNER picture).
-Then a hint: one or two short sentences to the learner, saying what is different from the tutorial and what to do.
-Speak to the learner as "you". Name pieces by colour and shape. Don't blame.
+Then a hint: one or two short sentences to the learner, saying what to do next with THEIR things, in everyday words
+("Pull both ends until the knot is snug."). Speak to the learner as "you". Don't blame. Never compare to how the
+tutorial's things look ("like the blue rope", "like in the video"): their rope, board or tool can be any colour, size or
+brand. Name a colour only when it matters to the task (a wire colour code, the LED the circuit needs).

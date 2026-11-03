@@ -1,47 +1,47 @@
 {
- "prompt_version": "step_details-0.7",
+ "prompt_version": "step_details-0.8",
  "model": "muse-spark-1.3",
- "cost_usd": 0.07613425,
+ "cost_usd": 0.07229875,
  "actor": "hand",
  "steps": {
   "1": {
-   "title": "Push power wires into board",
-   "say": "Push the thin white wire into the top left hole of the white board. Push the thin blue wire into the top right hole of the white board.",
+   "title": "Put white and blue wires in board",
+   "say": "Hold the white board steady, then push the white wire into the top left row. Push the blue wire into the top right row.",
    "placements": [
-    "thin white power wire from battery pack → top edge hole on left side of white plug board in its own cross row of five holes, pushed down firmly with fingers; in the video: upper left, numbers not readable so match picture",
-    "thin blue power wire from battery pack → top edge hole on right side of white plug board in its own cross row of five holes, pushed down firmly with fingers; in the video: upper right, numbers not readable so match picture"
+    "white power wire → upper field left side in its own five-hole row, pushed by hand until firm and standing upright to the left of the blue wire (in the video: top edge left side, printed numbers not readable, about 3 holes from left edge)",
+    "blue power wire → upper field right side in its own five-hole row separate from the white wire, pushed by hand until firm and standing upright to the right of the white wire (in the video: top edge right side, printed numbers not readable, about 2 holes from right edge)"
    ],
    "watch_for": [
-    "If both wires sit in the same cross row the battery is shorted, so move one wire to a different row with empty board between.",
-    "If a wire feels loose or falls out it is not deep enough, so push it straight down until the bare metal disappears."
+    "If both wires share the same five-hole row the batteries are shorted, so leave several empty holes between them.",
+    "If a wire wobbles or falls out it is too loose, so push it deeper until it stands firm."
    ],
-   "check_yourself": "It should look like the white board sitting flat with a thin white wire sticking straight up on the left top and a thin blue wire sticking straight up on the right top.",
+   "check_yourself": "It should look like the white board sits on the table with a white wire and a blue wire standing up from its top edge.",
    "safety": ""
   },
   "2": {
-   "title": "Put the resistor across board",
-   "say": "Push one thin leg of the small blue resistor into the white wire row. Push the other thin leg into an empty middle row.",
+   "title": "Put resistor across the board",
+   "say": "Push one leg of the blue resistor into the white wire row. Push the other leg into an empty row a few holes to the right.",
    "placements": [
-    "small blue striped resistor with two thin bent wire legs → left leg in same five hole row as thin white power wire on left top, right leg in empty five hole row toward middle to meet later short leg of light, body arched flat just above board, pushed with fingers; in the video: lying across top of white board, exact holes not readable so match picture"
+    "small blue banded resistor with two thin wire legs → left leg in same five-hole row as white power wire on the left, right leg in empty five-hole row a few holes to the right, body lying flat across the top, pushed by hand (in the video: across top band spanning about 4 to 5 holes, printed numbers not readable)"
    ],
    "watch_for": [
-    "If both legs sit in the same five hole row the part does nothing, so check that left and right legs are in different rows.",
-    "If the tiny tube wobbles or pops up one leg is shallow, so push each leg straight down until snug."
+    "If both legs sit in the same five-hole row the resistor does nothing, so check the legs are a few holes apart.",
+    "If the light later stays dark a leg may miss its row, so reseat each leg fully into its row."
    ],
-   "check_yourself": "It should look like a tiny blue striped tube lying flat above the white board with a thin wire arching down on the left near the white wire and on the right near the middle.",
+   "check_yourself": "It should look like a small blue banded resistor lies flat across the top of the white board.",
    "safety": ""
   },
   "3": {
    "title": "Plug in the blue LED",
-   "say": "Hold the small blue dome light so the short leg is on the left. Push the short leg into the resistor middle row. Push the long leg into the blue wire row.",
+   "say": "Push the short leg of the blue LED into the resistor row. Push the long leg into the blue wire row.",
    "placements": [
-    "small blue dome light with one long leg for plus side and one short leg with flat side for minus side → short leg in same five hole row as right leg of resistor in middle, long leg in same five hole row as thin blue power wire on right top, dome standing straight up, pushed with fingers; in the video: upright on right side of white board glowing blue, exact holes not readable so match picture"
+    "round blue LED with long plus leg and short minus leg with flat side → short leg in same five-hole row as resistor right leg on the right side, long leg in same five-hole row as blue power wire on the right side, pushed by hand until standing upright on the top right (in the video: top edge right corner, long leg to the right by the blue wire, short leg to the left by the resistor, lights blue when powered)"
    ],
    "watch_for": [
-    "If the blue dome stays dark the legs are likely swapped, so switch the long leg with the short leg rows.",
-    "If both legs share the same five hole row the light is shorted and stays dark, so move each leg to its own row described above."
+    "If the blue light stays dark the long and short legs are probably swapped, so switch the two holes.",
+    "If both legs share the same five-hole row the light will stay dark, so keep them in separate rows."
    ],
-   "check_yourself": "It should look like a small blue dome standing straight up on the right side of the white board glowing bright blue with the resistor lying flat to its left.",
+   "check_yourself": "It should look like the blue LED stands upright on the white board glowing blue.",
    "safety": ""
   }
  }

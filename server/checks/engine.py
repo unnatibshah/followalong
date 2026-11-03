@@ -9,6 +9,7 @@ it) is never sent; the step asks.
 """
 
 import asyncio
+import re
 import time
 
 from .. import sam, spark
@@ -20,6 +21,41 @@ TERMINALS = CHECKS["terminals"]
 # Muse Spark requests a check stopped waiting for. They run to the end so the gateway still counts their cost toward
 # the caps (a cancelled HTTP request may still be billed, with no `usage` to count); the set keeps them referenced.
 _abandoned: set = set()
+
+
+COLOURS = ("red", "orange", "yellow", "green", "blue", "purple", "violet", "pink", "brown", "black", "white", "grey", "gray",
+           "silver", "gold", "golden", "clear", "dark", "light", "bright", "pale", "striped")
+
+
+def loose(prompt: str, step: dict) -> str | None:
+    """The prompt without its colour words ("blue rope" → "rope"), unless the step needs the colour to tell two of its
+    things apart (a red and a black clamp, a white and a blue wire). None when there's nothing to drop, or it matters.
+    A wrong colour is still caught: the judged checks name it ("the blue LED")."""
+    words = (prompt or "").split()
+    rest = " ".join(w for w in words if w.lower() not in COLOURS)
+    if not rest or rest == " ".join(words):
+        return None
+    others = [o.get("sam_prompt") or "" for o in step.get("objects") or []]
+    same_kind = [q for q in others if q != prompt and " ".join(w for w in q.split() if w.lower() not in COLOURS) == rest]
+    return None if same_kind else rest
+
+
+# Everyday names for the same thing: a learner's thin cord tied in a knot is a "string" or a "knot" to the segmenter,
+# not a "rope". Tried only when the plan's own word finds nothing. ponytail: a short hand list; grow it from misses.
+SYNONYMS = {"rope": ["string", "cord", "knot"], "cord": ["string", "rope", "knot"], "string": ["cord", "rope"],
+            "shoelace": ["lace", "string"], "wire": ["cable", "lead"], "cable": ["wire", "cord"], "screw": ["bolt"],
+            "bolt": ["screw"], "tie": ["necktie"], "breadboard": ["board"], "clamp": ["clip"], "clip": ["clamp"]}
+
+
+def alternatives(prompt: str, step: dict) -> list[str]:
+    """What to look for when `prompt` found nothing: without non-functional colours, then everyday synonyms."""
+    base = loose(prompt, step)
+    if base is None and any(w.lower() in COLOURS for w in prompt.split()):
+        return []  # the colour matters here (two wires of different colours): don't go looser
+    noun = (base or prompt).split()[-1].lower()
+    out = [base] if base else []
+    out += [x for x in SYNONYMS.get(noun, []) if x not in out]
+    return out
 
 
 def terminal_label(name: str) -> str | None:
@@ -74,7 +110,19 @@ async def run(step: dict, frame: bytes, kind: str, session_id: str | None = None
     actor_prompt = None if actor.lower() == "none" or actor in prompts else actor
 
     async def segments() -> dict:  # one request per distinct prompt, in parallel; terminals share one prompt
-        return dict(zip(prompts, await asyncio.gather(*(sam.segment(frame, p, session_id) for p in prompts))))
+        out = dict(zip(prompts, await asyncio.gather(*(sam.segment(frame, p, session_id) for p in prompts))))
+        # The learner's things needn't match the tutorial's colours: a "blue rope" not found is looked for again as
+        # "rope", unless the step itself needs that colour (wire codes, "the red clamp", "the blue LED").
+        missing = [p for p in prompts if not (out[p] or {}).get("instances")]
+
+        async def retry(p: str):  # the colour-free noun, then everyday names for the same thing, until one is found
+            for q in alternatives(p, step):
+                res = await sam.segment(frame, q, session_id)
+                if res and res.get("instances"):
+                    out[p] = res
+                    return
+        await asyncio.gather(*(retry(p) for p in missing))
+        return out
 
     async def actor_seg():  # optional evidence: a failed actor request never fails the check
         try:

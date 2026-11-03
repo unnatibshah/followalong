@@ -25,6 +25,8 @@ DANGER = re.compile(
     r"the\s+(wall|studs?)|wall\s+anchors?|(needs?|requires?|takes?|with)\s+two\s+(people|persons|adults)|"
     r"two\s+(people|persons|adults)\s+(are\s+)?(needed|required))\b", re.I)
 
+# A step that MAKES it safe, however it's worded: the breaker, power or mains, and "off", in one sentence
+POWER_OFF = re.compile(r"\b(breaker|power|mains|circuit)\b[^.!?]{0,80}\boff\b|\boff\b[^.!?]{0,40}\b(breaker|power|mains|circuit)\b", re.I)
 ELECTRIC = re.compile(r"\b(breaker|live|mains|volt\w*|electric\w*|shock|tester|power|wires?)\b", re.I)
 # A car battery lesson, however a step happens to word it: every step is at least `danger`
 CAR_BATTERY = re.compile(r"\b(jump[\s-]?start\w*|jumper\s+cables?|booster\s+cables?|(plus|minus|positive|negative|battery)\s+(post|terminal)s?|"
@@ -51,8 +53,8 @@ def annotate(steps: dict) -> dict:
     for k in keys:
         v = steps[k]
         t = tier(v.get("safety", ""))
-        say = v.get("say", "") or ""
-        if t != "gate" and GATE.search(say) and ELECTRIC.search(say + " " + (v.get("safety") or "")):
+        say = f"{v.get('title') or ''}. {v.get('say') or ''}"  # its title and its spoken direction
+        if t != "gate" and (GATE.search(say) or POWER_OFF.search(say)) and ELECTRIC.search(say + " " + (v.get("safety") or "")):
             t = "gate"
         out[k] = {**v, "hazard": t}
     text = lambda o: " ".join(str(o.get(f) or "") for f in ("title", "say", "safety"))  # noqa: E731
@@ -75,6 +77,8 @@ def lesson(steps: dict) -> dict:
 
 
 if __name__ == "__main__":  # self-check on the bundled tutorials' real lines
+    assert annotate({"1": {"title": "Turn off entry bedroom power", "say": "Flip the black breaker toggle for the entry and bedroom to the off position.",
+                           "safety": "Touch only the plastic breaker handle with dry hands."}})["1"]["hazard"] == "gate"
     assert tier("Switch the breaker OFF and prove dead with the tester before touching anything.") == "gate"
     assert tier("Confirm the breaker is back OFF and the tester is dark before touching the white wires.") == "gate"
     assert tier("Assume every wire is live until the tester shows no power.") == "gate"

@@ -274,12 +274,160 @@ async def build_live(tid: str, name: str) -> str:
     return f"{name}: " + " ".join(summary)
 
 
+# A different person's video as the learner: the tutorial teaches, this footage is "you" (another rope, colour, table,
+# hands). Every look and every check runs live on its frames; answers are cached so a rebuild is free and identical.
+CROSS = {
+    "figure-eight-knot": {
+        "name": "figure-eight-pink-cord", "video": "https://www.youtube.com/watch?v=Sq3Ndf_jm_Y",
+        "credit": "\u201cActivity at Home: Tie a Figure 8 Knot\u201d by Terrapin Adventures, CC BY",
+        "title": "Tie a figure-eight knot \u00b7 someone else\u2019s cord (a different video)",
+        "steps": {1: (8.5, 18.0), 2: (18.0, 33.0), 3: (33.5, 44.5)}, "end": 47.6,  # the end card starts at 48 s
+    },
+}
+CROSS_DIR = APP / "eval" / "cross"
+
+
+async def build_cross(tid: str) -> str:
+    from server import tutorials as tut
+    spec = CROSS[tid]
+    name = spec["name"]
+    plan = evaluate.plan_for(tid, {})
+    src = CROSS_DIR / name
+    src.mkdir(parents=True, exist_ok=True)
+    video = src / "video.mp4"
+    if not video.exists():
+        got = await asyncio.to_thread(tut.fetch_link, spec["video"], 600, src)
+        Path(got["path"]).rename(video)
+    cache_f = src / "checks.json"
+    checks = json.loads(cache_f.read_text(encoding="utf-8")) if cache_f.exists() else {}
+
+    async def check(st: dict, frame_rel: str, kind: str) -> dict:
+        key = f"{frame_rel}|{kind}|{JUDGED_PROMPT['version']}"
+        if key not in checks:
+            step = evaluate.ablate(evaluate.step_of({"tutorial_id": tid, "step_id": st["id"]}, {}), "soft")
+            end = APP / "data" / "tutorials" / tid / "frames" / f"step-{st['id']}.jpg"
+            checks[key] = await engine.run(step, (APP / frame_rel).read_bytes(), kind, end_frame=end.read_bytes(),
+                                           end_box=end_box(end, step) if step.get("objects") else None)
+            cache_f.write_text(json.dumps(checks, indent=1) + "\n", encoding="utf-8")
+        return checks[key]
+
+    t0 = datetime(2026, 11, 3, 18, 0, tzinfo=timezone.utc)
+    events, results, ms = [], [], 0
+    frames = recordings.DATA / "recordings" / name / "frames"
+    shutil.rmtree(frames.parent, ignore_errors=True)
+    frames.mkdir(parents=True)
+
+    def ev(type_, step=None, **data):
+        at = (t0 + timedelta(milliseconds=ms)).isoformat().replace("+00:00", "Z")
+        events.append({"session_id": f"rec-{name}", "at": at, "type": type_, "tutorial_id": tid, "step_id": step,
+                       "mode": "live", "data": data})
+
+    def grid():
+        return -(-ms // FRAME_MS) * FRAME_MS
+
+    def still(t: float, sid: int, tag: str) -> str:  # a look's frame, kept with the replay's sources
+        rel = f"eval/cross/{name}/step{sid}-{tag}.jpg"
+        cfbench.grab(video, t).save(APP / rel, quality=88)
+        shutil.copy(APP / rel, frames / f"preview-{grid()}.jpg")
+        return rel
+
+    def work(dur_ms: int, a: float, b: float):
+        nonlocal ms
+        n = max(1, dur_ms // FRAME_MS)
+        for i in range(n):
+            cfbench.grab(video, a + (b - a) * i / max(1, n - 1)).save(frames / f"preview-{grid()}.jpg", quality=80)
+            ms += FRAME_MS
+
+    summary = []
+    ev("session_start", plan_hash=plan["plan_hash"])
+    for st in plan["steps"]:
+        sid = st["id"]
+        a, b = spec["steps"][sid]
+        ms += 1000
+        ev("step_play", sid, reason="first" if sid == 1 else "advance")
+        ms += int((st["end"] - st["start"]) * 1000)
+        ev("step_wait", sid)
+        # four looks across the learner's own work on this step; the last on the finished moment
+        marks = [a + (b - a) * f for f in (0.3, 0.55, 0.8, 1.0)]
+        rels, prev = [], a
+        for j, t in enumerate(marks):
+            work(2600 if j else 5200, prev, t)
+            rels.append(still(t, sid, f"look{j + 1}"))
+            prev = t
+            ms += 400
+        seen = await looks(tid, st, [{"frame": r} for r in rels], plan)
+        # the looks' events, at their frames' times (each look ~3 s apart, like the app's 1.5–3 s rhythm)
+        back = 3000 * (len(rels) - 1)
+        stamp = ms
+        n, said = 0, []
+        for j, r in enumerate(seen):
+            ms = stamp - back + 3000 * j
+            last = j == len(seen) - 1
+            ev("coach", sid, status=r["status"], observation=r.get("observation", ""),
+               say="" if last else r.get("say", ""), on_action=r.get("on_action"))
+            if r.get("say") and not last:
+                said.append(r["status"])
+        ms = stamp
+        res = await check(st, rels[-1], "full")
+        n += 1
+        ev("check", sid, kind="full", check_no=n, trigger="check_me", verdict=res["verdict"])
+        results.append({"step_id": sid, "kind": "full", "check_no": n, "trigger": "check_me", "frame": rels[-1],
+                        "prompt_version": JUDGED_PROMPT["version"], "result": res})
+        frame_rel, verdicts = rels[-1], [res["verdict"]]
+        # What the app does next, with the learner's own later footage: "not quite" → they keep going and it checks
+        # again (each verdict real); "not sure" → it asks, and they say theirs looks like that.
+        later = [t for t in (b + 1.5, b + 2.5) if t < spec.get("end", b + 3)]
+        while res["verdict"] in ("wrong", "waiting") and later:
+            t = later.pop(0)
+            ms += 3500  # the hint is read out
+            work(2000, b, t)
+            frame_rel = still(t, sid, f"fix{len(verdicts)}")
+            res = await check(st, frame_rel, "full")
+            n += 1
+            ev("check", sid, kind="full", check_no=n, trigger="fixed", verdict=res["verdict"])
+            results.append({"step_id": sid, "kind": "full", "check_no": n, "trigger": "fixed", "frame": frame_rel,
+                            "prompt_version": JUDGED_PROMPT["version"], "result": res})
+            verdicts.append(res["verdict"])
+            b = t
+        if res["verdict"] == "done":
+            ms += 1500
+            n += 1
+            rr = await check(st, frame_rel, "recheck")
+            ev("recheck", sid, kind="recheck", check_no=n, trigger="recheck", verdict=rr["verdict"])
+            results.append({"step_id": sid, "kind": "recheck", "check_no": n, "trigger": "recheck", "frame": frame_rel,
+                            "prompt_version": JUDGED_PROMPT["version"], "result": rr})
+        elif res["verdict"] == "unsure":
+            ms += 4000
+            ev("ask_answer", sid, answer="yes")
+        else:
+            ms += 4000
+            ev("action", sid, name="next")
+        ms += 4500
+        ev("advance", sid)
+        summary.append(f"{sid}:{'>'.join(verdicts)}/{'/'.join(said) or '-'}")
+    ev("session_end", reason="completed")
+    d = recordings.BUNDLED / name
+    shutil.rmtree(d, ignore_errors=True)
+    d.mkdir(parents=True)
+    meta = {"id": name, "tutorial_id": tid, "title": spec["title"], "who": "cross-video", "credit": spec["credit"],
+            "volunteer_code": None, "consent_ref": None, "delete_on_request": False, "plan_hash": plan["plan_hash"],
+            "prompt_version": JUDGED_PROMPT["version"], "recorded_at": events[0]["at"]}
+    (d / "meta.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    (d / "timeline.jsonl").write_text("".join(json.dumps(e) + "\n" for e in events), encoding="utf-8")
+    (d / "results.jsonl").write_text("".join(json.dumps(r) + "\n" for r in results), encoding="utf-8")
+    return f"{name}: " + " ".join(summary)
+
+
 def plan_title(tid: str) -> str:
     meta = json.loads((APP / "server" / "fixtures" / "tutorials.json").read_text(encoding="utf-8"))
     return next(t["title"] for t in meta if t["id"] == tid)
 
 
 async def main(tids: list[str]) -> None:
+    if tids and tids[0] == "--cross":  # a different person's video as the learner (CROSS)
+        for tid in tids[1:] or list(CROSS):
+            print(await build_cross(tid))
+        return
     if tids and tids[0] == "--live":  # the live-coach replay (the demo): first tutorial named `with-mistakes`
         for i, tid in enumerate(tids[1:]):
             print(await build_live(tid, "with-mistakes" if i == 0 else f"{tid}-live-coach"))

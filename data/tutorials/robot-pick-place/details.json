@@ -1,216 +1,216 @@
 {
- "prompt_version": "step_details-0.7",
+ "prompt_version": "step_details-0.8",
  "model": "muse-spark-1.3",
- "cost_usd": 0.102511,
+ "cost_usd": 0.0870982,
  "actor": "robot arm",
  "steps": {
   "1": {
    "title": "Move green cube to right tray",
-   "say": "Pick up the green cube from the left tray. Place it inside the right tray.",
+   "say": "Pick up the small green cube. Place it in the front right corner of the right clear tray.",
    "placements": [
-    "green small cube → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the bottom edge by the black cable side)"
+    "small green cube → inside the right clear tray, front right corner pocket as seen from above (in the video: right tray, corner closest to the camera on the right side)"
    ],
    "watch_for": [
-    "if the green cube is still in the left tray, the tip did not suck it up",
-    "if the green cube sits outside the clear squares, it slipped off while moving"
+    "if the right tray is empty, the suction tip did not seal on the flat top",
+    "if another colour is in the right tray, you picked up the wrong cube"
    ],
-   "check_yourself": "It should look like the green cube sits inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like the small green cube sits in the front right corner of the right clear tray and three small cubes stay in the left tray.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "2": {
    "title": "Move blue cube to right tray",
-   "say": "Pick up the blue cube from the left tray. Place it inside the right tray.",
+   "say": "Pick up the small blue cube. Place it in the front left corner of the right clear tray.",
    "placements": [
-    "blue small cube → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the bottom left edge next to the green cube)"
+    "small blue cube → inside the right clear tray, front left corner pocket as seen from above (in the video: right tray, corner closest to the camera on the left side)"
    ],
    "watch_for": [
-    "if the blue cube is still in the left tray, the tip did not suck it up",
-    "if the blue cube sits outside the clear squares, it slipped off while moving"
+    "if the blue cube is tipped over, the tip touched the edge instead of the centre",
+    "if the green cube moved, the arm bumped it on the way past"
    ],
-   "check_yourself": "It should look like the blue cube sits inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like the green and blue cubes sit in the right clear tray and two small cubes stay in the left tray.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "3": {
    "title": "Move yellow cube to right tray",
-   "say": "Pick up the yellow cube from the left tray. Place it inside the right tray.",
+   "say": "Pick up the small yellow cube. Place it in the back right corner of the right clear tray.",
    "placements": [
-    "yellow small cube → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the top edge of the right grid)"
+    "small yellow cube → inside the right clear tray, back right corner pocket as seen from above (in the video: right tray, corner farthest from the camera on the right side)"
    ],
    "watch_for": [
-    "if the yellow cube is still in the left tray, the tip did not suck it up",
-    "if the yellow cube sits tipped over, it was set down off center"
+    "if the yellow cube lands outside the pocket, the arm released it too high",
+    "if you see only two cubes in the right tray, one fell off on the way"
    ],
-   "check_yourself": "It should look like the yellow cube sits inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like green and blue and yellow cubes sit in the right clear tray and one small cube stays in the left tray.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "4": {
    "title": "Move red cube to right tray",
-   "say": "Pick up the red cube from the left tray. Place it inside the right tray.",
+   "say": "Pick up the small red cube. Place it in the back left corner of the right clear tray.",
    "placements": [
-    "red small cube → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the top edge of the right grid)"
+    "small red cube → inside the right clear tray, back left corner pocket as seen from above (in the video: right tray, corner farthest from the camera on the left side)"
    ],
    "watch_for": [
-    "if the red cube is still in the left tray, the tip did not suck it up",
-    "if you count less than four cubes on the right, one cube is missing"
+    "if the red cube covers another cube, it went to the wrong corner",
+    "if the red cube falls over, the tip was not centred on the top"
    ],
-   "check_yourself": "It should look like all four small cubes sit inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like all four small cubes sit in the four corners of the right clear tray and the left tray is empty.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "5": {
    "title": "Return green cube to left tray",
-   "say": "Pick up the green cube from the right tray. Place it inside the left tray.",
+   "say": "Pick up the small green cube. Place it in the front right corner of the left clear tray.",
    "placements": [
-    "green small cube → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the top edge of the left grid)"
+    "small green cube → inside the left clear tray, front right corner pocket as seen from above (in the video: left tray, corner closest to the camera on the right side)"
    ],
    "watch_for": [
-    "if the green cube is still in the right tray, the tip did not suck it up",
-    "if the green cube sits outside the clear squares, it slipped off while moving"
+    "if the green cube stays in the right tray, the suction did not lift it",
+    "if it lands in the wrong tray, check left from right from where you stand"
    ],
-   "check_yourself": "It should look like the green cube sits inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like the small green cube sits in the left clear tray and three small cubes stay in the right clear tray.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "6": {
    "title": "Return blue cube to left tray",
-   "say": "Pick up the blue cube from the right tray. Place it inside the left tray.",
+   "say": "Pick up the small blue cube. Place it in the front left corner of the left clear tray.",
    "placements": [
-    "blue small cube → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the left edge of the left grid)"
+    "small blue cube → inside the left clear tray, front left corner pocket as seen from above (in the video: left tray, corner closest to the camera on the left side)"
    ],
    "watch_for": [
-    "if the blue cube is still in the right tray, the tip did not suck it up",
-    "if the blue cube sits tipped over, it was set down off center"
+    "if the blue cube ends up on its side, it hit the tray edge going down",
+    "if the green cube is missing, the arm knocked it out of its pocket"
    ],
-   "check_yourself": "It should look like the blue cube sits inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like the green and blue cubes sit in the left clear tray and two small cubes stay in the right clear tray.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "7": {
    "title": "Return yellow cube to left tray",
-   "say": "Pick up the yellow cube from the right tray. Place it inside the left tray.",
+   "say": "Pick up the small yellow cube. Place it in the back right corner of the left clear tray.",
    "placements": [
-    "yellow small cube → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the top edge of the left grid)"
+    "small yellow cube → inside the left clear tray, back right corner pocket as seen from above (in the video: left tray, corner farthest from the camera on the right side)"
    ],
    "watch_for": [
-    "if the yellow cube is still in the right tray, the tip did not suck it up",
-    "if the yellow cube sits outside the clear squares, it slipped off while moving"
+    "if the yellow cube is not in its corner, the arm released too early",
+    "if two cubes are stacked, the drop spot was over another cube"
    ],
-   "check_yourself": "It should look like the yellow cube sits inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like green and blue and yellow cubes sit in the left clear tray and one small cube stays in the right tray.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "8": {
    "title": "Return red cube to left tray",
-   "say": "Pick up the red cube from the right tray. Place it inside the left tray.",
+   "say": "Pick up the small red cube. Place it in the back left corner of the left clear tray.",
    "placements": [
-    "red small cube → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the thin sucking tip on top of the cube (in the video: near the top edge of the left grid)"
+    "small red cube → inside the left clear tray, back left corner pocket as seen from above (in the video: left tray, corner farthest from the camera on the left side)"
    ],
    "watch_for": [
-    "if the red cube is still in the right tray, the tip did not suck it up",
-    "if you count less than four cubes on the left, one cube is missing"
+    "if the left tray has only three cubes, the red cube was dropped on the table",
+    "if the red cube sits crooked, it did not fall straight into the pocket"
    ],
-   "check_yourself": "It should look like all four small cubes sit inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers well away from the moving robot arm."
+   "check_yourself": "It should look like all four small cubes sit in the four corners of the left clear tray and the right tray is empty.",
+   "safety": "Keep your hands clear of the moving arm."
   },
   "9": {
    "title": "Move red block to right tray",
-   "say": "Pick up the red block from the left tray. Place it inside the right tray.",
+   "say": "Pick up the red block. Place it in the front right corner of the right clear tray.",
    "placements": [
-    "red big block with holes on top → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the bottom edge of the right grid)"
+    "red block with holes on top → inside the right clear tray, front right corner pocket as seen from above (in the video: right tray, corner closest to the camera on the right side)"
    ],
    "watch_for": [
-    "if the red block slips or tilts, the black fingers were not centered on it",
-    "if the red block sits outside the clear squares, it was let go too high"
+    "if the red block slips out, the fingers did not close evenly on the sides",
+    "if it lands outside the pocket, the arm was not centred over the corner"
    ],
-   "check_yourself": "It should look like the red block sits inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like the red block sits in the front right corner of the right clear tray and three blocks stay in the left tray.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "10": {
    "title": "Move green block to right tray",
-   "say": "Pick up the green block from the left tray. Place it inside the right tray.",
+   "say": "Pick up the green block. Place it in the front left corner of the right clear tray.",
    "placements": [
-    "green big block with holes on top → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the bottom edge of the right grid next to the red block)"
+    "green block with holes on top → inside the right clear tray, front left corner pocket as seen from above (in the video: right tray, corner closest to the camera on the left side)"
    ],
    "watch_for": [
-    "if the green block stays in the left tray, the black fingers did not grip it",
-    "if the green block sits tipped over, it was set down off center"
+    "if the green block tips the red block, it was set down too close to it",
+    "if the fingers miss, the block was not between the three fingers"
    ],
-   "check_yourself": "It should look like the green block sits inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like the red and green blocks sit in the right clear tray and two blocks stay in the left tray.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "11": {
    "title": "Move blue block to right tray",
-   "say": "Pick up the blue block from the left tray. Place it inside the right tray.",
+   "say": "Pick up the blue block. Place it in the back right corner of the right clear tray.",
    "placements": [
-    "blue big block with holes on top → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the top edge of the right grid)"
+    "blue block with holes on top → inside the right clear tray, back right corner pocket as seen from above (in the video: right tray, corner farthest from the camera on the right side)"
    ],
    "watch_for": [
-    "if the blue block stays in the left tray, the black fingers did not grip it",
-    "if the blue block sits outside the clear squares, it was let go too high"
+    "if the blue block falls on its side, the fingers opened too high above the tray",
+    "if you grab the wrong block, check blue against yellow in the light"
    ],
-   "check_yourself": "It should look like the blue block sits inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like red and green and blue blocks sit in the right clear tray and one block stays in the left tray.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "12": {
    "title": "Move yellow block to right tray",
-   "say": "Pick up the yellow block from the left tray. Place it inside the right tray.",
+   "say": "Pick up the yellow block. Place it in the back left corner of the right clear tray.",
    "placements": [
-    "yellow big block with holes on top → inside the right clear grid on the table to the right of the left grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the top edge of the right grid)"
+    "yellow block with holes on top → inside the right clear tray, back left corner pocket as seen from above (in the video: right tray, corner farthest from the camera on the left side)"
    ],
    "watch_for": [
-    "if the yellow block stays in the left tray, the black fingers did not grip it",
-    "if you count less than four blocks on the right, one block is missing"
+    "if the yellow block does not stay flat, it is sitting on the tray edge",
+    "if a corner looks empty, a block was knocked out of place"
    ],
-   "check_yourself": "It should look like all four big blocks sit inside the right clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like all four blocks sit in the four corners of the right clear tray and the left tray is empty.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "13": {
    "title": "Return red block to left tray",
-   "say": "Pick up the red block from the right tray. Place it inside the left tray.",
+   "say": "Pick up the red block. Place it in the front right corner of the left clear tray.",
    "placements": [
-    "red big block with holes on top → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the bottom edge of the left grid)"
+    "red block with holes on top → inside the left clear tray, front right corner pocket as seen from above (in the video: left tray, corner closest to the camera on the right side)"
    ],
    "watch_for": [
-    "if the red block stays in the right tray, the black fingers did not grip it",
-    "if the red block sits outside the clear squares, it was let go too high"
+    "if the red block stays in the right tray, the fingers never gripped it",
+    "if it lands in the wrong tray, check left from right from where you stand"
    ],
-   "check_yourself": "It should look like the red block sits inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like the red block sits in the left clear tray and three blocks stay in the right clear tray.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "14": {
    "title": "Return green block to left tray",
-   "say": "Pick up the green block from the right tray. Place it inside the left tray.",
+   "say": "Pick up the green block. Place it in the front left corner of the left clear tray.",
    "placements": [
-    "green big block with holes on top → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the left edge of the left grid)"
+    "green block with holes on top → inside the left clear tray, front left corner pocket as seen from above (in the video: left tray, corner closest to the camera on the left side)"
    ],
    "watch_for": [
-    "if the green block stays in the right tray, the black fingers did not grip it",
-    "if the green block sits tipped over, it was set down off center"
+    "if the green block squeezes out, the fingers closed off centre",
+    "if the red block moved, the arm bumped it on the way in"
    ],
-   "check_yourself": "It should look like the green block sits inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like the red and green blocks sit in the left clear tray and two blocks stay in the right clear tray.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "15": {
    "title": "Return blue block to left tray",
-   "say": "Pick up the blue block from the right tray. Place it inside the left tray.",
+   "say": "Pick up the blue block. Place it in the back right corner of the left clear tray.",
    "placements": [
-    "blue big block with holes on top → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the top edge of the left grid)"
+    "blue block with holes on top → inside the left clear tray, back right corner pocket as seen from above (in the video: left tray, corner farthest from the camera on the right side)"
    ],
    "watch_for": [
-    "if the blue block stays in the right tray, the black fingers did not grip it",
-    "if the blue block sits outside the clear squares, it was let go too high"
+    "if the blue block leans against another block, it missed its own pocket",
+    "if it drops early, the fingers opened before reaching the tray"
    ],
-   "check_yourself": "It should look like the blue block sits inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like red and green and blue blocks sit in the left clear tray and one yellow block stays in the right tray.",
+   "safety": "Keep your fingers away from the closing fingers."
   },
   "16": {
    "title": "Return yellow block to left tray",
-   "say": "Pick up the yellow block from the right tray. Place it inside the left tray.",
+   "say": "Pick up the yellow block. Place it in the back left corner of the left clear tray.",
    "placements": [
-    "yellow big block with holes on top → inside the left clear grid on the table to the left of the right grid as seen from above, placed with the white robot arm using the black three finger grabber closed around the sides (in the video: near the top edge of the left grid)"
+    "yellow block with holes on top → inside the left clear tray, back left corner pocket as seen from above (in the video: left tray, corner farthest from the camera on the left side)"
    ],
    "watch_for": [
-    "if the yellow block stays in the right tray, the black fingers did not grip it",
-    "if you count less than four blocks on the left, one block is missing"
+    "if the left tray has only three blocks, the yellow block fell on the table",
+    "if the yellow block sits crooked, it caught the tray edge going down"
    ],
-   "check_yourself": "It should look like all four big blocks sit inside the left clear grid as seen from above.",
-   "safety": "Keep your fingers away from the closing black fingers."
+   "check_yourself": "It should look like all four blocks sit in the four corners of the left clear tray and the right tray is empty.",
+   "safety": "Keep your fingers away from the closing fingers."
   }
  }
 }

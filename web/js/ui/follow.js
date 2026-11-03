@@ -632,6 +632,9 @@ export async function render(root) {
       log('mistake_shown', ctx.step, { failed_checks: failedResults().map((x) => x.check_id) });
     }
     if (ctx.state === S.ASKING) log('ask_shown', ctx.step);
+    if (before.state === S.ASKING && ctx.step !== before.step && ctx.state !== S.DONE) {
+      coachSay(T('ok_next', { n: ctx.step, text: `${lcFirst(titleOf(ctx.step))}.` }), true, !!voiceCtl, ctx.step);
+    }
   }
 
   async function perform(fx, ev, before) {
@@ -762,10 +765,9 @@ export async function render(root) {
     // Finished: a proper ending on this screen (every step ticked, "You did it", the coach's last line), held long
     // enough to land, then the summary. Leaving early goes straight there.
     if (completed) {
-      if (lastSaid !== T('yes_last')) { // coachSay stays quiet once finished; this one line is the ending
-        el.reply.textContent = T('yes_last'); el.voiceCap.hidden = false;
-        if (voiceCtl || (replayMode && replayVoice)) speak(T('yes_last'));
-      }
+      // coachSay stays quiet once finished; this one line is the ending, said after whatever was still queued is dropped
+      el.reply.textContent = T('yes_last'); el.voiceCap.hidden = false;
+      if (lastSaid !== T('yes_last') && (voiceCtl || (replayMode && replayVoice))) { hush(); speak(T('yes_last')); }
       el.guide.replaceChildren(h('div', { class: 'finale' }, h('span', { class: 'finale-mark', 'aria-hidden': 'true' }, '\u2713'),
         h('div', {}, h('div', { class: 'finale-title' }, 'You did it'),
           h('div', { class: 'finale-sub' }, `All ${steps.length} step${steps.length === 1 ? '' : 's'} of ${meta.title}, checked.`))));
@@ -924,18 +926,18 @@ export async function render(root) {
   // While the coach talks, the tutorial video is turned down so the two never talk over each other
   const stopDucking = onSpeech((talking) => el.tut.querySelectorAll('video').forEach((v) => { v.volume = talking ? 0.15 : 1; }));
   function mistakeLine(res) {
-    const seen = res?.results?.find((x) => x.kind === 'judged' && !x.pass && x.reason)?.reason;
-    // the check's reason and hint are English; another language gets the step's translated directions instead
-    const see = seen && lang === 'en' ? `I can see ${seen.replace(/^(the )?learner('s)? (picture|photo|image) (shows|has)\s*/i, '').replace(/\.$/, '')}. ` : '';
-    return `${T('not_quite')} ${see}${(lang === 'en' && res?.hint) || T('try_again', { text: directions(ctx.step) })}`;
+    // The check's reason is for "How it decided"; out loud the coach says what to do: the hint (English), or the
+    // current action again in the learner's language
+    return `${T('not_quite')} ${(lang === 'en' && res?.hint) || T('try_again', { text: actionsOf(ctx.step)[actionAt] || directions(ctx.step) })}`;
   }
   function coachVerdict(res, n, asked) {
     if (res.verdict === 'done') {
       const next = stepOf(n + 1);
       if (ctx.confirmDone.includes(n)) return; // a safety step: the learner is asked first (final_ask)
-      coachSay(next ? T('yes_next', { n: n + 1, text: `${lcFirst(titleOf(n + 1))}.` }) : T('yes_last'), true, !!voiceCtl, next ? n + 1 : n);
+      // the last step's "great work" cuts in ahead of anything still queued, so the lesson ends on it
+      coachSay(next ? T('yes_next', { n: n + 1, text: `${lcFirst(titleOf(n + 1))}.` }) : T('yes_last'), true, !!voiceCtl, next ? n + 1 : n, !next);
     } else if (res.verdict === 'unsure') {
-      coachSay(`${T('not_sure')} ${lang === 'en' ? askQuestion(stepOf(n), last) : finalQuestion(n)} ${T('say_yes_no')}`);
+      coachSay(`${T('not_sure')} ${finalQuestion(n)} ${T('looks_like_this')} ${T('say_yes_no')}`);
     } else if (res.verdict === 'waiting' && asked) {
       coachSay(res.hand_blocked ? T('cant_see_yet') : T('couldnt_check'));
     } // wrong: spoken when the mistake screen opens (mistakeLine)
@@ -971,7 +973,8 @@ export async function render(root) {
       if (d.observation) { el.watchNote.textContent = `👁 ${d.observation}`; el.watchNote.dataset.state = d.status; }
       // older recordings have no on_action: each "working" look moves on one action
       if (d.status === 'working' && advanceAction(d.on_action ? d.on_action - 1 : actionAt + 1) && !d.say) return;
-      if (d.say) coachSay(d.say, true, true, step, d.status === 'mistake');
+      if (d.status === 'mistake' && lastStatus === 'mistake' && Date.now() - lastLineAt < 6000) return; // said once
+      if (d.say) { lastStatus = d.status; lastLineAt = Date.now(); coachSay(d.say, true, true, step, d.status === 'mistake'); }
     } }) : null;
   // ---- framing: light and focus, measured on the phone (free, instant); said once, then again only if it persists ----
   let lastFraming = 0;
@@ -1033,7 +1036,8 @@ export async function render(root) {
 
 // English defaults for the coach's fixed lines (the server's copy: config/phrases.json), used until /api/phrases answers
 const PHRASES_EN = {
-  your_turn: 'Your turn.', good_now: 'Nice. Now {text}', explain_btn: 'Explain it differently', safety_first: 'Safety first.', safety_confirm: 'Say "ready" or tap "It\'s safe" when you\'ve done that.',
+  your_turn: 'Your turn.', good_now: 'Nice. Now {text}', explain_btn: 'Explain it differently',
+  ok_next: 'Great. Next up, step {n}: {text}', looks_like_this: 'Does yours look like that?', safety_first: 'Safety first.', safety_confirm: 'Say "ready" or tap "It\'s safe" when you\'ve done that.',
   not_quite: 'Not quite.', try_again: 'Try again: {text}', yes_next: "Yes, that's right! Next up, step {n}: {text}",
   yes_last: "Yes, that's right! That was the last step. Great work.", not_sure: "I'm not completely sure.", say_yes_no: 'Say yes or no.',
   cant_see_yet: "I can't see your work yet. Move your hands out of the way and ask me again.",

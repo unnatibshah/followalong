@@ -1,106 +1,107 @@
 {
- "prompt_version": "step_details-0.7",
+ "prompt_version": "step_details-0.8",
  "model": "muse-spark-1.3",
- "cost_usd": 0.10718975,
+ "cost_usd": 0.10803825,
  "actor": "hand",
  "steps": {
   "1": {
-   "title": "Pull out the house wires",
-   "say": "Pull the two white wires and two black wires out of the gray box in the wall. Leave the bare copper tips pointing straight out in front.",
+   "title": "Pull the caps off the wires",
+   "say": "Hold the gray box steady with one hand. Twist the small orange caps off the wall wires. Leave the four bare copper ends sticking out of the box.",
    "placements": [
-    "two white house wires with bare copper tips → pulled forward out of the gray wall box to hang in front of the opening in the video: center right of the white wall",
-    "two black house wires with bare copper tips → pulled forward out of the gray wall box to hang in front of the opening in the video: center right of the white wall"
+    "small orange twist cap on the white wall wire → off the wire and set aside (in the video: upper left of the gray box)",
+    "small orange twist cap on the lower wall wires → off the wires and set aside (in the video: middle right of the gray box)",
+    "four bare copper wire ends → sticking out of the gray box opening (in the video: two white and two black wires out front)"
    ],
    "watch_for": [
-    "If you see only two wires, the other two are still folded inside so reach in and pull them forward.",
-    "If one bare copper tip touches another bare tip, you can get a short so keep all four ends apart."
+    "if a bare end slips back inside the box, pull it gently forward again so you can see it",
+    "if a cap will not turn, try turning the other way and pull steady"
    ],
-   "check_yourself": "It should look like four bare copper tips sticking straight out of the gray box with no caps on.",
-   "safety": "Switch the power off at the breaker before you touch any wire."
+   "check_yourself": "It should look like four bare copper ends sticking out of the gray box with no caps on.",
+   "safety": "Switch the breaker off before touching any wire."
   },
   "2": {
    "title": "Check the wires have no power",
-   "say": "Hold the yellow tester in one hand. Touch the red and black tips to each bare copper end in the box.",
+   "say": "Touch the red and black probes of the yellow tester to the bare wire ends. Check the tester stays dark and quiet for every pair.",
    "placements": [
-    "yellow hand tester with red tip and black tip → both tips touched to each bare copper wire end sticking out of the gray wall box in the video: at the lower edge of the box opening"
+    "red probe of the yellow tester → to a bare wall wire end inside the gray box (in the video: touching the lower copper twist)",
+    "black probe of the yellow tester → to another bare wall wire end at the same time (in the video: touching a second bare end in the box)"
    ],
    "watch_for": [
-    "If the tester lights up or beeps, power is still on so stop and switch the breaker off.",
-    "If you test only one wire, you can miss power so touch the tips to every bare end."
+    "if you test only one pair, another wire could still be live so test every pair",
+    "if the tester lights or beeps, stop and keep the breaker off"
    ],
-   "check_yourself": "It should look like the yellow tester tips touching the bare wires with no light and no beep.",
-   "safety": "Keep your fingers on the plastic handles only and keep the bare ends apart."
+   "check_yourself": "It should look like the yellow tester touching the bare wires with no light and no sound.",
+   "safety": "Hold only the plastic handles of the probes."
   },
   "3": {
    "title": "Join the white wires together",
-   "say": "Twist the two white house wires together inside the gray box. Screw the small yellow cap tightly over the bare copper ends. Push the capped white wires to the back of the gray box.",
+   "say": "Hold the two white wall wires side by side. Screw the yellow twist cap onto their bare ends. Push the capped white wires to the back of the box.",
    "placements": [
-    "two white house wires with bare copper ends → twisted together clockwise until tight and tucked to the back inside the gray wall box in the video: back left inside the box",
-    "small yellow twist cap → screwed tightly over the twisted white wire ends inside the gray wall box in the video: back left inside the box"
+    "two white wall wires → side by side with bare ends even and twisted together (in the video: left and right white wires from the gray box)",
+    "yellow twist cap → screwed over both white bare ends (in the video: yellow cap inside the box)",
+    "capped white wires → pushed to the back bottom of the gray box leaving two black wall wires out front (in the video: white wires hidden behind)"
    ],
    "watch_for": [
-    "If copper shows below the yellow cap, unscrew it and twist tighter until no copper shows.",
-    "If a white and black wire are twisted together, undo it and keep white only with white."
+    "if copper shows below the yellow cap, unscrew it and push the wires deeper",
+    "if you leave a white wire out, the heater will not work so use both whites"
    ],
-   "check_yourself": "It should look like the two white wires hidden under a yellow cap pushed to the back with only two black wires sticking out.",
-   "safety": "Keep the breaker off while you twist the white wires together."
+   "check_yourself": "It should look like no white wires showing with a yellow cap tucked inside and two black wires out.",
+   "safety": "Keep the breaker off so the black wires cannot shock you."
   },
   "4": {
-   "title": "Connect first black wire to thermostat",
-   "say": "Hold one black house wire next to one short black wire from the thermostat box. Twist the bare copper ends together in front of the gray box. Screw the big red cap over the bare ends.",
+   "title": "Join thermostat to first black wire",
+   "say": "Hold one short black wire from the thermostat next to the first black wall wire. Screw the red twist cap over both bare ends.",
    "placements": [
-    "one black house wire with bare copper end → twisted clockwise to one short black wire hanging from the black thermostat box in front of the gray wall box in the video: left side of the opening",
-    "one short black wire hanging from the black thermostat box with white knob → twisted clockwise to the one black house wire in front of the gray wall box in the video: left side of the opening",
-    "big red twist cap → screwed tightly over the joined bare ends in front of the gray wall box in the video: left side of the opening"
+    "one short black wire hanging from the black thermostat base → alongside the bare end of the first black wall wire from the gray box (in the video: left side of the box opening)",
+    "red twist cap → screwed over both bare ends to join them (in the video: large red cap centered in the box opening)"
    ],
    "watch_for": [
-    "If copper shows below the red cap, the joint is loose so unscrew and twist tighter.",
-    "If you grab the free black house wire by mistake, you will have no wire left for the other side so work with one only."
+    "if copper shows below the red cap, the joint is shallow so reseat it deeper",
+    "if the joint pulls loose, twist the red cap tighter until it holds"
    ],
-   "check_yourself": "It should look like one black house wire joined under a red cap to the hanging black box with the other black house wire still free.",
-   "safety": "Keep the breaker off while you join the wires because they can carry power."
+   "check_yourself": "It should look like one black wall wire joined under a red cap to the hanging thermostat with one black wall wire still free.",
+   "safety": "Keep the breaker off while joining the wires."
   },
   "5": {
-   "title": "Connect the second black wire",
-   "say": "Hold the free black house wire next to the hanging short black wire. Twist the bare copper ends together in front of the gray box. Screw another big red cap over the bare ends.",
+   "title": "Join thermostat to second black wire",
+   "say": "Hold the remaining thermostat black wire next to the remaining wall black wire. Screw the second red twist cap over both bare ends.",
    "placements": [
-    "free black house wire with bare copper end → twisted clockwise to the hanging short black wire from the black thermostat box in front of the gray wall box in the video: right side of the opening",
-    "hanging short black wire from the black thermostat box with white knob → twisted clockwise to the free black house wire in front of the gray wall box in the video: right side of the opening",
-    "another big red twist cap → screwed tightly over the joined bare ends in front of the gray wall box in the video: near the center of the opening"
+    "remaining short black wire hanging from the black thermostat base → alongside the bare end of the remaining black wall wire from the gray box (in the video: twisted together above and to the right of the box)",
+    "second twist cap → screwed over both bare ends of that pair (in the video: twisted copper joint hanging to the right of the box)"
    ],
    "watch_for": [
-    "If copper shows below the red cap, the joint will overheat so twist tighter until hidden.",
-    "If both house wires end up in one cap, the heater will not switch so keep one house wire per cap."
+    "if you mix a black wire with a white wire, stop and use only black to black",
+    "if copper shows outside the cap, unscrew and push the wires deeper"
    ],
-   "check_yourself": "It should look like both black house wires joined to the hanging black box with no bare copper showing.",
-   "safety": "Keep the breaker off while you join the second wires together."
+   "check_yourself": "It should look like both black wall wires joined to the hanging thermostat with red caps on.",
+   "safety": "Keep the breaker off while joining the second pair."
   },
   "6": {
-   "title": "Screw the thermostat to wall",
-   "say": "Tuck all the capped wires gently into the gray box. Hold the black box with the white knob flat over the wall opening. Drive the top and bottom silver screws into the gray box with a drill.",
+   "title": "Screw the thermostat flat to box",
+   "say": "Push all the capped wires gently inside the gray box. Hold the black thermostat base flat over the box opening. Drive the top and bottom small silver screws into the box.",
    "placements": [
-    "black thermostat box with white knob → held flat and centered over the gray wall box opening covering the capped wires in the video: centered on the white wall",
-    "top silver screw → driven through the top hole of the black box into the top hole of the gray wall box with a power drill in the video: top center of the black box",
-    "bottom silver screw → driven through the bottom hole of the black box into the bottom hole of the gray wall box with a power drill in the video: bottom center of the black box"
+    "black thermostat base with white round knob → flat over the gray box opening centered on the wall (in the video: covering the rectangular hole)",
+    "small silver screw at the top of the base → into the top screw hole of the gray box using the driver (in the video: top center of the base)",
+    "small silver screw at the bottom of the base → into the bottom screw hole of the gray box using the driver (in the video: bottom center of the base)"
    ],
    "watch_for": [
-    "If the black box rocks or gaps, a wire is trapped behind so push the wires deeper and reseat flat.",
-    "If a screw spins without biting, it missed the hole so back out and line up with the gray box holes."
+    "if wires hold the base off the wall, push the caps deeper inside first",
+    "if the base sits crooked, loosen the screws and straighten it before tightening"
    ],
-   "check_yourself": "It should look like the black box with the white knob screwed flat and centered over the wall opening.",
-   "safety": "Keep the breaker off while you tuck the wires and drive the screws."
+   "check_yourself": "It should look like the black base with the white knob screwed flat over the wall opening.",
+   "safety": ""
   },
   "7": {
-   "title": "Push on the white cover",
-   "say": "Line up the white square cover over the black box. Push it straight in until it clicks.",
+   "title": "Push the white cover on",
+   "say": "Hold the white square cover with the dial facing out. Push it straight over the black base until it clicks.",
    "placements": [
-    "white square plastic cover with round dial → pushed straight onto the black thermostat box centered on the white wall in the video: centered on the white wall"
+    "white square cover with round dial → straight over the black thermostat base centered on the wall (in the video: centered on the white wall over the base)"
    ],
    "watch_for": [
-    "If the cover gaps on one side, it is crooked so pull off and line up square before pushing.",
-    "If the round dial will not turn, the cover is pressed on the knob wrong so lift and reseat straight."
+    "if the cover will not click, it is upside down so turn it around",
+    "if a gap shows at the edge, push evenly on all sides until flat"
    ],
-   "check_yourself": "It should look like a white square cover with a round dial centered flat on the white wall.",
+   "check_yourself": "It should look like a white square cover with a round dial centered on the wall.",
    "safety": ""
   }
  }

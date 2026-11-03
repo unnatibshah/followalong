@@ -38,7 +38,8 @@ export async function render(root) {
   const opts = recs.map((r, i) => {
     const input = h('input', { type: 'radio', name: 'fa-rec', value: r.id, checked: i === pick, class: 'radio' });
     input.addEventListener('change', () => { pick = i; root.querySelectorAll('.rec-opt').forEach((l, j) => l.classList.toggle('on', j === i)); paintArt(); });
-    return h('label', { class: ['rec-opt', i === pick && 'on'] }, input, h('span', { class: 'strong' }, r.title), h('span', { class: 'muted' }, subs[i]));
+    return h('label', { class: ['rec-opt', i === pick && 'on'] }, input, h('span', { class: 'strong' }, r.title), h('span', { class: 'muted' }, subs[i]),
+      r.credit && h('span', { class: 'muted fine' }, `Learner footage: ${r.credit}`));
   });
 
   async function play() {

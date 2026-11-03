@@ -219,6 +219,8 @@ otherwise changed. Credit, as CC BY asks: title, creator, link, licence (CC BY 3
 | Make a crossover Ethernet cable | “CAT6 CROSSOVER CABLE - HOW TO - QUICK & EASY!” | Ultimate Tech Hub | [youtube.com/watch?v=VZZq7MbvAuE](https://www.youtube.com/watch?v=VZZq7MbvAuE) |
 | Robot arm: pick and place blocks | “Dobot Magician Lite Pick & Place - Suction Cup Vs Gripper #robot #robotics #technology” | Amatya Katyayan | [youtube.com/watch?v=tfN4FUlOfzg](https://www.youtube.com/watch?v=tfN4FUlOfzg) |
 
+**Learner footage from a different video.** The replay *Tie a figure-eight knot · someone else's cord* uses [“Activity at Home: Tie a Figure 8 Knot”](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) by Terrapin Adventures (CC BY) as the learner's camera: another person, a pink cord on a wooden table, against the tutorial above. Every look and check in it ran live on those frames.
+
 Links pasted into the app are accepted only when the video is Creative Commons licensed; uploads must be videos you
 have the rights to. The first version of this project used standard-licence YouTube videos; they are not in this
 repository.

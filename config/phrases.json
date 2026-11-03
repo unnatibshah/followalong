@@ -25,5 +25,7 @@
   "safe_thanks": "Thanks. Go ahead.",
   "step_label": "Step {n}",
   "good_now": "Nice. Now {text}",
-  "explain_btn": "Explain it differently"
+  "explain_btn": "Explain it differently",
+  "ok_next": "Great. Next up, step {n}: {text}",
+  "looks_like_this": "Does yours look like that?"
 }

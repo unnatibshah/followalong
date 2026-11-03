@@ -1,87 +1,87 @@
 {
- "prompt_version": "step_details-0.7",
+ "prompt_version": "step_details-0.8",
  "model": "muse-spark-1.3",
- "cost_usd": 0.0823783,
+ "cost_usd": 0.06965375,
  "actor": "hand",
  "steps": {
   "1": {
    "title": "Drape tie around your collar",
-   "say": "Lay the blue striped tie around your open collar with the pattern facing out. Hang the wide blue pointed end much longer on your right. Hang the skinny blue pointed end short on your left.",
+   "say": "Lay your tie around your neck under the collar. Make the wide end hang much lower.",
    "placements": [
-    "wide blue pointed striped end → hanging down the shirt front on the right side of the collar opening with the pattern facing out and the tip pointing down and much longer than the other side, held in the right hand (in the video: right side of the white shirt front)",
-    "skinny blue pointed striped end → hanging down the shirt front on the left side of the collar opening with the pattern facing out and the tip pointing down and short, held in the left hand (in the video: left side of the white shirt front)"
+    "wide end of tie → hanging down the front of your shirt on your right side with the tip low; in the video: wide blue striped end on the right side of the white shirt front",
+    "narrow skinny end of tie → hanging down the front of your shirt on your left side with the tip higher; in the video: narrow blue striped end on the left side of the white shirt front"
    ],
    "watch_for": [
-    "if both ends hang the same length the knot will end too short, the wide end must start much longer than the skinny end",
-    "if the shiny patterned side faces in toward the shirt the tie will look inside out, flip it so the stripes show on the outside"
+    "if both ends hang the same length the finished tie will be too short, start with the wide end much longer.",
+    "if the tie is twisted around your neck the back side will show, lay it flat with the smooth side facing out."
    ],
-   "check_yourself": "It should look like the blue tie lying around the white collar with both ends hanging down the shirt front and the wide end much longer.",
+   "check_yourself": "It should look like your tie is around your neck with both ends hanging down the front and the wide side much longer.",
    "safety": ""
   },
   "2": {
    "title": "Cross wide end over skinny end",
-   "say": "Bring the wide blue striped end on your right across over the skinny blue end. Hold the crossing down in the middle of your chest.",
+   "say": "Hold the skinny end still in the middle of your chest. Bring the wide end across it to make a cross shape.",
    "placements": [
-    "wide blue pointed striped end → laid over the top of the skinny blue end in the middle of the shirt chest just below the collar to make an X shape with the wide side on top (in the video: center of the white shirt front just below the collar, wide from the right over skinny from the left)"
+    "wide end of tie → crossed over the front of the skinny end at the middle of your chest just below the collar; in the video: wide blue end lying over the narrow blue end in an X on the white shirt"
    ],
    "watch_for": [
-    "if the skinny end lies on top of the wide end the knot will not form, lay the wide end over the top instead",
-    "if the cross sits far down the shirt the knot will sit low, keep the cross just below the collar"
+    "if the wide end goes under instead of over the knot will twist, the wide end should sit on top at the cross.",
+    "if the cross sits right at the neck the knot will be too tight, keep it a few inches below the collar."
    ],
-   "check_yourself": "It should look like the two blue ends crossing in the middle of the shirt to make an X below the collar.",
+   "check_yourself": "It should look like the two ends form a clear X across the middle of your chest below the collar.",
    "safety": ""
   },
   "3": {
    "title": "Bring wide end up through neck",
-   "say": "Bring the wide blue striped end behind and up through the neck opening. Pull it straight up toward your chin to snug the cross.",
+   "say": "Take the wide end behind the skinny end. Push it up through the opening around your neck from behind.",
    "placements": [
-    "wide blue pointed striped end → passed behind the crossing and up through the opening around the neck between the collar and the crossing with the tip pointing up toward the chin, pulled to snug the cross (in the video: up through the middle of the white collar opening with the crossing cinched below the collar)"
+    "wide end of tie → tucked behind the skinny end then pushed up through the neck opening with the tip pointing up; in the video: wide blue end poking up through the middle of the white collar"
    ],
    "watch_for": [
-    "if the wide end goes over the front instead of behind the cross will fall apart, pass it behind then up through the neck opening",
-    "if the wide end hangs down after this move you did not pull it up, the tip should point up toward the chin"
+    "if the wide end comes up in front of the cross it missed the opening, it should come up behind and through the neck opening.",
+    "if you pull all the way through you will undo the cross, leave the cross snug below the collar."
    ],
-   "check_yourself": "It should look like the wide blue end pointing up through the neck opening with the crossing pulled snug below the collar.",
+   "check_yourself": "It should look like the wide end sticks straight up through the neck opening with the cross pinched tight below it.",
    "safety": ""
   },
   "4": {
-   "title": "Wrap wide end across front",
-   "say": "Bring the wide blue striped end across the front from your right to your left. Lay it flat to make a straight band over the middle.",
+   "title": "Wrap wide end across the front",
+   "say": "Bring the wide end down and across the front of the knot. Let the tip point out to the side.",
    "placements": [
-    "wide blue pointed striped end → wrapped sideways across the front of the knot from the right side of the chest to the left side lying flat as a straight horizontal band over the middle with the tip sticking out to the side (in the video: horizontal blue band across the center of the knot with the tip out to the left side of the frame)"
+    "wide end of tie → brought down and across the front of the knot to form a flat horizontal band with the tip out to the side; in the video: wide blue end wrapped across the center with the tip to the side"
    ],
    "watch_for": [
-    "if the wrap twists like a rope the front will look lumpy, keep the cloth flat as a straight band",
-    "if you wrap toward the wrong side the next tuck will be hard, wrap from your right to your left"
+    "if the wrap rides up over the collar it is too high, keep the band flat across the middle of the knot.",
+    "if the wide end twists with the back side showing smooth it flat with the smooth side facing out."
    ],
-   "check_yourself": "It should look like a flat horizontal blue band wrapped across the center with the wide end sticking out to the side.",
+   "check_yourself": "It should look like a flat horizontal band lies across the middle of the knot with the wide tip sticking out to the side.",
    "safety": ""
   },
   "5": {
-   "title": "Tuck wide end down through wrap",
-   "say": "Lift the wide blue striped end up through the neck opening from below. Tuck the tip down through the straight band in front. Pull it all the way down toward your belly.",
+   "title": "Pull wide end through front loop",
+   "say": "Lift the wide end up to the neck. Push the tip down through the pocket under the band in front.",
    "placements": [
-    "wide blue pointed striped end → lifted up through the neck opening from below then tucked tip down through the straight horizontal band in front ending hanging down the center over the skinny end (in the video: centered over the white shirt front hanging straight down through the front wrap)"
+    "wide end of tie → lifted up then pushed down through the front pocket under the band to hang centered over the skinny end; in the video: wide blue end hanging down through the middle of the front wrap"
    ],
    "watch_for": [
-    "if you tuck through the neck opening instead of the front band the end will hang loose, tuck only through the straight band in front",
-    "if the wide end ends off to the side the knot will be crooked, it should hang down the center over the skinny end"
+    "if the tip goes behind the knot instead of through the pocket the knot will not hold, it must slide under the horizontal band in front.",
+    "if you pull sideways the band will bunch, pull straight down in the center."
    ],
-   "check_yourself": "It should look like the wide blue end hanging down through the front wrap centered over the skinny end.",
+   "check_yourself": "It should look like the wide end hangs straight down through the middle of the front band over the skinny end.",
    "safety": ""
   },
   "6": {
-   "title": "Slide knot up to collar",
-   "say": "Pull the wide blue striped end down while holding the skinny blue end. Slide the knot up to sit centered under the collar.",
+   "title": "Tighten knot and slide it up",
+   "say": "Hold the skinny end and slide the knot up to the collar. Pinch the sides to shape a neat triangle.",
    "placements": [
-    "blue striped knot → slid up with both hands to sit centered in the V of the collar opening snug against the top button (in the video: neat triangular blue knot centered under the white collar)",
-    "wide blue pointed striped end → pulled straight down the center of the shirt front over the skinny end to tighten (in the video: hanging straight down the middle of the white shirt)"
+    "knot → slid up to sit centered just under the collar while holding the skinny end and pinched to a triangle; in the video: blue triangular knot centered under the white collar points",
+    "wide end of tie → pulled down to hang straight down the middle of the shirt over the skinny end; in the video: wide blue end hanging straight down the white shirt front"
    ],
    "watch_for": [
-    "if the knot sits off to one side the tie looks crooked, slide it until it is centered under the collar",
-    "if the knot stays loose and flat the wrap will show gaps, pull the wide end down while holding the skinny end to snug it"
+    "if the knot leans to one side it is crooked, slide it straight and center it under the collar.",
+    "if the wide end ends far above your waist the start was too short, start next time with the wide end lower."
    ],
-   "check_yourself": "It should look like a neat triangular blue knot sitting centered under the collar with the wide end hanging straight down the shirt.",
+   "check_yourself": "It should look like a neat triangle sits centered right under the collar with the wide end hanging straight down the front.",
    "safety": ""
   }
  }
