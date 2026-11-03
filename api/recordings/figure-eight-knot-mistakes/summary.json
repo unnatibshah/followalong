@@ -1,1 +1,0 @@
-{"steps_done": 3, "steps_total": 3, "duration_s": 68.6, "mistakes": [{"step_id": 1, "failed_checks": ["s1c1"]}, {"step_id": 2, "failed_checks": ["s2c1"]}, {"step_id": 3, "failed_checks": ["s3c2"]}], "hardest_step_id": 3, "rewinds": 0}
