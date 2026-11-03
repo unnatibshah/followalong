@@ -5,6 +5,7 @@ import { app, newSession } from '../state.js';
 import { stepFrame } from '../thermostatscene.js';
 import { stopCamera } from '../camera.js';
 import { nav } from '../router.js';
+import { unlockSpeech } from '../speech.js';
 import { showError } from '../overlays.js';
 
 const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
@@ -41,6 +42,7 @@ export async function render(root) {
   });
 
   async function play() {
+    unlockSpeech(); // inside the tap: iOS only lets the coach speak once speech has started from one
     const r = recs[pick];
     try {
       const { session_id: sid } = await api.startSession({ tutorial_id: r.tutorial_id, mode: 'replay', recording_id: r.id });

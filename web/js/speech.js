@@ -74,14 +74,28 @@ function next() {
  *  tag are stale and dropped; the one being spoken always finishes. False when there's no usable voice. */
 export function speak(text, tag = null, urgent = false) {
   const s = synth();
-  if (!s || !text || !pickVoice(s.getVoices())) return false;
+  if (!s || !text) return false;
+  // Chrome fills its voice list a moment after the page opens: a line said before that waits for it instead of being
+  // lost. Once the list is in, a language with no voice at all stays silent (captions only).
+  const loading = !s.getVoices().length;
+  if (!loading && !pickVoice(s.getVoices())) return false;
   if (urgent) { queue.length = 0; current = null; s.cancel(); } // "Oh, wait": a mistake cuts in, like a person would
   if (tag !== null) for (let i = queue.length - 1; i >= 0; i--) if (queue[i].tag !== null && queue[i].tag !== tag) queue.splice(i, 1);
   for (const sentence of speakable(text).match(/[^.!?]+[.!?]*\s*/g) || [text]) {
     for (const part of breathe(sentence.trim())) if (part) queue.push({ text: part, tag });
   }
+  if (loading) { waitForVoices(s); return true; }
   if (!current) next();
   return true;
+}
+
+let waiting = false;
+function waitForVoices(s) {
+  if (waiting) return;
+  waiting = true;
+  const go = () => { waiting = false; if (!current && pickVoice(s.getVoices())) next(); else if (!pickVoice(s.getVoices())) queue.length = 0; };
+  s.addEventListener?.('voiceschanged', go, { once: true });
+  setTimeout(() => { if (waiting) go(); }, 1500); // Safari and some Chromes never fire it: try anyway
 }
 
 export const speaking = () => !!current || queue.length > 0;

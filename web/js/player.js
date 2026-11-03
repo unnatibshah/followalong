@@ -6,7 +6,7 @@ import { app } from './state.js';
 
 const STAND_IN_MAX_S = 3; // a stand-in step "plays" for at most this long, so the loop is quick to watch
 
-export function createPlayer({ src, standIn, onEnd, onTime }) {
+export function createPlayer({ src, standIn, onEnd, onTime, onSoundBlocked }) {
   let mode = 'idle'; // idle | step | loop
   let range = [0, 0];
   let paused = false;
@@ -32,6 +32,7 @@ export function createPlayer({ src, standIn, onEnd, onTime }) {
     };
     return {
       el,
+      sound() {}, // the drawn stand-in has no audio
       playStep: (step) => run('step', step.start, step.end),
       loop: (step) => run('loop', step.key_clip_start, step.key_clip_end),
       pause() { if (!paused && mode !== 'idle') { paused = true; done += (performance.now() - t0) / 1000; cancelAnimationFrame(raf); } },
@@ -41,7 +42,15 @@ export function createPlayer({ src, standIn, onEnd, onTime }) {
     };
   }
 
+  // Starts muted (browsers only autoplay silent video); the lesson turns the sound on after the learner's tap. If the
+  // browser still refuses sound (no tap yet, e.g. a reload straight into a lesson), it plays silently and says so.
   const video = h('video', { class: 'player-video', src, muted: true, playsInline: true, preload: 'auto', 'aria-label': 'Tutorial video' });
+  const play = () => video.play().catch(() => {
+    if (video.muted) return;
+    video.muted = true;
+    video.play().catch(() => {});
+    onSoundBlocked?.();
+  });
   const el = h('div', { class: 'player' }, video);
   const rvfc = 'requestVideoFrameCallback' in video;
   let cb = 0;
@@ -58,7 +67,7 @@ export function createPlayer({ src, standIn, onEnd, onTime }) {
   const run = (m, a, b) => {
     mode = m; range = [a, b]; paused = false;
     video.currentTime = a;
-    video.play().catch(() => {});
+    play();
     schedule();
   };
   const halt = () => { mode = 'idle'; if (rvfc) video.cancelVideoFrameCallback(cb); video.pause(); };
@@ -67,7 +76,9 @@ export function createPlayer({ src, standIn, onEnd, onTime }) {
     playStep: (step) => run('step', step.start, step.end),
     loop: (step) => run('loop', step.key_clip_start, step.key_clip_end),
     pause() { paused = true; video.pause(); },
-    resume() { if (paused && mode !== 'idle') { paused = false; video.play().catch(() => {}); schedule(); } },
+    resume() { if (paused && mode !== 'idle') { paused = false; play(); schedule(); } },
+    /** Tutorial sound on or off; call it from a tap (or after one) so the browser allows it. */
+    sound(on) { video.muted = !on; if (!on || video.paused || mode === 'idle') return; play(); },
     /** Stop on the step's end frame (the learner's turn), wherever the video was. */
     freeze(step) { halt(); video.currentTime = Math.max(step.start, step.end - 0.1); },
     destroy() { halt(); video.removeAttribute('src'); video.load(); },

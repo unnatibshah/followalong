@@ -99,3 +99,18 @@ test('lines are shaped for the voice: no "In the video" asides or symbols, long 
     ['Push the white wire straight down into its own row at the top edge of the board.', 'Push the blue wire into a row to its right.']);
   assert.deepEqual(breathe('Take the blue wire, and push it in.'), ['Take the blue wire, and push it in.']); // short: left alone
 });
+
+test('a line said before the browser has loaded its voices waits for them instead of being lost', async () => {
+  const spoken = [];
+  let voices = [];
+  let onVoices = null;
+  globalThis.SpeechSynthesisUtterance = class { constructor(text) { this.text = text; } };
+  globalThis.speechSynthesis = { getVoices: () => voices, speak: (u) => spoken.push(u), cancel: () => {},
+    addEventListener: (type, fn) => { if (type === 'voiceschanged') onVoices = fn; } };
+  const { speak } = await import('../web/js/speech.js?loading');
+  assert.equal(speak('Your turn. Push the wire in.'), true); // accepted, waiting
+  assert.equal(spoken.length, 0);
+  voices = [{ name: 'Samantha', lang: 'en-US', localService: true }];
+  onVoices();
+  assert.deepEqual(spoken.map((u) => u.text), ['Your turn.']);
+});
