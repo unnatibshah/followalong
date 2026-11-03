@@ -10,12 +10,12 @@ export function renderHeader(el, route, theme) {
   el.className = `site-header ${theme}`;
   const logo = h('a', { href: '#/', class: 'logo' }, 'FollowAlong');
   if (theme === 'light') {
-    const nav = [['', 'Tutorials'], ['creator', 'For creators'], ['evaluation', 'Evaluation']].map(([k, label]) =>
+    const nav = [['', 'Tutorials'], ['creator', 'For teachers'], ['evaluation', 'Evaluation']].map(([k, label]) =>
       h('a', { href: `#/${k}`, class: ['nav-link', route === k && 'active'], 'aria-current': route === k ? 'page' : null }, label));
     el.append(h('div', { class: 'wrap header-row' }, logo,
       h('nav', { class: 'header-nav', 'aria-label': 'Main' }, nav,
         h('a', { class: 'btn-text', href: 'https://github.com/unnatibshah/followalong', target: '_blank', rel: 'noopener' }, 'GitHub'),
-        h('a', { href: '#/replay', class: 'btn btn-dark btn-sm' }, 'Watch a replay (no camera)'))));
+        h('a', { href: '#/replay', class: 'btn btn-dark btn-sm' }, 'Watch a replay', h('span', { class: 'wide-only' }, '(no camera)')))));
     return;
   }
   const flow = app.mode === 'replay' ? REPLAY_FLOW : LIVE_FLOW;

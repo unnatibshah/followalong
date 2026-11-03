@@ -69,7 +69,7 @@
 
 .footer { background: var(--paper-2); }
 .footer-row { min-height: 56px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font: 400 13px var(--sans); color: var(--ink-4); }
-.footer-links { display: flex; gap: 20px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 .footer-links a { color: var(--ink-3); }
 
 /* S11 replay pick */
@@ -214,3 +214,9 @@
   color: #fff; font: 600 14px var(--sans); cursor: pointer; right: 4px; }
 .snap-btn.snap-move { right: auto; left: 4px; }
 .snap-actions { flex-wrap: wrap; align-items: center; }
+/* Hero: who it's for, and what goes in → what comes out, readable in a glance */
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: rgba(100, 87, 240, .1); color: var(--accent); font: 600 13px var(--sans); letter-spacing: .01em; }
+.hero-inputs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.hero-chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; background: #fff; box-shadow: 0 0 0 1px rgba(17, 17, 19, .1); font: 500 14px var(--sans); color: var(--ink-2); }
+.hero-chip.strong { background: var(--ink); color: #fff; box-shadow: none; }
+.hero-arrow { font: 500 18px var(--sans); color: var(--ink-5); }

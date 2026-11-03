@@ -1,6 +1,12 @@
 # FollowAlong
 
-**Tutorials that wait for you — and notice when you get it wrong.**
+**A lab partner for every student at the bench: it watches your hands and catches the slip.**
+
+In a hands-on STEM class, one teacher has thirty benches. Most of the lesson goes on "my LED doesn't light": a part
+in the wrong row, a lead the wrong way round, a step skipped. FollowAlong gives every student someone watching their
+work. Bring the instructions you already have (a how-to video, the kit's PDF manual, or photos of its paper pages);
+Muse Spark turns them into exact steps; the camera watches each step being built; and the coach speaks up the moment
+something's off, then checks the fix with SAM 3.1 before moving on. Teachers see which steps the class gets stuck on.
 
 ## Meta Global AI Hackathon 2026 — submission overview
 
@@ -11,15 +17,17 @@
     (a look every 2–3 s with short-term memory), judges the checks code can't measure, answers spoken questions.
   - **SAM 3.1**: outlines the hand and each step's parts so plain code decides measured checks (present, count, inside).
   - **Muse Voice Transcribe**: hands-free voice commands, questions and barge-in.
-- **Not a one-prompt wrapper:** video → step plan → live pacing → SAM-measured checks with rule-based safety gates,
-  scored on CF-Bench (303 labelled frames from CC BY tutorials).
+- **Not a chatbot, not a one-prompt wrapper:** instructions → step plan → a camera that watches the work → SAM-measured
+  checks plus Muse Spark judgements, rule-based safety gates, scored on CF-Bench (303 labelled frames from CC BY
+  tutorials). On the breadboard lesson: 93% of frames right and no unfinished step let through.
 - **Bonus prize targeted:** Best Agentic Use-Case (the coach watches, decides, interrupts and advances on its own,
   with the learner able to overrule it).
 - **Quickstart, no key:** `docker compose up` → **Watch a replay**. Live mode: `cp .env.example .env`, set `MODEL_API_KEY`.
 
-Pick a how-to video. FollowAlong breaks it into short steps with a summary of each, plays one step at a time, and
-watches your work through the webcam. When your hands move away it checks the step: done → the next step plays;
-wrong → it tells you what's different and loops the three seconds you need to see again; not sure → it asks you.
+Start from a video, a kit manual, or snapped pages. FollowAlong plays one step at a time and watches your work through
+the camera: done → the next step plays; wrong → it tells you what's different and loops the three seconds you need to
+see again; not sure → it asks you. The same engine works for any hands-on task (a knot, a cable, a thermostat, a robot
+arm), and the bundled lessons show that range.
 
 > This repo is a generated public mirror of the team's working repo; it's regenerated on every release, so please open issues here but send no pull requests.
 
@@ -64,8 +72,9 @@ an app. ~$0.05 per minute of work.
 - **Paste a Creative Commons YouTube or Vimeo link**, upload a file, or **record yourself** doing the task once so others can learn it.
   Muse Spark turns it into exact steps (rows and columns, terminal labels, polarity, colour order), with a **safety
   line** for every risky step ("Switch the breaker OFF and prove dead with the tester before touching anything").
-- **Upload an instruction manual** (a PDF up to 40 pages, or up to 20 page photos): Muse Spark reads every page and
-  builds a slide tutorial from the manual's own figures, with its warnings as safety lines, and the coach follows it.
+- **Upload a kit manual** (a PDF up to 40 pages) or **snap the pages** with your phone (up to 20, reorder or drop a bad
+  shot): Muse Spark reads every page and builds an animated instruction video from the manual's own figures (each one
+  draws itself on and zooms to where the work happens), with its warnings as safety lines, and the coach follows it.
 - **One tap** from the tutorial page: camera and voice coach start together (the 18+ confirmation is asked once).
 - **Talk to it like an assistant**, and **interrupt it** mid-sentence: it stops and listens.
 
