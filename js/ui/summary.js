@@ -4,6 +4,7 @@ import { app } from '../state.js';
 import { stepFrame } from '../thermostatscene.js';
 import { stopCamera } from '../camera.js';
 import { nav } from '../router.js';
+import { saveRun } from '../progress.js';
 
 const DONE = { 'install-thermostat': 'You installed the thermostat', 'light-switch': 'You installed the switch' };
 const andList = (a) => (a.length < 2 ? a.join('') : `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`);
@@ -18,6 +19,8 @@ export function render(root) {
   const line = `${s.steps_done} steps · ${mins} min · ${caught.length} mistake${caught.length === 1 ? '' : 's'} caught`
     + (caught.length ? ` (step${caught.length > 1 ? 's' : ''} ${andList(caught.map(String))})` : '')
     + ` · ${s.rewinds} rewind${s.rewinds === 1 ? '' : 's'} by hand`;
+  saveRun({ id: app.sessionId, tid: app.tutorialId, title, mode: app.mode, steps_done: s.steps_done, steps_total: s.steps_total,
+    duration_s: s.duration_s, mistakes: caught.length, hardest: s.hardest_step_id || null }); // Activity tab
   const steps = app.summaryPlan?.steps || [];
   const strip = steps.map((st) => {
     const mark = caught.includes(st.id);
@@ -36,7 +39,7 @@ export function render(root) {
         h('div', { class: 'sum-line' }, line),
         h('div', { class: 'muted' }, s.hardest_step_id ? `Hardest step for you: ${s.hardest_step_id}` : 'No step held you up.'),
         h('div', { class: 'col gap-s start' },
-          h('a', { href: '#/', class: 'btn btn-accent btn-lg', onclick: () => { app.sessionId = null; } }, 'Try another tutorial'),
+          h('a', { href: '#/', class: 'btn btn-accent btn-lg', onclick: () => { app.sessionId = null; } }, 'Back to home'),
           h('span', { class: 'mono fine' }, `Session ID ${app.sessionId} · quote it if you ask us to delete this session's log`)))),
     steps.length > 0 && h('div', { class: 'col gap-s' },
       h('div', { class: 'row-between muted' }, h('span', { class: 'strong ink' }, 'Your session'), h('span', {}, 'Click a marked step to replay that moment')),

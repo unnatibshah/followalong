@@ -17,12 +17,15 @@ import * as evaluation from './ui/evaluation.js';
 import * as legal from './ui/legal.js';
 import * as annotate from './ui/annotate.js';
 import * as ops from './ui/ops.js';
+import * as library from './ui/library.js';
+import * as activity from './ui/activity.js';
 
 const ROUTES = {
   '': [start, 'light'], understanding: [understanding, 'dark'], ready: [ready, 'dark'], review: [review, 'dark'], checklist: [checklist, 'light'],
   consent: [consent, 'dark'], camera: [cameraSetup, 'dark'], follow: [follow, 'dark'], summary: [summary, 'light'],
   replay: [replayPick, 'light'], creator: [creator, 'light'], evaluation: [evaluation, 'light'],
   privacy: [legal.privacy, 'light'], terms: [legal.terms, 'light'], annotate: [annotate, 'light'], ops: [ops, 'light'],
+  library: [library, 'light'], activity: [activity, 'light'],
 };
 
 let cleanup = null;
@@ -50,7 +53,7 @@ async function render() {
   renderHeader(document.getElementById('header'), route, theme);
   // A fresh box per render: a slow screen that finishes after the next navigation draws into a detached box.
   const box = document.createElement('div');
-  box.className = 'screen';
+  box.className = 'screen screen-in'; // a short fade-up between screens (none with reduced motion)
   const main = document.getElementById('main');
   main.replaceChildren(box);
   window.scrollTo(0, 0);
