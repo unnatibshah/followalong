@@ -1,7 +1,7 @@
 {
   "name": "FollowAlong",
   "short_name": "FollowAlong",
-  "description": "Tutorials that wait for you: a live coach watches your work through the camera.",
+  "description": "A lab partner for every student: turns a video or kit manual into steps, watches your hands and catches the slip.",
   "start_url": "./",
   "display": "standalone",
   "orientation": "portrait",

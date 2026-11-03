@@ -20,7 +20,7 @@ export async function render(root) {
 
   root.append(h('div', { class: 'page-light' }, h('div', { class: 'wrap col gap-xl creator' },
     h('div', { class: 'row-between end' },
-      h('div', {}, h('div', { class: 'eyebrow' }, 'For creators'), h('h1', { class: 'section-title' }, 'Where learners get stuck'),
+      h('div', {}, h('div', { class: 'eyebrow' }, 'For teachers and creators'), h('h1', { class: 'section-title' }, 'Where learners get stuck'),
         h('div', { class: 'section-sub' }, `${meta.title} · ${sessions} sessions${source}`)),
       h('button', { class: 'btn btn-white', onclick: () => edit(1) }, 'Review the checks')),
     h('div', { class: 'col gap-s' },

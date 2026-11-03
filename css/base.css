@@ -145,6 +145,7 @@ body[data-theme="light"] .btn-text.accent { color: var(--accent); }
 .nav-link { font: 500 14px var(--sans); color: var(--ink-4); }
 .nav-link.active, .nav-link:hover { color: var(--ink); }
 @media (max-width: 760px) { .header-row { gap: 12px; } .header-nav .btn-text { display: none; } } /* 1280 px at 200% zoom: no sideways scroll */
+@media (max-width: 560px) { .header-nav .nav-link, .header-nav .wide-only { display: none; } } /* a phone: logo + the replay button only */
 .site-header.dark { height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 28px; background: var(--night); border-bottom: 1px solid rgba(255, 255, 255, .07); }
 .site-header.dark .logo { font-size: 24px; color: var(--moon-2); }
 .header-side { flex: 1; display: flex; align-items: center; gap: 10px; }
