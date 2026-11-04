@@ -53,7 +53,7 @@ export async function render(root) {
           // A new tab: leaving S6 would redo its camera check on the way back.
           h('a', { href: '#/privacy', target: '_blank', rel: 'noopener', class: 'btn-text accent start' }, 'Read the full privacy notice'), micNote),
         h('button', { class: 'btn btn-accent btn-lg', onclick: () => nav('follow') }, 'Start now →'),
-        h('a', { href: '#/replay', class: 'btn-text accent center' }, 'No webcam? Watch a replay')))));
+        h('a', { href: '#/replay', class: 'btn-text accent center' }, 'No webcam? Watch a recorded session')))));
 
   // The coach checks the framing: a look every ~2.5 s; the first good one starts the lesson. A "can't see" line is
   // shown each time but said at most every 10 s, so it never nags.

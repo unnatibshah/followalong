@@ -2,11 +2,11 @@
 import { h } from './ui/dom.js';
 
 const KINDS = {
-  cap: ['Live checks are paused', 'Live checks are paused (demo budget reached). Watch a replay instead.', 'Watch a replay'],
-  model: ['Something went wrong', "Meta's AI models didn't answer. Your progress is kept. Try again in a moment, or watch a replay.", 'Watch a replay'],
-  cam: ['Camera blocked', 'Your browser blocked the camera. Allow it in the address bar, or watch a replay.', 'Watch a replay'],
+  cap: ['Live checks are paused', 'Live checks are paused for today. Watch a session we recorded instead.', 'Watch a session'],
+  model: ['Something went wrong', "Meta's AI models didn't answer. Your progress is kept. Try again in a moment, or watch a recorded session.", 'Watch a session'],
+  cam: ['Camera blocked', 'Your browser blocked the camera. Allow it in the address bar, or watch a recorded session.', 'Watch a session'],
   mic: ['Microphone blocked', 'Voice is off. Buttons and shortcuts still work.', 'OK'],
-  key: ['No API key', 'Add a Meta API key to use live mode. Replays work without one.', 'Watch a replay'],
+  key: ['Live coaching is off', 'Live camera coaching is switched off here. Watch a session we recorded instead.', 'Watch a session'],
 };
 
 let open = null;

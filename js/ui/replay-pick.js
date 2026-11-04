@@ -62,7 +62,8 @@ export async function render(root) {
   root.append(h('div', { class: 'page-light' }, h('div', { class: 'wrap-mid split replay-pick' }, art,
     h('div', { class: 'col gap-l' },
       h('h1', { class: 'title-serif xl ink' }, 'Watch FollowAlong coach a real session'),
+      h('p', { class: 'muted' }, 'We recorded these for the demo. Each one pairs a sample guide with practice footage from a different creator, so the app checks someone else\u2019s hands, materials and camera, and the coach talks them through every step.'),
       h('fieldset', { class: 'col gap-s' }, h('legend', { class: 'strong' }, 'Choose a session:'), opts),
-      h('button', { class: 'btn btn-accent btn-lg start', onclick: play, disabled: !recs.length }, 'Play the replay')))));
+      h('button', { class: 'btn btn-accent btn-lg start', onclick: play, disabled: !recs.length }, 'Play this session')))));
   return null;
 }

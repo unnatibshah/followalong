@@ -216,8 +216,7 @@
 .hero-chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 4px; border-radius: 999px; background: none; box-shadow: none; font: 500 0.875rem var(--sans); color: var(--ink-2); }
 .hero-chip.strong { padding: 0 12px; background: var(--solid); color: #fff; box-shadow: none; }
 .hero-arrow { font: 500 1.125rem var(--sans); color: var(--ink-5); }
-.hero-uses { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.hero-use { font: 500 0.75rem var(--sans); color: var(--ink-3); padding: 3px 10px; border-radius: 999px; background: rgba(17, 17, 19, .05); }
+.hero-for { margin: 0; font: 500 0.9375rem/1.4 var(--sans); color: var(--ink-3); }
 
 /* ===== App shell: tabs at the bottom on a phone, a rail on the left on a wide screen ===== */
 #appnav:empty { display: none; }
@@ -412,3 +411,4 @@ body[data-theme="light"] #main { padding-bottom: calc(84px + env(safe-area-inset
   .heat-num, .heat-bar.h0 { background: #26262C; } .heat-bar.h1 { background: #3A3428; } .heat-bar.h2 { background: #5A4626; }
 }
 .page-404 { padding-block: 80px; }
+.snap-cam { width: 100%; aspect-ratio: 4 / 3; border-radius: 14px; background: #000; object-fit: cover; }

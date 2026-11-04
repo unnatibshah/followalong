@@ -64,7 +64,7 @@ export function openCreate() {
       option('link', 'Paste a link', 'A Creative Commons YouTube or Vimeo video', linkView, !!app.config.link_import),
       option('video', 'Upload a video', `MP4, up to ${Math.round(app.config.limits.upload_max_s / 60)} minutes`, () => videoIn.click()),
       option('file', 'Upload a manual', 'A PDF, up to 40 pages', () => manualIn.click()),
-      option('camera', 'Snap the pages', 'Photograph a paper manual, page by page', () => snapIn.click()),
+      option('camera', 'Snap the pages', 'Photograph a paper manual, page by page', snap),
       option('record', 'Record yourself', 'Do the task once, talking it through', record)));
   }
 
@@ -93,21 +93,55 @@ export function openCreate() {
     body.replaceChildren(h('div', { class: 'col gap-m' },
       h('div', { class: 'muted' }, 'Hold the phone over one page at a time, flat and in good light.'), list,
       h('div', { class: 'row gap-s wrap-row' },
-        h('button', { class: 'btn btn-white', type: 'button', disabled: snaps.length >= MAX_SNAPS, onclick: () => snapIn.click() }, icon('plus'), 'Add page'),
+        h('button', { class: 'btn btn-white', type: 'button', disabled: snaps.length >= MAX_SNAPS, onclick: snap }, icon('plus'), 'Add page'),
         h('button', { class: 'btn btn-accent', type: 'button', onclick: () => upload(null, null, snaps.map((x) => x.file)) },
           `Build my guide (${snaps.length} page${snaps.length === 1 ? '' : 's'})`),
         h('button', { class: 'btn-text', type: 'button', onclick: () => { dropSnaps(); menu(); } }, 'Start over'))));
   }
-  snapIn.addEventListener('change', async () => {
-    const f = snapIn.files[0];
-    snapIn.value = '';
-    if (!f) return;
+  async function addSnap(f) {
     try {
       const file = await shrink(f, snaps.length + 1);
       snaps.push({ file, url: URL.createObjectURL(file) });
-      snapView();
-    } catch { toast("That photo couldn't be read. Try again."); }
+      return true;
+    } catch { toast("That photo couldn't be read. Try again."); return false; }
+  }
+  snapIn.addEventListener('change', async () => {
+    const f = snapIn.files[0];
+    snapIn.value = '';
+    if (f && await addSnap(f)) snapView();
   });
+
+  // A phone opens its own camera from the file input; a laptop's browser opens a file picker there instead, so on a
+  // laptop the webcam opens right here, with a shutter button. Blocked or no webcam: pick photos instead.
+  async function snap() {
+    if (matchMedia('(pointer: coarse)').matches) { snapIn.click(); return; }
+    let stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1920 }, height: { ideal: 1080 } } });
+    } catch { snapIn.click(); return; }
+    const video = h('video', { class: 'snap-cam', autoplay: true, muted: true, playsInline: true });
+    video.srcObject = stream;
+    const stop = () => stream.getTracks().forEach((t) => t.stop());
+    const count = h('span', { class: 'muted' });
+    const paint = () => { count.textContent = snaps.length ? `${snaps.length} page${snaps.length === 1 ? '' : 's'} so far` : 'Hold the page flat and fill the frame.'; };
+    const shoot = h('button', { class: 'btn btn-accent', type: 'button', onclick: async () => {
+      if (!video.videoWidth || snaps.length >= MAX_SNAPS) return;
+      const c = document.createElement('canvas');
+      c.width = video.videoWidth; c.height = video.videoHeight;
+      c.getContext('2d').drawImage(video, 0, 0);
+      const blob = await new Promise((res) => c.toBlob(res, 'image/jpeg', 0.92));
+      if (blob && await addSnap(new File([blob], `page-${snaps.length + 1}.jpg`, { type: 'image/jpeg' }))) { paint(); toast(`Page ${snaps.length} added.`); }
+      shoot.disabled = snaps.length >= MAX_SNAPS;
+    } }, icon('camera'), 'Take photo');
+    const done = h('button', { class: 'btn btn-white', type: 'button', onclick: () => { stop(); if (snaps.length) snapView(); else menu(); } },
+      'Done');
+    paint();
+    body.replaceChildren(h('div', { class: 'col gap-s' }, video, count, h('div', { class: 'row gap-s' }, shoot, done,
+      h('button', { class: 'btn-text', type: 'button', onclick: () => { stop(); snapIn.click(); } }, 'Choose photos instead'))));
+    shoot.focus();
+    // closing the sheet turns the camera off
+    const watch = setInterval(() => { if (!video.isConnected) { clearInterval(watch); stop(); } }, 1000);
+  }
 
   // ---- record yourself: do the task once, talking it through, so others can learn it ----
   let recorder = null;
@@ -145,8 +179,8 @@ export function openCreate() {
     h('div', { class: 'sheet-head' }, h('h2', { class: 'sheet-title' }, 'New guide'),
       h('button', { class: 'sheet-close', type: 'button', 'aria-label': 'Close', onclick: closeAll }, icon('x'))),
     !live && h('div', { class: 'note info' }, document.documentElement.hasAttribute('data-static')
-      ? 'This is the static demo: making your own guides needs the app running with a Meta API key.'
-      : 'Add a Meta API key to make your own guides. Samples and replays work without one.'),
+      ? 'You\u2019re on the demo site, so making your own guides is off. Try the samples, or watch a recorded session.'
+      : 'Making your own guides is switched off here. Try the samples, or watch a recorded session.'),
     body, busy, note, videoIn, manualIn, snapIn,
     h('p', { class: 'sheet-fine' }, 'Use something you have the rights to. It’s sent to Meta’s AI to find the steps, and on the hosted demo it’s '
       + 'deleted after 24 hours. By continuing you confirm you’re 18 or older and agree to ', h('a', { href: '#/terms', onclick: closeAll }, 'the terms'), '.')));
