@@ -218,7 +218,7 @@ export async function render(root) {
   el.listening = h('span', { class: 'listening' }, h('span', { 'aria-hidden': 'true' }, '🎙 '), 'Listening');
   el.watchNote = h('div', { class: 'watch-note', 'aria-live': 'off', hidden: true }, '👁 Watching…');
   el.micBtn = h('button', { class: 'btn btn-outline-dark btn-sm mic-btn', type: 'button' });
-  el.muteBtn = h('button', { class: 'btn btn-outline-dark btn-sm', type: 'button', hidden: !replayMode });
+  el.muteBtn = h('button', { class: 'btn btn-outline-dark btn-sm', type: 'button' });
   // The bar: four things you need with busy hands. Everything else is in ⋯.
   const ctl = (label, key, onclick, primary) => h('button', { class: ['btn', primary ? 'btn-accent' : 'btn-outline-dark', 'ctl'], type: 'button', onclick, title: `${label} (${key})` },
     h('span', { class: 'ctl-label' }, label), h('kbd', { class: 'key' }, key));
@@ -802,7 +802,7 @@ export async function render(root) {
     if (completed) {
       // coachSay stays quiet once finished; this one line is the ending, said after whatever was still queued is dropped
       el.reply.textContent = T('yes_last'); el.voiceCap.hidden = false;
-      if (lastSaid !== T('yes_last') && (voiceCtl || (replayMode && replayVoice))) { hush(); speak(T('yes_last')); }
+      if (lastSaid !== T('yes_last') && replayVoice) { hush(); speak(T('yes_last')); }
       el.guide.replaceChildren(h('div', { class: 'finale' }, h('span', { class: 'finale-mark', 'aria-hidden': 'true' }, '\u2713'),
         h('div', {}, h('div', { class: 'finale-title' }, 'You did it'),
           h('div', { class: 'finale-sub' }, `All ${steps.length} step${steps.length === 1 ? '' : 's'} of ${meta.title}, checked.`)),
@@ -828,7 +828,7 @@ export async function render(root) {
   // ---- voice (live only, after the S6 switch; off in replay) ----
   let listening = false, questionNo = 0;
   let lastSaid = '', lastCheck = '', voiceAsked = false;
-  let replayVoice = true;  // replays speak the coach's lines out loud (the 🔇 button mutes them)
+  let replayVoice = true;  // the coach speaks out loud, with or without the microphone (the 🔇 button mutes it)
   const convo = [];  // the conversation, in this tab only; the coach gets the last 8 turns with each question
   let voiceCtl = null;
   const voiceOn = () => app.config.voice !== 'off' && (voiceCtl = createVoice({
@@ -902,7 +902,7 @@ export async function render(root) {
     lastSaid = text;
     remember('coach', text);
     if (show) { el.reply.textContent = text; el.voiceCap.hidden = false; el.voiceCap.classList.toggle('urgent', urgent); }
-    if ((voiceCtl || (replayMode && replayVoice)) && spoken) speak(text, tag, urgent); // replays narrate unless muted
+    if (replayVoice && spoken) speak(text, tag, urgent); // spoken unless muted; the mic only adds listening
   }
 
   // ---- the live coach: a fresh look every 2–3 s while you move (every 8 s when still), like a teacher watching ----
