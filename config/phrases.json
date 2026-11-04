@@ -3,7 +3,7 @@
   "safety_confirm": "Say \"ready\" or tap \"It's safe\" when you've done that.",
   "not_quite": "Not quite.",
   "try_again": "Try again: {text}",
-  "yes_next": "Yes, that's right! Next up, step {n}: {text}",
+  "yes_next": "That's it.",
   "yes_last": "Yes, that's right! That was the last step. Great work.",
   "not_sure": "I'm not completely sure.",
   "say_yes_no": "Say yes or no.",
@@ -25,7 +25,7 @@
   "step_label": "Step {n}",
   "good_now": "Nice. Now {text}",
   "explain_btn": "Explain it differently",
-  "ok_next": "Great. Next up, step {n}: {text}",
+  "ok_next": "Great.",
   "looks_like_this": "Does yours look like that?",
   "substitute_ok": "You're using {text}. That works.",
   "override_offer": "If yours does the same job, say “it's right” and we'll keep going."
