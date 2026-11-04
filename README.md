@@ -177,9 +177,6 @@ What this shows, honestly:
   Without it, the verifier lets through 25% vs 28% for the VLM alone. Unfinished steps are its weak case (46 vs 55 of
   63 caught): all the parts are present, so the measured checks pass.
 - **Where it's strongest:** breadboard 93%, figure-eight knot 100% of frames right, 0 false advances on either.
-- **CF-Bench v1** (Oct 28 – Nov 2, 7 standard-licence YouTube tutorials, 211 frames; frames not published, labels and
-  every answer in [eval/cfbench-v1/](eval/cfbench-v1/)): the verifier cut false advances from 21% (Muse Spark alone)
-  to 12% at equal accuracy (72%), and plan self-calibration raised finished-step recognition from 22% to 51%.
 
 Cost: ~$0.005 per check. Full tables: [eval/cfbench/summary.md](eval/cfbench/summary.md) · paper:
 [paper/followalong.pdf](paper/followalong.pdf). **Hands, grippers, tools:** the actor doing the work is named per
@@ -206,7 +203,8 @@ cd app
 Every bundled tutorial is a YouTube video its creator published under the **Creative Commons Attribution licence
 (CC BY)**, which allows reuse with credit. We checked each licence on YouTube and rejected videos with stock footage
 the uploader couldn't relicense. FollowAlong cuts each video into steps, end frames and short clips; the videos are not
-otherwise changed. Credit, as CC BY asks: title, creator, link, licence (CC BY 3.0, as YouTube offers it).
+otherwise changed. Credit, as CC BY asks: title, creator, link, licence
+([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), as YouTube offers it).
 
 | Tutorial in the app | Original video | Creator | Link |
 |---|---|---|---|
@@ -220,7 +218,16 @@ otherwise changed. Credit, as CC BY asks: title, creator, link, licence (CC BY 3
 | Make a crossover Ethernet cable | “CAT6 CROSSOVER CABLE - HOW TO - QUICK & EASY!” | Ultimate Tech Hub | [youtube.com/watch?v=VZZq7MbvAuE](https://www.youtube.com/watch?v=VZZq7MbvAuE) |
 | Robot arm: pick and place blocks | “Dobot Magician Lite Pick & Place - Suction Cup Vs Gripper #robot #robotics #technology” | Amatya Katyayan | [youtube.com/watch?v=tfN4FUlOfzg](https://www.youtube.com/watch?v=tfN4FUlOfzg) |
 
-**Practice footage from different videos.** Each replay's "you" camera is a different CC BY video from the tutorial it follows, so nothing is checked against its own source: *Tie a half Windsor knot* uses [“Ties for Fun Tutorial: The Half-Windsor”](https://www.youtube.com/watch?v=S5rGTh-O7Wg) by tiesforfun, and *Tie a figure-eight knot* uses [“Activity at Home: Tie a Figure 8 Knot”](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) by Terrapin Adventures (a pink cord on a wooden table). Every look and check in them ran live on those frames.
+**Practice footage from different videos.** Each replay's "you" camera is a different CC BY video from the tutorial
+it follows, so nothing is checked against its own source. Every look and check in them ran live on those frames. The
+clips are cut from the originals; nothing else is changed. Licence: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+
+| Replay in the app | Original video | Creator | Link |
+|---|---|---|---|
+| Tie a half Windsor knot | “~Ties for Fun~ Tutorial: The Half-Windsor” | tiesforfun | [youtube.com/watch?v=S5rGTh-O7Wg](https://www.youtube.com/watch?v=S5rGTh-O7Wg) |
+| Tie a figure-eight knot (pink cord) | “Activity at Home: Tie a Figure 8 Knot” | Terrapin Adventures | [youtube.com/watch?v=Sq3Ndf_jm_Y](https://www.youtube.com/watch?v=Sq3Ndf_jm_Y) |
+| Tie a figure-eight knot in white rope | “How to tie a Figure Eight knot.” | Oleg_Volsky | [youtube.com/watch?v=QM4aDZbrKLA](https://www.youtube.com/watch?v=QM4aDZbrKLA) |
+| Solder two wires together | “How to solder wires and how to heat shrink protect them. #howtosolder” | How 2 Wrench | [youtube.com/watch?v=eMAuabWzl80](https://www.youtube.com/watch?v=eMAuabWzl80) |
 
 Links pasted into the app are accepted only when the video is Creative Commons licensed; uploads must be videos you
 have the rights to. The first version of this project used standard-licence YouTube videos; they are not in this

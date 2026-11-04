@@ -24,10 +24,8 @@ controlled negatives — the step not yet finished, the key part removed, and a 
 accurate system (70 % vs 64 % for Muse Spark alone and 64 % for SAM 3.1 alone) and recognises far more finished steps
 (68 % vs 48 %), but it does **not** advance the learner past fewer not-done frames overall (28 % vs 24 %): the gap comes
 mostly from a repetitive robot pick-and-place video, without which the verifier's false-advance rate is 25 % against
-28 %. On the earlier **CF-Bench v1** (211 frames from seven standard-licence YouTube tutorials; labels and answers
-released, frames not redistributed), the same verifier cut false advances from 21 % to 12 % at equal accuracy (72 %).
-A plan **self-calibration** step, which runs each auto-generated measured check on the tutorial's own end frame and
-switches off those that fail, raised done recall from 22 % to 51 % on v1. The lesson: combining geometry and judgement
+28 %. A plan **self-calibration** step runs each auto-generated measured check on the tutorial's own end frame and
+switches off those that fail. The lesson: combining geometry and judgement
 reliably improves accuracy and recall, but its effect on false advances depends on the task. Every model answer is
 released so all numbers re-score offline.
 
@@ -39,8 +37,8 @@ missing: **pacing** (the video should wait for the learner) and **verification**
 next one starts).
 
 Large vision-language models (VLMs) make "compare my desk to the tutorial" look easy, but a VLM alone is an
-unreliable judge in both directions: on one tutorial set it waved a fifth of unfinished steps through, on another it
-rejected half of correctly finished ones. For a safety-relevant task, a false "done" (advancing a learner past a
+unreliable judge: on our benchmark it waved a quarter of unfinished steps through and rejected half of correctly
+finished ones. For a safety-relevant task, a false "done" (advancing a learner past a
 mistake) is far worse than a false "not yet", but a tutor that keeps saying "not yet" to correct work gets switched off.
 
 Our contributions:
@@ -55,8 +53,8 @@ Our contributions:
    tutorial video, labelled by construction, with a measured filter that discards negatives that are not visibly
    different.
 4. **An ablation study** comparing VLM-only, segmentation-only and the combined verifier, plus a no-model pixel
-   baseline, on two tutorial sets: nine Creative Commons tutorials (released in full) and seven earlier
-   standard-licence ones — including the case where our approach does *not* reduce false advances.
+   baseline, on nine Creative Commons tutorials (released in full) — including the case where our approach does *not*
+   reduce false advances.
 
 ## 2 Related work
 
@@ -164,10 +162,7 @@ decision logic, not a substitute for in-the-wild user studies.
 **Data.** *CF-Bench v2* (the main results): nine YouTube tutorials their creators published under Creative Commons
 Attribution (CC BY), credited in the repository — breadboarding an LED, a figure-eight knot, a half Windsor tie,
 soldering two wires, jump-starting a car, a wall thermostat, a smart light switch, a crossover Ethernet cable and a
-robot arm's pick-and-place — 63 steps, 303 frames, all released. *CF-Bench v1* (§4.6): seven standard-licence YouTube
-tutorials (thermostat ×2, Ethernet T568B, light switch, breadboard LED, figure-eight follow-through, through-hole
-soldering), 44 steps, 211 frames; we release its labels and every model answer but not its frames, which we have no
-right to redistribute.
+robot arm's pick-and-place — 63 steps, 303 frames, all released.
 
 **Systems.** (a) *Pixel baseline*: cosine similarity of 64×36 grey frames to the end frame, threshold chosen
 leave-one-tutorial-out; (b) *Muse Spark only*: whole learner frame and whole end frame, the step's judged checks plus
@@ -215,87 +210,23 @@ Unfinished steps are the verifier's weak case: every part is already present, so
 judged check sees only a crop around the parts, losing context the whole-frame VLM uses. Wrong-colour parts remain
 the case where combining helps (31 vs 28 and 23).
 
-### 4.3 Plan self-calibration (v1)
+### 4.3 Latency and cost
 
-Muse Spark's step plans for the seven tutorials contain 123 checks. Run on each step's own end frame, 52 measured
-checks failed and 40 objects could not be found by SAM 3.1 — e.g. `inside(red snap wire, breadboard)`: a plugged-in
-wire is mostly *outside* the board, so the predicate is false on the very frame that defines "done". Calibration
-disables such checks (never tunes a threshold) and, for 9 steps left without any check, promotes "done looks like"
-to a judged check. Without calibration the verifier is even more cautious (7 % false advance) but nearly unusable: it
-recognises only 22 % of finished steps and answers `unsure` on 78 % of frames, so the learner would be asked about
-almost every step. Calibration raises done recall to 51 % and accuracy from 63 % to 72 % for six more false advances
-(12 %): it moves the system to a usable operating point without any human review of the plans.
-
-### 4.4 Step segmentation (v1)
-
-Against independent step labels for the seven videos (65 labelled steps), Muse Spark's plans reach a mean temporal
-IoU of 0.49, recall 66 % at IoU ≥ 0.3 and 46 % at IoU ≥ 0.5, with a median boundary error of 1.0 s (start) and 2.5 s
-(end). Plans tend to split or merge steps (mean |Δ step count| 3.6), which matters less for pacing than for scoring:
-a merged step is still checked at its end frame.
-
-### 4.5 Latency and cost (v1)
-
-Batch runs queue behind the API's 60-requests-per-minute limit, so latency was measured separately on 24 frames
-checked one at a time: median **2.2 s** (90th percentile 5.0 s) for the verifier and **2.0 s** (2.4 s) behind the
-hard gate, where a hand in view returns after the single hand request (~0.4–1.7 s). The soft gate's actor request
-runs in parallel with the object requests, so it adds no sequential stage to the verifier's latency. Muse Spark's judged call, when
-needed, takes ~1.4 s and starts only after the objects are found, so it can see the crop. A check costs about half a US cent (one SAM 3.1 request per object plus at most one Muse Spark call); all
-v1 experiments cost about US $6 in API calls; the v2 runs about US $6 more.
-
-### 4.6 CF-Bench v1 (earlier tutorials)
-
-Main results:
-
-| System | Accuracy (95 % CI) | Done recall | Done precision | **False advance** | Flagged (`wrong`/`unsure`) | $ / check |
-|---|---|---|---|---|---|---|
-| Pixel similarity, LOTO threshold | 57 % | – | – | 64 / 123 (52 %) | – | 0 |
-| Muse Spark only | 72 % (65–77) | 61 % | 0.68 | 26 / 123 (21 %) | 97 / 123 | 0.0024 |
-| SAM 3.1 measured only | 72 % (66–78) | 89 % | 0.62 | 48 / 123 (39 %) | 75 / 123 | 0.0040 |
-| Verifier, no self-calibration | 63 % (56–69) | 22 % | 0.68 | 9 / 123 (7 %) | 114 / 123 | 0.0065 |
-| **Verifier (ours)** | 72 % (66–78) | 51 % | **0.75** | **15 / 123 (12 %)** | **108 / 123** | 0.0054 |
-| Hard "hands away" gate | 66 % (60–72) | 31 % | 0.73 | 10 / 123 (8 %) | 47 / 123 † | 0.0049 |
-| **Product: soft actor gate** | **72 % (66–78)** | **51 %** | **0.75** | 15 / 123 (12 %) | 68 / 123 † | 0.0076 |
-
-† `waiting` ("move your hand a little") is a safe non-advance but not counted as a flag. The hard gate answers it on
-most frames, because tutorial frames show the presenter's hands; the soft gate on 44 of 211, mostly not-done frames
-where the hand really hides a needed part.
-
-**Soft vs hard gate.** Waiting for hands to leave costs 20 points of done recall (31 % vs 51 %) and buys 4 points of
-false-advance rate (8 % vs 12 %), mostly by never checking at all. The soft gate keeps the verifier's accuracy while
-staying aware of occlusion, and it is the only variant that generalises to actors that never leave the frame.
-
-**Same accuracy, different errors.** The three model-based systems are statistically indistinguishable on accuracy,
-yet the share of not-done frames waved through drops from 21 % (VLM) and 39 % (geometry) to 12 % when they are
-combined with the decision table — each catches what the other misses. Geometry alone is permissive: a part that is
-*present* in the wrong colour or before the step is finished still passes `present` and `count`. The VLM alone is
-agreeable: it accepts 16 of 38 wrong-colour frames. The combination converts most of those errors into `unsure`, which
-in the product is a one-tap question to the learner ("Does yours look like this?"), not a silent failure.
-
-Per case:
-
-| Correct / total | done | done (dim) | incomplete | missing part | wrong colour |
-|---|---|---|---|---|---|
-| Muse Spark only | 31/44 | 23/44 | 38/44 | 37/41 | 22/38 |
-| SAM 3.1 only | 39/44 | 39/44 | 20/44 | 36/41 | 19/38 |
-| **Verifier** | 23/44 | 22/44 | 40/44 | 39/41 | **29/38** |
-| Product | 14/44 | 13/44 | 43/44 | 39/41 | 31/38 |
-
-Wrong-colour parts are the hardest case for both single-model systems (58 % and 50 % correct) and the case where the
-combination helps most (76 %). The cost is recall on finished frames, mostly through `unsure`: the verifier asks
-rather than guesses when an object is not found or Muse Spark is not confident.
-
+A check costs about half a US cent (one SAM 3.1 request per object plus at most one Muse Spark call; per-system costs
+in §4.1); the v2 runs cost about US $6 in API calls. Batch runs queue behind the API's 60-requests-per-minute limit,
+so they give no meaningful latency; one-at-a-time latency on v2 is not reported here.
 
 ## 5 Discussion
 
 **Measure what you can, judge what you must, ask when unsure.** The central design choice — measured checks veto,
 judged checks need confidence, and doubt goes to the learner — was meant to trade recall on finished steps for a lower
-rate of advancing past a mistake. v1 showed that trade; v2 shows it is not guaranteed: on repetitive steps where the
+rate of advancing past a mistake. v2 shows that trade is not guaranteed: on repetitive steps where the
 parts are all present before the step is done, measurement cannot veto and a crop-level judgement is too permissive.
 Checks that look at the whole scene (or at motion) for "is it finished" are the obvious next step. For physical tasks with real consequences (mains wiring, climbing knots) that is the right
 side of the trade: a false "not yet" costs a tap; a false "done" can cost a furnace fuse.
 
-**Automatic plans need automatic checking.** The most common error was not perception but specification: the VLM
-wrote plausible-sounding predicates that were false on its own reference frame. Self-calibration catches this class of
+**Automatic plans need automatic checking.** A VLM can write plausible-sounding predicates that are false on its own
+reference frame — e.g. `inside(red wire, breadboard)`, when a plugged-in wire is mostly outside the board. Self-calibration catches this class of
 error with no human and no extra labels, using only the tutorial itself.
 
 **Counterfactual evaluation scales.** CF-Bench took minutes to generate and under US $5 to run, and it is
@@ -304,8 +235,8 @@ or models measurable on every change.
 
 ## 6 Limitations and ethics
 
-- The bundled tutorials and CF-Bench v2 frames come from CC BY videos, credited as the licence asks. CF-Bench v1 used
-  standard-licence videos; its frames are not redistributed.
+- The bundled tutorials and CF-Bench v2 frames come from CC BY videos, credited as the licence asks. An earlier
+  benchmark built on standard-licence videos was withdrawn; none of its data or results are used or reported here.
 - Camera frames are sent to Meta's model API for each check and are not stored by the hosted demo.
 - CF-Bench is synthetic; an in-the-wild study with volunteers is future work.
 - Safety-critical work (mains electricity) still requires the learner to follow the tutorial's own safety steps;
@@ -316,9 +247,9 @@ or models measurable on every change.
 FollowAlong turns any how-to video into a paced, verified lesson by splitting each step's success criteria between
 geometry on SAM 3.1 outlines and Muse Spark judgements on matched crops, with a decision rule that lets measurement
 veto and routes doubt to the learner. On an automatically generated counterfactual benchmark it is the most accurate
-system and recognises far more finished work than a VLM alone; it cut the rate of advancing past a mistake from 21 %
-to 12 % on our first tutorial set but not on the second, where repetitive robot steps defeat it — and an actor-aware
-soft gate recognises more finished steps than a hands-away gate — with the actor named per video, so the
+system and recognises far more finished work than a VLM alone, but it does not lower the rate of advancing past a
+mistake overall, mostly because repetitive robot steps defeat it; an actor-aware soft gate recognises more finished
+steps than a hands-away gate, with the actor named per video, so the
 same pipeline applies to robot footage and tool use. Future work: a
 volunteer study in real homes, learned calibration of the confidence threshold per check type, and video-level
 (not frame-level) verification for steps defined by motion.
