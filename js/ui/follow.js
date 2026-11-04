@@ -640,7 +640,7 @@ export async function render(root) {
     // Your turn: the step keeps playing as a silent loop beside you, so nobody has to pause or rewind it
     if (before.state === S.PLAYING && ctx.state !== S.PLAYING) { flash = null; player.loopStep(stepOf(ctx.step)); }
     if (before.state === S.MISTAKE && ctx.state === S.WAITING) { player.loopStep(stepOf(ctx.step)); progressAt = Date.now(); }
-    if (before.step !== ctx.step) { actionAt = 0; resetWatch(); el.reply.textContent = ''; el.heard.textContent = ''; el.voiceCap.hidden = true; if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
+    if (before.step !== ctx.step) { lastMistakeSaid = 0; quietUntil = 0; actionAt = 0; resetWatch(); el.reply.textContent = ''; el.heard.textContent = ''; el.voiceCap.hidden = true; if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title); }
     if (ctx.state === S.SAFETY && before.state !== S.SAFETY && before.state !== S.PAUSED) {
       log('safety_shown', ctx.step, { hazard: hazard(ctx.step) });
       coachSay(`${T('safety_first')} ${detailOf(ctx.step)?.safety || ''} ${T('safety_confirm')}`, true, true, ctx.step, true);
@@ -658,7 +658,9 @@ export async function render(root) {
       // A second "not quite" on the same step: the check may simply not know this setup, so offer the learner's word
       wrongs[ctx.step] = (wrongs[ctx.step] || 0) + 1;
       chime('soft');
-      coachSay(`${mistakeLine(last)}${wrongs[ctx.step] >= 2 && !replayMode ? ` ${T('override_offer')}` : ''}`, true, !!voiceCtl, ctx.step); // the caption shows it anyway
+      // said once; a "not quite" the coach already said moments ago only shows (the caption has it anyway)
+      const offer = wrongs[ctx.step] >= 2 && !replayMode;
+      coachSay(`${mistakeLine(last)}${offer ? ` ${T('override_offer')}` : ''}`, offer || mayTalk('mistake'), !!voiceCtl, ctx.step);
       clipPaused = false; clipPlay = false;
       player.loop(stepOf(ctx.step));
       if (reducedMotion()) player.pause();
@@ -909,7 +911,20 @@ export async function render(root) {
   // The server sets the pace (next_look_ms): every 1.5 s when the API key has room, slower when many people are
   // practising at once; a look it had no room for comes back `busy` and is simply skipped.
   let LOOK_MS = 1500;
-  const COMMENT_GAP_MS = 4000; // running commentary: at most a line every 4 s while things change
+  const COMMENT_GAP_MS = 7000; // running commentary: at most a line every 7 s while things change
+  // Room to work: after a "not quite" the coach says it once and then gives the learner time. Another "not quite"
+  // within MISTAKE_GAP_MS, or any commentary within QUIET_MS, shows in the captions but isn't spoken.
+  const MISTAKE_GAP_MS = 20000, QUIET_MS = 12000;
+  let lastMistakeSaid = 0, quietUntil = 0;
+  function mayTalk(kind) {
+    const now = Date.now();
+    if (kind === 'mistake') {
+      if (now - lastMistakeSaid < MISTAKE_GAP_MS) return false;
+      lastMistakeSaid = now; quietUntil = now + QUIET_MS;
+      return true;
+    }
+    return now >= quietUntil;
+  }
   const STILL_MS = 8000, MAX_LOOKS = 2;
   let lookSeq = 0, shownSeq = 0;
   let lastLook = 0, looking = 0, stepStart = Date.now(), lastLine = '', lastLineAt = 0, lastCantSee = 0;
@@ -976,7 +991,8 @@ export async function render(root) {
     if (res.status === 'cant_see') lastCantSee = Date.now();
     lastLine = line; lastLineAt = Date.now();
     saidLines.push(line);
-    coachSay(line, true, true, step, res.status === 'mistake');
+    const talk = mayTalk(res.status === 'mistake' ? 'mistake' : 'comment');
+    coachSay(line, talk, true, step, talk && res.status === 'mistake');
   }
   const watchTimer = watcherOn ? setInterval(() => {
     if (watcherStopped || finished || looking >= MAX_LOOKS || document.hidden || ctx.inFlight) return;
@@ -996,7 +1012,8 @@ export async function render(root) {
       // the last step's "great work" cuts in ahead of anything still queued, so the lesson ends on it
       coachSay(next ? T('yes_next', { n: n + 1, text: `${lcFirst(titleOf(n + 1))}.` }) : T('yes_last'), true, !!voiceCtl, next ? n + 1 : n, !next);
     } else if (res.verdict === 'unsure') {
-      coachSay(`${T('not_sure')} ${finalQuestion(n)} ${T('looks_like_this')} ${T('say_yes_no')}`);
+      // short: the question is on screen with its buttons ("say yes or no" only when they're talking to the coach)
+      coachSay(`${finalQuestion(n)} ${T('looks_like_this')}${voiceCtl ? ` ${T('say_yes_no')}` : ''}`);
     } else if (res.verdict === 'waiting' && asked) {
       coachSay(res.hand_blocked ? T('cant_see_yet') : T('couldnt_check'));
     } // wrong: spoken when the mistake screen opens (mistakeLine)
@@ -1051,7 +1068,11 @@ export async function render(root) {
       if (d.status === 'mistake' && lastStatus === 'mistake' && Date.now() - lastLineAt < 6000) return; // said once
       if (d.status === 'cant_see' && Date.now() - lastCantSee < 10000) return; // don't nag about the camera
       if (d.status === 'cant_see') lastCantSee = Date.now();
-      if (d.say) { lastStatus = d.status; lastLineAt = Date.now(); coachSay(d.say, true, true, step, d.status === 'mistake'); }
+      if (d.say) {
+        lastStatus = d.status; lastLineAt = Date.now();
+        const talk = mayTalk(d.status === 'mistake' ? 'mistake' : 'comment');
+        coachSay(d.say, talk, true, step, talk && d.status === 'mistake');
+      }
     } }) : null;
   // ---- framing: light and focus, measured on the phone (free, instant); said once, then again only if it persists ----
   let lastFraming = 0;
@@ -1084,7 +1105,7 @@ export async function render(root) {
   if (resumed) { log('resumed', ctx.step); coachSay(T('welcome_back', { n: ctx.step }), true, true, ctx.step); }
   if (!replayMode) saveProgress(app.tutorialId, ctx.step, steps.length, meta.title);
   paint();
-  begin();
+  if (!replayMode) begin(); // a replay's own timeline starts the first step, after the setup lines
   replay?.start();
   motion?.start();
 
@@ -1118,9 +1139,9 @@ export async function render(root) {
 // English defaults for the coach's fixed lines (the server's copy: config/phrases.json), used until /api/phrases answers
 const PHRASES_EN = {
   good_now: 'Nice. Now {text}', explain_btn: 'Explain it differently',
-  ok_next: 'Great. Next up, step {n}: {text}', looks_like_this: 'Does yours look like that?',
+  ok_next: 'Great.', looks_like_this: 'Does yours look like that?',
   substitute_ok: "You're using {text}. That works.", safety_first: 'Safety first.', safety_confirm: 'Say "ready" or tap "It\'s safe" when you\'ve done that.',
-  not_quite: 'Not quite.', try_again: 'Try again: {text}', yes_next: "Yes, that's right! Next up, step {n}: {text}",
+  not_quite: 'Not quite.', try_again: 'Try again: {text}', yes_next: "That's it.",
   yes_last: "Yes, that's right! That was the last step. Great work.", not_sure: "I'm not completely sure.", say_yes_no: 'Say yes or no.',
   cant_see_yet: "I can't see your work yet. Move your hands out of the way and ask me again.",
   couldnt_check: "I couldn't check just now. Hold still and ask me again.", looks_good: 'Looks good. Let me make sure.',
