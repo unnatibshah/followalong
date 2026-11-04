@@ -34,6 +34,7 @@ arm), and the bundled lessons show that range.
 
 > This repo is a generated public mirror of the team's working repo; it's regenerated on every release, so please open issues here but send no pull requests.
 
+- **Demo video (2:59):** **https://www.youtube.com/watch?v=Ma34bw5P2MQ**
 - **Live demo:** **https://unnatibshah.github.io/followalong/** (Chrome or Edge; "Watch a replay" needs no camera)
 - **Paper:** [paper/followalong.pdf](paper/followalong.pdf) — *Grounded Step Verification for Learning Physical Skills from Video*
 - **Benchmark:** [CF-Bench](#cf-bench-testing-without-a-human-in-the-loop) — 303 auto-labelled counterfactual frames from CC BY tutorials, every model answer recorded
@@ -240,6 +241,23 @@ repository.
 - Adults only (18+). Camera frames are sent to Meta's models to check each step and are not stored by us.
   [Privacy notice](web/legal/privacy.md) · [Terms](web/legal/terms.md).
 
+## What's next: scoped out for the hackathon
+
+We had ten days, so we measured honestly and stopped where the evidence stopped. What we'd do next, in order:
+
+- **Fewer unfinished steps let through.** It's the verifier's weak case (28% false advances vs 24% for Muse Spark
+  alone), mostly on repetitive steps like the robot arm's 16 "move the cube" moves, where a half-done move looks
+  finished in a single frame. Next: judge the whole scene and the last few seconds of motion, not one cropped frame,
+  and require two looks in a row before advancing on a step marked risky.
+- **Calibrated confidence.** The "ask instead of guess" threshold is one number today. Learn it per check type
+  (presence, count, position, judged) from labelled frames, so the coach asks less on easy checks and more on hard ones.
+- **Real mistakes, not only synthetic ones.** CF-Bench builds its mistakes from the tutorials themselves. Next: a
+  volunteer study filmed with consent, where people make real mistakes at real desks, and a benchmark built from it.
+- **Steps defined by motion.** Some steps (tighten, crimp, pull through) are about movement, not a final picture.
+  Video-level checks over a short clip, instead of a frame, would cover them.
+- **More guides and tasks**, and step plans that learners and creators can correct, with every fix feeding back into
+  the checks.
+
 ## Licences
 
 - Code: MIT ([LICENSE](LICENSE)). Tutorial videos: their creators' (see above).
@@ -247,4 +265,6 @@ repository.
 
 ## Team
 
-Samruddhi Kakade · Unnati Shah
+[Samruddhi Kakade](https://github.com/SamruddhiKakade) · [Unnati Shah](https://github.com/unnatibshah). Built together
+in the team's private working repo; this public repo is a generated mirror of it, so every sync commit credits both
+of us as co-authors.
