@@ -29,7 +29,7 @@ const STATUS = {
   checking: () => 'Taking a look\u2026',
   recheck: () => 'Looks right. One more look\u2026', done: () => '\u2713 Nice, that\u2019s it',
   not_quite: () => "Not quite. Fix it and I'll look again.", unsure: () => 'Waiting for your answer',
-  paused: () => 'Paused', cap: () => 'Live checks are paused (demo budget reached). Watch a replay instead.',
+  paused: () => 'Paused', cap: () => 'Live checks are paused for today. Watch a recorded session instead.',
   samFail: () => "Couldn't check, waiting. I'll try again when you're still.",
   safety: () => "Do the safety step, then tell me it's safe.",
 };
@@ -456,7 +456,7 @@ export async function render(root) {
       blocked: "I can't see part of the work. Move your hand a little.", samFail: "Couldn't check. Hold still for a moment.",
       checking: 'Checking your work…', recheck: 'Looks right.', done: 'Nice, that\u2019s it.',
       not_quite: last?.hint || 'Not quite. Compare yours with the video and adjust.',
-      paused: 'Paused. Press P or click the video to continue.', cap: 'Live checks are paused. Watch a replay instead.',
+      paused: 'Paused. Press P or click the video to continue.', cap: 'Live checks are paused. Watch a recorded session instead.',
     }[key] || '';
     el.caption.hidden = key === 'unsure' || key === 'safety'; // their panels say it
     el.capText.textContent = caption;

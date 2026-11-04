@@ -36,6 +36,6 @@ export async function render(root) {
       limit('03', "Judged checks add about a second. When FollowAlong isn't sure, it asks you."),
       limit('04', 'Tested on thermostat wiring (no live power) and a Joy-Con stick swap only.'),
       limit('05', 'Live mains wiring (smart switches, 120/230 V) is out of scope. Low voltage only.')),
-    h('div', {}, h('a', { href: '#/replay', class: 'btn btn-accent btn-lg' }, 'Watch a replay')))));
+    h('div', {}, h('a', { href: '#/replay', class: 'btn btn-accent btn-lg' }, 'Watch a recorded session')))));
   return null;
 }

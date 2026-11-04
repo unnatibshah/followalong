@@ -42,7 +42,7 @@ export async function render(root) {
   btn.setAttribute('aria-describedby', 'age-hint');
   const note = h('div', { class: 'note bad-dark row', hidden: true });
   const showNote = (text) => {
-    note.replaceChildren(h('span', {}, text), h('a', { href: '#/replay', class: 'btn btn-light btn-sm' }, 'Watch a replay'));
+    note.replaceChildren(h('span', {}, text), h('a', { href: '#/replay', class: 'btn btn-light btn-sm' }, 'Watch a recorded session'));
     note.hidden = false;
   };
   const label = h('label', { class: 'age-box', for: 'age' }, box, "I'm 18 or older.");
@@ -98,6 +98,6 @@ export async function render(root) {
       h('a', { href: '#/terms', class: 'btn-text accent' }, 'Terms of use')),
     note,
     h('div', { class: 'col end gap-s' }, h('div', { class: 'row-actions' }, over || '', btn), hint),
-    h('a', { href: '#/replay', class: 'btn-text accent start' }, 'Watch a replay instead (no camera)')));
+    h('a', { href: '#/replay', class: 'btn-text accent start' }, 'Watch a recorded session instead')));
   return null;
 }

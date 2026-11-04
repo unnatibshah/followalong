@@ -1,0 +1,13 @@
+{
+  "id": "solder-red-wires",
+  "tutorial_id": "solder-wires",
+  "title": "Solder two wires together",
+  "who": "cross-video",
+  "credit": "\u201cHow to solder wires and how to heat shrink protect them. #howtosolder\u201d by How 2 Wrench, CC BY",
+  "volunteer_code": null,
+  "consent_ref": null,
+  "delete_on_request": false,
+  "plan_hash": "sha256:f811eafd861fed2b291f4d0ed9c3751a9c9beea44a8d0be303b1cd204d2a8d56",
+  "prompt_version": "judged_checks-1.0",
+  "recorded_at": "2026-11-03T18:00:00.000Z"
+}

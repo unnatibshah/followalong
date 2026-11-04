@@ -1,0 +1,497 @@
+{
+ "eval/cross/solder-red-wires/step1-look4-038.00.jpg|full|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s1c2",
+    "type": "judged",
+    "kind": "judged",
+    "pass": true,
+    "confidence": 0.95,
+    "reason": "Both red wire ends in learner hands show fanned copper strands."
+   }
+  ],
+  "hint": null,
+  "objects": [],
+  "hand_blocked": false,
+  "latency_ms": 2887,
+  "cost_usd": 0.004,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 2887,
+   "geometry": 0,
+   "judge": 2829
+  }
+ },
+ "eval/cross/solder-red-wires/step1-look4-038.00.jpg|recheck|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [],
+  "hint": null,
+  "objects": [],
+  "hand_blocked": false,
+  "latency_ms": 2891,
+  "cost_usd": 0.0025,
+  "models": [
+   "sam-3.1"
+  ],
+  "stages_ms": {
+   "actor": 2891,
+   "geometry": 0
+  }
+ },
+ "eval/cross/solder-red-wires/step2-look3-048.55.jpg|full|judged_checks-1.0": {
+  "verdict": "wrong",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s2c2",
+    "type": "judged",
+    "kind": "judged",
+    "pass": false,
+    "confidence": 0.9,
+    "reason": "Learner shows one stripped wire with untwisted strands, no joined ends."
+   }
+  ],
+  "hint": "Hold both bare ends together and twist them tight.",
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     347,
+     230,
+     1159,
+     411
+    ],
+    "outline_svg": "M932 230L893 233L861 236L827 239L778 242L757 245L755 248L702 251L695 254L688 257L681 260L674 263L672 266L677 269L686 272L1124 275L1134 278L1143 281L1152 284L555 300L547 303L540 306L534 309L526 312L519 315L512 318L508 321L502 324L494 327L487 330L481 333L473 336L467 339L460 342L454 345L448 348L442 351L437 354L430 357L423 360L416 363L409 366L402 369L393 372L386 375L380 378L376 381L372 384L369 387L367 390L364 393L361 396L358 399L354 402L350 405L347 408L348 411L354 411L363 408L372 405L382 402L390 399L398 396L406 393L413 390L420 387L426 384L433 381L439 378L446 375L452 372L459 369L465 366L470 363L477 360L484 357L490 354L496 351L503 348L509 345L517 342L522 339L530 336L538 333L545 330L553 327L560 324L567 321L573 318L577 315L579 312L582 309L585 306L589 303L589 300L1160 284L1159 281L1155 278L1149 275L1141 272L1136 269L1132 266L1129 263L1127 260L1125 257L1123 254L1119 251L1113 248L1105 245L1094 242L1079 239L1063 236L1044 233L937 230Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 11092,
+  "cost_usd": 0.0082,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 2985,
+   "objects": 2985,
+   "geometry": 9,
+   "judge": 8098
+  }
+ },
+ "eval/cross/solder-red-wires/step2-fix1-049.55.jpg|full|judged_checks-1.0": {
+  "verdict": "unsure",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s2c2",
+    "type": "judged",
+    "kind": "judged",
+    "pass": false,
+    "confidence": 0.3,
+    "reason": "Fingers cover the copper join so twisting and strands cannot be seen."
+   }
+  ],
+  "hint": null,
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     451,
+     228,
+     1279,
+     363
+    ],
+    "outline_svg": "M1013 228L1005 231L931 234L912 237L889 240L855 243L829 246L823 249L825 252L829 255L835 258L841 261L849 264L1141 267L1154 270L1165 273L1177 276L1187 279L1199 282L1209 285L1220 288L1229 291L1238 294L1248 297L1257 300L552 303L542 306L534 309L525 312L516 315L506 318L495 321L484 324L480 327L476 330L472 333L469 336L466 339L464 342L462 345L459 348L458 351L455 354L454 357L452 360L451 363L456 363L464 360L471 357L479 354L488 351L498 348L506 345L514 342L522 339L529 336L537 333L546 330L555 327L563 324L568 321L571 318L572 315L574 312L574 309L1280 306L1280 303L1280 300L1280 297L1280 294L1280 291L1280 288L1280 285L1277 282L1272 279L1263 276L1253 273L1242 270L1232 267L1224 264L1217 261L1207 258L1198 255L1188 252L1178 249L1166 246L1150 243L1129 240L1115 237L1097 234L1072 231L1043 228Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 7532,
+  "cost_usd": 0.0071,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 4109,
+   "objects": 4109,
+   "geometry": 2,
+   "judge": 3421
+  }
+ },
+ "eval/cross/solder-red-wires/step3-look4-064.00.jpg|full|judged_checks-1.0": {
+  "verdict": "wrong",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s3c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.87,
+    "threshold": 0.5
+   },
+   {
+    "check_id": "s3c2",
+    "type": "judged",
+    "kind": "judged",
+    "pass": false,
+    "confidence": 0.85,
+    "reason": "The bare twisted copper looks dry with no wet flux coating visible."
+   }
+  ],
+  "hint": "Dab a little flux right onto the bare twisted copper in the middle.",
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     138,
+     361,
+     1279,
+     507
+    ],
+    "outline_svg": "M906 361L878 364L824 367L756 370L747 373L744 376L730 379L717 382L698 385L697 388L699 391L629 394L624 397L617 400L612 403L601 406L569 409L561 412L550 415L539 418L530 421L520 424L509 427L503 430L492 433L480 436L471 439L467 442L464 445L463 448L464 451L465 454L469 457L416 460L403 463L392 466L384 469L369 472L354 475L145 478L142 481L138 484L138 487L138 490L140 493L142 496L144 499L160 502L193 505L222 507L282 507L308 505L336 502L354 499L364 496L378 493L391 490L399 487L408 484L417 481L425 478L1280 475L1280 472L1280 469L1280 466L1280 463L1280 460L1280 457L1280 454L1277 451L1274 448L1267 445L1262 442L1257 439L1250 436L1244 433L1237 430L1233 427L1226 424L1217 421L1212 418L1205 415L1197 412L1191 409L1183 406L1176 403L1170 400L1161 397L1151 394L1142 391L1136 388L1125 385L1113 382L1105 379L1093 376L1079 373L1067 370L1049 367L1024 364L999 361Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 3697,
+  "cost_usd": 0.0063,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 218,
+   "objects": 1521,
+   "geometry": 2,
+   "judge": 2173
+  }
+ },
+ "eval/cross/solder-red-wires/step3-fix1-065.00.jpg|full|judged_checks-1.0": {
+  "verdict": "wrong",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s3c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.89,
+    "threshold": 0.5
+   },
+   {
+    "check_id": "s3c2",
+    "type": "judged",
+    "kind": "judged",
+    "pass": false,
+    "confidence": 0.9,
+    "reason": "The twisted copper in the middle looks dry with no wet coating."
+   }
+  ],
+  "hint": "Dab a little flux right on the bare twisted middle.",
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     136,
+     361,
+     1279,
+     602
+    ],
+    "outline_svg": "M906 361L877 364L828 367L757 370L748 373L744 376L729 379L717 382L742 385L742 388L743 391L745 394L1081 397L1094 400L1101 403L602 406L570 409L562 412L551 415L539 418L531 421L521 424L510 427L503 430L492 433L481 436L473 439L469 442L465 445L464 448L464 451L465 454L468 457L416 460L402 463L392 466L383 469L369 472L353 475L144 478L141 481L138 484L136 487L138 490L139 493L142 496L143 499L162 502L198 505L228 507L283 507L309 505L335 502L353 499L363 496L378 493L391 490L399 487L408 484L416 481L1280 478L1280 475L1280 472L1280 469L1280 466L1280 463L1280 460L1280 457L1280 454L1277 451L1273 448L1267 445L1262 442L1258 439L1250 436L1245 433L1238 430L1232 427L1226 424L1218 421L1213 418L1205 415L1197 412L1191 409L1184 406L1175 403L1170 400L1161 397L1152 394L1142 391L1135 388L1125 385L1114 382L1105 379L1094 376L1079 373L1067 370L1048 367L1022 364L996 361ZM1264 519L1247 522L1231 525L1214 528L1202 531L1189 534L1174 537L1163 540L1151 543L1133 546L1112 549L1085 552L1039 555L1002 558L887 561L865 564L850 567L835 570L821 573L805 576L790 579L775 582L711 585L707 588L707 591L711 594L716 597L725 600L733 602L750 602L762 600L778 597L794 594L813 591L827 588L842 585L863 582L879 579L911 576L1044 573L1089 570L1119 567L1138 564L1153 561L1166 558L1178 555L1190 552L1203 549L1214 546L1227 543L1242 540L1261 537L1277 534L1280 531L1280 528L1280 525L1280 522L1280 519ZM695 378L665 381L653 384L643 387L633 390L626 393L621 396L616 399L608 402L600 405L592 408L602 411L593 414L592 417L593 420L594 420L606 417L625 414L639 411L653 408L673 405L685 402L693 399L702 396L718 393L742 390L742 387L741 384L716 381L741 378Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 4021,
+  "cost_usd": 0.0064,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 753,
+   "objects": 2100,
+   "geometry": 2,
+   "judge": 1917
+  }
+ },
+ "eval/cross/solder-red-wires/step3-fix2-066.00.jpg|full|judged_checks-1.0": {
+  "verdict": "unsure",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s3c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.73,
+    "threshold": 0.5
+   },
+   {
+    "check_id": "s3c2",
+    "type": "judged",
+    "kind": "judged",
+    "pass": false,
+    "confidence": 0.3,
+    "reason": "Learner image is too blurry to see any wet flux on a join."
+   }
+  ],
+  "hint": null,
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     742,
+     464,
+     1279,
+     513
+    ],
+    "outline_svg": "M1203 464L1176 467L1156 470L1140 473L1124 476L1106 479L1088 482L849 485L825 488L806 491L783 494L762 497L747 500L742 503L742 506L743 509L746 512L748 513L760 513L768 512L788 509L807 506L998 503L1080 500L1104 497L1118 494L1136 491L1150 488L1163 485L1183 482L1217 479L1280 476L1280 473L1280 470L1280 467L1248 464Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 3579,
+  "cost_usd": 0.0067,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 293,
+   "objects": 452,
+   "geometry": 2,
+   "judge": 3125
+  }
+ },
+ "eval/cross/solder-red-wires/step4-look3-130.20.jpg|full|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s4c3",
+    "type": "judged",
+    "kind": "judged",
+    "pass": true,
+    "confidence": 0.85,
+    "reason": "Central join is coated in shiny solder with no bare copper visible."
+   }
+  ],
+  "hint": null,
+  "objects": [],
+  "hand_blocked": false,
+  "latency_ms": 6169,
+  "cost_usd": 0.0045,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 635,
+   "geometry": 0,
+   "judge": 6167
+  }
+ },
+ "eval/cross/solder-red-wires/step4-look3-130.20.jpg|recheck|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [],
+  "hint": null,
+  "objects": [],
+  "hand_blocked": false,
+  "latency_ms": 1123,
+  "cost_usd": 0.0025,
+  "models": [
+   "sam-3.1"
+  ],
+  "stages_ms": {
+   "actor": 1123,
+   "geometry": 0
+  }
+ },
+ "eval/cross/solder-red-wires/step5-look3-158.60.jpg|full|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s5c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.93,
+    "threshold": 0.5
+   },
+   {
+    "check_id": "s5c3",
+    "type": "judged",
+    "kind": "judged",
+    "pass": true,
+    "confidence": 0.85,
+    "reason": "Black sleeve sits over the join with insulated wire visible on both sides and no solder showing."
+   }
+  ],
+  "hint": null,
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     0,
+     329,
+     1279,
+     435
+    ],
+    "outline_svg": "M1167 329L1139 332L1123 335L1103 338L1090 341L1077 344L1068 347L1058 350L1043 353L1033 356L1018 359L1004 362L984 365L960 368L947 371L913 374L868 377L839 380L798 383L792 386L790 389L789 392L789 395L440 398L379 401L308 404L238 407L170 410L0 413L0 416L0 419L0 422L0 425L0 428L0 431L17 434L34 435L122 435L144 434L200 431L253 428L320 425L398 422L459 419L510 416L510 413L512 410L512 407L814 404L854 401L910 398L937 395L963 392L975 389L1010 386L1014 383L1030 380L1040 377L1053 374L1067 371L1077 368L1092 365L1103 362L1114 359L1280 356L1280 353L1280 350L1280 347L1280 344L1280 341L1280 338L1280 335L1260 332L1232 329Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 5120,
+  "cost_usd": 0.0065,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 391,
+   "objects": 1411,
+   "geometry": 2,
+   "judge": 3707
+  }
+ },
+ "eval/cross/solder-red-wires/step5-look3-158.60.jpg|recheck|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s5c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.93,
+    "threshold": 0.5
+   }
+  ],
+  "hint": null,
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     0,
+     329,
+     1279,
+     435
+    ],
+    "outline_svg": "M1167 329L1139 332L1123 335L1103 338L1090 341L1077 344L1068 347L1058 350L1043 353L1033 356L1018 359L1004 362L984 365L960 368L947 371L913 374L868 377L839 380L798 383L792 386L790 389L789 392L789 395L440 398L379 401L308 404L238 407L170 410L0 413L0 416L0 419L0 422L0 425L0 428L0 431L17 434L34 435L122 435L144 434L200 431L253 428L320 425L398 422L459 419L510 416L510 413L512 410L512 407L814 404L854 401L910 398L937 395L963 392L975 389L1010 386L1014 383L1030 380L1040 377L1053 374L1067 371L1077 368L1092 365L1103 362L1114 359L1280 356L1280 353L1280 350L1280 347L1280 344L1280 341L1280 338L1280 335L1260 332L1232 329Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 1121,
+  "cost_usd": 0.005,
+  "models": [
+   "sam-3.1"
+  ],
+  "stages_ms": {
+   "actor": 222,
+   "objects": 1118,
+   "geometry": 2
+  }
+ },
+ "eval/cross/solder-red-wires/step6-look3-184.00.jpg|full|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s6c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.9,
+    "threshold": 0.5
+   },
+   {
+    "check_id": "s6c3",
+    "type": "judged",
+    "kind": "judged",
+    "pass": true,
+    "confidence": 0.78,
+    "reason": "Black sleeve in learner image looks conformed tight around wire with no gaps."
+   }
+  ],
+  "hint": null,
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     0,
+     329,
+     1279,
+     431
+    ],
+    "outline_svg": "M1169 329L1139 332L1118 335L1098 338L1087 341L1075 344L1059 347L1050 350L1037 353L1027 356L1015 359L995 362L973 365L952 368L935 371L910 374L845 377L819 380L787 383L782 386L782 389L782 392L473 395L375 398L299 401L213 404L0 407L0 410L0 413L0 416L0 419L0 422L0 425L0 428L30 431L123 431L193 428L247 425L319 422L423 419L505 416L507 413L508 410L508 407L814 404L840 401L919 398L938 395L955 392L1003 389L1005 386L1015 383L1025 380L1035 377L1053 374L1063 371L1072 368L1088 365L1099 362L1280 359L1280 356L1280 353L1280 350L1280 347L1280 344L1280 341L1280 338L1273 335L1249 332L1220 329Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 3284,
+  "cost_usd": 0.0078,
+  "models": [
+   "sam-3.1",
+   "muse-spark-1.3"
+  ],
+  "stages_ms": {
+   "actor": 1174,
+   "objects": 1174,
+   "geometry": 2,
+   "judge": 2107
+  }
+ },
+ "eval/cross/solder-red-wires/step6-look3-184.00.jpg|recheck|judged_checks-1.0": {
+  "verdict": "done",
+  "fallback": null,
+  "results": [
+   {
+    "check_id": "s6c1",
+    "type": "present",
+    "kind": "measured",
+    "pass": true,
+    "value": 0.9,
+    "threshold": 0.5
+   }
+  ],
+  "hint": null,
+  "objects": [
+   {
+    "name": "white wire",
+    "found": true,
+    "box": [
+     0,
+     329,
+     1279,
+     431
+    ],
+    "outline_svg": "M1169 329L1139 332L1118 335L1098 338L1087 341L1075 344L1059 347L1050 350L1037 353L1027 356L1015 359L995 362L973 365L952 368L935 371L910 374L845 377L819 380L787 383L782 386L782 389L782 392L473 395L375 398L300 401L213 404L0 407L0 410L0 413L0 416L0 419L0 422L0 425L0 428L30 431L123 431L193 428L247 425L319 422L423 419L505 416L507 413L508 410L508 407L814 404L840 401L919 398L938 395L955 392L1003 389L1005 386L1015 383L1025 380L1035 377L1053 374L1063 371L1072 368L1088 365L1099 362L1280 359L1280 356L1280 353L1280 350L1280 347L1280 344L1280 341L1280 338L1273 335L1249 332L1220 329Z"
+   }
+  ],
+  "hand_blocked": false,
+  "latency_ms": 1135,
+  "cost_usd": 0.005,
+  "models": [
+   "sam-3.1"
+  ],
+  "stages_ms": {
+   "actor": 393,
+   "objects": 1133,
+   "geometry": 2
+  }
+ }
+}

@@ -1486,5 +1486,293 @@
   "say": "",
   "latency_ms": 2506,
   "cost_usd": 0.00427225
+ },
+ "eval/cross/solder-red-wires/step1-look1-032.82.jpg|0|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Both red wires are held with about a centimeter of bare copper showing on each tip, matching the finished example.",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4086,
+  "cost_usd": 0.00263405
+ },
+ "eval/cross/solder-red-wires/step1-look2-034.67.jpg|1|watch-1.2": {
+  "status": "cant_see",
+  "observation": "Blurry close-up of hands holding wires, red overlay text blocks view, bare tips not clearly visible",
+  "on_action": 3,
+  "substitute": "",
+  "say": "I can't see the bare tips. Hold them still closer.",
+  "latency_ms": 3000,
+  "cost_usd": 0.004315
+ },
+ "eval/cross/solder-red-wires/step1-look3-036.52.jpg|2|watch-1.2": {
+  "status": "cant_see",
+  "observation": "Blurry hands holding wires, red text covers the middle so bare tips can't be judged.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "I still can't see the shiny tips. Lift them above the red words.",
+  "latency_ms": 12922,
+  "cost_usd": 0.006517
+ },
+ "eval/cross/solder-red-wires/step1-look4-038.00.jpg|3|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Both red wire ends show about a centimeter of bare copper, held together in close-up matching the finished state.",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 3084,
+  "cost_usd": 0.0047545
+ },
+ "eval/cross/solder-red-wires/step2-look1-042.42.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Two bare wire ends held together end to end at centre, not yet twisted into a lock.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you've got the ends together. Now twist 'em round to lock.",
+  "latency_ms": 4605,
+  "cost_usd": 0.0025760500000000003
+ },
+ "eval/cross/solder-red-wires/step2-look2-045.49.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "Hands holding two bare ends together end to end at centre, fingers mid-twist but no tight lock yet like tutorial's small twist.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2950,
+  "cost_usd": 0.0044735
+ },
+ "eval/cross/solder-red-wires/step2-look3-048.55.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Live red wires show bare ends overlapped end-to-end at centre with a tight twist locking them, matching tutorial's small twist; progress from just held together to now twisted.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 6397,
+  "cost_usd": 0.00603
+ },
+ "eval/cross/solder-red-wires/step3-look1-055.60.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Live shows red wire clipped with bare twist on right dry, black stick touching insulated middle not the twist, no wet flux visible unlike tutorial wet twist.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Got the stick ready. Now wipe it right on the bare twist.",
+  "latency_ms": 6013,
+  "cost_usd": 0.0036775500000000003
+ },
+ "eval/cross/solder-red-wires/step3-look2-058.60.jpg|1|watch-1.2": {
+  "status": "idle",
+  "observation": "live red wire twist in clips looks dry with no wet shine, black stick not in frame, unlike tutorial wet twist",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 7494,
+  "cost_usd": 0.0067805
+ },
+ "eval/cross/solder-red-wires/step3-look3-061.60.jpg|2|watch-1.2": {
+  "status": "working",
+  "observation": "Live twist still looks dry with no wet shine, stick not on bare metal, unlike tutorial wet shiny twist.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "That twist still looks dry. Dab it right on the bare metal.",
+  "latency_ms": 6163,
+  "cost_usd": 0.00399855
+ },
+ "eval/cross/solder-red-wires/step3-look4-064.00.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "Live twist still looks dry with no wet shine, paste visible on stick below but not wiped onto bare metal, unlike tutorial wet shiny twist.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "That paste's still on the stick. Wipe it onto the bare copper.",
+  "latency_ms": 4487,
+  "cost_usd": 0.00515925
+ },
+ "eval/cross/solder-red-wires/step4-look1-090.70.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "iron tip held against bare red wire twist with thin solder wire fed to joint, twist not yet coated shiny",
+  "on_action": 3,
+  "substitute": "",
+  "say": "Good, iron's under the twist. Now touch solder to it.",
+  "latency_ms": 5630,
+  "cost_usd": 0.00364055
+ },
+ "eval/cross/solder-red-wires/step4-look2-110.45.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "iron is pulled away below the twist, bare twist still shows no shiny solder coating",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Hold the iron back on the bare twist.",
+  "latency_ms": 4842,
+  "cost_usd": 0.0034879
+ },
+ "eval/cross/solder-red-wires/step4-look3-130.20.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "iron tip held under red wire twist which now looks coated shiny silver like tutorial finished joint",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2892,
+  "cost_usd": 0.0023870500000000004
+ },
+ "eval/cross/solder-red-wires/step5-look1-155.10.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Red wires joined in clips with shiny solder visible, no insulating tube yet on either wire end.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Slip the short tube onto one wire end.",
+  "latency_ms": 3509,
+  "cost_usd": 0.004664
+ },
+ "eval/cross/solder-red-wires/step5-look2-156.85.jpg|1|watch-1.2": {
+  "status": "idle",
+  "observation": "Red wires remain clipped with shiny join exposed, no tube threaded yet, same as last look.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2416,
+  "cost_usd": 0.00261465
+ },
+ "eval/cross/solder-red-wires/step5-look3-158.60.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "Black tube is centered over the soldered join overlapping red coating both sides, matching finished state",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2164,
+  "cost_usd": 0.0041215
+ },
+ "eval/cross/solder-red-wires/step6-look1-169.00.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "live shows red wire with black tube held over heat tool nozzle centered under tube; tube still looks loose, not yet tight band like tutorial",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you've got heat right on the tube. Now sweep it slow along it.",
+  "latency_ms": 3956,
+  "cost_usd": 0.0033314
+ },
+ "eval/cross/solder-red-wires/step6-look2-176.50.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "red wire with black tube held over heat tool nozzle, tube tightening but still being heated",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Keep sweeping the heat slow along the tube.",
+  "latency_ms": 4297,
+  "cost_usd": 0.00496825
+ },
+ "eval/cross/solder-red-wires/step6-look3-184.00.jpg|2|watch-1.2": {
+  "status": "looks_done",
+  "observation": "red wire with black tube now tight band held in clips, heat tool lifted away matching tutorial tight band",
+  "on_action": 3,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2140,
+  "cost_usd": 0.00253185
+ },
+ "eval/cross/figure-eight-white-rope/step1-look1-018.57.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Hands holding white rope flat with a wide bight, no cross over yet to form the 6 loop.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got the rope laid out. Now lift one side and cross it over.",
+  "latency_ms": 4509,
+  "cost_usd": 0.00490075
+ },
+ "eval/cross/figure-eight-white-rope/step1-look2-021.05.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "White rope laid flat with a cross over in the middle, no round open loop yet below the cross",
+  "on_action": 2,
+  "substitute": "",
+  "say": "You've crossed it over. Widen the loop below.",
+  "latency_ms": 25559,
+  "cost_usd": 0.00652425
+ },
+ "eval/cross/figure-eight-white-rope/step1-look3-023.52.jpg|2|watch-1.2": {
+  "status": "working",
+  "observation": "White rope flat on table with a cross in the middle, right hand holding a small end, no round open loop below the cross yet.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4613,
+  "cost_usd": 0.0035889
+ },
+ "eval/cross/figure-eight-white-rope/step1-look4-025.50.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "white rope flat on table with a cross in middle and a round open loop on the right, hands adjusting",
+  "on_action": 2,
+  "substitute": "",
+  "say": "Good, you've got the cross with a loop. Now make that loop nice and round.",
+  "latency_ms": 8806,
+  "cost_usd": 0.00713
+ },
+ "eval/cross/figure-eight-white-rope/step2-look1-028.27.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Hands forming initial cross on table, bottom loop not yet opened and tail not yet wrapped behind long part",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got the cross. Now pinch the lower loop open.",
+  "latency_ms": 4606,
+  "cost_usd": 0.00488475
+ },
+ "eval/cross/figure-eight-white-rope/step2-look2-029.96.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "white rope in cross shape on table, short tail hanging center, not yet taken behind and around to the side; bottom loop not open like tutorial ring",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 4766,
+  "cost_usd": 0.00521
+ },
+ "eval/cross/figure-eight-white-rope/step2-look3-031.65.jpg|2|watch-1.2": {
+  "status": "working",
+  "observation": "white rope still in flat cross on table, bottom loop not pinched open and tail hanging center not wrapped behind",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2479,
+  "cost_usd": 0.00266315
+ },
+ "eval/cross/figure-eight-white-rope/step2-look4-033.00.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "white rope still lying flat in cross shape, bottom loop not pinched open and short tail hanging center not taken behind and around",
+  "on_action": 1,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 2391,
+  "cost_usd": 0.0025869
+ },
+ "eval/cross/figure-eight-white-rope/step3-look1-038.80.jpg|0|watch-1.2": {
+  "status": "working",
+  "observation": "Hands holding rope mid-threading, loose shape on table, not yet a tight eight with tail down.",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Good, you've got the shape started. Now push that short end down through.",
+  "latency_ms": 3681,
+  "cost_usd": 0.00193975
+ },
+ "eval/cross/figure-eight-white-rope/step3-look2-042.80.jpg|1|watch-1.2": {
+  "status": "working",
+  "observation": "loose threaded shape held flat, not yet pulled tight into stacked eight with tail down",
+  "on_action": 2,
+  "substitute": "",
+  "say": "",
+  "latency_ms": 5330,
+  "cost_usd": 0.0029349000000000003
+ },
+ "eval/cross/figure-eight-white-rope/step3-look3-046.80.jpg|2|watch-1.2": {
+  "status": "mistake",
+  "observation": "Rope now straight with no loops, earlier loose eight undone",
+  "on_action": 1,
+  "substitute": "",
+  "say": "Oh, wait, the loops came out. Re-make the eight first.",
+  "latency_ms": 2533,
+  "cost_usd": 0.0023443
+ },
+ "eval/cross/figure-eight-white-rope/step3-look4-050.00.jpg|3|watch-1.2": {
+  "status": "working",
+  "observation": "Hands pulling a small tight knot in white rope flat on table, both ends long horizontal, knot appears snug but orientation flat vs hanging tutorial.",
+  "on_action": 2,
+  "substitute": "",
+  "say": "That's threaded through. Now pull both ends firm.",
+  "latency_ms": 7788,
+  "cost_usd": 0.00666125
  }
 }

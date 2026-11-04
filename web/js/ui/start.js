@@ -35,9 +35,7 @@ export async function render(root) {
       h('div', { class: 'hero-actions' },
         h('a', { href: '#/replay', class: 'btn btn-accent btn-xl glow' }, 'Watch the demo', icon('arrow')),
         h('button', { class: 'btn btn-white btn-xl', type: 'button', onclick: toLib }, icon('camera'), 'Try it with your camera')),
-      h('div', { class: 'hero-uses', 'aria-label': 'Built for' },
-        h('span', { class: 'fine' }, 'Built for'),
-        ['Electronics', 'Repairs & installs', 'Assembly', 'Training', 'Robotics'].map((t) => h('span', { class: 'hero-use' }, t)))),
+      h('p', { class: 'hero-for' }, 'For anything you learn with your hands, at home, at work or in training.')),
     h('div', { class: 'hero-art' }, heroDemo()));
 
   const how = h('section', { class: 'wrap' }, h('div', { class: 'how' },
@@ -75,8 +73,8 @@ export async function render(root) {
     icon('chevron', 'make-go')));
 
   const note = !live && h('div', { class: 'wrap' }, h('div', { class: 'note info' }, staticDemo
-    ? 'Static demo: replays and checklists only. For live camera checks, run the app from GitHub with a Meta API key.'
-    : 'Add a Meta API key to use live mode. Replays work without one.'));
+    ? 'You\u2019re on the demo site: watch sessions we recorded with the app, or open any guide as a checklist. Live camera coaching runs in the full app.'
+    : 'Live camera coaching is switched off here. Watch a session we recorded with the app instead.'));
 
   root.append(h('div', { class: 'page-light home' }, note || '', top, cont, mineSec, exploreSec, make,
     h('footer', { class: 'footer' }, h('div', { class: 'wrap footer-row' },
@@ -98,7 +96,7 @@ export async function render(root) {
       h('a', { href: t.source_url, target: '_blank', rel: 'noopener' }, 'source'), `, ${t.licence}. Cut into steps by FollowAlong.`))));
     credits.hidden = !credited.length;
   } catch {
-    explore.grid.replaceWith(h('div', { class: 'note warn row' }, h('span', {}, 'Something went wrong loading the guides. Try a replay instead.'),
+    explore.grid.replaceWith(h('div', { class: 'note warn row' }, h('span', {}, 'Something went wrong loading the guides. Watch a recorded session instead.'),
       h('a', { href: '#/replay', class: 'btn btn-dark' }, 'See it in action')));
   }
   return null;

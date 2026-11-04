@@ -280,7 +280,7 @@ CROSS = {
     "figure-eight-knot": {
         "name": "figure-eight-pink-cord", "video": "https://www.youtube.com/watch?v=Sq3Ndf_jm_Y",
         "credit": "\u201cActivity at Home: Tie a Figure 8 Knot\u201d by Terrapin Adventures, CC BY",
-        "title": "Tie a figure-eight knot",
+        "title": "Tie a figure-eight knot in pink cord",
         "steps": {1: (8.5, 18.0), 2: (18.0, 33.0), 3: (33.5, 44.5)}, "end": 47.6,  # the end card starts at 48 s
     },
     "tie-a-tie": {
@@ -288,10 +288,33 @@ CROSS = {
         "credit": "\u201cTies for Fun Tutorial: The Half-Windsor\u201d by tiesforfun, CC BY",
         "title": "Tie a half Windsor knot", "steps": "auto",
     },
+    "figure-eight-white-rope": {
+        "tutorial": "figure-eight-knot", "name": "figure-eight-white-rope", "video": "https://www.youtube.com/watch?v=QM4aDZbrKLA",
+        "credit": "\u201cHow to tie a Figure Eight knot.\u201d by Oleg_Volsky, CC BY",
+        "title": "Tie a figure-eight knot in white rope",  # 0-13 s shows the finished knot first; the tying starts at 15 s
+        "steps": {1: (15.0, 25.5), 2: (25.5, 33.0), 3: (33.0, 50.0)}, "end": 54.0,
+    },
+    "solder-wires": {
+        "name": "solder-red-wires", "video": "https://www.youtube.com/watch?v=eMAuabWzl80",
+        "credit": "\u201cHow to solder wires and how to heat shrink protect them. #howtosolder\u201d by How 2 Wrench, CC BY",
+        "title": "Solder two wires together",
+        # the solder has flowed by 146 s; the sleeve is slid on off camera (on at 158 s); the crop leaves out the captions
+        "steps": {1: (30.0, 38.0), 2: (38.0, 51.0), 3: (52.0, 64.0), 4: (64.0, 146.0), 5: (153.0, 160.0), 6: (160.0, 190.0)},
+        "end": 194.0, "crop": (85, 0, 768, 384),
+    },
 }
 # Tried and left out (Nov 3): ASFN Fishing's figure-eight (a hook knot in fishing line: another task), BTC Biker's
 # soldering (an extension wire and a ring terminal: another job), and gigametre's "Simple resistor/LED circuit" as breadboard practice footage. The camera is
 # far back, hands cover the wires through step 1, and the LED is never lit, so the checks (rightly) never pass.
+# Also left out: Fit and Tech with Cornellius's "How To Build A T568A Ethernet Cable" (built twice, cropped the second
+# time: a wide desk shot, the wires small and often under the hands; steps 1 and 7 never see the plug, three
+# "can't see" checks each, then the coach's "it's right" offer), marcojocram's "How to Jumpstart Your Car (NEW)"
+# (black "Step n" cards between short clips, most looks can't see the clamps; step 4 stalls on "can't see"), and,
+# without building: Veer's breadboard LED (the plan's checks need a white and a blue wire and a blue LED: red/black
+# leads and a green LED fail on colour, as the gigametre footage did), Leviton's and Life Fusion's switch videos
+# (the light-switch plan is a two-gang smart switch with wire caps), Lawrence Systems' FT-45 crimping (no boot, mostly
+# talking head), Clay Auto's jump-start videos (one car, pointing, no cables), BigNutty's soldering (a clear sleeve;
+# the plan's checks name a black one), Virtual Butler's half Windsor (portrait 360p).
 
 CROSS_DIR = APP / "eval" / "cross"
 
